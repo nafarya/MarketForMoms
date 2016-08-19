@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Product {
     private String name;
+    private int productId;
     private String description;
     private List<Features> featuresList;
     private ProductCategory productCategory;
@@ -51,5 +52,13 @@ public class Product {
 
     public void setReferenceList(List<ItemReference> referenceList) {
         this.referenceList = referenceList;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 }
