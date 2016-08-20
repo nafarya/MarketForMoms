@@ -67,12 +67,12 @@ public interface Contract {
         public static final String TABLE = "OFFER";
         public static final String OFFER_PRICE = "PRICE";
         public static final String OFFER_PRODUCT_ID = "PRODUCT_ID";
-        public static final String OFFER_ACTIVE = "ACTIVE";
+        public static final String OFFER_ACTIVE_FLG = "ACTIVE_FLG";
 
         public static final String OFFER_TABLE_CREATE = "create table " + TABLE + " (" +
                 OFFER_PRICE + " REAL, " +
                 OFFER_PRODUCT_ID + " INTEGER NOT NULL, " +
-                OFFER_ACTIVE + " INTEGER );";
+                OFFER_ACTIVE_FLG + " INTEGER );";
     }
 
     final class Product {
@@ -85,18 +85,18 @@ public interface Contract {
         public static final String PRODUCT_TABLE_CREATE = "create table " + TABLE + " (" +
                 PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 PRODUCT_NAME + " TEXT NOT NULL, " +
-                PRODUCT_DESCRIPTION + " TEXT NOT NULL, " +
-                PRODUCT_CATEGORY + " TEXT NOT NULL );";
+                PRODUCT_DESCRIPTION + " TEXT, " +
+                PRODUCT_CATEGORY + " INTEGER );";
     }
 
     final class ProductCategory {
         public static final String TABLE = "PRODUCT_CATEGORY";
         public static final String PRODUCT_CATEGORY_NAME = "NAME";
-        public static final String PRODUCT_CATEGORY_PARENT_CATEGORY = "PARENT_CATEGORY";
+        public static final String PRODUCT_CATEGORY_PARENT_CATEGORY_ID = "PARENT_CATEGORY_ID";
 
         public static final String PRODUCT_CATEGORY_TABLE_CREATE = "create table " + TABLE + " (" +
                 PRODUCT_CATEGORY_NAME + " TEXT NOT NULL, " +
-                PRODUCT_CATEGORY_PARENT_CATEGORY + " TEXT NOT NULL );";
+                PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " INTEGER );";
     }
 
     final class Shop {
@@ -116,8 +116,7 @@ public interface Contract {
 
         public static final String USER_TABLE_CREATE = "create table " + TABLE + " (" +
                 USER_NAME + " TEXT NOT NULL, " +
-                USER_LOGIN + " TEXT NOT NULL );";
-
+                USER_LOGIN + " TEXT );";
     }
 
     final class Image {
@@ -151,7 +150,7 @@ public interface Contract {
         public static final String PRODUCT_FEATURE_TABLE_CREATE = "create table " + TABLE + " (" +
                 PRODUCT_FEATURE_FEATURE_ID + " INTEGER NOT NULL, " +
                 PRODUCT_FEATURE_PRODUCT_ID + " INTEGER NOT NULL, " +
-                PRODUCT_FEATURE_VALUE + " TEXT NOT NULL );";
+                PRODUCT_FEATURE_VALUE + " TEXT );";
 
     }
 
