@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         dbHelper = new SQLiteHelper(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+        dbHelper.insertFakeData(db,this,R.raw.fakemarket);
 
     }
 }
