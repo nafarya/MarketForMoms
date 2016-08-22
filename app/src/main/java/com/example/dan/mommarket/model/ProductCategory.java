@@ -4,10 +4,10 @@ package com.example.dan.mommarket.model;
  * Created by dan on 18.08.16.
  */
 public class ProductCategory {
-    private String name;
-    private String parentCategory;
+    private int name;
+    private int parentCategory;
 
-    public ProductCategory(String name) {
+    public ProductCategory(int name) {
         this.name = name;
     }
 }

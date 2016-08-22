@@ -96,10 +96,11 @@ public interface Contract {
         public static final String PRODUCT_CATEGORY = "CATEGORY";
 
         public static final String PRODUCT_TABLE_CREATE = "create table " + TABLE + " (" +
-                PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                PRODUCT_ID + " INTEGER, " +
                 PRODUCT_NAME + " TEXT NOT NULL, " +
                 PRODUCT_DESCRIPTION + " TEXT, " +
                 PRODUCT_CATEGORY + " INTEGER );";
+
     }
 
     final class ProductCategory {
@@ -109,7 +110,7 @@ public interface Contract {
         public static final String PRODUCT_CATEGORY_PARENT_CATEGORY_ID = "PARENT_CATEGORY_ID";
 
         public static final String PRODUCT_CATEGORY_TABLE_CREATE = "create table " + TABLE + " (" +
-                PRODUCT_CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                PRODUCT_CATEGORY_ID + " INTEGER, " +
                 PRODUCT_CATEGORY_NAME + " TEXT NOT NULL, " +
                 PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " INTEGER );";
     }

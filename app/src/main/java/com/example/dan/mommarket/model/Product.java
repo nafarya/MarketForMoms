@@ -10,6 +10,7 @@ public class Product {
     private String name;
     private int productId;
     private String description;
+    private float price;
     private List<Features> featuresList;
     private ProductCategory productCategory;
     private List<ItemReference> referenceList;
@@ -60,5 +61,13 @@ public class Product {
 
     public void setProductId(int productId) {
         this.productId = productId;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 }
