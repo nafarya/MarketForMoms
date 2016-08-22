@@ -1,4 +1,4 @@
-Insert into PRODUCT (_ID,NAME,CATEGORY) Values
+Insert into PRODUCT (_ID,NAME,CATEGORY_ID) Values
 (1,"Merries подгузники (0-5 кг)",2),
 (2,"Merries подгузники (0-5 кг)",2),
 (3,"Merries подгузники (0-5 кг)",2),

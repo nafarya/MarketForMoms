@@ -11,9 +11,20 @@ public class Product {
     private int productId;
     private String description;
     private float price;
-    private List<Features> featuresList;
     private ProductCategory productCategory;
+    private List<Features> featuresList;
     private List<ItemReference> referenceList;
+
+    public Product(
+            int productId,
+            String name,
+            float price,
+            String description) {
+        this.name = name;
+        this.productId = productId;
+        this.description = description;
+        this.price = price;
+    }
 
     public String getName() {
         return name;

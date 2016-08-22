@@ -93,13 +93,13 @@ public interface Contract {
         public static final String PRODUCT_ID = "_ID";
         public static final String PRODUCT_NAME = "NAME";
         public static final String PRODUCT_DESCRIPTION = "DESCRIPTION";
-        public static final String PRODUCT_CATEGORY = "CATEGORY";
+        public static final String PRODUCT_CATEGORY_ID = "CATEGORY_ID";
 
         public static final String PRODUCT_TABLE_CREATE = "create table " + TABLE + " (" +
                 PRODUCT_ID + " INTEGER, " +
                 PRODUCT_NAME + " TEXT NOT NULL, " +
                 PRODUCT_DESCRIPTION + " TEXT, " +
-                PRODUCT_CATEGORY + " INTEGER );";
+                PRODUCT_CATEGORY_ID + " INTEGER );";
 
     }
 

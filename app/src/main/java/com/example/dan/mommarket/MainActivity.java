@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         insertDataToDB(db);
         ProductDataSource productDataSource = new ProductDataSource(this);
         List<Product> productList = productDataSource.getAllProducts();
+        Log.i("asdf",""+productList.size());
     }
 
     void insertDataToDB(SQLiteDatabase db) {
