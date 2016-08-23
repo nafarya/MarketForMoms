@@ -23,12 +23,14 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         insertDataToDB(db);
         ProductDataSource productDataSource = new ProductDataSource(this);
-        List<Product> productList = productDataSource.getAllProducts();
+        List<Product> productList = productDataSource.getListProducts(2);
         Log.i("asdf",""+productList.size());
     }
 
     void insertDataToDB(SQLiteDatabase db) {
+        dbHelper.insertFakeData(db,this,R.raw.check_list);
         dbHelper.insertFakeData(db,this,R.raw.feature);
+        dbHelper.insertFakeData(db,this,R.raw.list_offer);
         dbHelper.insertFakeData(db,this,R.raw.offer);
         dbHelper.insertFakeData(db,this,R.raw.product);
         dbHelper.insertFakeData(db,this,R.raw.product_category);

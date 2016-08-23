@@ -11,6 +11,8 @@ public class Product {
     private int productId;
     private String description;
     private float price;
+    private int categoryId;
+    private String categoryName;
     private ProductCategory productCategory;
     private List<Features> featuresList;
     private List<ItemReference> referenceList;
@@ -19,11 +21,16 @@ public class Product {
             int productId,
             String name,
             float price,
-            String description) {
+            String description,
+            int categoryId,
+            String categoryName
+            ) {
         this.name = name;
         this.productId = productId;
         this.description = description;
         this.price = price;
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
     }
 
     public String getName() {
