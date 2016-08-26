@@ -76,6 +76,7 @@ public class ProductDataSource {
             productCursor.moveToNext();
         }
         productCursor.close();
+        database.close();
         return productList;
     }
     private Product productCursorToProduct(Cursor productCursor) {
