@@ -10,9 +10,28 @@ public class Product {
     private String name;
     private int productId;
     private String description;
-    private List<Features> featuresList;
+    private float price;
+    private int categoryId;
+    private String categoryName;
     private ProductCategory productCategory;
+    private List<Features> featuresList;
     private List<ItemReference> referenceList;
+
+    public Product(
+            int productId,
+            String name,
+            float price,
+            String description,
+            int categoryId,
+            String categoryName
+            ) {
+        this.name = name;
+        this.productId = productId;
+        this.description = description;
+        this.price = price;
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+    }
 
     public String getName() {
         return name;
@@ -60,5 +79,13 @@ public class Product {
 
     public void setProductId(int productId) {
         this.productId = productId;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 }

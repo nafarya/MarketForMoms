@@ -21,6 +21,7 @@ public class SQLiteHelper extends SQLiteOpenHelper implements Contract {
 
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     }
 
 
@@ -45,7 +46,6 @@ public class SQLiteHelper extends SQLiteOpenHelper implements Contract {
             sqLiteDatabase.execSQL(insertStmt);
             insertReader.close();
         }catch (IOException e){}
-
         return;
     }
 
