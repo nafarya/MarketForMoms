@@ -1,7 +1,5 @@
 package com.example.dan.mommarket.database;
 
-import java.util.ListResourceBundle;
-
 /**
  * Created by dan on 19.08.16.
  */
@@ -9,7 +7,7 @@ import java.util.ListResourceBundle;
 public interface Contract {
 
 
-    final class Child {
+    final class ChildDB {
         public static final String TABLE = "CHILD";
         public static final String CHILD_ID = "_ID";
         public static final String CHILD_NAME = "NAME";
@@ -29,7 +27,7 @@ public interface Contract {
                 CHILD_LAST_UPDATE + " TEXT);";
     }
 
-    final class CheckList {
+    final class CheckListDB {
         public static final String TABLE = "CHECK_LIST";
         public static final String CHECK_LIST_ID = "_ID";
         public static final String CHECK_LIST_NAME = "NAME";
@@ -43,7 +41,7 @@ public interface Contract {
                 CHECK_LIST_START_DATE + " TEXT );";
     }
 
-    final class Feature {
+    final class FeatureDB {
         public static final String TABLE = "FEATURE";
         public static final String FEATURE_ID = "_ID";
         public static final String FEATURE_NAME = "NAME";
@@ -60,7 +58,7 @@ public interface Contract {
 
     }
 
-    final class ItemReference {
+    final class ItemReferenceDB {
         public static final String TABLE = "ITEM_REFERENCE";
         public static final String ITEM_REFERENCE_ID = "_ID";
         public static final String ITEM_REFERENCE_RATE = "RATE";
@@ -72,7 +70,7 @@ public interface Contract {
                 ITEM_REFERENCE_DESCRIPTION + " TEXT NOT NULL );";
     }
 
-    final class Offer {
+    final class OfferDB {
         public static final String TABLE = "OFFER";
         public static final String OFFER_ID = "_ID";
         public static final String OFFER_PRICE = "PRICE";
@@ -88,7 +86,7 @@ public interface Contract {
                 OFFER_ACTIVE_FLG + " INTEGER );";
     }
 
-    final class Product {
+    final class ProductDB {
         public static final String TABLE = "PRODUCT";
         public static final String PRODUCT_ID = "_ID";
         public static final String PRODUCT_NAME = "NAME";
@@ -100,22 +98,23 @@ public interface Contract {
                 PRODUCT_NAME + " TEXT NOT NULL, " +
                 PRODUCT_DESCRIPTION + " TEXT, " +
                 PRODUCT_CATEGORY_ID + " INTEGER );";
-
     }
 
-    final class ProductCategory {
+    final class ProductCategoryDB {
         public static final String TABLE = "PRODUCT_CATEGORY";
         public static final String PRODUCT_CATEGORY_ID = "_ID";
         public static final String PRODUCT_CATEGORY_NAME = "NAME";
+        public static final String PRODUCT_CATEGORY_IMAGE_ID = "ID";
         public static final String PRODUCT_CATEGORY_PARENT_CATEGORY_ID = "PARENT_CATEGORY_ID";
 
         public static final String PRODUCT_CATEGORY_TABLE_CREATE = "create table " + TABLE + " (" +
                 PRODUCT_CATEGORY_ID + " INTEGER, " +
                 PRODUCT_CATEGORY_NAME + " TEXT NOT NULL, " +
+                PRODUCT_CATEGORY_IMAGE_ID + " INTEGER, " +
                 PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " INTEGER );";
     }
 
-    final class Shop {
+    final class ShopDB {
         public static final String TABLE = "SHOP";
         public static final String SHOP_ID = "_ID";
         public static final String SHOP_NAME = "NAME";
@@ -133,7 +132,7 @@ public interface Contract {
                 SHOP_RATE + " REAL );";
     }
 
-    final class User {
+    final class UserDB {
         public static final String TABLE = "USER";
         public static final String USER_ID = "_ID";
         public static final String USER_NAME = "NAME";
@@ -145,19 +144,19 @@ public interface Contract {
                 USER_LOGIN + " TEXT );";
     }
 
-    final class Image {
+    final class ImageDB {
         public static final String TABLE = "IMAGE";
-        public static final String IMAGE_ID = "_ID";
-        public static final String IMAGE_PRODUCT_ID = "PRODUCT_ID";
-        public static final String IMAGE_URL = "URL";
+        public static final String ID = "_ID";
+        public static final String ITEM_ID = "ITEM_ID";
+        public static final String URL = "URL";
 
         public static final String IMAGE_TABLE_CREATE = "create table " + TABLE + " (" +
-                IMAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                IMAGE_PRODUCT_ID + " INTEGER NOT NULL, " +
-                IMAGE_URL + " TEXT );";
+                ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                ITEM_ID + " INTEGER NOT NULL, " +
+                URL + " TEXT );";
     }
 
-    final class ListOffer {
+    final class ListOfferDB {
         public static final String TABLE = "LIST_OFFER";
         public static final String LIST_OFFER_ID = "_ID";
         public static final String LIST_OFFER_LIST_ID = "LIST_ID";
@@ -171,7 +170,7 @@ public interface Contract {
                 LIST_OFFER_PRICE + " REAL );";
     }
 
-    final class ProductFeature {
+    final class ProductFeatureDB {
         public static final String TABLE = "PRODUCT_FEATURE";
         public static final String PRODUCT_FEATURE_ID = "_ID";
         public static final String PRODUCT_FEATURE_PRODUCT_ID = "PRODUCT_ID";
@@ -185,5 +184,19 @@ public interface Contract {
                 PRODUCT_FEATURE_VALUE + " TEXT );";
 
     }
+    final class AdviceDB {
+        public static final String TABLE = "ADVICE";
+        public static final String ID = "_ID";
+        public static final String NAME = "NAME";
+        public static final String SHORT_DESC = "SHORT_DESC";
+        public static final String DESCRIPTION = "DESCRIPTION";
+        public static final String IMAGE_ID = "IMAGE_ID";
 
+        public static final String TABLE_CREATE = "create table " + TABLE + " (" +
+                ID + " INTEGER, " +
+                NAME + " TEXT NOT NULL, " +
+                SHORT_DESC + " TEXT, " +
+                DESCRIPTION + " TEXT, " +
+                IMAGE_ID + " INTEGER);";
+    }
 }

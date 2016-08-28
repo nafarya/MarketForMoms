@@ -1,6 +1,5 @@
 package com.example.dan.mommarket.view;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,10 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dan.mommarket.R;
-import com.example.dan.mommarket.adapter.CatalogRVAdapter;
-import com.example.dan.mommarket.model.Product;
-import com.example.dan.mommarket.presenter.PresenterCatalog;
-import com.example.dan.mommarket.presenter.PresenterCatalogImpl;
+import com.example.dan.mommarket.adapter.AdviceListRVAdapter;
+import com.example.dan.mommarket.model.Advice;
+import com.example.dan.mommarket.presenter.AdviceListPresenter;
+import com.example.dan.mommarket.presenter.AdviceListPresenterImpl;
 
 import java.util.List;
 
@@ -21,33 +20,34 @@ import java.util.List;
  * Created by dan on 26.08.16.
  */
 
-public class ViewCatalogImpl extends Fragment implements ViewCatalog {
+public class AdviceListViewImpl extends Fragment implements AdviceListView {
 
 
-    PresenterCatalog presenterCatalog;
+    AdviceListPresenter adviceListPresenter;
     private View v;
-    private CatalogRVAdapter catalogRVAdapter;
+    private AdviceListRVAdapter adviceListRVAdapter;
     private RecyclerView recyclerView;
-    private Context context;
-
+//    private Context context;
+/*
     public void setContext (Context context){
         this.context = context;
     }
-
+*/
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_catalog, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.rv_catalog);
-        presenterCatalog = new PresenterCatalogImpl(context);
-        presenterCatalog.setView(this);
-        presenterCatalog.onCreateView(savedInstanceState);
+//        catalogPresenter = new CatalogPresenterImpl(context);
+        adviceListPresenter = AdviceListPresenterImpl.getInstance();
+        adviceListPresenter.setView(this);
+        adviceListPresenter.onCreateView(savedInstanceState);
         return v;
     }
 
     @Override
-    public void showProducts(List<Product> productsList) {
-        catalogRVAdapter = new CatalogRVAdapter(productsList);
-        recyclerView.setAdapter(catalogRVAdapter);
+    public void showAdvices(List<Advice> adviceList) {
+        adviceListRVAdapter = new AdviceListRVAdapter(adviceList);
+        recyclerView.setAdapter(adviceListRVAdapter);
     }
 }

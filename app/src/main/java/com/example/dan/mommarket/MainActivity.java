@@ -1,7 +1,6 @@
 package com.example.dan.mommarket;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -9,37 +8,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 
+import com.example.dan.mommarket.database.AdviceDataSource;
 import com.example.dan.mommarket.database.CategoryDataSource;
 import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
-import com.example.dan.mommarket.model.Feature;
-import com.example.dan.mommarket.model.Product;
-import com.example.dan.mommarket.model.ProductCategory;
-import com.example.dan.mommarket.presenter.PresenterCatalog;
-import com.example.dan.mommarket.presenter.PresenterCatalogImpl;
-import com.example.dan.mommarket.view.ViewCatalog;
-import com.example.dan.mommarket.view.ViewCatalogImpl;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.dan.mommarket.view.AdviceListViewImpl;
+import com.example.dan.mommarket.view.CatalogViewImpl;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     SQLiteHelper dbHelper;
@@ -55,13 +36,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         insertDataToDB(db);
         ProductDataSource.setDatabase(this);
 //        ProductDataSource productDataSource = new ProductDataSource(this);
-//        List<Feature> features = new ArrayList<>();
-//        features.add(new Feature(3, "aaa", "1"));
-//        features.add(new Feature(4, "aaa", "1"));
-//        List<Product> productList = productDataSource.getProductsByFeatures(features);
+//        List<FeatureDB> features = new ArrayList<>();
+//        features.add(new FeatureDB(3, "aaa", "1"));
+//        features.add(new FeatureDB(4, "aaa", "1"));
+//        List<ProductDB> productList = productDataSource.getProductsByFeatures(features);
 //        Log.i("asdf", "" + productList.size());
 //        CategoryDataSource categoryDataSource = new CategoryDataSource(this);
-//        List<ProductCategory> categoryList = categoryDataSource.getChildCategories(1);
+//        List<ProductCategoryDB> categoryList = categoryDataSource.getChildCategories(1);
 //        Log.i("asdf", "" + categoryList.size());
 
         setContentView(R.layout.activity_main);
@@ -86,17 +67,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-     //   PresenterCatalog presenterCatalog = new PresenterCatalogImpl(this);
-        ViewCatalogImpl viewCatalog = new ViewCatalogImpl();
-        viewCatalog.setContext(this);
+     //   CatalogPresenter presenterCatalog = new CatalogPresenterImpl(this);
+     //   viewCatalog.setContext(this);
      //   presenterCatalog.setView(viewCatalog);
         ProductDataSource.getInstance().setDatabase(this);
         CategoryDataSource.getInstance().setDatabase(this);
+        AdviceDataSource.getInstance().setDatabase(this);
+    //    List<Advice> a = AdviceDataSource.getAllAdvices();
+    //    Log.i("asdf", "" + a.size());
+        CatalogViewImpl catalogView = new CatalogViewImpl();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, catalogView).commit();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, viewCatalog).commit();
+     //   AdviceListViewImpl adviceListView = new AdviceListViewImpl();
+     //   getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, adviceListView).commit();
      //   presenterCatalog.updateCatalog();
-
-
     }
 
     void insertDataToDB(SQLiteDatabase db) {
@@ -108,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dbHelper.insertFakeData(db, this, R.raw.product_category);
         dbHelper.insertFakeData(db, this, R.raw.product_feature);
         dbHelper.insertFakeData(db, this, R.raw.shop);
+        dbHelper.insertFakeData(db, this, R.raw.advice);
+        dbHelper.insertFakeData(db, this, R.raw.image);
     }
 
     @Override
@@ -159,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdviceListViewImpl()).commit();
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {

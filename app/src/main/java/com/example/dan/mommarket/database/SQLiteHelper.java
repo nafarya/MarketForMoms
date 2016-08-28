@@ -51,34 +51,36 @@ public class SQLiteHelper extends SQLiteOpenHelper implements Contract {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(CheckList.CHECKLIST_TABLE_CREATE);
-        sqLiteDatabase.execSQL(Child.CHILD_TABLE_CREATE);
-        sqLiteDatabase.execSQL(Feature.FEATURE_TABLE_CREATE);
-        sqLiteDatabase.execSQL(ItemReference.ITEM_REFERENCE_TABLE_CREATE);
-        sqLiteDatabase.execSQL(Offer.OFFER_TABLE_CREATE);
-        sqLiteDatabase.execSQL(Product.PRODUCT_TABLE_CREATE);
-        sqLiteDatabase.execSQL(ProductCategory.PRODUCT_CATEGORY_TABLE_CREATE);
-        sqLiteDatabase.execSQL(Shop.SHOP_TABLE_CREATE);
-        sqLiteDatabase.execSQL(User.USER_TABLE_CREATE);
-        sqLiteDatabase.execSQL(Image.IMAGE_TABLE_CREATE);
-        sqLiteDatabase.execSQL(ListOffer.LIST_OFFER_TABLE_CREATE);
-        sqLiteDatabase.execSQL(ProductFeature.PRODUCT_FEATURE_TABLE_CREATE);
+        sqLiteDatabase.execSQL(CheckListDB.CHECKLIST_TABLE_CREATE);
+        sqLiteDatabase.execSQL(ChildDB.CHILD_TABLE_CREATE);
+        sqLiteDatabase.execSQL(FeatureDB.FEATURE_TABLE_CREATE);
+        sqLiteDatabase.execSQL(ItemReferenceDB.ITEM_REFERENCE_TABLE_CREATE);
+        sqLiteDatabase.execSQL(OfferDB.OFFER_TABLE_CREATE);
+        sqLiteDatabase.execSQL(ProductDB.PRODUCT_TABLE_CREATE);
+        sqLiteDatabase.execSQL(ProductCategoryDB.PRODUCT_CATEGORY_TABLE_CREATE);
+        sqLiteDatabase.execSQL(ShopDB.SHOP_TABLE_CREATE);
+        sqLiteDatabase.execSQL(UserDB.USER_TABLE_CREATE);
+        sqLiteDatabase.execSQL(ImageDB.IMAGE_TABLE_CREATE);
+        sqLiteDatabase.execSQL(ListOfferDB.LIST_OFFER_TABLE_CREATE);
+        sqLiteDatabase.execSQL(ProductFeatureDB.PRODUCT_FEATURE_TABLE_CREATE);
+        sqLiteDatabase.execSQL(AdviceDB.TABLE_CREATE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + CheckList.TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Child.TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Feature.TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ItemReference.TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Offer.TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Product.TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ProductCategory.TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Shop.TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + User.TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Image.TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ListOffer.TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ProductFeature.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + CheckListDB.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ChildDB.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FeatureDB.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ItemReferenceDB.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + OfferDB.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ProductDB.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ProductCategoryDB.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ShopDB.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + UserDB.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ImageDB.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ListOfferDB.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ProductFeatureDB.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + AdviceDB.TABLE);
         onCreate(sqLiteDatabase);
     }
 }

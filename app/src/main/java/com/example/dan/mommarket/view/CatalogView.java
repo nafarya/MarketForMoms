@@ -9,6 +9,6 @@ import java.util.List;
  * Created by dan on 26.08.16.
  */
 
-public interface ViewCatalog {
+public interface CatalogView {
     void showProducts(List<Product> productsList);
 }
