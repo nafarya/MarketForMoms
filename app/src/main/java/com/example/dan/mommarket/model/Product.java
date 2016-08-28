@@ -14,7 +14,7 @@ public class Product {
     private int categoryId;
     private String categoryName;
     private ProductCategory productCategory;
-    private List<Features> featuresList;
+    private List<Feature> featuresList;
     private List<ItemReference> referenceList;
 
     public Product(
@@ -49,11 +49,11 @@ public class Product {
         this.description = description;
     }
 
-    public List<Features> getFeaturesList() {
+    public List<Feature> getFeaturesList() {
         return featuresList;
     }
 
-    public void setFeaturesList(List<Features> featuresList) {
+    public void setFeaturesList(List<Feature> featuresList) {
         this.featuresList = featuresList;
     }
 

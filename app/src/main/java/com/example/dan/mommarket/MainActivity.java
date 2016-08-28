@@ -1,6 +1,7 @@
 package com.example.dan.mommarket;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -32,6 +33,10 @@ import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.model.Feature;
 import com.example.dan.mommarket.model.Product;
 import com.example.dan.mommarket.model.ProductCategory;
+import com.example.dan.mommarket.presenter.PresenterCatalog;
+import com.example.dan.mommarket.presenter.PresenterCatalogImpl;
+import com.example.dan.mommarket.view.ViewCatalog;
+import com.example.dan.mommarket.view.ViewCatalogImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,16 +54,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         insertDataToDB(db);
         ProductDataSource productDataSource = new ProductDataSource(this);
-        List<Feature> features = new ArrayList<>();
-        features.add(new Feature(3, "aaa", "1"));
-        features.add(new Feature(4, "aaa", "1"));
-        List<Product> productList = productDataSource.getProductsByFeatures(features);
-        Log.i("asdf", "" + productList.size());
-        CategoryDataSource categoryDataSource = new CategoryDataSource(this);
-        List<ProductCategory> categoryList = categoryDataSource.getChildCategories(1);
-        Log.i("asdf", "" + categoryList.size());
-
-
+//        List<Feature> features = new ArrayList<>();
+//        features.add(new Feature(3, "aaa", "1"));
+//        features.add(new Feature(4, "aaa", "1"));
+//        List<Product> productList = productDataSource.getProductsByFeatures(features);
+//        Log.i("asdf", "" + productList.size());
+//        CategoryDataSource categoryDataSource = new CategoryDataSource(this);
+//        List<ProductCategory> categoryList = categoryDataSource.getChildCategories(1);
+//        Log.i("asdf", "" + categoryList.size());
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -81,6 +84,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+
+     //   PresenterCatalog presenterCatalog = new PresenterCatalogImpl(this);
+        ViewCatalogImpl viewCatalog = new ViewCatalogImpl();
+        viewCatalog.setContext(this);
+     //   presenterCatalog.setView(viewCatalog);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, viewCatalog).commit();
+     //   presenterCatalog.updateCatalog();
 
 
     }
