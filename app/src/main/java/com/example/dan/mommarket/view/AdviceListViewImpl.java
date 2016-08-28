@@ -13,6 +13,7 @@ import com.example.dan.mommarket.adapter.AdviceListRVAdapter;
 import com.example.dan.mommarket.model.Advice;
 import com.example.dan.mommarket.presenter.AdviceListPresenter;
 import com.example.dan.mommarket.presenter.AdviceListPresenterImpl;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -28,11 +29,12 @@ public class AdviceListViewImpl extends Fragment implements AdviceListView {
     private AdviceListRVAdapter adviceListRVAdapter;
     private RecyclerView recyclerView;
 //    private Context context;
-/*
-    public void setContext (Context context){
-        this.context = context;
+    private Picasso picasso;
+
+    public void setPicasso (Picasso picasso){
+        this.picasso = picasso;
     }
-*/
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,7 +49,7 @@ public class AdviceListViewImpl extends Fragment implements AdviceListView {
 
     @Override
     public void showAdvices(List<Advice> adviceList) {
-        adviceListRVAdapter = new AdviceListRVAdapter(adviceList);
+        adviceListRVAdapter = new AdviceListRVAdapter(adviceList,picasso);
         recyclerView.setAdapter(adviceListRVAdapter);
     }
 }
