@@ -14,15 +14,15 @@ import java.util.List;
  * Created by dan on 21.08.16.
  */
 
-public class AdviceDataSouce {
+public class AdviceDataSource {
     private static SQLiteDatabase database;
     private static SQLiteHelper dbHelper;
 
-    private static AdviceDataSouce instance;
+    private static AdviceDataSource instance;
 
-    public static synchronized AdviceDataSouce getInstance() {
+    public static synchronized AdviceDataSource getInstance() {
         if (instance == null) {
-            instance = new AdviceDataSouce();
+            instance = new AdviceDataSource();
         }
         return instance;
     }
