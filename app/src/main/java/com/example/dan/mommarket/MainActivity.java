@@ -53,7 +53,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dbHelper = new SQLiteHelper(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         insertDataToDB(db);
-        ProductDataSource productDataSource = new ProductDataSource(this);
+        ProductDataSource.setDatabase(this);
+//        ProductDataSource productDataSource = new ProductDataSource(this);
 //        List<Feature> features = new ArrayList<>();
 //        features.add(new Feature(3, "aaa", "1"));
 //        features.add(new Feature(4, "aaa", "1"));
@@ -85,13 +86,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
-
      //   PresenterCatalog presenterCatalog = new PresenterCatalogImpl(this);
         ViewCatalogImpl viewCatalog = new ViewCatalogImpl();
         viewCatalog.setContext(this);
      //   presenterCatalog.setView(viewCatalog);
+        ProductDataSource.getInstance().setDatabase(this);
+        CategoryDataSource.getInstance().setDatabase(this);
+
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, viewCatalog).commit();
      //   presenterCatalog.updateCatalog();
 

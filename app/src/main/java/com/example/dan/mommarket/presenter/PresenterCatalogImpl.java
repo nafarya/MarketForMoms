@@ -33,8 +33,8 @@ public class PresenterCatalogImpl implements PresenterCatalog {
     @Override
     public void onCreateView(Bundle savedIntanceState) {
         if (savedIntanceState == null) {
-            ProductDataSource productDataSource = new ProductDataSource(context);
-            List<Product> productList = productDataSource.getAllProducts();
+            //ProductDataSource productDataSource = new ProductDataSource(context);
+            List<Product> productList = ProductDataSource.getAllProducts();
             viewCatalog.showProducts(productList);
         }
     }
