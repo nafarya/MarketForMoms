@@ -21,9 +21,11 @@ import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.view.AdviceListViewImpl;
 import com.example.dan.mommarket.view.CatalogViewImpl;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     SQLiteHelper dbHelper;
+    Picasso picasso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AdviceDataSource.getInstance().setDatabase(this);
     //    List<Advice> a = AdviceDataSource.getAllAdvices();
     //    Log.i("asdf", "" + a.size());
+        picasso =Picasso.with(this);
         CatalogViewImpl catalogView = new CatalogViewImpl();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, catalogView).commit();
 
@@ -145,7 +148,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdviceListViewImpl()).commit();
+            AdviceListViewImpl adviceListViewImpl = new AdviceListViewImpl();
+            adviceListViewImpl.setPicasso(picasso);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, adviceListViewImpl).commit();
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
