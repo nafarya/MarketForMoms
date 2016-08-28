@@ -27,9 +27,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.dan.mommarket.database.AdviceDataSouce;
 import com.example.dan.mommarket.database.CategoryDataSource;
 import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
+import com.example.dan.mommarket.model.Advice;
 import com.example.dan.mommarket.model.Feature;
 import com.example.dan.mommarket.model.Product;
 import com.example.dan.mommarket.model.ProductCategory;
@@ -55,13 +57,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         insertDataToDB(db);
         ProductDataSource.setDatabase(this);
 //        ProductDataSource productDataSource = new ProductDataSource(this);
-//        List<Feature> features = new ArrayList<>();
-//        features.add(new Feature(3, "aaa", "1"));
-//        features.add(new Feature(4, "aaa", "1"));
-//        List<Product> productList = productDataSource.getProductsByFeatures(features);
+//        List<FeatureDB> features = new ArrayList<>();
+//        features.add(new FeatureDB(3, "aaa", "1"));
+//        features.add(new FeatureDB(4, "aaa", "1"));
+//        List<ProductDB> productList = productDataSource.getProductsByFeatures(features);
 //        Log.i("asdf", "" + productList.size());
 //        CategoryDataSource categoryDataSource = new CategoryDataSource(this);
-//        List<ProductCategory> categoryList = categoryDataSource.getChildCategories(1);
+//        List<ProductCategoryDB> categoryList = categoryDataSource.getChildCategories(1);
 //        Log.i("asdf", "" + categoryList.size());
 
         setContentView(R.layout.activity_main);
@@ -92,7 +94,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      //   presenterCatalog.setView(viewCatalog);
         ProductDataSource.getInstance().setDatabase(this);
         CategoryDataSource.getInstance().setDatabase(this);
+        AdviceDataSouce.getInstance().setDatabase(this);
+        List<Advice> a = AdviceDataSouce.getAllAdvices();
 
+
+        Log.i("asdf", "" + a.size());
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, viewCatalog).commit();
      //   presenterCatalog.updateCatalog();
 
@@ -108,6 +114,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dbHelper.insertFakeData(db, this, R.raw.product_category);
         dbHelper.insertFakeData(db, this, R.raw.product_feature);
         dbHelper.insertFakeData(db, this, R.raw.shop);
+        dbHelper.insertFakeData(db, this, R.raw.advice);
+        dbHelper.insertFakeData(db, this, R.raw.image);
     }
 
     @Override

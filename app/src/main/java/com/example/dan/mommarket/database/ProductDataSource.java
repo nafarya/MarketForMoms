@@ -1,17 +1,13 @@
 package com.example.dan.mommarket.database;
 
-import android.app.ListActivity;
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.dan.mommarket.model.Feature;
 import com.example.dan.mommarket.model.Product;
-import com.example.dan.mommarket.model.ProductCategory;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -31,8 +27,8 @@ public class ProductDataSource {
         return instance;
     }
     /*
-        private String[] allColumns = {Contract.Product.PRODUCT_ID, Contract.Product.PRODUCT_NAME,
-                Contract.Product.PRODUCT_CATEGORY_ID};
+        private String[] allColumns = {Contract.ProductDB.PRODUCT_ID, Contract.ProductDB.PRODUCT_NAME,
+                Contract.ProductDB.PRODUCT_CATEGORY_ID};
     */
 /*    public static ProductDataSource(Context context) {
         dbHelper = new SQLiteHelper(context);
@@ -50,19 +46,19 @@ public class ProductDataSource {
         database = dbHelper.getReadableDatabase();
         List<Product> productList = new ArrayList<>();
         Cursor productCursor = database.rawQuery("select " +
-                " p." + Contract.Product.PRODUCT_ID +
-                " ,p." + Contract.Product.PRODUCT_NAME +
-                " ,avg(o." + Contract.Offer.OFFER_PRICE + ") " + Contract.Offer.OFFER_PRICE +
-                " ,p." + Contract.Product.PRODUCT_DESCRIPTION +
-                " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID + " CATEGORY_ID" +
-                " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_NAME + " CATEGORY_NAME" +
-                " ,max(i." + Contract.Image.IMAGE_URL + ") IMAGE_URL" +
-                " from " + Contract.Product.TABLE + " p" +
-                " left join " + Contract.ProductCategory.TABLE + " c on c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID + "= p." + Contract.Product.PRODUCT_CATEGORY_ID + " " +
-                " left join " + Contract.Offer.TABLE + " o on o." + Contract.Offer.OFFER_PRODUCT_ID + "=p." + Contract.Product.PRODUCT_ID +
-                " left join " + Contract.Image.TABLE + " i on i." + Contract.Image.IMAGE_ID + "=p." + Contract.Product.PRODUCT_ID +
-                " group by p." + Contract.Product.PRODUCT_ID + ";", null);
-        //database.query(SQLiteHelper.Product.TABLE, allColumns, null,null, null, null, null);
+                " p." + Contract.ProductDB.PRODUCT_ID +
+                " ,p." + Contract.ProductDB.PRODUCT_NAME +
+                " ,avg(o." + Contract.OfferDB.OFFER_PRICE + ") " + Contract.OfferDB.OFFER_PRICE +
+                " ,p." + Contract.ProductDB.PRODUCT_DESCRIPTION +
+                " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + " CATEGORY_ID" +
+                " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME + " CATEGORY_NAME" +
+                " ,max(i." + Contract.ImageDB.URL + ") URL" +
+                " from " + Contract.ProductDB.TABLE + " p" +
+                " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= p." + Contract.ProductDB.PRODUCT_CATEGORY_ID + " " +
+                " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.OFFER_PRODUCT_ID + "=p." + Contract.ProductDB.PRODUCT_ID +
+                " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "=p." + Contract.ProductDB.PRODUCT_ID +
+                " group by p." + Contract.ProductDB.PRODUCT_ID + ";", null);
+        //database.query(SQLiteHelper.ProductDB.TABLE, allColumns, null,null, null, null, null);
 
         productCursor.moveToFirst();
         while (!productCursor.isAfterLast()) {
@@ -77,20 +73,20 @@ public class ProductDataSource {
         database = dbHelper.getReadableDatabase();
         List<Product> productList = new ArrayList<>();
         Cursor productCursor = database.rawQuery("select " +
-                " p." + Contract.Product.PRODUCT_ID +
-                " ,p." + Contract.Product.PRODUCT_NAME +
-                " ,o." + Contract.Offer.OFFER_PRICE +
-                " ,p." + Contract.Product.PRODUCT_DESCRIPTION +
-                " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID + " CATEGORY_ID" +
-                " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_NAME + " CATEGORY_NAME" +
-                " ,max(i." + Contract.Image.IMAGE_URL + ") IMAGE_URL" +
-                " from " + Contract.Product.TABLE + " p" +
-                " left join " + Contract.ProductCategory.TABLE + " c on c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID + "= p." + Contract.Product.PRODUCT_CATEGORY_ID + " " +
-                " left join " + Contract.Offer.TABLE + " o on o." + Contract.Offer.OFFER_PRODUCT_ID + "=p." + Contract.Product.PRODUCT_ID +
-                " left join " + Contract.ListOffer.TABLE + " lo on lo." + Contract.ListOffer.LIST_OFFER_OFFER_ID + "=o." + Contract.Offer.OFFER_ID +
-                " left join " + Contract.Image.TABLE + " i on i." + Contract.Image.IMAGE_ID + "=p." + Contract.Product.PRODUCT_ID +
-                " Where lo." + Contract.ListOffer.LIST_OFFER_LIST_ID + "=?"+
-                " group by p." + Contract.Product.PRODUCT_ID + ";", new String[]{Integer.toString(listId)});
+                " p." + Contract.ProductDB.PRODUCT_ID +
+                " ,p." + Contract.ProductDB.PRODUCT_NAME +
+                " ,o." + Contract.OfferDB.OFFER_PRICE +
+                " ,p." + Contract.ProductDB.PRODUCT_DESCRIPTION +
+                " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + " CATEGORY_ID" +
+                " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME + " CATEGORY_NAME" +
+                " ,max(i." + Contract.ImageDB.URL + ") URL" +
+                " from " + Contract.ProductDB.TABLE + " p" +
+                " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= p." + Contract.ProductDB.PRODUCT_CATEGORY_ID + " " +
+                " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.OFFER_PRODUCT_ID + "=p." + Contract.ProductDB.PRODUCT_ID +
+                " left join " + Contract.ListOfferDB.TABLE + " lo on lo." + Contract.ListOfferDB.LIST_OFFER_OFFER_ID + "=o." + Contract.OfferDB.OFFER_ID +
+                " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "=p." + Contract.ProductDB.PRODUCT_ID +
+                " Where lo." + Contract.ListOfferDB.LIST_OFFER_LIST_ID + "=?"+
+                " group by p." + Contract.ProductDB.PRODUCT_ID + ";", new String[]{Integer.toString(listId)});
         productCursor.moveToFirst();
         while (!productCursor.isAfterLast()) {
             productList.add(productCursorToProduct(productCursor));
@@ -107,27 +103,27 @@ public class ProductDataSource {
         int i = 0;
         for (Feature x : features) {
             if (whereClause != "") whereClause += " OR ";
-            whereClause += "pf." + Contract.ProductFeature.PRODUCT_FEATURE_FEATURE_ID + "=? AND pf." + Contract.ProductFeature.PRODUCT_FEATURE_VALUE + "=?";
+            whereClause += "pf." + Contract.ProductFeatureDB.PRODUCT_FEATURE_FEATURE_ID + "=? AND pf." + Contract.ProductFeatureDB.PRODUCT_FEATURE_VALUE + "=?";
             whereClauseArray[i++] = Integer.toString(x.getId());
             whereClauseArray[i++] = x.getValue();
         }
         List<Product> productList = new ArrayList<>();
         Cursor productCursor = database.rawQuery("select " +
-                " p." + Contract.Product.PRODUCT_ID +
-                " ,p." + Contract.Product.PRODUCT_NAME +
-                " ,o." + Contract.Offer.OFFER_PRICE +
-                " ,p." + Contract.Product.PRODUCT_DESCRIPTION +
-                " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID + " CATEGORY_ID" +
-                " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_NAME + " CATEGORY_NAME" +
-                " ,max(i." + Contract.Image.IMAGE_URL + ") IMAGE_URL" +
-                " from " + Contract.Product.TABLE + " p" +
-                " left join " + Contract.ProductCategory.TABLE + " c on c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID + "= p." + Contract.Product.PRODUCT_CATEGORY_ID + " " +
-                " left join " + Contract.Offer.TABLE + " o on o." + Contract.Offer.OFFER_PRODUCT_ID + "=p." + Contract.Product.PRODUCT_ID +
-                " left join " + Contract.ListOffer.TABLE + " lo on lo." + Contract.ListOffer.LIST_OFFER_OFFER_ID + "=o." + Contract.Offer.OFFER_ID +
-                " left join " + Contract.ProductFeature.TABLE + " pf on pf." + Contract.ProductFeature.PRODUCT_FEATURE_PRODUCT_ID + "=p." + Contract.Product.PRODUCT_ID +
-                " left join " + Contract.Image.TABLE + " i on i." + Contract.Image.IMAGE_ID + "=i." + Contract.Product.PRODUCT_ID +
+                " p." + Contract.ProductDB.PRODUCT_ID +
+                " ,p." + Contract.ProductDB.PRODUCT_NAME +
+                " ,o." + Contract.OfferDB.OFFER_PRICE +
+                " ,p." + Contract.ProductDB.PRODUCT_DESCRIPTION +
+                " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + " CATEGORY_ID" +
+                " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME + " CATEGORY_NAME" +
+                " ,max(i." + Contract.ImageDB.URL + ") URL" +
+                " from " + Contract.ProductDB.TABLE + " p" +
+                " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= p." + Contract.ProductDB.PRODUCT_CATEGORY_ID + " " +
+                " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.OFFER_PRODUCT_ID + "=p." + Contract.ProductDB.PRODUCT_ID +
+                " left join " + Contract.ListOfferDB.TABLE + " lo on lo." + Contract.ListOfferDB.LIST_OFFER_OFFER_ID + "=o." + Contract.OfferDB.OFFER_ID +
+                " left join " + Contract.ProductFeatureDB.TABLE + " pf on pf." + Contract.ProductFeatureDB.PRODUCT_FEATURE_PRODUCT_ID + "=p." + Contract.ProductDB.PRODUCT_ID +
+                " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "=i." + Contract.ProductDB.PRODUCT_ID +
                 " Where " + whereClause +
-                " group by p." + Contract.Product.PRODUCT_ID + " having count(p." + Contract.Product.PRODUCT_ID + ")=" + features.size() + ";", whereClauseArray);
+                " group by p." + Contract.ProductDB.PRODUCT_ID + " having count(p." + Contract.ProductDB.PRODUCT_ID + ")=" + features.size() + ";", whereClauseArray);
         productCursor.moveToFirst();
         while (!productCursor.isAfterLast()) {
             productList.add(productCursorToProduct(productCursor));
