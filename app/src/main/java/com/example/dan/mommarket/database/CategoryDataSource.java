@@ -15,9 +15,23 @@ import java.util.List;
  */
 
 public class CategoryDataSource {
-    private SQLiteDatabase database;
-    private SQLiteHelper dbHelper;
+    private static SQLiteDatabase database;
+    private static SQLiteHelper dbHelper;
 
+    private static ProductDataSource instance;
+
+    public static synchronized ProductDataSource getInstance() {
+        if (instance == null) {
+            instance = new ProductDataSource();
+        }
+        return instance;
+    }
+
+    public static void setDatabase(Context context){
+        dbHelper = new SQLiteHelper(context);
+        return ;
+    }
+    /*
     public CategoryDataSource(Context context) {
         dbHelper = new SQLiteHelper(context);
     }
@@ -25,10 +39,10 @@ public class CategoryDataSource {
     public void close() {
         dbHelper.close();
     }
-
-    public List<ProductCategory> getAllCategories() {
+*/
+    public static List<ProductCategory> getAllCategories() {
         database = dbHelper.getReadableDatabase();
-        List<ProductCategory> productList = new ArrayList<>();
+        List<ProductCategory> categorytList = new ArrayList<>();
         Cursor categoryCursor = database.rawQuery("select " +
                         " c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID +
                         " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_NAME +
@@ -40,19 +54,19 @@ public class CategoryDataSource {
 
         categoryCursor.moveToFirst();
         while (!categoryCursor.isAfterLast()) {
-            productList.add(new ProductCategory(
+            categorytList.add(new ProductCategory(
                     categoryCursor.getInt(0),
                     categoryCursor.getString(1),
                     categoryCursor.getInt(2)));
             categoryCursor.moveToNext();
         }
         categoryCursor.close();
-        return productList;
+        return categorytList;
     }
 
-    public List<ProductCategory> getChildCategories(int parentId) {
+    public static List<ProductCategory> getChildCategories(int parentId) {
         database = dbHelper.getReadableDatabase();
-        List<ProductCategory> productList = new ArrayList<>();
+        List<ProductCategory> categoryList = new ArrayList<>();
         Cursor categoryCursor = database.rawQuery("select " +
                         " c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID +
                         " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_NAME +
@@ -65,13 +79,13 @@ public class CategoryDataSource {
 
         categoryCursor.moveToFirst();
         while (!categoryCursor.isAfterLast()) {
-            productList.add(new ProductCategory(
+            categoryList.add(new ProductCategory(
                     categoryCursor.getInt(0),
                     categoryCursor.getString(1),
                     categoryCursor.getInt(2)));
             categoryCursor.moveToNext();
         }
         categoryCursor.close();
-        return productList;
+        return categoryList;
     }
 }
