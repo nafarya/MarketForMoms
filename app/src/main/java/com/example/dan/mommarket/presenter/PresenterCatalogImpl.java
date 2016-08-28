@@ -34,6 +34,7 @@ public class PresenterCatalogImpl implements PresenterCatalog {
     public void onCreateView(Bundle savedIntanceState) {
         if (savedIntanceState == null) {
             ProductDataSource productDataSource = new ProductDataSource(context);
+
             List<Product> productList = productDataSource.getAllProducts();
             viewCatalog.showProducts(productList);
         }

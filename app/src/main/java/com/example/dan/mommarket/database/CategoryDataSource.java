@@ -28,7 +28,7 @@ public class CategoryDataSource {
 
     public List<ProductCategory> getAllCategories() {
         database = dbHelper.getReadableDatabase();
-        List<ProductCategory> productList = new ArrayList<>();
+        List<ProductCategory> categoryList = new ArrayList<>();
         Cursor categoryCursor = database.rawQuery("select " +
                         " c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID +
                         " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_NAME +
@@ -40,14 +40,14 @@ public class CategoryDataSource {
 
         categoryCursor.moveToFirst();
         while (!categoryCursor.isAfterLast()) {
-            productList.add(new ProductCategory(
+            categoryList.add(new ProductCategory(
                     categoryCursor.getInt(0),
                     categoryCursor.getString(1),
                     categoryCursor.getInt(2)));
             categoryCursor.moveToNext();
         }
         categoryCursor.close();
-        return productList;
+        return categoryList;
     }
 
     public List<ProductCategory> getChildCategories(int parentId) {
