@@ -1,5 +1,6 @@
 package com.example.dan.mommarket.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,8 +15,9 @@ public class Product {
     private int categoryId;
     private String categoryName;
     private ProductCategory productCategory;
-    private List<Features> featuresList;
+    private List<Feature> featuresList;
     private List<ItemReference> referenceList;
+    private List<String> images;
 
     public Product(
             int productId,
@@ -23,7 +25,8 @@ public class Product {
             float price,
             String description,
             int categoryId,
-            String categoryName
+            String categoryName,
+            String imageUrl
             ) {
         this.name = name;
         this.productId = productId;
@@ -31,6 +34,8 @@ public class Product {
         this.price = price;
         this.categoryId = categoryId;
         this.categoryName = categoryName;
+        this.images= new ArrayList<String>();
+        images.add(imageUrl);
     }
 
     public String getName() {
@@ -49,11 +54,11 @@ public class Product {
         this.description = description;
     }
 
-    public List<Features> getFeaturesList() {
+    public List<Feature> getFeaturesList() {
         return featuresList;
     }
 
-    public void setFeaturesList(List<Features> featuresList) {
+    public void setFeaturesList(List<Feature> featuresList) {
         this.featuresList = featuresList;
     }
 

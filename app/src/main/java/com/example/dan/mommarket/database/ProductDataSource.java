@@ -44,9 +44,11 @@ public class ProductDataSource {
                 " ,p." + Contract.Product.PRODUCT_DESCRIPTION +
                 " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID + " CATEGORY_ID" +
                 " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_NAME + " CATEGORY_NAME" +
+                " ,max(i." + Contract.Image.IMAGE_URL + ") IMAGE_URL" +
                 " from " + Contract.Product.TABLE + " p" +
                 " left join " + Contract.ProductCategory.TABLE + " c on c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID + "= p." + Contract.Product.PRODUCT_CATEGORY_ID + " " +
                 " left join " + Contract.Offer.TABLE + " o on o." + Contract.Offer.OFFER_PRODUCT_ID + "=p." + Contract.Product.PRODUCT_ID +
+                " left join " + Contract.Image.TABLE + " i on i." + Contract.Image.IMAGE_ID + "=p." + Contract.Product.PRODUCT_ID +
                 " group by p." + Contract.Product.PRODUCT_ID + ";", null);
         //database.query(SQLiteHelper.Product.TABLE, allColumns, null,null, null, null, null);
 
@@ -69,11 +71,14 @@ public class ProductDataSource {
                 " ,p." + Contract.Product.PRODUCT_DESCRIPTION +
                 " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID + " CATEGORY_ID" +
                 " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_NAME + " CATEGORY_NAME" +
+                " ,max(i." + Contract.Image.IMAGE_URL + ") IMAGE_URL" +
                 " from " + Contract.Product.TABLE + " p" +
                 " left join " + Contract.ProductCategory.TABLE + " c on c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID + "= p." + Contract.Product.PRODUCT_CATEGORY_ID + " " +
                 " left join " + Contract.Offer.TABLE + " o on o." + Contract.Offer.OFFER_PRODUCT_ID + "=p." + Contract.Product.PRODUCT_ID +
                 " left join " + Contract.ListOffer.TABLE + " lo on lo." + Contract.ListOffer.LIST_OFFER_OFFER_ID + "=o." + Contract.Offer.OFFER_ID +
-                " Where lo." + Contract.ListOffer.LIST_OFFER_LIST_ID + "=?;", new String[]{Integer.toString(listId)});
+                " left join " + Contract.Image.TABLE + " i on i." + Contract.Image.IMAGE_ID + "=p." + Contract.Product.PRODUCT_ID +
+                " Where lo." + Contract.ListOffer.LIST_OFFER_LIST_ID + "=?"+
+                " group by p." + Contract.Product.PRODUCT_ID + ";", new String[]{Integer.toString(listId)});
         productCursor.moveToFirst();
         while (!productCursor.isAfterLast()) {
             productList.add(productCursorToProduct(productCursor));
@@ -102,11 +107,13 @@ public class ProductDataSource {
                 " ,p." + Contract.Product.PRODUCT_DESCRIPTION +
                 " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID + " CATEGORY_ID" +
                 " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_NAME + " CATEGORY_NAME" +
+                " ,max(i." + Contract.Image.IMAGE_URL + ") IMAGE_URL" +
                 " from " + Contract.Product.TABLE + " p" +
                 " left join " + Contract.ProductCategory.TABLE + " c on c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID + "= p." + Contract.Product.PRODUCT_CATEGORY_ID + " " +
                 " left join " + Contract.Offer.TABLE + " o on o." + Contract.Offer.OFFER_PRODUCT_ID + "=p." + Contract.Product.PRODUCT_ID +
                 " left join " + Contract.ListOffer.TABLE + " lo on lo." + Contract.ListOffer.LIST_OFFER_OFFER_ID + "=o." + Contract.Offer.OFFER_ID +
                 " left join " + Contract.ProductFeature.TABLE + " pf on pf." + Contract.ProductFeature.PRODUCT_FEATURE_PRODUCT_ID + "=p." + Contract.Product.PRODUCT_ID +
+                " left join " + Contract.Image.TABLE + " i on i." + Contract.Image.IMAGE_ID + "=i." + Contract.Product.PRODUCT_ID +
                 " Where " + whereClause +
                 " group by p." + Contract.Product.PRODUCT_ID + " having count(p." + Contract.Product.PRODUCT_ID + ")=" + features.size() + ";", whereClauseArray);
         productCursor.moveToFirst();
@@ -124,7 +131,8 @@ public class ProductDataSource {
                 productCursor.getFloat(2),
                 productCursor.getString(3),
                 productCursor.getInt(4),
-                productCursor.getString(5)
+                productCursor.getString(5),
+                productCursor.getString(6)
         );
         return product;
     }
