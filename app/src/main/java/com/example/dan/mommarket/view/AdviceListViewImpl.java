@@ -38,8 +38,8 @@ public class AdviceListViewImpl extends Fragment implements AdviceListView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_catalog, container, false);
-        recyclerView = (RecyclerView) v.findViewById(R.id.rv_catalog);
+        v = inflater.inflate(R.layout.fragment_advice_list, container, false);
+        recyclerView = (RecyclerView) v.findViewById(R.id.rv_advice_list);
 //        catalogPresenter = new CatalogPresenterImpl(context);
         adviceListPresenter = AdviceListPresenterImpl.getInstance();
         adviceListPresenter.setView(this);
