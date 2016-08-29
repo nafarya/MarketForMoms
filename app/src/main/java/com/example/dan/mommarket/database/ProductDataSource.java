@@ -19,22 +19,34 @@ import java.util.List;
  */
 
 public class ProductDataSource {
-    private SQLiteDatabase database;
-    private SQLiteHelper dbHelper;
+    private static SQLiteDatabase database;
+    private static SQLiteHelper dbHelper;
 
+    private static ProductDataSource instance;
+
+    public static synchronized ProductDataSource getInstance() {
+        if (instance == null) {
+            instance = new ProductDataSource();
+        }
+        return instance;
+    }
     /*
         private String[] allColumns = {Contract.Product.PRODUCT_ID, Contract.Product.PRODUCT_NAME,
                 Contract.Product.PRODUCT_CATEGORY_ID};
     */
-    public ProductDataSource(Context context) {
+/*    public static ProductDataSource(Context context) {
         dbHelper = new SQLiteHelper(context);
     }
-
-    public void close() {
+*/
+/*    public void close() {
         dbHelper.close();
     }
-
-    public List<Product> getAllProducts() {
+*/
+    public static void setDatabase(Context context){
+        dbHelper = new SQLiteHelper(context);
+        return ;
+    }
+    public static List<Product> getAllProducts() {
         database = dbHelper.getReadableDatabase();
         List<Product> productList = new ArrayList<>();
         Cursor productCursor = database.rawQuery("select " +
@@ -61,7 +73,7 @@ public class ProductDataSource {
         return productList;
     }
 
-    public List<Product> getListProducts(int listId) {
+    public static List<Product> getListProducts(int listId) {
         database = dbHelper.getReadableDatabase();
         List<Product> productList = new ArrayList<>();
         Cursor productCursor = database.rawQuery("select " +
@@ -88,7 +100,7 @@ public class ProductDataSource {
         return productList;
     }
 
-    public List<Product> getProductsByFeatures(List<Feature> features) {
+    public static List<Product> getProductsByFeatures(List<Feature> features) {
         database = dbHelper.getReadableDatabase();
         String[] whereClauseArray = new String[features.size() * 2];
         String whereClause = "";
@@ -122,11 +134,10 @@ public class ProductDataSource {
             productCursor.moveToNext();
         }
         productCursor.close();
-        database.close();
         return productList;
     }
 
-    private Product productCursorToProduct(Cursor productCursor) {
+    private static  Product productCursorToProduct(Cursor productCursor) {
         Product product = new Product(productCursor.getInt(0),
                 productCursor.getString(1),
                 productCursor.getFloat(2),

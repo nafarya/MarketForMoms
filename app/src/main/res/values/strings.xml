@@ -3,4 +3,12 @@
     <string name="action_settings">settings</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="clothesfor03child">Как одеть ребенка от 0 до 3 месяцев на летнюю прогулку</string>
+    <string name="author_name">Наталья Бортникова</string>
+    <string name="nataly_bortnikova_workplace">педиатр Перинатального медицинского центра «Мать и дитя»</string>
+    <string name="nataly_bortnikova_speech">У родителей часто возникают вопросы, какую одежду выбрать для совсем маленького ребенка, чтобы во время прогулки он не замерз или не перегрелся. Я составила список вещей, которые точно не будут лишними в гардеробе малыша и подготовила несколько советов по организации прогулки.</string>
+    <string name="walk_with_child">Чтобы понять, жарко ребенку или холодно, приложите руку под шею — если кожа горячая и влажная, значит ребенку жарко, а если холодная, нужно укрыть его пледом, или прогулку пора заканчивать.</string>
+    <string name="walk_with_child_header">Как гулять?</string>
+    <string name="choose_clothes_header">Какую выбрать одежду</string>
+    <string name="choose_clothes">Летняя одежда должна защищать от солнечных лучей, перегрева и переохлаждения. Выбирая комплект, ориентируйтесь на температуру воздуха в тени. \n\nВажно, чтобы одежда была сшита из натуральных материалов — хлопка, ситца или льна (для детей старше 5 месяцев). В ней ребенку будет не жарко, и от ткани не возникнет раздражение.</string>
 </resources>

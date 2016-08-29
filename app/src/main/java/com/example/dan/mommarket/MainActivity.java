@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
     SQLiteHelper dbHelper;
 
     @Override
@@ -53,15 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dbHelper = new SQLiteHelper(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         insertDataToDB(db);
-        ProductDataSource productDataSource = new ProductDataSource(this);
-//        List<Feature> features = new ArrayList<>();
-//        features.add(new Feature(3, "aaa", "1"));
-//        features.add(new Feature(4, "aaa", "1"));
-//        List<Product> productList = productDataSource.getProductsByFeatures(features);
-//        Log.i("asdf", "" + productList.size());
-//        CategoryDataSource categoryDataSource = new CategoryDataSource(this);
-//        List<ProductCategory> categoryList = categoryDataSource.getChildCategories(1);
-//        Log.i("asdf", "" + categoryList.size());
+        ProductDataSource.setDatabase(this);
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -86,14 +79,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
 
-
-
-     //   PresenterCatalog presenterCatalog = new PresenterCatalogImpl(this);
         ViewCatalogImpl viewCatalog = new ViewCatalogImpl();
         viewCatalog.setContext(this);
-     //   presenterCatalog.setView(viewCatalog);
+        ProductDataSource.getInstance().setDatabase(this);
+        CategoryDataSource.getInstance().setDatabase(this);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, viewCatalog).commit();
-     //   presenterCatalog.updateCatalog();
+
 
 
     }
@@ -155,17 +146,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_main_screen) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_advices) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_basket) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_checklist) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_my_orders) {
+
+        } else if (id == R.id.nav_view) {
 
         }
 
