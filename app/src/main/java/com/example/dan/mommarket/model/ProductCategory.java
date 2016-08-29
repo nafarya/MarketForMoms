@@ -7,6 +7,7 @@ public class ProductCategory {
     private String name;
     private int id;
     private int parentCategoryId;
+    private String imageURL;
 
     public ProductCategory(int id) {
         this.id = id;
@@ -15,10 +16,11 @@ public class ProductCategory {
         this.id = id;
         this.name=name;
     }
-    public ProductCategory(int id,String name,int parentCategoryId) {
+    public ProductCategory(int id,String name,int parentCategoryId, String imageURL) {
         this.id = id;
         this.name=name;
         this.parentCategoryId=parentCategoryId;
+        this.imageURL=imageURL;
     }
 /**/
     public String getName() {

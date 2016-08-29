@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.dan.mommarket.model.Product;
 import com.example.dan.mommarket.model.ProductCategory;
 
 import java.util.ArrayList;
@@ -44,12 +43,14 @@ public class CategoryDataSource {
         database = dbHelper.getReadableDatabase();
         List<ProductCategory> categorytList = new ArrayList<>();
         Cursor categoryCursor = database.rawQuery("select " +
-                        " c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID +
-                        " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_NAME +
-                        " ,pc." + Contract.ProductCategory.PRODUCT_CATEGORY_ID +
-                        " ,pc." + Contract.ProductCategory.PRODUCT_CATEGORY_NAME +
-                        " from " + Contract.ProductCategory.TABLE + " c" +
-                        " left join " + Contract.ProductCategory.TABLE + " pc on pc." + Contract.ProductCategory.PRODUCT_CATEGORY_ID + "= c." + Contract.ProductCategory.PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " " + ";"
+                        " c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
+                        " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
+                        " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
+                        " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
+                        " ,i." + Contract.ImageDB.URL +
+                        " from " + Contract.ProductCategoryDB.TABLE + " c" +
+                        " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "= c." +Contract.ProductCategoryDB.PRODUCT_CATEGORY_IMAGE_ID +
+                        " left join " + Contract.ProductCategoryDB.TABLE + " pc on pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " " + ";"
                 , null);
 
         categoryCursor.moveToFirst();
@@ -57,7 +58,8 @@ public class CategoryDataSource {
             categorytList.add(new ProductCategory(
                     categoryCursor.getInt(0),
                     categoryCursor.getString(1),
-                    categoryCursor.getInt(2)));
+                    categoryCursor.getInt(2),
+                    categoryCursor.getString(3)));
             categoryCursor.moveToNext();
         }
         categoryCursor.close();
@@ -69,13 +71,15 @@ public class CategoryDataSource {
         database = dbHelper.getReadableDatabase();
         List<ProductCategory> categoryList = new ArrayList<>();
         Cursor categoryCursor = database.rawQuery("select " +
-                        " c." + Contract.ProductCategory.PRODUCT_CATEGORY_ID +
-                        " ,c." + Contract.ProductCategory.PRODUCT_CATEGORY_NAME +
-                        " ,pc." + Contract.ProductCategory.PRODUCT_CATEGORY_ID +
-                        " ,pc." + Contract.ProductCategory.PRODUCT_CATEGORY_NAME +
-                        " from " + Contract.ProductCategory.TABLE + " c" +
-                        " left join " + Contract.ProductCategory.TABLE + " pc on pc." + Contract.ProductCategory.PRODUCT_CATEGORY_ID + "= c." + Contract.ProductCategory.PRODUCT_CATEGORY_PARENT_CATEGORY_ID +
-                        " where c." + Contract.ProductCategory.PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " =?;"
+                        " c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
+                        " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
+                        " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
+                        " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
+                        " ,i." + Contract.ImageDB.URL +
+                        " from " + Contract.ProductCategoryDB.TABLE + " c" +
+                        " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "= c." +Contract.ProductCategoryDB.PRODUCT_CATEGORY_IMAGE_ID +
+                        " left join " + Contract.ProductCategoryDB.TABLE + " pc on pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID +
+                        " where c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " =?;"
                 , new String[]{Integer.toString(parentId)});
 
         categoryCursor.moveToFirst();
@@ -83,7 +87,8 @@ public class CategoryDataSource {
             categoryList.add(new ProductCategory(
                     categoryCursor.getInt(0),
                     categoryCursor.getString(1),
-                    categoryCursor.getInt(2)));
+                    categoryCursor.getInt(2),
+                    categoryCursor.getString(3)));
             categoryCursor.moveToNext();
         }
         categoryCursor.close();
