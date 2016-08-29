@@ -63,6 +63,7 @@ public class CategoryDataSource {
             categoryCursor.moveToNext();
         }
         categoryCursor.close();
+
         return categorytList;
     }
 

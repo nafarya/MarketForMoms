@@ -24,6 +24,7 @@ import com.example.dan.mommarket.view.CatalogViewImpl;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
     SQLiteHelper dbHelper;
     Picasso picasso;
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         insertDataToDB(db);
         ProductDataSource.setDatabase(this);
+
 //        ProductDataSource productDataSource = new ProductDataSource(this);
 //        List<FeatureDB> features = new ArrayList<>();
 //        features.add(new FeatureDB(3, "aaa", "1"));
@@ -68,6 +70,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+//        CatalogViewImpl viewCatalog = new CatalogViewImpl();
+//        viewCatalog.setContext(this);
+//        ProductDataSource.getInstance().setDatabase(this);
+//        CategoryDataSource.getInstance().setDatabase(this);
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, viewCatalog).commit();
+
+
+
 
      //   CatalogPresenter presenterCatalog = new CatalogPresenterImpl(this);
      //   viewCatalog.setContext(this);
@@ -145,19 +156,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+
+        if (id == R.id.nav_main_screen) {
+
+        } else if (id == R.id.nav_advices) {
             AdviceListViewImpl adviceListViewImpl = new AdviceListViewImpl();
             adviceListViewImpl.setPicasso(picasso);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, adviceListViewImpl).commit();
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_basket) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_checklist) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_my_orders) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_view) {
 
         }
 
