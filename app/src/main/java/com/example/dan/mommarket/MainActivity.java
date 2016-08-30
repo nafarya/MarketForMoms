@@ -14,6 +14,7 @@ import android.view.View;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.NavigationView;
+import android.widget.Toast;
 
 import com.example.dan.mommarket.database.AdviceDataSource;
 import com.example.dan.mommarket.database.CategoryDataSource;
@@ -21,11 +22,12 @@ import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.view.AdviceListViewImpl;
 import com.example.dan.mommarket.view.CatalogViewImpl;
+import com.example.dan.mommarket.view.MainAdviceListViewImpl;
 import com.squareup.picasso.Picasso;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Navigator{
+
     SQLiteHelper dbHelper;
-    Picasso picasso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         insertDataToDB(db);
         ProductDataSource.setDatabase(this);
+
 //        ProductDataSource productDataSource = new ProductDataSource(this);
 //        List<FeatureDB> features = new ArrayList<>();
 //        features.add(new FeatureDB(3, "aaa", "1"));
@@ -69,6 +72,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+//        CatalogViewImpl viewCatalog = new CatalogViewImpl();
+//        viewCatalog.setContext(this);
+//        ProductDataSource.getInstance().setDatabase(this);
+//        CategoryDataSource.getInstance().setDatabase(this);
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, viewCatalog).commit();
+
+
+
+
      //   CatalogPresenter presenterCatalog = new CatalogPresenterImpl(this);
      //   viewCatalog.setContext(this);
      //   presenterCatalog.setView(viewCatalog);
@@ -77,11 +89,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AdviceDataSource.getInstance().setDatabase(this);
     //    List<Advice> a = AdviceDataSource.getAllAdvices();
     //    Log.i("asdf", "" + a.size());
-        picasso =Picasso.with(this);
         CatalogViewImpl catalogView = new CatalogViewImpl();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, catalogView).commit();
 
-     //   AdviceListViewImpl adviceListView = new AdviceListViewImpl();
+     //   MainAdviceListViewImpl adviceListView = new MainAdviceListViewImpl();
      //   getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, adviceListView).commit();
      //   presenterCatalog.updateCatalog();
     }
@@ -123,19 +134,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            //replaceFragment(Fragment);
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(true);
             return true;
         }
 
+        if (id == android.R.id.home) {
+            Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().popBackStack();
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -145,24 +155,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-            AdviceListViewImpl adviceListViewImpl = new AdviceListViewImpl();
-            adviceListViewImpl.setPicasso(picasso);
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, adviceListViewImpl).commit();
-        } else if (id == R.id.nav_slideshow) {
+        if (id == R.id.nav_main_screen) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_advices) {
+            MainAdviceListViewImpl mainAdviceListViewImpl = new MainAdviceListViewImpl();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainAdviceListViewImpl).commit();
+        } else if (id == R.id.nav_basket) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_checklist) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_my_orders) {
+
+        } else if (id == R.id.nav_view) {
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void navigateToAdviseList() {
+        AdviceListViewImpl adviceListViewImpl = new AdviceListViewImpl();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, adviceListViewImpl)
+                .addToBackStack(null)
+                .commit();
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDefaultDisplayHomeAsUpEnabled(true);
     }
 }
