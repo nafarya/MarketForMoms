@@ -115,7 +115,21 @@
             android:layout_marginTop="22dp"
             android:textSize="16dp"
             android:textColor="#e5000000"
+            android:paddingBottom="35dp"
             android:text="@string/choose_clothes"
             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:background="#e5e5e5"
+            android:paddingLeft="16dp"
+            android:paddingTop="19dp"
+            android:paddingBottom="19dp"
+            android:text="@string/what_you_should_buy"
+            android:textSize="20sp"
+            android:textColor="#e5000000"/>
+
+
     </LinearLayout>
 </ScrollView>
