@@ -1,6 +1,7 @@
 package com.example.dan.mommarket;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -8,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +30,7 @@ import com.squareup.picasso.Picasso;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Navigator{
 
     SQLiteHelper dbHelper;
+    private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +42,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         insertDataToDB(db);
         ProductDataSource.setDatabase(this);
-
-//        ProductDataSource productDataSource = new ProductDataSource(this);
-//        List<FeatureDB> features = new ArrayList<>();
-//        features.add(new FeatureDB(3, "aaa", "1"));
-//        features.add(new FeatureDB(4, "aaa", "1"));
-//        List<ProductDB> productList = productDataSource.getProductsByFeatures(features);
-//        Log.i("asdf", "" + productList.size());
-//        CategoryDataSource categoryDataSource = new CategoryDataSource(this);
-//        List<ProductCategoryDB> categoryList = categoryDataSource.getChildCategories(1);
-//        Log.i("asdf", "" + categoryList.size());
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -64,37 +57,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+//        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-//        CatalogViewImpl viewCatalog = new CatalogViewImpl();
-//        viewCatalog.setContext(this);
-//        ProductDataSource.getInstance().setDatabase(this);
-//        CategoryDataSource.getInstance().setDatabase(this);
-//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, viewCatalog).commit();
-
-
-
-
-     //   CatalogPresenter presenterCatalog = new CatalogPresenterImpl(this);
-     //   viewCatalog.setContext(this);
-     //   presenterCatalog.setView(viewCatalog);
         ProductDataSource.getInstance().setDatabase(this);
         CategoryDataSource.getInstance().setDatabase(this);
         AdviceDataSource.getInstance().setDatabase(this);
-    //    List<Advice> a = AdviceDataSource.getAllAdvices();
-    //    Log.i("asdf", "" + a.size());
+
         CatalogViewImpl catalogView = new CatalogViewImpl();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, catalogView).commit();
 
-     //   MainAdviceListViewImpl adviceListView = new MainAdviceListViewImpl();
-     //   getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, adviceListView).commit();
-     //   presenterCatalog.updateCatalog();
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        toggle.syncState();
     }
 
     void insertDataToDB(SQLiteDatabase db) {
@@ -113,20 +96,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1)
+            getSupportFragmentManager().popBackStack();
+        else {
+            Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
+            getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(false);
             super.onBackPressed();
         }
-
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0)
-            getSupportFragmentManager().popBackStack();
-        else
-            super.onBackPressed();///change
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+        public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
@@ -141,9 +126,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if (id == android.R.id.home) {
-            Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().popBackStack();
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            ActionBar actionbar = getSupportActionBar();
+            actionbar.setDisplayHomeAsUpEnabled(false);
+            actionbar.setHomeButtonEnabled(false);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -187,6 +173,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-        actionBar.setDefaultDisplayHomeAsUpEnabled(true);
+//        actionBar.setDefaultDisplayHomeAsUpEnabled(true);
     }
 }
