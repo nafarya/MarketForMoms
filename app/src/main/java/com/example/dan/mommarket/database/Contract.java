@@ -105,11 +105,13 @@ public interface Contract {
         public static final String PRODUCT_CATEGORY_ID = "_ID";
         public static final String PRODUCT_CATEGORY_NAME = "NAME";
         public static final String PRODUCT_CATEGORY_IMAGE_ID = "ID";
+        public static final String PRODUCT_CATEGORY_DESCRIPTION = "DESCRIPTION";
         public static final String PRODUCT_CATEGORY_PARENT_CATEGORY_ID = "PARENT_CATEGORY_ID";
 
         public static final String PRODUCT_CATEGORY_TABLE_CREATE = "create table " + TABLE + " (" +
                 PRODUCT_CATEGORY_ID + " INTEGER, " +
                 PRODUCT_CATEGORY_NAME + " TEXT NOT NULL, " +
+                PRODUCT_CATEGORY_DESCRIPTION + " TEXT, " +
                 PRODUCT_CATEGORY_IMAGE_ID + " INTEGER, " +
                 PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " INTEGER );";
     }

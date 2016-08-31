@@ -8,6 +8,7 @@ public class ProductCategory {
     private int id;
     private int parentCategoryId;
     private String imageURL;
+    private String description;
 
     public ProductCategory(int id) {
         this.id = id;
@@ -16,13 +17,18 @@ public class ProductCategory {
         this.id = id;
         this.name=name;
     }
-    public ProductCategory(int id,String name,int parentCategoryId, String imageURL) {
+    public ProductCategory(int id,
+                           String name,
+                           String description,
+                           int parentCategoryId,
+                           String imageURL) {
         this.id = id;
         this.name=name;
+        this.description=description;
         this.parentCategoryId=parentCategoryId;
         this.imageURL=imageURL;
     }
-/**/
+
     public String getName() {
         return name;
     }
@@ -47,4 +53,19 @@ public class ProductCategory {
         this.parentCategoryId = parentCategoryId;
     }
 
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

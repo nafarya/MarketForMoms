@@ -36,7 +36,7 @@ public class MainAdviceListViewImpl extends Fragment implements MainAdviceListVi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_advice_list, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.rv_advice_list);
-//        catalogPresenter = new CatalogPresenterImpl(context);
+//        categoryListPresenter = new CategoryListPresenterImpl(context);
         mainAdviceListPresenter = MainAdviceListPresenterImpl.getInstance();
         mainAdviceListPresenter.setView(this);
         mainAdviceListPresenter.onCreateView(savedInstanceState);
