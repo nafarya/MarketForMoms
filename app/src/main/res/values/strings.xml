@@ -18,4 +18,6 @@
     <string name="many_rubles">от 549 Р</string>
     <string name="not_many_rubles">от 449 Р</string>
     <string name="go_to_shopping">Перейти к покупкам</string>
+    <string name="for_moms">Для мамочек</string>
+    <string name="for_childs">Для детей</string>
 </resources>
