@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,8 @@ import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.view.AdviceListViewImpl;
 import com.example.dan.mommarket.view.CatalogViewImpl;
+import com.example.dan.mommarket.view.CategoryChildListViewImpl;
+import com.example.dan.mommarket.view.CategoryListViewImpl;
 import com.example.dan.mommarket.view.MainAdviceListViewImpl;
 import com.squareup.picasso.Picasso;
 
@@ -89,8 +92,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AdviceDataSource.getInstance().setDatabase(this);
     //    List<Advice> a = AdviceDataSource.getAllAdvices();
     //    Log.i("asdf", "" + a.size());
-        CatalogViewImpl catalogView = new CatalogViewImpl();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, catalogView).commit();
+        CategoryListViewImpl categoryListView = new CategoryListViewImpl();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, categoryListView).commit();
 
      //   MainAdviceListViewImpl adviceListView = new MainAdviceListViewImpl();
      //   getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, adviceListView).commit();
@@ -157,6 +160,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_main_screen) {
 
+        } else if (id == R.id.nav_catalog) {
+            CategoryListViewImpl categoryListView = new CategoryListViewImpl();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, categoryListView).commit();
         } else if (id == R.id.nav_advices) {
             MainAdviceListViewImpl mainAdviceListViewImpl = new MainAdviceListViewImpl();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainAdviceListViewImpl).commit();
@@ -181,6 +187,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, adviceListViewImpl)
+                .addToBackStack(null)
+                .commit();
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDefaultDisplayHomeAsUpEnabled(true);
+    }
+    @Override
+    public void navigateToCategoryChildList(int item) {
+        CategoryChildListViewImpl categoryChildListView = new CategoryChildListViewImpl();
+
+        Log.i("111111111111111111111",""+item);
+        Bundle bundle = new Bundle();
+        bundle.putInt("ParentCategory",item);
+        categoryChildListView.setArguments(bundle);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, categoryChildListView)
                 .addToBackStack(null)
                 .commit();
 

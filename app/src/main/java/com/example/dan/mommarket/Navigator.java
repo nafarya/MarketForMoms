@@ -7,5 +7,6 @@ package com.example.dan.mommarket;
 public interface Navigator {
 
     void navigateToAdviseList();
+    void navigateToCategoryChildList(int item);
 
 }
