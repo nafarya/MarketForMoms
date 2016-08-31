@@ -198,8 +198,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void navigateToCategoryChildList(int item) {
         CategoryChildListViewImpl categoryChildListView = new CategoryChildListViewImpl();
-
-        Log.i("111111111111111111111",""+item);
         Bundle bundle = new Bundle();
         bundle.putInt("ParentCategory",item);
         categoryChildListView.setArguments(bundle);

@@ -79,12 +79,31 @@ public class CategoryDataSource {
                         " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
                         " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
                         " ,i." + Contract.ImageDB.URL +
+                        " ,ifnull(a.cn,0) cn"  +
                         " from " + Contract.ProductCategoryDB.TABLE + " c" +
                         " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "= c." +Contract.ProductCategoryDB.PRODUCT_CATEGORY_IMAGE_ID +
                         " left join " + Contract.ProductCategoryDB.TABLE + " pc on pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID +
-                        " where c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " =?;"
+                        " left join ( select cc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " id,"+
+                                            " count ( cc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID+") cn" +
+                                            " from " + Contract.ProductCategoryDB.TABLE + " cc"+
+                                            " group by cc."+Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID+") a"+
+                                            " on  c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= a.id" +
+                " where c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " =?;"
                 , new String[]{Integer.toString(parentId)});
+/*
+  select
+c._ID ,
+c.NAME ,
+pc._ID ,
+pc.NAME ,
+ifnull(a.cn,0)
+from PRODUCT_CATEGORY c
+left join PRODUCT_CATEGORY pc on pc._ID= c.PARENT_CATEGORY_ID
+left join (select cc.PARENT_CATEGORY_ID,count(cc.PARENT_CATEGORY_ID) cn from PRODUCT_CATEGORY cc group by cc.PARENT_CATEGORY_ID) a
+		on c._ID=a.PARENT_CATEGORY_ID
+where c.PARENT_CATEGORY_ID = 7
 
+*/
         categoryCursor.moveToFirst();
         while (!categoryCursor.isAfterLast()) {
             categoryList.add(new ProductCategory(
@@ -92,7 +111,8 @@ public class CategoryDataSource {
                     categoryCursor.getString(1),
                     categoryCursor.getString(2),
                     categoryCursor.getInt(3),
-                    categoryCursor.getString(4)));
+                    categoryCursor.getString(4),
+                    categoryCursor.getInt(5)));
             categoryCursor.moveToNext();
         }
         categoryCursor.close();
