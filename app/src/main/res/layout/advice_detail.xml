@@ -130,6 +130,22 @@
             android:textSize="20sp"
             android:textColor="#e5000000"/>
 
+        <include
+            layout="@layout/products_cards">
+        </include>
 
+        <include
+            layout="@layout/products_cards"></include>
+
+        <include
+            layout="@layout/products_cards"></include>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/go_to_shopping"
+            android:textSize="16sp"
+            android:textColor="#e5000000"
+            android:background="@color/colorPrimary"/>
     </LinearLayout>
 </ScrollView>
