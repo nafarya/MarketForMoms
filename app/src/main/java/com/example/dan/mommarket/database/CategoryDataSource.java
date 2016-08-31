@@ -17,11 +17,11 @@ public class CategoryDataSource {
     private static SQLiteDatabase database;
     private static SQLiteHelper dbHelper;
 
-    private static ProductDataSource instance;
+    private static CategoryDataSource instance;
 
-    public static synchronized ProductDataSource getInstance() {
+    public static synchronized CategoryDataSource getInstance() {
         if (instance == null) {
-            instance = new ProductDataSource();
+            instance = new CategoryDataSource();
         }
         return instance;
     }
@@ -45,6 +45,7 @@ public class CategoryDataSource {
         Cursor categoryCursor = database.rawQuery("select " +
                         " c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
                         " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
+                        " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_DESCRIPTION +
                         " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
                         " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
                         " ,i." + Contract.ImageDB.URL +
@@ -58,8 +59,9 @@ public class CategoryDataSource {
             categorytList.add(new ProductCategory(
                     categoryCursor.getInt(0),
                     categoryCursor.getString(1),
-                    categoryCursor.getInt(2),
-                    categoryCursor.getString(3)));
+                    categoryCursor.getString(2),
+                    categoryCursor.getInt(3),
+                    categoryCursor.getString(4)));
             categoryCursor.moveToNext();
         }
         categoryCursor.close();
@@ -73,6 +75,7 @@ public class CategoryDataSource {
         Cursor categoryCursor = database.rawQuery("select " +
                         " c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
                         " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
+                        " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_DESCRIPTION +
                         " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
                         " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
                         " ,i." + Contract.ImageDB.URL +
@@ -87,8 +90,9 @@ public class CategoryDataSource {
             categoryList.add(new ProductCategory(
                     categoryCursor.getInt(0),
                     categoryCursor.getString(1),
-                    categoryCursor.getInt(2),
-                    categoryCursor.getString(3)));
+                    categoryCursor.getString(2),
+                    categoryCursor.getInt(3),
+                    categoryCursor.getString(4)));
             categoryCursor.moveToNext();
         }
         categoryCursor.close();
