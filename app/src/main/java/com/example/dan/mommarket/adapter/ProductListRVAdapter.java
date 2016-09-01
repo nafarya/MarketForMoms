@@ -15,18 +15,18 @@ import java.util.List;
  * Created by dan on 27.08.16.
  */
 
-public class CatalogRVAdapter extends RecyclerView.Adapter<CatalogRVAdapter.ViewHolder> {
+public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdapter.ViewHolder> {
 
     private List<Product> productList;
 
-    public CatalogRVAdapter(List<Product> productList) {
+    public ProductListRVAdapter(List<Product> productList) {
         this.productList = productList;
     }
 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_catalog_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_product_list_item, parent, false);
         return new ViewHolder(v);
     }
 
@@ -49,9 +49,9 @@ public class CatalogRVAdapter extends RecyclerView.Adapter<CatalogRVAdapter.View
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.rv_catalog_name);
-            icon = (ImageView) itemView.findViewById(R.id.rv_catalog_image);
-            description = (TextView) itemView.findViewById(R.id.rv_catalog_description);
+            name = (TextView) itemView.findViewById(R.id.rv_product_list_name);
+            icon = (ImageView) itemView.findViewById(R.id.rv_product_list_image);
+            description = (TextView) itemView.findViewById(R.id.rv_product_list_description);
         }
     }
 }

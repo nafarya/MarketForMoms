@@ -47,8 +47,8 @@ public class CategoryDataSource {
                         " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
                         " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_DESCRIPTION +
                         " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
-                        " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
                         " ,i." + Contract.ImageDB.URL +
+                        " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
                         " from " + Contract.ProductCategoryDB.TABLE + " c" +
                         " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "= c." +Contract.ProductCategoryDB.PRODUCT_CATEGORY_IMAGE_ID +
                         " left join " + Contract.ProductCategoryDB.TABLE + " pc on pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " " + ";"
@@ -77,9 +77,9 @@ public class CategoryDataSource {
                         " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
                         " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_DESCRIPTION +
                         " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
-                        " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
                         " ,i." + Contract.ImageDB.URL +
                         " ,ifnull(a.cn,0) cn"  +
+                        " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
                         " from " + Contract.ProductCategoryDB.TABLE + " c" +
                         " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "= c." +Contract.ProductCategoryDB.PRODUCT_CATEGORY_IMAGE_ID +
                         " left join " + Contract.ProductCategoryDB.TABLE + " pc on pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID +
