@@ -104,7 +104,7 @@ public interface Contract {
         public static final String TABLE = "PRODUCT_CATEGORY";
         public static final String PRODUCT_CATEGORY_ID = "_ID";
         public static final String PRODUCT_CATEGORY_NAME = "NAME";
-        public static final String PRODUCT_CATEGORY_IMAGE_ID = "ID";
+        public static final String PRODUCT_CATEGORY_IMAGE_ID = "IMAGE_ID";
         public static final String PRODUCT_CATEGORY_DESCRIPTION = "DESCRIPTION";
         public static final String PRODUCT_CATEGORY_PARENT_CATEGORY_ID = "PARENT_CATEGORY_ID";
 

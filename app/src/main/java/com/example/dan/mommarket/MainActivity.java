@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,11 +22,10 @@ import com.example.dan.mommarket.database.CategoryDataSource;
 import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.view.AdviceListViewImpl;
-import com.example.dan.mommarket.view.CatalogViewImpl;
 import com.example.dan.mommarket.view.CategoryChildListViewImpl;
 import com.example.dan.mommarket.view.CategoryListViewImpl;
 import com.example.dan.mommarket.view.MainAdviceListViewImpl;
-import com.squareup.picasso.Picasso;
+import com.example.dan.mommarket.view.ProductListViewImpl;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Navigator{
 
@@ -183,20 +181,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        actionBar.setDefaultDisplayHomeAsUpEnabled(true);
     }
     @Override
-    public void navigateToCategoryChildList(int item) {
-        CategoryChildListViewImpl categoryChildListView = new CategoryChildListViewImpl();
+    public void navigateToCategoryChildList(int item, int childCount) {
+        if (childCount != 0){
+            CategoryChildListViewImpl categoryChildListView = new CategoryChildListViewImpl();
+            Bundle bundle = new Bundle();
+            bundle.putInt("ParentCategory",item);
+            categoryChildListView.setArguments(bundle);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, categoryChildListView)
+                    .addToBackStack(null)
+                    .commit();
+
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+//            actionBar.setDefaultDisplayHomeAsUpEnabled(true);
+        }else{
+            navigateToProductList(item);
+        }
+    }
+    @Override
+    public void navigateToProductList(int item) {
+        ProductListViewImpl ProductListView = new ProductListViewImpl();
         Bundle bundle = new Bundle();
         bundle.putInt("ParentCategory",item);
-        categoryChildListView.setArguments(bundle);
+        ProductListView.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, categoryChildListView)
+                .replace(R.id.fragment_container, ProductListView)
                 .addToBackStack(null)
                 .commit();
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-        actionBar.setDefaultDisplayHomeAsUpEnabled(true);
+//        actionBar.setDefaultDisplayHomeAsUpEnabled(true);
     }
 }

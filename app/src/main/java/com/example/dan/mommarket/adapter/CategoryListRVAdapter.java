@@ -30,7 +30,7 @@ public class CategoryListRVAdapter extends RecyclerView.Adapter<CategoryListRVAd
     }
 
     public interface OnCategoryListClickListener {
-        void onItemClick(int item);
+        void onItemClick(int item,int childCount);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class CategoryListRVAdapter extends RecyclerView.Adapter<CategoryListRVAd
 
         @Override
         public void onClick(View view) {
-            listener.onItemClick(categoryList.get(getAdapterPosition()).getId());
+            listener.onItemClick(categoryList.get(getAdapterPosition()).getId(),categoryList.get(getAdapterPosition()).getChildCount());
         }
     }
 }
