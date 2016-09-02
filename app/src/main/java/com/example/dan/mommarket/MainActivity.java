@@ -1,21 +1,20 @@
 package com.example.dan.mommarket;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.NavigationView;
 import android.widget.Toast;
 
 import com.example.dan.mommarket.database.AdviceDataSource;
@@ -25,7 +24,6 @@ import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.view.AdviceListViewImpl;
 import com.example.dan.mommarket.view.CatalogViewImpl;
 import com.example.dan.mommarket.view.MainAdviceListViewImpl;
-import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Navigator{
 
@@ -120,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.action_settings) {
             return true;
         }
@@ -145,7 +142,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_advices) {
             MainAdviceListViewImpl mainAdviceListViewImpl = new MainAdviceListViewImpl();
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainAdviceListViewImpl).commit();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, mainAdviceListViewImpl, "advicesFragment")
+                    .commit();
         } else if (id == R.id.nav_basket) {
 
         } else if (id == R.id.nav_checklist) {
