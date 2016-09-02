@@ -10,6 +10,8 @@ public class ProductCategory {
     private String imageURL;
     private String description;
     private int childCount;
+    private int gradStart;
+    private int gradFinish;
 
     public ProductCategory(int id) {
         this.id = id;
@@ -41,6 +43,23 @@ public class ProductCategory {
         this.parentCategoryId=parentCategoryId;
         this.imageURL=imageURL;
         this.childCount=childCount;
+    }
+    public ProductCategory(int id,
+                           String name,
+                           String description,
+                           int parentCategoryId,
+                           String imageURL,
+                           int childCount,
+                           int gradStart,
+                           int gradFinish) {
+        this.id = id;
+        this.name=name;
+        this.description=description;
+        this.parentCategoryId=parentCategoryId;
+        this.imageURL=imageURL;
+        this.childCount=childCount;
+        this.gradStart=gradStart;
+        this.gradFinish=gradFinish;
     }
 
     public String getName() {
@@ -89,5 +108,21 @@ public class ProductCategory {
 
     public void setChildCount(int childCount) {
         this.childCount = childCount;
+    }
+
+    public int getGradStart() {
+        return gradStart;
+    }
+
+    public void setGradStart(int gradStart) {
+        this.gradStart = gradStart;
+    }
+
+    public int getGradFinish() {
+        return gradFinish;
+    }
+
+    public void setGradFinish(int gradFinish) {
+        this.gradFinish = gradFinish;
     }
 }
