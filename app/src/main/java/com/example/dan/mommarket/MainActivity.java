@@ -24,6 +24,7 @@ import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.view.AdviceListViewImpl;
 import com.example.dan.mommarket.view.CategoryChildListViewImpl;
 import com.example.dan.mommarket.view.CategoryListViewImpl;
+import com.example.dan.mommarket.view.CategorySecondChildListViewImpl;
 import com.example.dan.mommarket.view.MainAdviceListViewImpl;
 import com.example.dan.mommarket.view.ProductListViewImpl;
 
@@ -202,10 +203,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
     @Override
-    public void navigateToProductList(int item) {
+    public void navigateToCategorySecondChildList(int item, int childCount) {
+        if (childCount != 0){
+            CategorySecondChildListViewImpl categorySecondChildListView = new CategorySecondChildListViewImpl();
+            Bundle bundle = new Bundle();
+            bundle.putInt("ParentCategory",item);
+            categorySecondChildListView.setArguments(bundle);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, categorySecondChildListView)
+                    .addToBackStack(null)
+                    .commit();
+
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+//            actionBar.setDefaultDisplayHomeAsUpEnabled(true);
+        }else{
+            navigateToProductList(item);
+        }
+    }
+    @Override
+    public void navigateToProductList(int categoryId) {
         ProductListViewImpl ProductListView = new ProductListViewImpl();
         Bundle bundle = new Bundle();
-        bundle.putInt("ParentCategory",item);
+        bundle.putInt("ParentCategory",categoryId);
         ProductListView.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()
