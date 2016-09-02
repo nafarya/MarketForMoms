@@ -37,11 +37,10 @@ public class CategoryListPresenterImpl implements CategoryListPresenter {
     }
 
     @Override
-    public void onCreateView(Bundle savedIntanceState) {
-        if (savedIntanceState == null) {
-
+    public void onCreateView(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
             //ProductDataSource productDataSource = new ProductDataSource(context);
-            List<ProductCategory> categoryList = CategoryDataSource.getAllCategories();
+            List<ProductCategory> categoryList = CategoryDataSource.getChildCategories(7);
             categoryListView.showProducts(categoryList);
         }
     }

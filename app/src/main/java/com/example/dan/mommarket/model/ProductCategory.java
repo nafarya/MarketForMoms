@@ -9,6 +9,7 @@ public class ProductCategory {
     private int parentCategoryId;
     private String imageURL;
     private String description;
+    private int childCount;
 
     public ProductCategory(int id) {
         this.id = id;
@@ -27,6 +28,19 @@ public class ProductCategory {
         this.description=description;
         this.parentCategoryId=parentCategoryId;
         this.imageURL=imageURL;
+    }
+    public ProductCategory(int id,
+                           String name,
+                           String description,
+                           int parentCategoryId,
+                           String imageURL,
+                           int childCount) {
+        this.id = id;
+        this.name=name;
+        this.description=description;
+        this.parentCategoryId=parentCategoryId;
+        this.imageURL=imageURL;
+        this.childCount=childCount;
     }
 
     public String getName() {
@@ -67,5 +81,13 @@ public class ProductCategory {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getChildCount() {
+        return childCount;
+    }
+
+    public void setChildCount(int childCount) {
+        this.childCount = childCount;
     }
 }

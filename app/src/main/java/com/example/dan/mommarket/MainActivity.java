@@ -22,8 +22,13 @@ import com.example.dan.mommarket.database.CategoryDataSource;
 import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.view.AdviceListViewImpl;
-import com.example.dan.mommarket.view.CatalogViewImpl;
+import com.example.dan.mommarket.view.CategoryChildListViewImpl;
+import com.example.dan.mommarket.view.CategoryListViewImpl;
 import com.example.dan.mommarket.view.MainAdviceListViewImpl;
+
+import com.example.dan.mommarket.view.MainScreenView;
+import com.example.dan.mommarket.view.MainScreenViewImpl;
+import com.example.dan.mommarket.view.ProductListViewImpl;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Navigator{
 
@@ -67,8 +72,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         CategoryDataSource.getInstance().setDatabase(this);
         AdviceDataSource.getInstance().setDatabase(this);
 
-        CatalogViewImpl catalogView = new CatalogViewImpl();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, catalogView).commit();
+    //    List<Advice> a = AdviceDataSource.getAllAdvices();
+    //    Log.i("asdf", "" + a.size());
+        MainScreenViewImpl mainScreenView = new MainScreenViewImpl();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainScreenView).commit();
 
     }
 
@@ -94,11 +101,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            super.onBackPressed();
-//        }
         if (getSupportFragmentManager().getBackStackEntryCount() > 1)
             getSupportFragmentManager().popBackStack();
         else {
@@ -139,13 +141,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_main_screen) {
+            MainScreenViewImpl mainScreenViewImpl = new MainScreenViewImpl();
+            getSupportFragmentManager().
+                    beginTransaction().
+                    replace(R.id.fragment_container, mainScreenViewImpl)
+                    .commit();
+
+        } else if (id == R.id.nav_catalog) {
+            CategoryListViewImpl categoryListView = new CategoryListViewImpl();
+            getSupportFragmentManager().
+                    beginTransaction().
+                    replace(R.id.fragment_container, categoryListView).
+                    commit();
 
         } else if (id == R.id.nav_advices) {
             MainAdviceListViewImpl mainAdviceListViewImpl = new MainAdviceListViewImpl();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, mainAdviceListViewImpl, "advicesFragment")
+                    .replace(R.id.fragment_container, mainAdviceListViewImpl)
                     .commit();
+
         } else if (id == R.id.nav_basket) {
 
         } else if (id == R.id.nav_checklist) {
@@ -167,6 +182,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, adviceListViewImpl)
+                .addToBackStack(null)
+                .commit();
+
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//        actionBar.setHomeButtonEnabled(true);
+//        actionBar.setDefaultDisplayHomeAsUpEnabled(true);
+    }
+    @Override
+    public void navigateToCategoryChildList(int item, int childCount) {
+        if (childCount != 0){
+            CategoryChildListViewImpl categoryChildListView = new CategoryChildListViewImpl();
+            Bundle bundle = new Bundle();
+            bundle.putInt("ParentCategory",item);
+            categoryChildListView.setArguments(bundle);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, categoryChildListView)
+                    .addToBackStack(null)
+                    .commit();
+
+//            ActionBar actionBar = getSupportActionBar();
+//            actionBar.setDisplayHomeAsUpEnabled(true);
+//            actionBar.setHomeButtonEnabled(true);
+//            actionBar.setDefaultDisplayHomeAsUpEnabled(true);
+        }else{
+            navigateToProductList(item);
+        }
+    }
+    @Override
+    public void navigateToProductList(int item) {
+        ProductListViewImpl ProductListView = new ProductListViewImpl();
+        Bundle bundle = new Bundle();
+        bundle.putInt("ParentCategory",item);
+        ProductListView.setArguments(bundle);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, ProductListView)
                 .addToBackStack(null)
                 .commit();
 

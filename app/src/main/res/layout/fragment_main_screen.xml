@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/ic_main_screen_banner"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:id="@+id/from_main_screen_to_catalog_button"
+            android:background="@color/colorPrimary"
+            android:text="@string/product_catalog"
+            android:textSize="16dp"
+            android:textColor="#cc000000"
+            android:textAllCaps="false"
+            android:layout_gravity="start"
+            android:textAlignment="viewStart"
+            android:paddingLeft="16dp"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/main_screen_advice_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            app:layoutManager="LinearLayoutManager"
+            xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/colorAccent"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#112bf2"/>
+
+    </LinearLayout>
+
+</ScrollView>

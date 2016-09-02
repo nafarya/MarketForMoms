@@ -96,6 +96,32 @@ public class ProductDataSource {
         return productList;
     }
 
+    public static List<Product> getListProductsByCategoryId(int categoryId) {
+        database = dbHelper.getReadableDatabase();
+        List<Product> productList = new ArrayList<>();
+        Cursor productCursor = database.rawQuery("select " +
+                " p." + Contract.ProductDB.PRODUCT_ID +
+                " ,p." + Contract.ProductDB.PRODUCT_NAME +
+                " ,avg(o." + Contract.OfferDB.OFFER_PRICE +")"+
+                " ,p." + Contract.ProductDB.PRODUCT_DESCRIPTION +
+                " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + " CATEGORY_ID" +
+                " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME + " CATEGORY_NAME" +
+                " ,max(i." + Contract.ImageDB.URL + ") URL" +
+                " from " + Contract.ProductDB.TABLE + " p" +
+                " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= p." + Contract.ProductDB.PRODUCT_CATEGORY_ID + " " +
+                " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.OFFER_PRODUCT_ID + "=p." + Contract.ProductDB.PRODUCT_ID +
+                " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "=p." + Contract.ProductDB.PRODUCT_ID +
+                " Where p." + Contract.ProductDB.PRODUCT_CATEGORY_ID + "=?"+
+                " group by p." + Contract.ProductDB.PRODUCT_ID + ";", new String[]{Integer.toString(categoryId)});
+        productCursor.moveToFirst();
+        while (!productCursor.isAfterLast()) {
+            productList.add(productCursorToProduct(productCursor));
+            productCursor.moveToNext();
+        }
+        productCursor.close();
+        return productList;
+    }
+
     public static List<Product> getProductsByFeatures(List<Feature> features) {
         database = dbHelper.getReadableDatabase();
         String[] whereClauseArray = new String[features.size() * 2];
