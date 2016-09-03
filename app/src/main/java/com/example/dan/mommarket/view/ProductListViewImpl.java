@@ -46,7 +46,6 @@ public class ProductListViewImpl extends Fragment implements ProductListView {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         grid = new GridLayoutManager(getContext(), spanCount);
         recyclerView.setLayoutManager(grid);
-//        productListPresenter = new ProductListPresenterImpl(context);
         productListPresenter = ProductListPresenterImpl.getInstance();
         productListPresenter.setView(this);
         productListPresenter.onCreateView(savedInstanceState!=null ? savedInstanceState : this.getArguments());

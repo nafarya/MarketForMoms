@@ -30,15 +30,7 @@ public class CategoryDataSource {
         dbHelper = new SQLiteHelper(context);
         return ;
     }
-    /*
-    public CategoryDataSource(Context context) {
-        dbHelper = new SQLiteHelper(context);
-    }
 
-    public void close() {
-        dbHelper.close();
-    }
-*/
     public static List<ProductCategory> getAllCategories() {
         database = dbHelper.getReadableDatabase();
         List<ProductCategory> categorytList = new ArrayList<>();
@@ -90,20 +82,7 @@ public class CategoryDataSource {
                                             " on  c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= a.id" +
                 " where c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " =?;"
                 , new String[]{Integer.toString(parentId)});
-/*
-  select
-c._ID ,
-c.NAME ,
-pc._ID ,
-pc.NAME ,
-ifnull(a.cn,0)
-from PRODUCT_CATEGORY c
-left join PRODUCT_CATEGORY pc on pc._ID= c.PARENT_CATEGORY_ID
-left join (select cc.PARENT_CATEGORY_ID,count(cc.PARENT_CATEGORY_ID) cn from PRODUCT_CATEGORY cc group by cc.PARENT_CATEGORY_ID) a
-		on c._ID=a.PARENT_CATEGORY_ID
-where c.PARENT_CATEGORY_ID = 7
 
-*/
         categoryCursor.moveToFirst();
         while (!categoryCursor.isAfterLast()) {
             categoryList.add(new ProductCategory(
