@@ -19,7 +19,6 @@ public class MainScreenPresenterImpl implements MainScreenPresenter {
     private static MainScreenPresenterImpl instance;
     private final int numOfAdvices = 2;
 
-
     public static synchronized MainScreenPresenterImpl getInstance() {
         if (instance == null) {
             instance = new MainScreenPresenterImpl();

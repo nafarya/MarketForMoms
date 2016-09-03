@@ -23,12 +23,11 @@ import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.view.AdviceListViewImpl;
 import com.example.dan.mommarket.view.CategoryChildListViewImpl;
-import com.example.dan.mommarket.view.CategoryListViewImpl;
 import com.example.dan.mommarket.view.MainAdviceListViewImpl;
 
-import com.example.dan.mommarket.view.MainScreenView;
 import com.example.dan.mommarket.view.MainScreenViewImpl;
 import com.example.dan.mommarket.view.ProductListViewImpl;
+import com.example.dan.mommarket.view.CategoryRootFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Navigator{
 
@@ -148,10 +147,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .commit();
 
         } else if (id == R.id.nav_catalog) {
-            CategoryListViewImpl categoryListView = new CategoryListViewImpl();
+//            CategoryListViewImpl categoryListView = new CategoryListViewImpl();
+            CategoryRootFragment categoryRootFragment = new CategoryRootFragment();
             getSupportFragmentManager().
                     beginTransaction().
-                    replace(R.id.fragment_container, categoryListView).
+                    replace(R.id.fragment_container, categoryRootFragment).
                     commit();
 
         } else if (id == R.id.nav_advices) {
@@ -184,15 +184,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .replace(R.id.fragment_container, adviceListViewImpl)
                 .addToBackStack(null)
                 .commit();
-
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setHomeButtonEnabled(true);
-//        actionBar.setDefaultDisplayHomeAsUpEnabled(true);
     }
     @Override
     public void navigateToCategoryChildList(int item, int childCount) {
-        if (childCount != 0){
+        if (childCount != 0) {
             CategoryChildListViewImpl categoryChildListView = new CategoryChildListViewImpl();
             Bundle bundle = new Bundle();
             bundle.putInt("ParentCategory",item);
@@ -203,11 +198,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .addToBackStack(null)
                     .commit();
 
-//            ActionBar actionBar = getSupportActionBar();
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//            actionBar.setHomeButtonEnabled(true);
-//            actionBar.setDefaultDisplayHomeAsUpEnabled(true);
-        }else{
+        } else {
             navigateToProductList(item);
         }
     }
@@ -222,10 +213,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .replace(R.id.fragment_container, ProductListView)
                 .addToBackStack(null)
                 .commit();
-
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setHomeButtonEnabled(true);
-//        actionBar.setDefaultDisplayHomeAsUpEnabled(true);
     }
 }

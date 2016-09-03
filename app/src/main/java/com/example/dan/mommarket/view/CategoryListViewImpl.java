@@ -52,7 +52,7 @@ public class CategoryListViewImpl extends Fragment implements CategoryListView, 
     }
 
     @Override
-    public void onItemClick(int item,int childCount) {
-        navigator.navigateToCategoryChildList(item,childCount);
+    public void onItemClick(int item, int childCount) {
+        navigator.navigateToCategoryChildList(item, childCount);
     }
 }

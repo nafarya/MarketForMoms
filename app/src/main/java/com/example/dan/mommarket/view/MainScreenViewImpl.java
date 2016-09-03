@@ -38,6 +38,7 @@ public class MainScreenViewImpl extends Fragment implements MainScreenView, Main
         }
         adviceListRVAdapter = new MainAdviceListRVAdapter(adviceListToShow, getContext(), this);
         adviceRecyclerView.setAdapter(adviceListRVAdapter);
+        adviceRecyclerView.setNestedScrollingEnabled(false);
     }
 
     @Nullable
