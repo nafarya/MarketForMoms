@@ -20,4 +20,8 @@
     <string name="go_to_shopping">Перейти к покупкам</string>
     <string name="for_moms">Для мамочек</string>
     <string name="for_childs">Для детей</string>
+    <string name="imageToTransit">image_to_transit</string>
+    <string name="product_catalog">Каталог товаров</string>
+    <string name="popular_advices">популярные советы</string>
+    <string name="popular_products">популярные товары</string>
 </resources>

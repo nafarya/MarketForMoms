@@ -38,7 +38,6 @@ public class CategoryChildListViewImpl extends Fragment implements CategoryChild
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_category_child_list, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.rv_category_child_list);
-//        categoryChildListPresenter = new CategoryListPresenterImpl(context);
         categoryChildListPresenter = CategoryChildListPresenterImpl.getInstance();
         categoryChildListPresenter.setView(this);
         categoryChildListPresenter.onCreateView(savedInstanceState != null ? savedInstanceState : this.getArguments());

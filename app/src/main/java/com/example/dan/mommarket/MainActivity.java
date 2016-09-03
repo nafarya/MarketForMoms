@@ -1,20 +1,20 @@
 package com.example.dan.mommarket;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.NavigationView;
 import android.widget.Toast;
 
 import com.example.dan.mommarket.database.AdviceDataSource;
@@ -23,10 +23,12 @@ import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.view.AdviceListViewImpl;
 import com.example.dan.mommarket.view.CategoryChildListViewImpl;
-import com.example.dan.mommarket.view.CategoryListViewImpl;
 import com.example.dan.mommarket.view.CategorySecondChildListViewImpl;
 import com.example.dan.mommarket.view.MainAdviceListViewImpl;
+
+import com.example.dan.mommarket.view.MainScreenViewImpl;
 import com.example.dan.mommarket.view.ProductListViewImpl;
+import com.example.dan.mommarket.view.CategoryRootFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Navigator{
 
@@ -72,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //    List<Advice> a = AdviceDataSource.getAllAdvices();
     //    Log.i("asdf", "" + a.size());
-        CategoryListViewImpl categoryListView = new CategoryListViewImpl();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, categoryListView).commit();
+        MainScreenViewImpl mainScreenView = new MainScreenViewImpl();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainScreenView).commit();
 
     }
 
@@ -99,11 +101,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            super.onBackPressed();
-//        }
         if (getSupportFragmentManager().getBackStackEntryCount() > 1)
             getSupportFragmentManager().popBackStack();
         else {
@@ -123,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.action_settings) {
             return true;
         }
@@ -145,13 +141,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_main_screen) {
+            MainScreenViewImpl mainScreenViewImpl = new MainScreenViewImpl();
+            getSupportFragmentManager().
+                    beginTransaction().
+                    replace(R.id.fragment_container, mainScreenViewImpl)
+                    .commit();
 
         } else if (id == R.id.nav_catalog) {
-            CategoryListViewImpl categoryListView = new CategoryListViewImpl();
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, categoryListView).commit();
+//            CategoryListViewImpl categoryListView = new CategoryListViewImpl();
+            CategoryRootFragment categoryRootFragment = new CategoryRootFragment();
+            getSupportFragmentManager().
+                    beginTransaction().
+                    replace(R.id.fragment_container, categoryRootFragment).
+                    commit();
+
         } else if (id == R.id.nav_advices) {
             MainAdviceListViewImpl mainAdviceListViewImpl = new MainAdviceListViewImpl();
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainAdviceListViewImpl).commit();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, mainAdviceListViewImpl)
+                    .commit();
+
         } else if (id == R.id.nav_basket) {
 
         } else if (id == R.id.nav_checklist) {
@@ -175,15 +185,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .replace(R.id.fragment_container, adviceListViewImpl)
                 .addToBackStack(null)
                 .commit();
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
-//        actionBar.setDefaultDisplayHomeAsUpEnabled(true);
     }
     @Override
     public void navigateToCategoryChildList(int item, int childCount) {
-        if (childCount != 0){
+        if (childCount != 0) {
             CategoryChildListViewImpl categoryChildListView = new CategoryChildListViewImpl();
             Bundle bundle = new Bundle();
             bundle.putInt("ParentCategory",item);
@@ -194,11 +199,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .addToBackStack(null)
                     .commit();
 
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeButtonEnabled(true);
-//            actionBar.setDefaultDisplayHomeAsUpEnabled(true);
-        }else{
+        } else {
             navigateToProductList(item);
         }
     }
@@ -234,10 +235,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .replace(R.id.fragment_container, ProductListView)
                 .addToBackStack(null)
                 .commit();
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
-//        actionBar.setDefaultDisplayHomeAsUpEnabled(true);
     }
 }

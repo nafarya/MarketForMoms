@@ -15,17 +15,9 @@ import java.util.List;
 public class ProductListPresenterImpl implements ProductListPresenter {
 
     private ProductListView productListView;
-    // private Context context;
-
-    private List<Product> productList;
 
     public ProductListPresenterImpl() {
     }
-/*
-    public PresenterCatalogImpl(Context context) {
-        this.context = context;
-    }
-*/
 
     private static ProductListPresenterImpl instance;
 
@@ -39,7 +31,6 @@ public class ProductListPresenterImpl implements ProductListPresenter {
     @Override
     public void onCreateView(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            //ProductDataSource productDataSource = new ProductDataSource(context);
             List<Product> productList = ProductDataSource.getAllProducts();
             productListView.showProducts(productList);
         }

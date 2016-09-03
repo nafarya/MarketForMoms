@@ -29,18 +29,12 @@ public class CategoryListViewImpl extends Fragment implements CategoryListView, 
     private CategoryListRVAdapter categoryRVAdapter;
     private RecyclerView recyclerView;
     Navigator navigator;
-    //    private Context context;
-/*
-    public void setContext (Context context){
-        this.context = context;
-    }
-*/
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_category_main, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.rv_category_list);
-//        categoryChildListPresenter = new CategoryListPresenterImpl(context);
         categoryListPresenter = CategoryListPresenterImpl.getInstance();
         categoryListPresenter.setView(this);
         categoryListPresenter.onCreateView(savedInstanceState);
@@ -58,7 +52,7 @@ public class CategoryListViewImpl extends Fragment implements CategoryListView, 
     }
 
     @Override
-    public void onItemClick(int item,int childCount) {
-        navigator.navigateToCategoryChildList(item,childCount);
+    public void onItemClick(int item, int childCount) {
+        navigator.navigateToCategoryChildList(item, childCount);
     }
 }

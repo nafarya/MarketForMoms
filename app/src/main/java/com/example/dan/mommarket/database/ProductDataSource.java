@@ -26,18 +26,7 @@ public class ProductDataSource {
         }
         return instance;
     }
-    /*
-        private String[] allColumns = {Contract.ProductDB.PRODUCT_ID, Contract.ProductDB.PRODUCT_NAME,
-                Contract.ProductDB.PRODUCT_CATEGORY_ID};
-    */
-/*    public static ProductDataSource(Context context) {
-        dbHelper = new SQLiteHelper(context);
-    }
-*/
-/*    public void close() {
-        dbHelper.close();
-    }
-*/
+
     public static void setDatabase(Context context){
         dbHelper = new SQLiteHelper(context);
         return ;
@@ -58,7 +47,6 @@ public class ProductDataSource {
                 " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.OFFER_PRODUCT_ID + "=p." + Contract.ProductDB.PRODUCT_ID +
                 " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "=p." + Contract.ProductDB.PRODUCT_ID +
                 " group by p." + Contract.ProductDB.PRODUCT_ID + ";", null);
-        //database.query(SQLiteHelper.ProductDB.TABLE, allColumns, null,null, null, null, null);
 
         productCursor.moveToFirst();
         while (!productCursor.isAfterLast()) {

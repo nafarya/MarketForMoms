@@ -26,11 +26,11 @@ public class CategoryListRVAdapter extends RecyclerView.Adapter<CategoryListRVAd
     public CategoryListRVAdapter(List<ProductCategory> categoryList, Context context, OnCategoryListClickListener listener) {
         this.categoryList = categoryList;
         this.context = context;
-        this.onCategoryListClickListener=listener;
+        this.onCategoryListClickListener = listener;
     }
 
     public interface OnCategoryListClickListener {
-        void onItemClick(int item,int childCount);
+        void onItemClick(int item, int childCount);
     }
 
     @Override
