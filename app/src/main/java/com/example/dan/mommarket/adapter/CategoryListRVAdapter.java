@@ -1,15 +1,11 @@
 package com.example.dan.mommarket.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.dan.mommarket.R;
@@ -44,35 +40,11 @@ public class CategoryListRVAdapter extends RecyclerView.Adapter<CategoryListRVAd
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         ProductCategory category = categoryList.get(position);
         holder.description.setText(category.getDescription());
         holder.name.setText(category.getName());
-
-        GradientDrawable drawable = new GradientDrawable(
-                GradientDrawable.Orientation.BOTTOM_TOP, new int[] { category.getGradStart(), category.getGradFinish()
-        });
-        holder.background.setBackground(drawable);
-   //     holder.background.setBackgroundColor(0xAA555555);
-    //    if (category.getGradStart()!=null){
-      //      holder.description.setBackgroundColor(0xAA555555);
-/*
-            GradientDrawable gd = new GradientDrawable(
-                    GradientDrawable.Orientation.TOP_BOTTOM,
-                    new int[] {0x00000000, 0xFFFFFFF});
-            gd.setCornerRadius(0f);
-
-            holder.description.setBackgroundDrawable(gd);
-*/
-             /*
-            GradientDrawable drawable = new GradientDrawable(
-                    GradientDrawable.Orientation.BOTTOM_TOP, new int[] { 0xFF000000, 0xFFFFFFFF
-            });
-            holder.icon.setBackground(drawable);
-*/
-       // }
     }
 
     @Override
@@ -85,7 +57,6 @@ public class CategoryListRVAdapter extends RecyclerView.Adapter<CategoryListRVAd
         private TextView description;
         private ImageView icon;
         private OnCategoryListClickListener listener;
-        private RelativeLayout background;
 
         public ViewHolder(View itemView,
                           OnCategoryListClickListener listener) {
@@ -94,7 +65,6 @@ public class CategoryListRVAdapter extends RecyclerView.Adapter<CategoryListRVAd
             name = (TextView) itemView.findViewById(R.id.rv_category_list_item_name);
             icon = (ImageView) itemView.findViewById(R.id.rv_category_list_item_image);
             description = (TextView) itemView.findViewById(R.id.rv_category_list_item_description);
-            background = (RelativeLayout) itemView.findViewById(R.id.rv_category_child_list_item_rl);
             itemView.setOnClickListener(this);
         }
 

@@ -79,8 +79,6 @@ public class CategoryDataSource {
                         " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
                         " ,i." + Contract.ImageDB.URL +
                         " ,ifnull(a.cn,0) cn"  +
-                        " ,c." + Contract.ProductCategoryDB.PRODUCT_GRAD_START +
-                        " ,c." + Contract.ProductCategoryDB.PRODUCT_GRAD_FINISH +
                         " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
                         " from " + Contract.ProductCategoryDB.TABLE + " c" +
                         " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "= c." +Contract.ProductCategoryDB.PRODUCT_CATEGORY_IMAGE_ID +
@@ -114,9 +112,7 @@ where c.PARENT_CATEGORY_ID = 7
                     categoryCursor.getString(2),
                     categoryCursor.getInt(3),
                     categoryCursor.getString(4),
-                    categoryCursor.getInt(5),
-                    categoryCursor.getInt(6),
-                    categoryCursor.getInt(7)));
+                    categoryCursor.getInt(5)));
             categoryCursor.moveToNext();
         }
         categoryCursor.close();
