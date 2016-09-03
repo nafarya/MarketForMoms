@@ -11,12 +11,11 @@ import android.view.ViewGroup;
 import com.example.dan.mommarket.Navigator;
 import com.example.dan.mommarket.R;
 import com.example.dan.mommarket.adapter.CategoryChildListRVAdapter;
-import com.example.dan.mommarket.adapter.CategoryListRVAdapter;
 import com.example.dan.mommarket.model.ProductCategory;
 import com.example.dan.mommarket.presenter.CategoryChildListPresenter;
 import com.example.dan.mommarket.presenter.CategoryChildListPresenterImpl;
-import com.example.dan.mommarket.presenter.CategoryListPresenter;
-import com.example.dan.mommarket.presenter.CategoryListPresenterImpl;
+import com.example.dan.mommarket.presenter.CategorySecondChildListPresenter;
+import com.example.dan.mommarket.presenter.CategorySecondChildListPresenterImpl;
 
 import java.util.List;
 
@@ -24,10 +23,10 @@ import java.util.List;
  * Created by dan on 26.08.16.
  */
 
-public class CategoryChildListViewImpl extends Fragment implements CategoryChildListView, CategoryChildListRVAdapter.OnCategoryChildListRVAdapterClickListener {
+public class CategorySecondChildListViewImpl extends Fragment implements CategorySecondChildListView, CategoryChildListRVAdapter.OnCategoryChildListRVAdapterClickListener {
 
 
-    CategoryChildListPresenter categoryChildListPresenter;
+    CategorySecondChildListPresenter categorySecondChildListPresenter;
     private View v;
     private CategoryChildListRVAdapter categoryChildRVAdapter;
     private RecyclerView recyclerView;
@@ -38,9 +37,10 @@ public class CategoryChildListViewImpl extends Fragment implements CategoryChild
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_category_child_list, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.rv_category_child_list);
-        categoryChildListPresenter = CategoryChildListPresenterImpl.getInstance();
-        categoryChildListPresenter.setView(this);
-        categoryChildListPresenter.onCreateView(savedInstanceState != null ? savedInstanceState : this.getArguments());
+//        categoryChildListPresenter = new CategoryListPresenterImpl(context);
+        categorySecondChildListPresenter = CategorySecondChildListPresenterImpl.getInstance();
+        categorySecondChildListPresenter.setView(this);
+        categorySecondChildListPresenter.onCreateView(savedInstanceState != null ? savedInstanceState : this.getArguments());
         return v;
     }
 

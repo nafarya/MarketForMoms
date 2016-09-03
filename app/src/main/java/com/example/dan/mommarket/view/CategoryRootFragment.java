@@ -27,7 +27,7 @@ public class CategoryRootFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_catalog_root, container, false);
         tabLayout = (TabLayout) view.findViewById(R.id.root_catalog_tab_layout);
         viewPager = (ViewPager) view.findViewById(R.id.root_catalog_view_pager);
-        catalogPagerAdapter = new CatalogPagerAdapter(getFragmentManager());
+        catalogPagerAdapter = new CatalogPagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(catalogPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         return view;
