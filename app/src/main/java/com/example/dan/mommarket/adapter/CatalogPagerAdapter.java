@@ -1,5 +1,6 @@
 package com.example.dan.mommarket.adapter;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -24,14 +25,18 @@ public class CatalogPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Fragment curFragment = null;
+        Bundle bundle = new Bundle();
         switch (position) {
             case 0:
                 curFragment = new CategoryListViewImpl();
+                bundle.putInt("ParentCategory", 2);
+                curFragment.setArguments(bundle);
                 break;
             case 1:
                 curFragment = new CategoryListViewImpl();
+                bundle.putInt("ParentCategory", 3);
+                curFragment.setArguments(bundle);
                 break;
-
         }
         return curFragment;
     }
@@ -44,7 +49,7 @@ public class CatalogPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         String title = " ";
-        switch (position){
+        switch (position) {
             case 0:
                 title = forChildren;
                 break;

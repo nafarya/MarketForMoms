@@ -27,10 +27,11 @@ public class ProductDataSource {
         return instance;
     }
 
-    public static void setDatabase(Context context){
+    public static void setDatabase(Context context) {
         dbHelper = new SQLiteHelper(context);
-        return ;
+        return;
     }
+
     public static List<Product> getAllProducts() {
         database = dbHelper.getReadableDatabase();
         List<Product> productList = new ArrayList<>();
@@ -45,7 +46,7 @@ public class ProductDataSource {
                 " from " + Contract.ProductDB.TABLE + " p" +
                 " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= p." + Contract.ProductDB.PRODUCT_CATEGORY_ID + " " +
                 " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.OFFER_PRODUCT_ID + "=p." + Contract.ProductDB.PRODUCT_ID +
-                " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "=p." + Contract.ProductDB.PRODUCT_ID +
+                " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ITEM_ID + "=p." + Contract.ProductDB.PRODUCT_ID +
                 " group by p." + Contract.ProductDB.PRODUCT_ID + ";", null);
 
         productCursor.moveToFirst();
@@ -72,8 +73,8 @@ public class ProductDataSource {
                 " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= p." + Contract.ProductDB.PRODUCT_CATEGORY_ID + " " +
                 " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.OFFER_PRODUCT_ID + "=p." + Contract.ProductDB.PRODUCT_ID +
                 " left join " + Contract.ListOfferDB.TABLE + " lo on lo." + Contract.ListOfferDB.LIST_OFFER_OFFER_ID + "=o." + Contract.OfferDB.OFFER_ID +
-                " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "=p." + Contract.ProductDB.PRODUCT_ID +
-                " Where lo." + Contract.ListOfferDB.LIST_OFFER_LIST_ID + "=?"+
+                " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ITEM_ID + "=p." + Contract.ProductDB.PRODUCT_ID +
+                " Where lo." + Contract.ListOfferDB.LIST_OFFER_LIST_ID + "=?" +
                 " group by p." + Contract.ProductDB.PRODUCT_ID + ";", new String[]{Integer.toString(listId)});
         productCursor.moveToFirst();
         while (!productCursor.isAfterLast()) {
@@ -90,7 +91,7 @@ public class ProductDataSource {
         Cursor productCursor = database.rawQuery("select " +
                 " p." + Contract.ProductDB.PRODUCT_ID +
                 " ,p." + Contract.ProductDB.PRODUCT_NAME +
-                " ,avg(o." + Contract.OfferDB.OFFER_PRICE +")"+
+                " ,avg(o." + Contract.OfferDB.OFFER_PRICE + ")" +
                 " ,p." + Contract.ProductDB.PRODUCT_DESCRIPTION +
                 " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + " CATEGORY_ID" +
                 " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME + " CATEGORY_NAME" +
@@ -98,8 +99,8 @@ public class ProductDataSource {
                 " from " + Contract.ProductDB.TABLE + " p" +
                 " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= p." + Contract.ProductDB.PRODUCT_CATEGORY_ID + " " +
                 " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.OFFER_PRODUCT_ID + "=p." + Contract.ProductDB.PRODUCT_ID +
-                " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "=p." + Contract.ProductDB.PRODUCT_ID +
-                " Where p." + Contract.ProductDB.PRODUCT_CATEGORY_ID + "=?"+
+                " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ITEM_ID + "=p." + Contract.ProductDB.PRODUCT_ID +
+                " Where p." + Contract.ProductDB.PRODUCT_CATEGORY_ID + "=?" +
                 " group by p." + Contract.ProductDB.PRODUCT_ID + ";", new String[]{Integer.toString(categoryId)});
         productCursor.moveToFirst();
         while (!productCursor.isAfterLast()) {
@@ -135,7 +136,7 @@ public class ProductDataSource {
                 " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.OFFER_PRODUCT_ID + "=p." + Contract.ProductDB.PRODUCT_ID +
                 " left join " + Contract.ListOfferDB.TABLE + " lo on lo." + Contract.ListOfferDB.LIST_OFFER_OFFER_ID + "=o." + Contract.OfferDB.OFFER_ID +
                 " left join " + Contract.ProductFeatureDB.TABLE + " pf on pf." + Contract.ProductFeatureDB.PRODUCT_FEATURE_PRODUCT_ID + "=p." + Contract.ProductDB.PRODUCT_ID +
-                " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "=i." + Contract.ProductDB.PRODUCT_ID +
+                " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ITEM_ID + "=i." + Contract.ProductDB.PRODUCT_ID +
                 " Where " + whereClause +
                 " group by p." + Contract.ProductDB.PRODUCT_ID + " having count(p." + Contract.ProductDB.PRODUCT_ID + ")=" + features.size() + ";", whereClauseArray);
         productCursor.moveToFirst();
@@ -147,7 +148,7 @@ public class ProductDataSource {
         return productList;
     }
 
-    private static  Product productCursorToProduct(Cursor productCursor) {
+    private static Product productCursorToProduct(Cursor productCursor) {
         Product product = new Product(productCursor.getInt(0),
                 productCursor.getString(1),
                 productCursor.getFloat(2),

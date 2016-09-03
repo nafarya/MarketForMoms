@@ -24,12 +24,12 @@ import java.util.List;
  * Created by dan on 26.08.16.
  */
 
-public class CategoryChildListViewImpl extends Fragment implements CategoryChildListView, CategoryChildListRVAdapter.OnCategoryChildListRVAdapterClickListener {
+public class CategoryChildListViewImpl extends Fragment implements CategoryChildListView, CategoryListRVAdapter.OnCategoryListClickListener {
 
 
     CategoryChildListPresenter categoryChildListPresenter;
     private View v;
-    private CategoryChildListRVAdapter categoryChildRVAdapter;
+    private CategoryListRVAdapter categoryChildRVAdapter;
     private RecyclerView recyclerView;
     private Navigator navigator;
 
@@ -46,7 +46,7 @@ public class CategoryChildListViewImpl extends Fragment implements CategoryChild
 
     @Override
     public void showProducts(List<ProductCategory> categoryList) {
-        categoryChildRVAdapter = new CategoryChildListRVAdapter(categoryList, getContext(), this);
+        categoryChildRVAdapter = new CategoryListRVAdapter(categoryList, getContext(), this);
         recyclerView.setAdapter(categoryChildRVAdapter);
         navigator = (Navigator) getActivity();
     }
