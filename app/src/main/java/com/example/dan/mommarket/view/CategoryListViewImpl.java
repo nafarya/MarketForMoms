@@ -21,7 +21,7 @@ import java.util.List;
  * Created by dan on 26.08.16.
  */
 
-public class CategoryListViewImpl extends Fragment implements CategoryListView, CategoryListRVAdapter.OnCategoryListClickListener  {
+public class CategoryListViewImpl extends Fragment implements CategoryListView, CategoryListRVAdapter.OnCategoryListClickListener {
 
 
     CategoryListPresenter categoryListPresenter;
@@ -37,14 +37,16 @@ public class CategoryListViewImpl extends Fragment implements CategoryListView, 
         recyclerView = (RecyclerView) v.findViewById(R.id.rv_category_list);
         categoryListPresenter = CategoryListPresenterImpl.getInstance();
         categoryListPresenter.setView(this);
-        categoryListPresenter.onCreateView(savedInstanceState);
+        categoryListPresenter.onCreateView(savedInstanceState != null ? savedInstanceState : this.getArguments());
         return v;
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         navigator = (Navigator) getActivity();
     }
+
     @Override
     public void showProducts(List<ProductCategory> categoryList) {
         categoryRVAdapter = new CategoryListRVAdapter(categoryList, getContext(), this);

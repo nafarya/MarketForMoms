@@ -40,7 +40,10 @@ public class CategoryListPresenterImpl implements CategoryListPresenter {
     public void onCreateView(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             //ProductDataSource productDataSource = new ProductDataSource(context);
-            List<ProductCategory> categoryList = CategoryDataSource.getChildCategories(7);
+            List<ProductCategory> categoryList = CategoryDataSource.getChildCategories(2);
+            categoryListView.showProducts(categoryList);
+        } else {
+            List<ProductCategory> categoryList = CategoryDataSource.getChildCategories(savedInstanceState.getInt("ParentCategory"));
             categoryListView.showProducts(categoryList);
         }
     }
