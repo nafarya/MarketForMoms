@@ -21,16 +21,16 @@ import com.example.dan.mommarket.database.AdviceDataSource;
 import com.example.dan.mommarket.database.CategoryDataSource;
 import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
-import com.example.dan.mommarket.view.AdviceListViewImpl;
-import com.example.dan.mommarket.view.CategoryChildListViewImpl;
-import com.example.dan.mommarket.view.CategorySecondChildListViewImpl;
-import com.example.dan.mommarket.view.MainAdviceListViewImpl;
+import com.example.dan.mommarket.fragments.advice.AdviceDetailFragment;
+import com.example.dan.mommarket.fragments.category.CategoryFragment;
+import com.example.dan.mommarket.fragments.category.SubSubCategoryFragment;
+import com.example.dan.mommarket.fragments.advice.AdviceListFragment;
 
-import com.example.dan.mommarket.view.MainScreenViewImpl;
-import com.example.dan.mommarket.view.ProductListViewImpl;
-import com.example.dan.mommarket.view.CategoryRootFragment;
+import com.example.dan.mommarket.fragments.mainscreen.MainScreenFragment;
+import com.example.dan.mommarket.fragments.product.ProductListFragment;
+import com.example.dan.mommarket.fragments.category.CategoryRootFragment;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Navigator{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Navigator {
 
     SQLiteHelper dbHelper;
     private ActionBarDrawerToggle toggle;
@@ -72,9 +72,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         CategoryDataSource.getInstance().setDatabase(this);
         AdviceDataSource.getInstance().setDatabase(this);
 
-    //    List<Advice> a = AdviceDataSource.getAllAdvices();
-    //    Log.i("asdf", "" + a.size());
-        MainScreenViewImpl mainScreenView = new MainScreenViewImpl();
+        //    List<Advice> a = AdviceDataSource.getAllAdvices();
+        //    Log.i("asdf", "" + a.size());
+        MainScreenFragment mainScreenView = new MainScreenFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainScreenView).commit();
 
     }
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
@@ -141,14 +141,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_main_screen) {
-            MainScreenViewImpl mainScreenViewImpl = new MainScreenViewImpl();
+            MainScreenFragment mainScreenFragment = new MainScreenFragment();
             getSupportFragmentManager().
                     beginTransaction().
-                    replace(R.id.fragment_container, mainScreenViewImpl)
+                    replace(R.id.fragment_container, mainScreenFragment)
                     .commit();
 
         } else if (id == R.id.nav_catalog) {
-//            CategoryListViewImpl categoryListView = new CategoryListViewImpl();
+//            CatalogFragment categoryListView = new CatalogFragment();
             CategoryRootFragment categoryRootFragment = new CategoryRootFragment();
             getSupportFragmentManager().
                     beginTransaction().
@@ -156,10 +156,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     commit();
 
         } else if (id == R.id.nav_advices) {
-            MainAdviceListViewImpl mainAdviceListViewImpl = new MainAdviceListViewImpl();
+            AdviceListFragment adviceListFragment = new AdviceListFragment();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, mainAdviceListViewImpl)
+                    .replace(R.id.fragment_container, adviceListFragment)
                     .commit();
 
         } else if (id == R.id.nav_basket) {
@@ -179,19 +179,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToAdviseList() {
-        AdviceListViewImpl adviceListViewImpl = new AdviceListViewImpl();
+        AdviceDetailFragment adviceDetailFragment = new AdviceDetailFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, adviceListViewImpl)
+                .replace(R.id.fragment_container, adviceDetailFragment)
                 .addToBackStack(null)
                 .commit();
     }
+
     @Override
-    public void navigateToCategoryChildList(int item, int childCount) {
+    public void navigateToCategoryChildList(int categoryId, int childCount) {
         if (childCount != 0) {
-            CategoryChildListViewImpl categoryChildListView = new CategoryChildListViewImpl();
+            CategoryFragment categoryChildListView = new CategoryFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt("ParentCategory",item);
+            bundle.putInt("ParentCategory", categoryId);
             categoryChildListView.setArguments(bundle);
             getSupportFragmentManager()
                     .beginTransaction()
@@ -200,15 +201,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .commit();
 
         } else {
-            navigateToProductList(item);
+            navigateToProductList(categoryId);
         }
     }
+
     @Override
-    public void navigateToCategorySecondChildList(int item, int childCount) {
-        if (childCount != 0){
-            CategorySecondChildListViewImpl categorySecondChildListView = new CategorySecondChildListViewImpl();
+    public void navigateToCategorySecondChildList(int categoryId, int childCount) {
+        if (childCount != 0) {
+            SubSubCategoryFragment categorySecondChildListView = new SubSubCategoryFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt("ParentCategory",item);
+            bundle.putInt("ParentCategory", categoryId);
             categorySecondChildListView.setArguments(bundle);
             getSupportFragmentManager()
                     .beginTransaction()
@@ -220,15 +222,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
 //            actionBar.setDefaultDisplayHomeAsUpEnabled(true);
-        }else{
-            navigateToProductList(item);
+        } else {
+            navigateToProductList(categoryId);
         }
     }
+
     @Override
     public void navigateToProductList(int categoryId) {
-        ProductListViewImpl ProductListView = new ProductListViewImpl();
+        ProductListFragment ProductListView = new ProductListFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("ParentCategory",categoryId);
+        bundle.putInt("ParentCategory", categoryId);
         ProductListView.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()

@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@drawable/ic_main_screen_banner"
             android:focusable="true"
-            android:focusableInTouchMode="true"/>
+            android:focusableInTouchMode="true" />
 
         <Button
+            android:id="@+id/from_main_screen_to_catalog_button"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:id="@+id/from_main_screen_to_catalog_button"
-            android:background="@color/colorPrimary"
-            android:text="@string/product_catalog"
-            android:textSize="16dp"
-            android:textColor="#cc000000"
-            android:textAllCaps="false"
             android:layout_gravity="start"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="16dp"
+            android:text="@string/product_catalog"
             android:textAlignment="viewStart"
-            android:paddingLeft="16dp"/>
+            android:textAllCaps="false"
+            android:textColor="#cc000000"
+            android:textSize="16dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/popular_advices"
-            android:textSize="16sp"
-            android:textColor="#80000000"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="8dp"/>
+            android:text="@string/popular_advices"
+            android:textColor="#80000000"
+            android:textSize="16sp" />
 
-        <android.support.v7.widget.RecyclerView
+        <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/main_screen_advice_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            app:layoutManager="LinearLayoutManager"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            xmlns:app="http://schemas.android.com/apk/res-auto" />
+            app:layoutManager="LinearLayoutManager" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/popular_products"
-            android:textSize="16sp"
-            android:textColor="#80000000"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="8dp"/>
+            android:text="@string/popular_products"
+            android:textColor="#80000000"
+            android:textSize="16sp" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@color/colorAccent"/>
+            android:background="@color/colorAccent" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="#112bf2"/>
+            android:background="#112bf2" />
 
 
     </LinearLayout>
