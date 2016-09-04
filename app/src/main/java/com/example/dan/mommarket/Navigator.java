@@ -14,4 +14,6 @@ public interface Navigator {
 
     void navigateToProductList(int categoryId);
 
+    void navigateToCategory();
+
 }

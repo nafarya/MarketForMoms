@@ -55,7 +55,7 @@ public class MainScreenFragment extends Fragment implements MainScreen, MainAdvi
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigator.navigateToProductList(4);
+                navigator.navigateToCategory();
             }
         });
         return v;

@@ -229,6 +229,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToProductList(int categoryId) {
+        ProductListFragment ProductListView = new ProductListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("ParentCategory", categoryId);
+        ProductListView.setArguments(bundle);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, ProductListView)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void navigateToCategory() {
         CategoryRootFragment categoryRootFragment = new CategoryRootFragment();
         getSupportFragmentManager().
                 beginTransaction().
