@@ -15,9 +15,8 @@ import java.io.InputStreamReader;
 
 public class SQLiteHelper extends SQLiteOpenHelper implements Contract {
 
-    private static final int DATABASE_VERSION = 1;
-
     static final String DATABASE_NAME = "mommarket.db";
+    private static final int DATABASE_VERSION = 1;
 
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

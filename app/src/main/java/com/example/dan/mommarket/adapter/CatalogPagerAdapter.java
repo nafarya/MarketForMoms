@@ -5,8 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.dan.mommarket.R;
-import com.example.dan.mommarket.view.CategoryListViewImpl;
+import com.example.dan.mommarket.fragments.category.CatalogFragment;
 
 /**
  * Created by dan on 03.09.16.
@@ -14,9 +13,9 @@ import com.example.dan.mommarket.view.CategoryListViewImpl;
 
 public class CatalogPagerAdapter extends FragmentStatePagerAdapter {
 
-    private int tabCount = 2;
     private final String forChildren = "для детей";
     private final String forParents = "для родителей";
+    private int tabCount = 2;
 
     public CatalogPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -28,12 +27,12 @@ public class CatalogPagerAdapter extends FragmentStatePagerAdapter {
         Bundle bundle = new Bundle();
         switch (position) {
             case 0:
-                curFragment = new CategoryListViewImpl();
+                curFragment = new CatalogFragment();
                 bundle.putInt("ParentCategory", 2);
                 curFragment.setArguments(bundle);
                 break;
             case 1:
-                curFragment = new CategoryListViewImpl();
+                curFragment = new CatalogFragment();
                 bundle.putInt("ParentCategory", 3);
                 curFragment.setArguments(bundle);
                 break;

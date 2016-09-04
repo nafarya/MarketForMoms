@@ -28,11 +28,6 @@ public class CategoryChildListRVAdapter extends RecyclerView.Adapter<CategoryChi
         this.onCategoryListClickListener = listener;
     }
 
-    public interface OnCategoryChildListRVAdapterClickListener {
-        void onItemClick(int item, int childCount);
-    }
-
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_category_child_list_item, parent, false);
@@ -48,6 +43,10 @@ public class CategoryChildListRVAdapter extends RecyclerView.Adapter<CategoryChi
     @Override
     public int getItemCount() {
         return categoryChildList.size();
+    }
+
+    public interface OnCategoryChildListRVAdapterClickListener {
+        void onItemClick(int item, int childCount);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
