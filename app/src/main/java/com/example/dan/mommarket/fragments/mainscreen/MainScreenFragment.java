@@ -55,7 +55,7 @@ public class MainScreenFragment extends Fragment implements MainScreen, MainAdvi
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigator.navigateToProductList(4);
+                navigator.navigateToCatalog();
             }
         });
         return v;
@@ -74,7 +74,7 @@ public class MainScreenFragment extends Fragment implements MainScreen, MainAdvi
 
     @Override
     public void onItemClick(int item) {
-        navigator.navigateToAdviseList();
+        navigator.navigateToAdviceDetail();
 
     }
 

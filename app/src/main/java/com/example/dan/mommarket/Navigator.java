@@ -6,12 +6,14 @@ package com.example.dan.mommarket;
 
 public interface Navigator {
 
-    void navigateToAdviseList();
+    void navigateToAdviceDetail();
 
-    void navigateToCategoryChildList(int item, int childCount);
+    void navigateToCategory(int item, int childCount);
 
-    void navigateToCategorySecondChildList(int item, int childCount);
+    void navigateToSubCategory(int item, int childCount);
 
     void navigateToProductList(int categoryId);
+
+    void navigateToCatalog();
 
 }

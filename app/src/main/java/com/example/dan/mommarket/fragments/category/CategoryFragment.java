@@ -51,6 +51,6 @@ public class CategoryFragment extends Fragment implements Category, CategoryList
 
     @Override
     public void onItemClick(int item, int childCount) {
-        navigator.navigateToCategorySecondChildList(item, childCount);
+        navigator.navigateToSubCategory(item, childCount);
     }
 }

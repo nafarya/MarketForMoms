@@ -10,7 +10,7 @@ import com.example.dan.mommarket.views.ProductList;
 
 public interface ProductListPresenter {
     void onCreateView(Bundle savedIntanceState);
-    void updateCatalog();
+    void updateProductist();
     void setView(ProductList productList);
     void removeView();
 }

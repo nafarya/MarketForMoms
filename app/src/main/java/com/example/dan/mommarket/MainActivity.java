@@ -23,7 +23,7 @@ import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.fragments.advice.AdviceDetailFragment;
 import com.example.dan.mommarket.fragments.category.CategoryFragment;
-import com.example.dan.mommarket.fragments.category.SubSubCategoryFragment;
+import com.example.dan.mommarket.fragments.category.SubCategoryFragment;
 import com.example.dan.mommarket.fragments.advice.AdviceListFragment;
 
 import com.example.dan.mommarket.fragments.mainscreen.MainScreenFragment;
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void navigateToAdviseList() {
+    public void navigateToAdviceDetail() {
         AdviceDetailFragment adviceDetailFragment = new AdviceDetailFragment();
         getSupportFragmentManager()
                 .beginTransaction()
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void navigateToCategoryChildList(int categoryId, int childCount) {
+    public void navigateToCategory(int categoryId, int childCount) {
         if (childCount != 0) {
             CategoryFragment categoryChildListView = new CategoryFragment();
             Bundle bundle = new Bundle();
@@ -197,7 +197,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, categoryChildListView)
-                    .addToBackStack(null)
                     .commit();
 
         } else {
@@ -206,9 +205,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void navigateToCategorySecondChildList(int categoryId, int childCount) {
+    public void navigateToSubCategory(int categoryId, int childCount) {
         if (childCount != 0) {
-            SubSubCategoryFragment categorySecondChildListView = new SubSubCategoryFragment();
+            SubCategoryFragment categorySecondChildListView = new SubCategoryFragment();
             Bundle bundle = new Bundle();
             bundle.putInt("ParentCategory", categoryId);
             categorySecondChildListView.setArguments(bundle);
@@ -218,9 +217,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .addToBackStack(null)
                     .commit();
 
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeButtonEnabled(true);
+//            ActionBar actionBar = getSupportActionBar();
+//            actionBar.setDisplayHomeAsUpEnabled(true);
+//            actionBar.setHomeButtonEnabled(true);
 //            actionBar.setDefaultDisplayHomeAsUpEnabled(true);
         } else {
             navigateToProductList(categoryId);
@@ -238,5 +237,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .replace(R.id.fragment_container, ProductListView)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void navigateToCatalog() {
+        CategoryRootFragment categoryRootFragment = new CategoryRootFragment();
+        getSupportFragmentManager().
+                beginTransaction().
+                replace(R.id.fragment_container, categoryRootFragment).
+                addToBackStack(null).
+                commit();
     }
 }
