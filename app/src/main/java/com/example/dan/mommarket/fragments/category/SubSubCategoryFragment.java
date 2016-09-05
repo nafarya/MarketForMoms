@@ -52,6 +52,6 @@ public class SubSubCategoryFragment extends Fragment implements SubCategory, Cat
 
     @Override
     public void onItemClick(int item, int childCount) {
-        navigator.navigateToCategorySecondChildList(item, childCount);
+        navigator.navigateToSubCategory(item, childCount);
     }
 }

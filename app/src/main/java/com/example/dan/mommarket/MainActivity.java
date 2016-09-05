@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void navigateToAdviseList() {
+    public void navigateToAdviceDetail() {
         AdviceDetailFragment adviceDetailFragment = new AdviceDetailFragment();
         getSupportFragmentManager()
                 .beginTransaction()
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void navigateToCategoryChildList(int categoryId, int childCount) {
+    public void navigateToCategory(int categoryId, int childCount) {
         if (childCount != 0) {
             CategoryFragment categoryChildListView = new CategoryFragment();
             Bundle bundle = new Bundle();
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void navigateToCategorySecondChildList(int categoryId, int childCount) {
+    public void navigateToSubCategory(int categoryId, int childCount) {
         if (childCount != 0) {
             SubSubCategoryFragment categorySecondChildListView = new SubSubCategoryFragment();
             Bundle bundle = new Bundle();
@@ -218,9 +218,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .addToBackStack(null)
                     .commit();
 
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeButtonEnabled(true);
+//            ActionBar actionBar = getSupportActionBar();
+//            actionBar.setDisplayHomeAsUpEnabled(true);
+//            actionBar.setHomeButtonEnabled(true);
 //            actionBar.setDefaultDisplayHomeAsUpEnabled(true);
         } else {
             navigateToProductList(categoryId);
@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void navigateToCategory() {
+    public void navigateToCatalog() {
         CategoryRootFragment categoryRootFragment = new CategoryRootFragment();
         getSupportFragmentManager().
                 beginTransaction().
