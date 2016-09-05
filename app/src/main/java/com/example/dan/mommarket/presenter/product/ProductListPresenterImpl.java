@@ -43,9 +43,7 @@ public class ProductListPresenterImpl implements ProductListPresenter {
     }
 
     @Override
-    public void updateCatalog() {
-        //ProductDataSource productDataSource = new ProductDataSource(context);
-        //viewCatalog.showProducts(productDataSource.getAllProducts());
+    public void updateProductist() {
     }
 
     @Override

@@ -23,7 +23,7 @@ import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.fragments.advice.AdviceDetailFragment;
 import com.example.dan.mommarket.fragments.category.CategoryFragment;
-import com.example.dan.mommarket.fragments.category.SubSubCategoryFragment;
+import com.example.dan.mommarket.fragments.category.SubCategoryFragment;
 import com.example.dan.mommarket.fragments.advice.AdviceListFragment;
 
 import com.example.dan.mommarket.fragments.mainscreen.MainScreenFragment;
@@ -197,7 +197,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, categoryChildListView)
-                    .addToBackStack(null)
                     .commit();
 
         } else {
@@ -208,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void navigateToSubCategory(int categoryId, int childCount) {
         if (childCount != 0) {
-            SubSubCategoryFragment categorySecondChildListView = new SubSubCategoryFragment();
+            SubCategoryFragment categorySecondChildListView = new SubCategoryFragment();
             Bundle bundle = new Bundle();
             bundle.putInt("ParentCategory", categoryId);
             categorySecondChildListView.setArguments(bundle);

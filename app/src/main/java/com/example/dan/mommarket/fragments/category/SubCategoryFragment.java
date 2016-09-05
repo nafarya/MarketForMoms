@@ -22,7 +22,7 @@ import java.util.List;
  * Created by dan on 26.08.16.
  */
 
-public class SubSubCategoryFragment extends Fragment implements SubCategory, CategoryChildListRVAdapter.OnCategoryChildListRVAdapterClickListener {
+public class SubCategoryFragment extends Fragment implements SubCategory, CategoryChildListRVAdapter.OnCategoryChildListRVAdapterClickListener {
 
 
     SubCategoryListPresenter subCategoryListPresenter;
@@ -36,7 +36,6 @@ public class SubSubCategoryFragment extends Fragment implements SubCategory, Cat
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_category_child_list, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.rv_category_child_list);
-//        categoryPresenter = new CatalogPresenterImpl(context);
         subCategoryListPresenter = SubCategoryListPresenterImpl.getInstance();
         subCategoryListPresenter.setView(this);
         subCategoryListPresenter.onCreateView(savedInstanceState != null ? savedInstanceState : this.getArguments());
