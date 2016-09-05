@@ -15,9 +15,7 @@ import java.util.List;
 public class SubCategoryListPresenterImpl implements SubCategoryListPresenter {
 
     private static SubCategoryListPresenterImpl instance;
-    // private Context context;
     private SubCategory subCategory;
-    private List<ProductCategory> categoryList;
 
     public SubCategoryListPresenterImpl() {
     }
@@ -32,7 +30,6 @@ public class SubCategoryListPresenterImpl implements SubCategoryListPresenter {
     @Override
     public void onCreateView(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            //ProductDataSource productDataSource = new ProductDataSource(context);
             List<ProductCategory> categoryChildList = CategoryDataSource.getChildCategories(7);
             subCategory.showProducts(categoryChildList);
         } else {
@@ -42,9 +39,8 @@ public class SubCategoryListPresenterImpl implements SubCategoryListPresenter {
     }
 
     @Override
-    public void updateCatalog() {
-        //ProductDataSource productDataSource = new ProductDataSource(context);
-        //viewCatalog.showProducts(productDataSource.getAllProducts());
+    public void updateSubCategory() {
+
     }
 
     @Override

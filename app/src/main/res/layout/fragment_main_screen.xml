@@ -59,15 +59,7 @@
             android:textColor="#80000000"
             android:textSize="16sp" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/colorAccent" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="#112bf2" />
+        <include layout="@layout/advice_detail_bottom"></include>
 
 
     </LinearLayout>

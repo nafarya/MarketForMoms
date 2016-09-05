@@ -71,6 +71,6 @@ public class AdviceListFragment extends Fragment implements AdviceList, MainAdvi
 
     @Override
     public void onItemClick(int item) {
-        navigator.navigateToAdviseList();
+        navigator.navigateToAdviceDetail();
     }
 }

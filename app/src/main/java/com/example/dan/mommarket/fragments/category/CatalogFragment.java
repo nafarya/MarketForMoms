@@ -56,6 +56,6 @@ public class CatalogFragment extends Fragment implements Catalog, CategoryListRV
 
     @Override
     public void onItemClick(int item, int childCount) {
-        navigator.navigateToCategoryChildList(item, childCount);
+        navigator.navigateToCategory(item, childCount);
     }
 }

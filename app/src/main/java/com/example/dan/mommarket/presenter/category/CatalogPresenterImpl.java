@@ -15,14 +15,8 @@ import java.util.List;
 public class CatalogPresenterImpl implements CatalogPresenter {
 
     private static CatalogPresenterImpl instance;
-    // private Context context;
     private Catalog catalog;
     private List<ProductCategory> categoryList;
-/*
-    public PresenterCatalogImpl(Context context) {
-        this.context = context;
-    }
-*/
 
     public CatalogPresenterImpl() {
     }
@@ -37,7 +31,6 @@ public class CatalogPresenterImpl implements CatalogPresenter {
     @Override
     public void onCreateView(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            //ProductDataSource productDataSource = new ProductDataSource(context);
             List<ProductCategory> categoryList = CategoryDataSource.getChildCategories(2);
             catalog.showProducts(categoryList);
         } else {
@@ -48,8 +41,7 @@ public class CatalogPresenterImpl implements CatalogPresenter {
 
     @Override
     public void updateCatalog() {
-        //ProductDataSource productDataSource = new ProductDataSource(context);
-        //viewCatalog.showProducts(productDataSource.getAllProducts());
+        
     }
 
     @Override

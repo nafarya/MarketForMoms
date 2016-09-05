@@ -10,7 +10,7 @@ import com.example.dan.mommarket.views.Category;
 
 public interface CategoryPresenter {
     void onCreateView(Bundle savedInstanceState);
-    void updateCatalog();
+    void updateCategory();
     void setView(Category category);
     void removeView();
 }

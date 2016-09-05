@@ -15,9 +15,7 @@ import java.util.List;
 public class CategoryPresenterImpl implements CategoryPresenter {
 
     private static CategoryPresenterImpl instance;
-    // private Context context;
     private Category category;
-    private List<ProductCategory> categoryList;
 
     public CategoryPresenterImpl() {
     }
@@ -32,7 +30,6 @@ public class CategoryPresenterImpl implements CategoryPresenter {
     @Override
     public void onCreateView(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            //ProductDataSource productDataSource = new ProductDataSource(context);
             List<ProductCategory> categoryChildList = CategoryDataSource.getChildCategories(7);
             category.showProducts(categoryChildList);
         }  else{
@@ -42,9 +39,8 @@ public class CategoryPresenterImpl implements CategoryPresenter {
     }
 
     @Override
-    public void updateCatalog() {
-        //ProductDataSource productDataSource = new ProductDataSource(context);
-        //viewCatalog.showProducts(productDataSource.getAllProducts());
+    public void updateCategory() {
+        
     }
 
     @Override
