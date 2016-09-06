@@ -77,14 +77,14 @@ public class MainScreenFragment extends Fragment implements MainScreen, MainAdvi
         v.findViewById(R.id.product_card_1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigator.navigateToCatalog();
+                navigator.navigateToProductCard();
             }
         });
 
         v.findViewById(R.id.product_card_2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigator.navigateToCatalog();
+                navigator.navigateToProductCard();
             }
         });
 

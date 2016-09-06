@@ -27,6 +27,7 @@ import com.example.dan.mommarket.fragments.category.SubCategoryFragment;
 import com.example.dan.mommarket.fragments.advice.AdviceListFragment;
 
 import com.example.dan.mommarket.fragments.mainscreen.MainScreenFragment;
+import com.example.dan.mommarket.fragments.product.ProductCardFragment;
 import com.example.dan.mommarket.fragments.product.ProductListFragment;
 import com.example.dan.mommarket.fragments.category.CategoryRootFragment;
 
@@ -245,6 +246,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportFragmentManager().
                 beginTransaction().
                 replace(R.id.fragment_container, categoryRootFragment).
+                addToBackStack(null).
+                commit();
+    }
+
+    @Override
+    public void navigateToProductCard() {
+        ProductCardFragment productCardFragment = new ProductCardFragment();
+        getSupportFragmentManager().
+                beginTransaction().
+                replace(R.id.fragment_container, productCardFragment).
                 addToBackStack(null).
                 commit();
     }
