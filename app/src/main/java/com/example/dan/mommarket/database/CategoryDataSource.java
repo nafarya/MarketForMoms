@@ -35,15 +35,15 @@ public class CategoryDataSource {
         database = dbHelper.getReadableDatabase();
         List<ProductCategory> categorytList = new ArrayList<>();
         Cursor categoryCursor = database.rawQuery("select " +
-                        " c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
-                        " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
-                        " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_DESCRIPTION +
-                        " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
+                        " c." + Contract.ProductCategoryDB.ID +
+                        " ,c." + Contract.ProductCategoryDB.NAME +
+                        " ,c." + Contract.ProductCategoryDB.DESCRIPTION +
+                        " ,pc." + Contract.ProductCategoryDB.ID +
                         " ,i." + Contract.ImageDB.URL +
-                        " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
+                        " ,pc." + Contract.ProductCategoryDB.NAME +
                         " from " + Contract.ProductCategoryDB.TABLE + " c" +
-                        " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "= c." +Contract.ProductCategoryDB.PRODUCT_CATEGORY_IMAGE_ID +
-                        " left join " + Contract.ProductCategoryDB.TABLE + " pc on pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " " + ";"
+                        " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "= c." +Contract.ProductCategoryDB.IMAGE_ID +
+                        " left join " + Contract.ProductCategoryDB.TABLE + " pc on pc." + Contract.ProductCategoryDB.ID + "= c." + Contract.ProductCategoryDB.PARENT_CATEGORY_ID + " " + ";"
                 , null);
 
         categoryCursor.moveToFirst();
@@ -65,22 +65,22 @@ public class CategoryDataSource {
         database = dbHelper.getReadableDatabase();
         List<ProductCategory> categoryList = new ArrayList<>();
         Cursor categoryCursor = database.rawQuery("select " +
-                        " c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
-                        " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
-                        " ,c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_DESCRIPTION +
-                        " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID +
+                        " c." + Contract.ProductCategoryDB.ID +
+                        " ,c." + Contract.ProductCategoryDB.NAME +
+                        " ,c." + Contract.ProductCategoryDB.DESCRIPTION +
+                        " ,pc." + Contract.ProductCategoryDB.ID +
                         " ,i." + Contract.ImageDB.URL +
                         " ,ifnull(a.cn,0) cn"  +
-                        " ,pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_NAME +
+                        " ,pc." + Contract.ProductCategoryDB.NAME +
                         " from " + Contract.ProductCategoryDB.TABLE + " c" +
-                        " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "= c." +Contract.ProductCategoryDB.PRODUCT_CATEGORY_IMAGE_ID +
-                        " left join " + Contract.ProductCategoryDB.TABLE + " pc on pc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID +
-                        " left join ( select cc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " id,"+
-                                            " count ( cc." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID+") cn" +
+                        " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "= c." +Contract.ProductCategoryDB.IMAGE_ID +
+                        " left join " + Contract.ProductCategoryDB.TABLE + " pc on pc." + Contract.ProductCategoryDB.ID + "= c." + Contract.ProductCategoryDB.PARENT_CATEGORY_ID +
+                        " left join ( select cc." + Contract.ProductCategoryDB.PARENT_CATEGORY_ID + " id,"+
+                                            " count ( cc." + Contract.ProductCategoryDB.PARENT_CATEGORY_ID +") cn" +
                                             " from " + Contract.ProductCategoryDB.TABLE + " cc"+
-                                            " group by cc."+Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID+") a"+
-                                            " on  c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_ID + "= a.id" +
-                " where c." + Contract.ProductCategoryDB.PRODUCT_CATEGORY_PARENT_CATEGORY_ID + " =?;"
+                                            " group by cc."+Contract.ProductCategoryDB.PARENT_CATEGORY_ID +") a"+
+                                            " on  c." + Contract.ProductCategoryDB.ID + "= a.id" +
+                " where c." + Contract.ProductCategoryDB.PARENT_CATEGORY_ID + " =?;"
                 , new String[]{Integer.toString(parentId)});
 
         categoryCursor.moveToFirst();
