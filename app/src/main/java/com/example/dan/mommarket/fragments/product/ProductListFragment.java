@@ -50,7 +50,7 @@ public class ProductListFragment extends Fragment implements ProductList {
 
     @Override
     public void showProducts(List<Product> productsList) {
-        productListRVAdapter = new ProductListRVAdapter(productsList);
+        productListRVAdapter = new ProductListRVAdapter(productsList, getContext());
         recyclerView.setAdapter(productListRVAdapter);
     }
 }

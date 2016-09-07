@@ -1,5 +1,6 @@
 package com.example.dan.mommarket.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.dan.mommarket.R;
 import com.example.dan.mommarket.model.Product;
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -18,23 +22,26 @@ import java.util.List;
 public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdapter.ViewHolder> {
 
     private List<Product> productList;
+    private Context context;
 
-    public ProductListRVAdapter(List<Product> productList) {
+    public ProductListRVAdapter(List<Product> productList, Context context) {
         this.productList = productList;
+        this.context = context;
     }
 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_product_list_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_offer_card, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Product product = productList.get(position);
-        holder.description.setText(product.getDescription());
         holder.name.setText(product.getName());
+        holder.price.setText(String.valueOf(product.getPrice()));
+        Picasso.with(context).load(product.getFirstImage()).into(holder.icon);
     }
 
     @Override
@@ -44,14 +51,14 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView name;
-        private TextView description;
         private ImageView icon;
+        private TextView price;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.rv_product_list_name);
-            icon = (ImageView) itemView.findViewById(R.id.rv_product_list_image);
-            description = (TextView) itemView.findViewById(R.id.rv_product_list_description);
+            name = (TextView) itemView.findViewById(R.id.product_card_name);
+            price = (TextView) itemView.findViewById(R.id.product_card_min_price);
+            icon = (ImageView) itemView.findViewById(R.id.product_card_image);
         }
     }
 }
