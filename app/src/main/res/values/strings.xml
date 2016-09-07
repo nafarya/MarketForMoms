@@ -24,4 +24,7 @@
     <string name="product_catalog">Каталог товаров</string>
     <string name="popular_advices">популярные советы</string>
     <string name="popular_products">популярные товары</string>
+    <string name="about">О товаре</string>
+    <string name="choose_size">Выберите размер</string>
+    <string name="size_table">Таблица размеров</string>
 </resources>
