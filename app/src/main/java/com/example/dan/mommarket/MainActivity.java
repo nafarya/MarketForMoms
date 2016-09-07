@@ -27,6 +27,7 @@ import com.example.dan.mommarket.fragments.category.SubCategoryFragment;
 import com.example.dan.mommarket.fragments.advice.AdviceListFragment;
 
 import com.example.dan.mommarket.fragments.mainscreen.MainScreenFragment;
+import com.example.dan.mommarket.fragments.product.ProductCardFragment;
 import com.example.dan.mommarket.fragments.order.OrderContactsFragment;
 import com.example.dan.mommarket.fragments.order.OrderDeliveryFragment;
 import com.example.dan.mommarket.fragments.order.OrderPaymentsFragment;
@@ -65,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer.setDrawerListener(toggle);
         drawer.addDrawerListener(toggle);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -75,8 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         CategoryDataSource.getInstance().setDatabase(this);
         AdviceDataSource.getInstance().setDatabase(this);
 
-        //    List<Advice> a = AdviceDataSource.getAllAdvices();
-        //    Log.i("asdf", "" + a.size());
+
         MainScreenFragment mainScreenView = new MainScreenFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainScreenView).commit();
 
@@ -128,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if (id == android.R.id.home) {
+            Toast.makeText(this, "asdsad", Toast.LENGTH_LONG).show();
             getSupportFragmentManager().popBackStack();
             ActionBar actionbar = getSupportActionBar();
             actionbar.setDisplayHomeAsUpEnabled(false);
@@ -151,7 +151,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .commit();
 
         } else if (id == R.id.nav_catalog) {
-//            CatalogFragment categoryListView = new CatalogFragment();
             CategoryRootFragment categoryRootFragment = new CategoryRootFragment();
             getSupportFragmentManager().
                     beginTransaction().
@@ -219,11 +218,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .replace(R.id.fragment_container, categorySecondChildListView)
                     .addToBackStack(null)
                     .commit();
-
-//            ActionBar actionBar = getSupportActionBar();
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//            actionBar.setHomeButtonEnabled(true);
-//            actionBar.setDefaultDisplayHomeAsUpEnabled(true);
         } else {
             navigateToProductList(categoryId);
         }
@@ -248,6 +242,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportFragmentManager().
                 beginTransaction().
                 replace(R.id.fragment_container, categoryRootFragment).
+                addToBackStack(null).
+                commit();
+    }
+
+    @Override
+    public void navigateToProductCard() {
+        ProductCardFragment productCardFragment = new ProductCardFragment();
+        getSupportFragmentManager().
+                beginTransaction().
+                replace(R.id.fragment_container, productCardFragment).
                 addToBackStack(null).
                 commit();
     }

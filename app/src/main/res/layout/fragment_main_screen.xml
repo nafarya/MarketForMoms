@@ -39,7 +39,8 @@
             android:textColor="#80000000"
             android:textSize="16sp" />
 
-        <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.v7.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/main_screen_advice_rv"
             android:layout_width="match_parent"
@@ -59,8 +60,17 @@
             android:textColor="#80000000"
             android:textSize="16sp" />
 
-        <include layout="@layout/advice_detail_bottom"></include>
+        <include
+            layout="@layout/product_offer"
+            android:id="@+id/product_offer_1"/>
 
+        <include
+            layout="@layout/product_offer"
+            android:id="@+id/product_offer_2"/>
+
+        <include
+            layout="@layout/product_offer"
+            android:id="@+id/product_offer_3"/>
 
     </LinearLayout>
 

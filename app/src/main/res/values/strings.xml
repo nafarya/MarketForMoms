@@ -24,6 +24,9 @@
     <string name="product_catalog">Каталог товаров</string>
     <string name="popular_advices">популярные советы</string>
     <string name="popular_products">популярные товары</string>
+    <string name="about">О товаре</string>
+    <string name="choose_size">Выберите размер</string>
+    <string name="size_table">Таблица размеров</string>
     <string name="order_delivery_sum">4409Р</string>
     <string name="order_delivery_sum_text">Итого с учетом доставки</string>
     <string name="oreder_delivery">Доставка</string>
@@ -47,6 +50,8 @@
     <string name="email">Электронная почта</string>
     <string name="payments_cash">Наличными</string>
     <string name="payments_card">Картой</string>
+    <string name="best_offer">лучшее предложение</string>
+    <string name="addToCart">В корзину</string>
     <string-array name="delivery_pickup">
         <item>Главный магазин</item>
         <item>Магазин 2</item>
