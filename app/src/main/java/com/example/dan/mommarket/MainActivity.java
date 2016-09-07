@@ -27,6 +27,9 @@ import com.example.dan.mommarket.fragments.category.SubCategoryFragment;
 import com.example.dan.mommarket.fragments.advice.AdviceListFragment;
 
 import com.example.dan.mommarket.fragments.mainscreen.MainScreenFragment;
+import com.example.dan.mommarket.fragments.order.OrderContactsFragment;
+import com.example.dan.mommarket.fragments.order.OrderDeliveryFragment;
+import com.example.dan.mommarket.fragments.order.OrderPaymentsFragment;
 import com.example.dan.mommarket.fragments.product.ProductListFragment;
 import com.example.dan.mommarket.fragments.category.CategoryRootFragment;
 
@@ -167,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_checklist) {
 
         } else if (id == R.id.nav_my_orders) {
-
+            this.navigateToOrder(1);
         } else if (id == R.id.nav_view) {
 
         }
@@ -247,5 +250,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 replace(R.id.fragment_container, categoryRootFragment).
                 addToBackStack(null).
                 commit();
+    }
+
+    @Override
+    public void navigateToOrder(int step) {
+        switch (step){
+            case 1 :
+                OrderDeliveryFragment orderDeliveryFragment = new OrderDeliveryFragment();
+                getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container, orderDeliveryFragment).
+                        addToBackStack(null).
+                        commit();
+                break;
+            case 2 :
+                OrderContactsFragment orderContactsFragment = new OrderContactsFragment();
+                getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container, orderContactsFragment).
+                        addToBackStack(null).
+                        commit();
+                break;
+            case 3 :
+                OrderPaymentsFragment orderPaymentsFragment = new OrderPaymentsFragment();
+                getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container, orderPaymentsFragment).
+                        addToBackStack(null).
+                        commit();
+                break;
+        }
+
     }
 }
