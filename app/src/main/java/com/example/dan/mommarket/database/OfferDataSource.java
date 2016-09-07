@@ -45,8 +45,9 @@ public class OfferDataSource {
                         " ,s." + Contract.ShopDB.RATE +
                         " from " + Contract.OfferDB.TABLE + " o" +
                         " left join " + Contract.ShopDB.TABLE + " s on s." + Contract.ShopDB.ID + "= o." + Contract.OfferDB.SHOP_ID +
-                        " where o." + Contract.OfferDB.PRODUCT_ID +" = ?" + ";"
-                        , new String[]{Integer.toString(productId)});
+                        " where o." + Contract.OfferDB.PRODUCT_ID + " = ?" +
+                        " order by o." + Contract.OfferDB.PRICE + " ASC;"
+                , new String[]{Integer.toString(productId)});
 
         categoryCursor.moveToFirst();
         while (!categoryCursor.isAfterLast()) {
@@ -62,7 +63,42 @@ public class OfferDataSource {
             categoryCursor.moveToNext();
         }
         categoryCursor.close();
-
         return offerList;
+    }
+
+    public static Offer getMinimalOfferByProductId(int productId) {
+        database = dbHelper.getReadableDatabase();
+        Offer offer = null;
+        Cursor categoryCursor = database.rawQuery("select " +
+                        " o." + Contract.OfferDB.ID +
+                        " ,o." + Contract.OfferDB.PRICE +
+                        " ,s." + Contract.ShopDB.ID +
+                        " ,s." + Contract.ShopDB.NAME +
+                        " ,s." + Contract.ShopDB.DELIVERY_PRICE +
+                        " ,s." + Contract.ShopDB.DELIVERY_TIME +
+                        " ,s." + Contract.ShopDB.REFERENCE_COUNT +
+                        " ,s." + Contract.ShopDB.RATE +
+                        " from " + Contract.OfferDB.TABLE + " o" +
+                        " left join " + Contract.ShopDB.TABLE + " s on s." + Contract.ShopDB.ID + "= o." + Contract.OfferDB.SHOP_ID +
+                        " where o." + Contract.OfferDB.PRODUCT_ID + " = ?" +
+                        " order by o." + Contract.OfferDB.PRICE + " ASC;"
+                , new String[]{Integer.toString(productId)});
+
+        categoryCursor.moveToFirst();
+        if (!categoryCursor.isAfterLast()) {
+            offer = new Offer(
+                    categoryCursor.getInt(0),
+                    categoryCursor.getInt(1),
+                    categoryCursor.getInt(2),
+                    categoryCursor.getString(3),
+                    categoryCursor.getInt(4),
+                    categoryCursor.getString(5),
+                    categoryCursor.getInt(6),
+                    categoryCursor.getInt(7)));
+            categoryCursor.moveToNext();
+        }
+        categoryCursor.close();
+
+        return offer;
     }
 }
