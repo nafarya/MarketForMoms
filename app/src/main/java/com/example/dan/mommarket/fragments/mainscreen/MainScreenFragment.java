@@ -3,11 +3,14 @@ package com.example.dan.mommarket.fragments.mainscreen;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.dan.mommarket.Navigator;
 import com.example.dan.mommarket.R;
@@ -50,7 +53,11 @@ public class MainScreenFragment extends Fragment implements MainScreen, MainAdvi
         mainScreenPresenter = new MainScreenPresenterImpl();
         mainScreenPresenter.setView(this);
         mainScreenPresenter.onCreateView(savedInstanceState);
+        initUIElements(v);
+        return v;
+    }
 
+    private void initUIElements(View v) {
         Button button = (Button) v.findViewById(R.id.from_main_screen_to_catalog_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +65,29 @@ public class MainScreenFragment extends Fragment implements MainScreen, MainAdvi
                 navigator.navigateToCatalog();
             }
         });
-        return v;
+
+        initSubProductCardElements(v.findViewById(R.id.product_offer_1));
+        initSubProductCardElements(v.findViewById(R.id.product_offer_2));
+        initSubProductCardElements(v.findViewById(R.id.product_offer_3));
+
+
+    }
+
+    private void initSubProductCardElements(View v) {
+        v.findViewById(R.id.product_card_1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigator.navigateToProductCard();
+            }
+        });
+
+        v.findViewById(R.id.product_card_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigator.navigateToProductCard();
+            }
+        });
+
     }
 
     @Override

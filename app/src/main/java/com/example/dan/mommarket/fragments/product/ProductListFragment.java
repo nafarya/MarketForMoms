@@ -32,12 +32,7 @@ public class ProductListFragment extends Fragment implements ProductList {
     private ProductListRVAdapter productListRVAdapter;
     private RecyclerView recyclerView;
     private GridLayoutManager grid;
-//    private Context context;
-/*
-    public void setContext (Context context){
-        this.context = context;
-    }
-*/
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,7 +50,7 @@ public class ProductListFragment extends Fragment implements ProductList {
 
     @Override
     public void showProducts(List<Product> productsList) {
-        productListRVAdapter = new ProductListRVAdapter(productsList);
+        productListRVAdapter = new ProductListRVAdapter(productsList, getContext());
         recyclerView.setAdapter(productListRVAdapter);
     }
 }

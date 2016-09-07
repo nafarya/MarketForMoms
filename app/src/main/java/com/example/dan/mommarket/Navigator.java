@@ -16,6 +16,8 @@ public interface Navigator {
 
     void navigateToCatalog();
 
+    void navigateToProductCard();
+
     void navigateToOrder(int step);
 
 }
