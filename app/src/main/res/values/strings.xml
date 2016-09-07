@@ -27,4 +27,34 @@
     <string name="about">О товаре</string>
     <string name="choose_size">Выберите размер</string>
     <string name="size_table">Таблица размеров</string>
+    <string name="order_delivery_sum">4409Р</string>
+    <string name="order_delivery_sum_text">Итого с учетом доставки</string>
+    <string name="oreder_delivery">Доставка</string>
+    <string name="oreder_contects">Контакты</string>
+    <string name="order_payments">Оплата</string>
+    <string name="next">Далее</string>
+    <string name="delivery_city">Город</string>
+    <string name="delivery_street">АДРЕС: УЛИЦА, ДОМ</string>
+    <string name="delivery_house">НОМЕР КВАРТИРЫ ИЛИ ОФИСА</string>
+    <string name="delivery_comment">КОММЕНТАРИЙ К ЗАКАЗУ</string>
+    <string name="delivery_shop_1">ДОСТАВКА ИЗ МАГАЗИНА КОРАБЛИК</string>
+    <string name="delivery_shop1_text">Курьером в пределах МКАД</string>
+    <string name="delivery_shop1_price">390 H, 30 августа</string>
+    <string name="delivery_shop_2">ДОСТАВКА ИЗ МАГАЗИНА ДЕТСКИЙ МИР</string>
+    <string name="delivery_shop2_text">Курьером до двери</string>
+    <string name="delivery_shop2_price">бесплатно, завтра</string>
+    <string name="delivery_pickup_text">Выберите пункт самовывоза</string>
+    <string name="first_name">Имя</string>
+    <string name="last_name">Фамилия</string>
+    <string name="phone">Телефон</string>
+    <string name="email">Электронная почта</string>
+    <string name="payments_cash">Наличными</string>
+    <string name="payments_card">Картой</string>
+    <string name="best_offer">лучшее предложение</string>
+    <string name="addToCart">В корзину</string>
+    <string-array name="delivery_pickup">
+        <item>Главный магазин</item>
+        <item>Магазин 2</item>
+        <item>AМагазин 3</item>
+    </string-array>
 </resources>

@@ -18,4 +18,6 @@ public interface Navigator {
 
     void navigateToProductCard();
 
+    void navigateToOrder(int step);
+
 }

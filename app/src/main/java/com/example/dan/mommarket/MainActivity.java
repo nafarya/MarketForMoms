@@ -28,6 +28,9 @@ import com.example.dan.mommarket.fragments.advice.AdviceListFragment;
 
 import com.example.dan.mommarket.fragments.mainscreen.MainScreenFragment;
 import com.example.dan.mommarket.fragments.product.ProductCardFragment;
+import com.example.dan.mommarket.fragments.order.OrderContactsFragment;
+import com.example.dan.mommarket.fragments.order.OrderDeliveryFragment;
+import com.example.dan.mommarket.fragments.order.OrderPaymentsFragment;
 import com.example.dan.mommarket.fragments.product.ProductListFragment;
 import com.example.dan.mommarket.fragments.category.CategoryRootFragment;
 
@@ -63,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer.setDrawerListener(toggle);
         drawer.addDrawerListener(toggle);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -73,8 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         CategoryDataSource.getInstance().setDatabase(this);
         AdviceDataSource.getInstance().setDatabase(this);
 
-        //    List<Advice> a = AdviceDataSource.getAllAdvices();
-        //    Log.i("asdf", "" + a.size());
+
         MainScreenFragment mainScreenView = new MainScreenFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainScreenView).commit();
 
@@ -126,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if (id == android.R.id.home) {
+            Toast.makeText(this, "asdsad", Toast.LENGTH_LONG).show();
             getSupportFragmentManager().popBackStack();
             ActionBar actionbar = getSupportActionBar();
             actionbar.setDisplayHomeAsUpEnabled(false);
@@ -149,7 +151,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .commit();
 
         } else if (id == R.id.nav_catalog) {
-//            CatalogFragment categoryListView = new CatalogFragment();
             CategoryRootFragment categoryRootFragment = new CategoryRootFragment();
             getSupportFragmentManager().
                     beginTransaction().
@@ -168,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_checklist) {
 
         } else if (id == R.id.nav_my_orders) {
-
+            this.navigateToOrder(1);
         } else if (id == R.id.nav_view) {
 
         }
@@ -217,11 +218,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .replace(R.id.fragment_container, categorySecondChildListView)
                     .addToBackStack(null)
                     .commit();
-
-//            ActionBar actionBar = getSupportActionBar();
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//            actionBar.setHomeButtonEnabled(true);
-//            actionBar.setDefaultDisplayHomeAsUpEnabled(true);
         } else {
             navigateToProductList(categoryId);
         }
@@ -258,5 +254,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 replace(R.id.fragment_container, productCardFragment).
                 addToBackStack(null).
                 commit();
+    }
+
+    @Override
+    public void navigateToOrder(int step) {
+        switch (step){
+            case 1 :
+                OrderDeliveryFragment orderDeliveryFragment = new OrderDeliveryFragment();
+                getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container, orderDeliveryFragment).
+                        addToBackStack(null).
+                        commit();
+                break;
+            case 2 :
+                OrderContactsFragment orderContactsFragment = new OrderContactsFragment();
+                getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container, orderContactsFragment).
+                        addToBackStack(null).
+                        commit();
+                break;
+            case 3 :
+                OrderPaymentsFragment orderPaymentsFragment = new OrderPaymentsFragment();
+                getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container, orderPaymentsFragment).
+                        addToBackStack(null).
+                        commit();
+                break;
+        }
+
     }
 }
