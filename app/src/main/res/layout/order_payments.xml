@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/order_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical|center_horizontal|center">
+
+        <TextView
+            android:id="@+id/base"
+            android:layout_width="304dp"
+            android:layout_height="16dp"
+            android:layout_alignLeft="@+id/textView"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/textView"
+            android:gravity="center_vertical|center_horizontal|center" />
+
+        <TextView
+            android:id="@+id/one"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/base"
+            android:layout_marginLeft="28dp"
+            android:background="@drawable/order_gray_circle"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:text="1" />
+
+        <TextView
+            android:id="@+id/one_two"
+            android:layout_width="72dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/base"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_toEndOf="@+id/one"
+            android:layout_toRightOf="@+id/one"
+            android:background="@drawable/order_gray_hyphen"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/two"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/base"
+            android:layout_toEndOf="@+id/one_two"
+            android:layout_toRightOf="@+id/one_two"
+            android:background="@drawable/order_gray_circle"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/two_tree"
+            android:layout_width="72dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/base"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_toEndOf="@+id/two"
+            android:layout_toRightOf="@+id/two"
+            android:background="@drawable/order_gray_hyphen"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tree"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/base"
+            android:layout_toRightOf="@+id/two_tree"
+            android:background="@drawable/order_selected_circle"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:text="3" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/one"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/oreder_delivery"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/two"
+            android:layout_centerHorizontal="false"
+            android:layout_centerInParent="false"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/textView"
+            android:text="@string/oreder_contects"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tree"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/textView2"
+            android:text="@string/order_payments"
+            android:textAlignment="center" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/contacts_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/delivery_next"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/sumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/order_delivery_sum_text" />
+
+        <TextView
+            android:id="@+id/sumValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/order_delivery_sum"
+            android:textAlignment="textEnd"
+            android:textSize="20sp"
+            android:textStyle="normal|bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/delivery_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:padding="16dp"
+        android:text="@string/next"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="normal|bold" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/contacts_price"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/order_header"
+        android:orientation="vertical">
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="16dp" >
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/payments_cash" />
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="@string/payments_card" />
+        </RadioGroup>
+    </LinearLayout>
+</RelativeLayout>

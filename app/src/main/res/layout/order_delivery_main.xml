@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal|center">
+
+            <TextView
+                android:id="@+id/base"
+                android:layout_width="304dp"
+                android:layout_height="16dp"
+                android:layout_alignLeft="@+id/textView"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/textView"
+                android:gravity="center_vertical|center_horizontal|center" />
+
+
+            <TextView
+                android:id="@+id/one"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_below="@+id/base"
+                android:layout_marginLeft="28dp"
+                android:background="@drawable/order_selected_circle"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:text="1" />
+
+            <TextView
+                android:id="@+id/one_two"
+                android:layout_width="72dp"
+                android:layout_height="24dp"
+                android:layout_below="@+id/base"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_toEndOf="@+id/one"
+                android:layout_toRightOf="@+id/one"
+                android:background="@drawable/order_gray_hyphen"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/two"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_below="@+id/base"
+                android:layout_toEndOf="@+id/one_two"
+                android:layout_toRightOf="@+id/one_two"
+                android:background="@drawable/order_gray_circle"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:text="2" />
+
+            <TextView
+                android:id="@+id/two_tree"
+                android:layout_width="72dp"
+                android:layout_height="24dp"
+                android:layout_below="@+id/base"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_toEndOf="@+id/two"
+                android:layout_toRightOf="@+id/two"
+                android:background="@drawable/order_gray_hyphen"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tree"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_below="@+id/base"
+                android:layout_toRightOf="@+id/two_tree"
+                android:background="@drawable/order_gray_circle"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:text="3" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/one"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/oreder_delivery"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/two"
+                android:layout_centerHorizontal="false"
+                android:layout_centerInParent="false"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/textView"
+                android:text="@string/oreder_contects"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tree"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/textView2"
+                android:text="@string/order_payments"
+                android:textAlignment="center" />
+
+
+        </RelativeLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/delivery_chose"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/courier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Курьером" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/pickup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Самовывоз" />
+        </android.support.design.widget.TabLayout>
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/delivery_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_weight="0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/sumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/order_delivery_sum_text" />
+
+        <TextView
+            android:id="@+id/sumValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/order_delivery_sum"
+            android:textAlignment="textEnd"
+            android:textSize="20sp"
+            android:textStyle="normal|bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/delivery_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary"
+        android:padding="16dp"
+        android:text="@string/next"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="normal|bold" />
+</LinearLayout>
