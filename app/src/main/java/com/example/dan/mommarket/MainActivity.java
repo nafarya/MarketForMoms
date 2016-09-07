@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.dan.mommarket.database.AdviceDataSource;
 import com.example.dan.mommarket.database.CategoryDataSource;
+import com.example.dan.mommarket.database.OfferDataSource;
 import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.fragments.advice.AdviceDetailFragment;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ProductDataSource.getInstance().setDatabase(this);
         CategoryDataSource.getInstance().setDatabase(this);
         AdviceDataSource.getInstance().setDatabase(this);
+        OfferDataSource.getInstance().setDatabase(this);
 
 
         MainScreenFragment mainScreenView = new MainScreenFragment();
