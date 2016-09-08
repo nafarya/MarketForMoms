@@ -50,18 +50,18 @@ public class SQLiteHelper extends SQLiteOpenHelper implements Contract {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(CheckListDB.CHECKLIST_TABLE_CREATE);
+        sqLiteDatabase.execSQL(CheckListDB.TABLE_CREATE);
         sqLiteDatabase.execSQL(ChildDB.CHILD_TABLE_CREATE);
-        sqLiteDatabase.execSQL(FeatureDB.FEATURE_TABLE_CREATE);
-        sqLiteDatabase.execSQL(ItemReferenceDB.ITEM_REFERENCE_TABLE_CREATE);
+        sqLiteDatabase.execSQL(FeatureDB.TABLE_CREATE);
+        sqLiteDatabase.execSQL(ItemReferenceDB.TABLE_CREATE);
         sqLiteDatabase.execSQL(OfferDB.OFFER_TABLE_CREATE);
-        sqLiteDatabase.execSQL(ProductDB.PRODUCT_TABLE_CREATE);
-        sqLiteDatabase.execSQL(ProductCategoryDB.PRODUCT_CATEGORY_TABLE_CREATE);
-        sqLiteDatabase.execSQL(ShopDB.SHOP_TABLE_CREATE);
+        sqLiteDatabase.execSQL(ProductDB.TABLE_CREATE);
+        sqLiteDatabase.execSQL(ProductCategoryDB.TABLE_CREATE);
+        sqLiteDatabase.execSQL(ShopDB.TABLE_CREATE);
         sqLiteDatabase.execSQL(UserDB.USER_TABLE_CREATE);
-        sqLiteDatabase.execSQL(ImageDB.IMAGE_TABLE_CREATE);
-        sqLiteDatabase.execSQL(ListOfferDB.LIST_OFFER_TABLE_CREATE);
-        sqLiteDatabase.execSQL(ProductFeatureDB.PRODUCT_FEATURE_TABLE_CREATE);
+        sqLiteDatabase.execSQL(ImageDB.TABLE_CREATE);
+        sqLiteDatabase.execSQL(ListOfferDB.TABLE_CREATE);
+        sqLiteDatabase.execSQL(ProductFeatureDB.TABLE_CREATE);
         sqLiteDatabase.execSQL(AdviceDB.TABLE_CREATE);
     }
 
