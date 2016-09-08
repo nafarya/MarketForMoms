@@ -53,7 +53,6 @@ public class CategoryChildListRVAdapter extends RecyclerView.Adapter<CategoryChi
         private TextView name;
         private OnCategoryChildListRVAdapterClickListener listener;
 
-
         public ViewHolder(View itemView,
                           OnCategoryChildListRVAdapterClickListener listener) {
             super(itemView);

@@ -94,7 +94,7 @@ public class OfferDataSource {
                     categoryCursor.getInt(4),
                     categoryCursor.getString(5),
                     categoryCursor.getInt(6),
-                    categoryCursor.getInt(7)));
+                    categoryCursor.getInt(7));
             categoryCursor.moveToNext();
         }
         categoryCursor.close();

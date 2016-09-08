@@ -1,5 +1,6 @@
 package com.example.dan.mommarket.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -129,7 +130,7 @@ public class Product {
 
     public String getFirstImage() {
         String defaultPic = "https://cs-ellpic.yandex.net/cms_resources/navigation/pages/42624/7i5duj8hekbnbjuiqm48n1jck4_200x200@x1.png";
-        if (!images.isEmpty()) {
+        if (images != null) {
             return images.get(0);
         } else {
             return defaultPic;
