@@ -52,6 +52,7 @@
     <string name="payments_card">Картой</string>
     <string name="best_offer">лучшее предложение</string>
     <string name="addToCart">В корзину</string>
+    <string name="other_offers">другие предложения</string>
     <string-array name="delivery_pickup">
         <item>Главный магазин</item>
         <item>Магазин 2</item>
