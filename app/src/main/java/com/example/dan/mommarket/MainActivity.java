@@ -23,17 +23,16 @@ import com.example.dan.mommarket.database.OfferDataSource;
 import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.fragments.advice.AdviceDetailFragment;
-import com.example.dan.mommarket.fragments.category.CategoryFragment;
-import com.example.dan.mommarket.fragments.category.SubCategoryFragment;
 import com.example.dan.mommarket.fragments.advice.AdviceListFragment;
-
+import com.example.dan.mommarket.fragments.category.CategoryFragment;
+import com.example.dan.mommarket.fragments.category.CategoryRootFragment;
+import com.example.dan.mommarket.fragments.category.SubCategoryFragment;
 import com.example.dan.mommarket.fragments.mainscreen.MainScreenFragment;
-import com.example.dan.mommarket.fragments.product.ProductCardFragment;
 import com.example.dan.mommarket.fragments.order.OrderContactsFragment;
 import com.example.dan.mommarket.fragments.order.OrderDeliveryFragment;
 import com.example.dan.mommarket.fragments.order.OrderPaymentsFragment;
+import com.example.dan.mommarket.fragments.product.ProductCardFragment;
 import com.example.dan.mommarket.fragments.product.ProductListFragment;
-import com.example.dan.mommarket.fragments.category.CategoryRootFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Navigator {
 
@@ -249,8 +248,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void navigateToProductCard() {
+    public void navigateToProductCard(int productId) {
         ProductCardFragment productCardFragment = new ProductCardFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("ProductId", productId);
+        productCardFragment.setArguments(bundle);
         getSupportFragmentManager().
                 beginTransaction().
                 replace(R.id.fragment_container, productCardFragment).
@@ -260,8 +262,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToOrder(int step) {
-        switch (step){
-            case 1 :
+        switch (step) {
+            case 1:
                 OrderDeliveryFragment orderDeliveryFragment = new OrderDeliveryFragment();
                 getSupportFragmentManager().
                         beginTransaction().
@@ -269,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         addToBackStack(null).
                         commit();
                 break;
-            case 2 :
+            case 2:
                 OrderContactsFragment orderContactsFragment = new OrderContactsFragment();
                 getSupportFragmentManager().
                         beginTransaction().
@@ -277,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         addToBackStack(null).
                         commit();
                 break;
-            case 3 :
+            case 3:
                 OrderPaymentsFragment orderPaymentsFragment = new OrderPaymentsFragment();
                 getSupportFragmentManager().
                         beginTransaction().

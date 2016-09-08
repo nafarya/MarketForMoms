@@ -15,7 +15,7 @@ import java.util.List;
 public class ProductListPresenterImpl implements ProductListPresenter {
 
     private static ProductListPresenterImpl instance;
-    private ProductList productList;
+    private ProductList productListView;
 
     public ProductListPresenterImpl() {
     }
@@ -31,14 +31,10 @@ public class ProductListPresenterImpl implements ProductListPresenter {
     public void onCreateView(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             List<Product> productList = ProductDataSource.getAllProducts();
-            this.productList.showProducts(productList);
-        }
-        if (savedInstanceState == null) {
-            List<Product> productList = ProductDataSource.getAllProducts();
-            this.productList.showProducts(productList);
-        }  else{
+            this.productListView.showProducts(productList);
+        } else {
             List<Product> productList = ProductDataSource.getListProductsByCategoryId(savedInstanceState.getInt("ParentCategory"));
-            this.productList.showProducts(productList);
+            this.productListView.showProducts(productList);
         }
     }
 
@@ -48,12 +44,12 @@ public class ProductListPresenterImpl implements ProductListPresenter {
 
     @Override
     public void setView(ProductList productList) {
-        this.productList = productList;
+        this.productListView = productList;
 
     }
 
     @Override
     public void removeView() {
-        productList = null;
+        productListView = null;
     }
 }

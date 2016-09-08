@@ -7,11 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.dan.mommarket.R;
 import com.example.dan.mommarket.model.Product;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -41,6 +40,7 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
         Product product = productList.get(position);
         holder.name.setText(product.getName());
         holder.price.setText(String.valueOf(product.getPrice()));
+        holder.feature.setText(product.getCardFeatureValue());
         Picasso.with(context).load(product.getFirstImage()).into(holder.icon);
     }
 
@@ -53,12 +53,14 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
         private TextView name;
         private ImageView icon;
         private TextView price;
+        private TextView feature;
 
         public ViewHolder(View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.product_card_name);
             price = (TextView) itemView.findViewById(R.id.product_card_min_price);
             icon = (ImageView) itemView.findViewById(R.id.product_card_image);
+            feature = (TextView) itemView.findViewById(R.id.product_card_feature);
         }
     }
 }
