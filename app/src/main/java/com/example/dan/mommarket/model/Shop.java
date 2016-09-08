@@ -16,6 +16,8 @@ public class Shop {
     private float rate;
     private List<ItemReference> itemReferenceList = new LinkedList<>();
 
+    public Shop() {}
+
     public Shop(int id
             , String name
             , int deliveryPrice

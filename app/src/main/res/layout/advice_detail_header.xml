@@ -13,13 +13,22 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="23dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/clothesfor03child"
         android:textColor="#e5000000"
-        android:textSize="23sp" />
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/order_gray_hyphen"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:text=""/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -55,10 +64,19 @@
 
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/order_gray_hyphen"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:text=""/>
+
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="24dp"
         android:text="@string/nataly_bortnikova_speech"
         android:textColor="#e5000000"
         android:textSize="16sp" />
