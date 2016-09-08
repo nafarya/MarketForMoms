@@ -16,7 +16,7 @@ public interface Navigator {
 
     void navigateToCatalog();
 
-    void navigateToProductCard();
+    void navigateToProductCard(int productId);
 
     void navigateToOrder(int step);
 

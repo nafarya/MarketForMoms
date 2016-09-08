@@ -44,7 +44,7 @@ public class ProductListFragment extends Fragment implements ProductList {
         recyclerView.setLayoutManager(grid);
         productListPresenter = ProductListPresenterImpl.getInstance();
         productListPresenter.setView(this);
-        productListPresenter.onCreateView(savedInstanceState!=null ? savedInstanceState : this.getArguments());
+        productListPresenter.onCreateView(savedInstanceState != null ? savedInstanceState : this.getArguments());
         return v;
     }
 

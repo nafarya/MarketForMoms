@@ -9,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dan.mommarket.R;
-import com.example.dan.mommarket.adapter.ShopListAdapter;
-import com.example.dan.mommarket.model.Shop;
+import com.example.dan.mommarket.adapter.OfferListAdapter;
+import com.example.dan.mommarket.model.Offer;
+import com.example.dan.mommarket.model.Product;
+import com.example.dan.mommarket.presenter.product.ProductPresenter;
+import com.example.dan.mommarket.presenter.product.ProductPresenterImpl;
 import com.example.dan.mommarket.views.ProductCard;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,15 +24,23 @@ import java.util.List;
 
 public class ProductCardFragment extends Fragment implements ProductCard {
     private RecyclerView recyclerView;
-    private ShopListAdapter shopListAdapter;
-
-    private List<Shop> shopList;
-    Shop shop;
-
+    private OfferListAdapter offerListAdapter;
+    private Product product;
+    private List<Offer> offers;
+    private ProductPresenter productPresenter;
 
     @Override
-    public void showProduct() {
+    public void showProduct(Product product) {
+        this.product = product;
 
+    }
+
+    @Override
+    public void showOffers(List<Offer> offers) {
+        this.offers = offers;
+        offerListAdapter = new OfferListAdapter(offers);
+        recyclerView.setAdapter(offerListAdapter);
+        recyclerView.setNestedScrollingEnabled(false);
     }
 
     @Nullable
@@ -38,16 +48,9 @@ public class ProductCardFragment extends Fragment implements ProductCard {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_product_card, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.rv_product_card_shops);
-        shopList = new ArrayList<>();
-        shop = new Shop();
-        shop.setName("Lara Kids");
-        shopList.add(shop);
-        shopList.add(shop);
-        shopList.add(shop);
-        shopList.add(shop);
-        shopListAdapter = new ShopListAdapter(shopList);
-        recyclerView.setAdapter(shopListAdapter);
-        recyclerView.setNestedScrollingEnabled(false);
+        productPresenter = ProductPresenterImpl.getInstance();
+        productPresenter.setView(this);
+        productPresenter.onCreateView(savedInstanceState != null ? savedInstanceState : this.getArguments());
         return v;
     }
 }

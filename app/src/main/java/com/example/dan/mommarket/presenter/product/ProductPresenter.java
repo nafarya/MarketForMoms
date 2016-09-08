@@ -10,8 +10,11 @@ import com.example.dan.mommarket.views.ProductCard;
  */
 
 public interface ProductPresenter {
-    void onCreateView(Bundle savedIntanceState);
+    void onCreateView(Bundle savedInstanceState);
+
     void updateProductCard();
+
     void setView(ProductCard productCard);
+
     void removeView();
 }
