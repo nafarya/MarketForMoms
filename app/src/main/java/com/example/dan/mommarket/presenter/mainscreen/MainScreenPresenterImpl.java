@@ -23,7 +23,7 @@ public class MainScreenPresenterImpl implements MainScreenPresenter {
     }
 
     @Override
-    public void onCreateView(Bundle savedIntanceState) {
+    public void onCreateView(Bundle savedInstanceState) {
         mainScreen.showAdvices(AdviceDataSource.getAllAdvices(), numOfAdvices);
         mainScreen.showProducts(ProductDataSource.getAllProducts());
     }

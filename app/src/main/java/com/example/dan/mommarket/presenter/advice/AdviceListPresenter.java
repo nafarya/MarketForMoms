@@ -9,7 +9,7 @@ import com.example.dan.mommarket.views.AdviceList;
  */
 
 public interface AdviceListPresenter {
-    void onCreateView(Bundle savedIntanceState);
+    void onCreateView(Bundle savedInstanceState);
     void updateList();
     void setView(AdviceList adviceListView);
     void removeView();

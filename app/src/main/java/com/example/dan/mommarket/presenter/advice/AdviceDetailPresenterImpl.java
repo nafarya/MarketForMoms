@@ -22,8 +22,8 @@ public class AdviceDetailPresenterImpl implements AdviceDetailPresenter {
     }
 
     @Override
-    public void onCreateView(Bundle savedIntanceState) {
-        if (savedIntanceState == null) {
+    public void onCreateView(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
             adviceDetail.showAdvices();
         }
     }

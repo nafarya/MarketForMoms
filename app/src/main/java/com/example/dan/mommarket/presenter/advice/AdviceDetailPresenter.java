@@ -9,7 +9,7 @@ import com.example.dan.mommarket.fragments.advice.AdviceDetailFragment;
  */
 
 public interface AdviceDetailPresenter {
-    void onCreateView(Bundle savedIntanceState);
+    void onCreateView(Bundle savedInstanceState);
     void updateList();
     void setView(AdviceDetailFragment adviceListView);
     void removeView();

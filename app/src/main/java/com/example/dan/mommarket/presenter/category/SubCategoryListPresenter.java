@@ -10,10 +10,7 @@ import com.example.dan.mommarket.views.SubCategory;
 
 public interface SubCategoryListPresenter {
     void onCreateView(Bundle savedInstanceState);
-
     void updateSubCategory();
-
     void setView(SubCategory categoryChildListView);
-
     void removeView();
 }

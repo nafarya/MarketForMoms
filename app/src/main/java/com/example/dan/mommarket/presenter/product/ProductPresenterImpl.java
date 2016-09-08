@@ -10,7 +10,7 @@ import com.example.dan.mommarket.views.ProductCard;
 
 public class ProductPresenterImpl implements ProductPresenter{
     @Override
-    public void onCreateView(Bundle savedIntanceState) {
+    public void onCreateView(Bundle savedInstanceState) {
 
     }
 
