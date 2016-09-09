@@ -53,6 +53,11 @@ public class ProductPresenterImpl implements ProductPresenter {
     }
 
     @Override
+    public void addOffer(int offerId) {
+        offers.get(offerId).addToCart();
+    }
+
+    @Override
     public void setView(ProductCard productCard) {
         this.productCard = productCard;
     }

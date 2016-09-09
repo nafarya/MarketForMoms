@@ -65,6 +65,7 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
 
         @Override
         public void onClick(View view) {
+
             listener.onItemClick(getAdapterPosition());
         }
     }

@@ -14,6 +14,8 @@ public interface ProductPresenter {
 
     void updateProductCard();
 
+    void addOffer(int offerId);
+
     void setView(ProductCard productCard);
 
     void removeView();

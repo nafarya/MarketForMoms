@@ -55,7 +55,7 @@ public class ProductCardFragment extends Fragment implements ProductCard, OfferL
     @Override
     public void showOffers(List<Offer> offers) {
         this.offers = offers;
-        offerListAdapter = new OfferListAdapter(offers, this);
+        offerListAdapter = new OfferListAdapter(this.offers, this);
         recyclerView.setAdapter(offerListAdapter);
         recyclerView.setNestedScrollingEnabled(false);
     }
@@ -72,11 +72,12 @@ public class ProductCardFragment extends Fragment implements ProductCard, OfferL
     }
 
     @Override
-    public void onItemClick(int item) {
+    public void onItemClick(final int item) {
         Snackbar snackbar = Snackbar.make(view, "Товар добавлен в корзину", Snackbar.LENGTH_SHORT).
                 setAction("Перейти", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        productPresenter.addOffer(item);
                         navigator.navigateToCatalog();
                     }
                 });
