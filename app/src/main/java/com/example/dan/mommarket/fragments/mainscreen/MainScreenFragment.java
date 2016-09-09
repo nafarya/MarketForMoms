@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,9 @@ import android.widget.RelativeLayout;
 
 import com.example.dan.mommarket.Navigator;
 import com.example.dan.mommarket.R;
+import com.example.dan.mommarket.adapter.CategoryChildListRVAdapter;
 import com.example.dan.mommarket.adapter.MainAdviceListRVAdapter;
+import com.example.dan.mommarket.adapter.ProductListRVAdapter;
 import com.example.dan.mommarket.model.Advice;
 import com.example.dan.mommarket.model.Product;
 import com.example.dan.mommarket.presenter.mainscreen.MainScreenPresenter;
@@ -28,10 +31,14 @@ import java.util.List;
  * Created by dan on 02.09.16.
  */
 
-public class MainScreenFragment extends Fragment implements MainScreen, MainAdviceListRVAdapter.OnAdviceClickListener {
+public class MainScreenFragment extends Fragment implements MainScreen, MainAdviceListRVAdapter.OnAdviceClickListener, ProductListRVAdapter.OnProductListRvClickListener{
     private RecyclerView adviceRecyclerView;
+    private RecyclerView productRecyclerView;
     private MainScreenPresenter mainScreenPresenter;
     private MainAdviceListRVAdapter adviceListRVAdapter;
+    private ProductListRVAdapter productAdapter;
+    private GridLayoutManager grid;
+    private int spanCount = 2;
     private Navigator navigator;
 
     @Override
@@ -50,6 +57,7 @@ public class MainScreenFragment extends Fragment implements MainScreen, MainAdvi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main_screen, container, false);
         adviceRecyclerView = (RecyclerView) v.findViewById(R.id.main_screen_advice_rv);
+        productRecyclerView = (RecyclerView) v.findViewById(R.id.main_screen_rv_products_id);
         mainScreenPresenter = new MainScreenPresenterImpl();
         mainScreenPresenter.setView(this);
         mainScreenPresenter.onCreateView(savedInstanceState);
@@ -65,34 +73,15 @@ public class MainScreenFragment extends Fragment implements MainScreen, MainAdvi
                 navigator.navigateToCatalog();
             }
         });
-
-        initSubProductCardElements(v.findViewById(R.id.product_offer_1));
-        initSubProductCardElements(v.findViewById(R.id.product_offer_2));
-        initSubProductCardElements(v.findViewById(R.id.product_offer_3));
-
-
-    }
-
-    private void initSubProductCardElements(View v) {
-        v.findViewById(R.id.product_card_1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigator.navigateToProductCard(220101);
-            }
-        });
-
-        v.findViewById(R.id.product_card_2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigator.navigateToProductCard(220102);
-            }
-        });
-
     }
 
     @Override
     public void showProducts(List<Product> productList) {
-
+        grid = new GridLayoutManager(getContext(), spanCount);
+        productRecyclerView.setLayoutManager(grid);
+        productRecyclerView.setNestedScrollingEnabled(false);
+        productAdapter = new ProductListRVAdapter(productList, getContext(), this);
+        productRecyclerView.setAdapter(productAdapter);
     }
 
     @Override
@@ -102,10 +91,12 @@ public class MainScreenFragment extends Fragment implements MainScreen, MainAdvi
     }
 
     @Override
-    public void onItemClick(int item) {
-        navigator.navigateToAdviceDetail();
-
+    public void onProductClick(int item) {
+        navigator.navigateToProductCard(item);
     }
 
-
+    @Override
+    public void onItemClick(int item) {
+        navigator.navigateToAdviceDetail();
+    }
 }

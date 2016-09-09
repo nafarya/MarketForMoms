@@ -25,7 +25,7 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
     private OnProductListRvClickListener listener;
 
     public interface OnProductListRvClickListener{
-        void onItemClick(int item);
+        void onProductClick(int item);
     }
 
     public ProductListRVAdapter(List<Product> productList, Context context, OnProductListRvClickListener listener) {
@@ -74,7 +74,7 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
 
         @Override
         public void onClick(View view) {
-            listener.onItemClick(productList.get(getAdapterPosition()).getProductId());
+            listener.onProductClick(productList.get(getAdapterPosition()).getProductId());
         }
     }
 }

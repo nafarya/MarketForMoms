@@ -64,7 +64,7 @@ public class ProductListFragment extends Fragment implements ProductList, Produc
     }
 
     @Override
-    public void onItemClick(int item) {
+    public void onProductClick(int item) {
         navigator.navigateToProductCard(item);
     }
 }
