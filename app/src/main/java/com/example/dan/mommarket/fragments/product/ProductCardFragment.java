@@ -1,7 +1,9 @@
 package com.example.dan.mommarket.fragments.product;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dan.mommarket.Navigator;
 import com.example.dan.mommarket.R;
@@ -26,7 +29,7 @@ import java.util.List;
  * Created by dan on 06.09.16.
  */
 
-public class ProductCardFragment extends Fragment implements ProductCard, OfferListAdapter.OnOfferListClickListener {
+public class ProductCardFragment extends Fragment implements ProductCard, OfferListAdapter.onAddToCartButtonClickListener {
     private RecyclerView recyclerView;
     private OfferListAdapter offerListAdapter;
     private Product product;
@@ -70,6 +73,14 @@ public class ProductCardFragment extends Fragment implements ProductCard, OfferL
 
     @Override
     public void onItemClick(int item) {
-        //replace with action
+        Snackbar snackbar = Snackbar.make(view, "Товар добавлен в корзину", Snackbar.LENGTH_SHORT).
+                setAction("Перейти", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        navigator.navigateToCatalog();
+                    }
+                });
+        snackbar.setActionTextColor(Color.rgb(255, 222, 99));
+        snackbar.show();
     }
 }
