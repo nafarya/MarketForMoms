@@ -46,10 +46,8 @@ public class AdviceListFragment extends Fragment implements AdviceList, AdviceLi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Toast.makeText(getActivity(), "HELL YEAH BITCHES " + item.getItemId(), Toast.LENGTH_SHORT).show();
         switch (item.getItemId()) {
             case android.R.id.home:
-                Toast.makeText(getActivity(), "HELL YEAH BITCHES", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 break;

@@ -18,15 +18,21 @@ import java.util.List;
 public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.ViewHolder> {
 
     private List<Offer> offerList;
+    private OnOfferListClickListener listener;
 
-    public OfferListAdapter(List<Offer> offerList) {
+    public interface OnOfferListClickListener{
+        void onItemClick(int item);
+    }
+
+    public OfferListAdapter(List<Offer> offerList, OnOfferListClickListener listener) {
         this.offerList = offerList;
+        this.listener = listener;
     }
 
     @Override
     public OfferListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shop_list_item, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, listener);
     }
 
     @Override
@@ -42,16 +48,24 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
         return offerList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView name;
         private TextView date;
         private TextView fee;
+        private OnOfferListClickListener listener;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, OnOfferListClickListener listener) {
             super(itemView);
+            this.listener = listener;
             name = (TextView) itemView.findViewById(R.id.shop_list_shop_name);
             date = (TextView) itemView.findViewById(R.id.shop_list_date_id);
             fee = (TextView) itemView.findViewById(R.id.shop_list_fee_id);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            listener.onItemClick(getAdapterPosition());
         }
     }
 }

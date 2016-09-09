@@ -9,7 +9,7 @@ import com.example.dan.mommarket.views.MainScreen;
  */
 
 public interface MainScreenPresenter {
-    void onCreateView(Bundle savedIntanceState);
+    void onCreateView(Bundle savedInstanceState);
     void setView(MainScreen mainScreen);
     void removeView();
 }
