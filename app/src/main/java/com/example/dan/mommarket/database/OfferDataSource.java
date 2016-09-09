@@ -34,7 +34,7 @@ public class OfferDataSource {
     public static List<Offer> getOffersByProductId(int productId) {
         database = dbHelper.getReadableDatabase();
         List<Offer> offerList = new ArrayList<>();
-        Cursor categoryCursor = database.rawQuery("select " +
+        Cursor offerCursor = database.rawQuery("select " +
                         " o." + Contract.OfferDB.ID +
                         " ,o." + Contract.OfferDB.PRICE +
                         " ,s." + Contract.ShopDB.ID +
@@ -49,20 +49,20 @@ public class OfferDataSource {
                         " order by o." + Contract.OfferDB.PRICE + " ASC;"
                 , new String[]{Integer.toString(productId)});
 
-        categoryCursor.moveToFirst();
-        while (!categoryCursor.isAfterLast()) {
+        offerCursor.moveToFirst();
+        while (!offerCursor.isAfterLast()) {
             offerList.add(new Offer(
-                    categoryCursor.getInt(0),
-                    categoryCursor.getInt(1),
-                    categoryCursor.getInt(2),
-                    categoryCursor.getString(3),
-                    categoryCursor.getInt(4),
-                    categoryCursor.getString(5),
-                    categoryCursor.getInt(6),
-                    categoryCursor.getInt(7)));
-            categoryCursor.moveToNext();
+                    offerCursor.getInt(0),
+                    offerCursor.getInt(1),
+                    offerCursor.getInt(2),
+                    offerCursor.getString(3),
+                    offerCursor.getInt(4),
+                    offerCursor.getString(5),
+                    offerCursor.getInt(6),
+                    offerCursor.getInt(7)));
+            offerCursor.moveToNext();
         }
-        categoryCursor.close();
+        offerCursor.close();
         return offerList;
     }
 

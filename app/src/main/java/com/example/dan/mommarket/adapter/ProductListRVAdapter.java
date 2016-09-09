@@ -7,11 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.dan.mommarket.R;
 import com.example.dan.mommarket.model.Product;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -23,17 +22,23 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
 
     private List<Product> productList;
     private Context context;
+    private OnProductListRvClickListener listener;
 
-    public ProductListRVAdapter(List<Product> productList, Context context) {
+    public interface OnProductListRvClickListener{
+        void onItemClick(int item);
+    }
+
+    public ProductListRVAdapter(List<Product> productList, Context context, OnProductListRvClickListener listener) {
         this.productList = productList;
         this.context = context;
+        this.listener = listener;
     }
 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_offer_card, parent, false);
-        return new ViewHolder(v);
+        return new ViewHolder(v, listener);
     }
 
     @Override
@@ -41,6 +46,7 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
         Product product = productList.get(position);
         holder.name.setText(product.getName());
         holder.price.setText(String.valueOf(product.getPrice()));
+        holder.feature.setText(product.getCardFeatureValue());
         Picasso.with(context).load(product.getFirstImage()).into(holder.icon);
     }
 
@@ -49,16 +55,26 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
         return productList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView name;
         private ImageView icon;
         private TextView price;
+        private TextView feature;
+        private OnProductListRvClickListener listener;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, OnProductListRvClickListener listener) {
             super(itemView);
+            this.listener = listener;
             name = (TextView) itemView.findViewById(R.id.product_card_name);
             price = (TextView) itemView.findViewById(R.id.product_card_min_price);
             icon = (ImageView) itemView.findViewById(R.id.product_card_image);
+            feature = (TextView) itemView.findViewById(R.id.product_card_feature);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            listener.onItemClick(productList.get(getAdapterPosition()).getProductId());
         }
     }
 }

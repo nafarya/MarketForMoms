@@ -78,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="16dp"
+                android:id="@+id/product_card_feature"
                 android:text="@string/one_hundred_percent_cotton"
                 android:textColor="#80000000"
                 android:textSize="14sp" />
