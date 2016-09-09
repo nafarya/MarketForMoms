@@ -181,8 +181,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void navigateToAdviceDetail() {
+    public void navigateToAdviceDetail(int adviceId) {
         AdviceDetailFragment adviceDetailFragment = new AdviceDetailFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("AdviceId", adviceId);
+        adviceDetailFragment.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, adviceDetailFragment)
@@ -288,6 +291,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         commit();
                 break;
         }
-
     }
 }

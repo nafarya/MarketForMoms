@@ -11,7 +11,7 @@ public class Advice {
     private String description;
     private String imageURL;
     public Advice(
-            int Id,
+            int id,
             String name,
             String shortDescription,
             String description,

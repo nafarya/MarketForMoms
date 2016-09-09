@@ -71,7 +71,7 @@ public class Offer {
     }
 
     public void addToList(int listId){
-        OfferDataSource.addOfferToList(offerId,listId);
+        OfferDataSource.addOfferToList(offerId,listId,price);
     }
 
     public void addToCart(){

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.dan.mommarket.Navigator;
 import com.example.dan.mommarket.R;
-import com.example.dan.mommarket.adapter.MainAdviceListRVAdapter;
+import com.example.dan.mommarket.adapter.AdviceListRVAdapter;
 import com.example.dan.mommarket.model.Advice;
 import com.example.dan.mommarket.presenter.advice.AdviceListPresenter;
 import com.example.dan.mommarket.presenter.advice.AdviceListPresenterImpl;
@@ -24,12 +24,12 @@ import java.util.List;
  * Created by dan on 26.08.16.
  */
 
-public class AdviceListFragment extends Fragment implements AdviceList, MainAdviceListRVAdapter.OnAdviceClickListener {
+public class AdviceListFragment extends Fragment implements AdviceList, AdviceListRVAdapter.OnAdviceClickListener {
 
 
     AdviceListPresenter adviceListPresenter;
     private View v;
-    private MainAdviceListRVAdapter mainAdviceListRVAdapter;
+    private AdviceListRVAdapter adviceListRVAdapter;
     private RecyclerView recyclerView;
     private Navigator navigator;
 
@@ -65,12 +65,12 @@ public class AdviceListFragment extends Fragment implements AdviceList, MainAdvi
 
     @Override
     public void showAdvices(List<Advice> adviceList) {
-        mainAdviceListRVAdapter = new MainAdviceListRVAdapter(adviceList, getContext(), this);
-        recyclerView.setAdapter(mainAdviceListRVAdapter);
+        adviceListRVAdapter = new AdviceListRVAdapter(adviceList, getContext(), this);
+        recyclerView.setAdapter(adviceListRVAdapter);
     }
 
     @Override
     public void onItemClick(int item) {
-        navigator.navigateToAdviceDetail();
+        navigator.navigateToAdviceDetail(item);
     }
 }
