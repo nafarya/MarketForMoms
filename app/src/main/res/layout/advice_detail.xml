@@ -16,17 +16,38 @@
         <include
             layout="@layout/product_category"
             android:id="@+id/product_category_button1"/>
-        <include layout="@layout/product_offer"></include>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/advice_detail_productsrv1"
+            android:layout_marginBottom="16dp">
+        </android.support.v7.widget.RecyclerView>
+
 
         <include
             layout="@layout/product_category"
             android:id="@+id/product_category_button2"/>
-        <include layout="@layout/product_offer"></include>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/advice_detail_productsrv2"
+            android:layout_marginBottom="16dp">
+        </android.support.v7.widget.RecyclerView>
+
 
         <include
             layout="@layout/product_category"
             android:id="@+id/product_category_button3"/>
-        <include layout="@layout/product_offer"></include>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/advice_detail_productsrv3"
+            android:layout_marginBottom="16dp">
+        </android.support.v7.widget.RecyclerView>
+
 
         <Button
             android:layout_width="match_parent"
@@ -34,7 +55,8 @@
             android:background="@color/colorPrimary"
             android:text="@string/go_to_shopping"
             android:textColor="#e5000000"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textAllCaps="false"/>
 
     </LinearLayout>
 
