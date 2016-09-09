@@ -29,8 +29,8 @@ public class AdviceListPresenterImpl implements AdviceListPresenter {
     }
 
     @Override
-    public void onCreateView(Bundle savedIntanceState) {
-        if (savedIntanceState == null) {
+    public void onCreateView(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
             adviceList = AdviceDataSource.getAllAdvices();
             adviceListView.showAdvices(adviceList);
         }

@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.dan.mommarket.Navigator;
 import com.example.dan.mommarket.R;
+import com.example.dan.mommarket.adapter.OfferListAdapter;
 import com.example.dan.mommarket.adapter.ProductListRVAdapter;
 import com.example.dan.mommarket.model.Product;
 import com.example.dan.mommarket.presenter.product.ProductListPresenter;
@@ -23,7 +25,7 @@ import java.util.List;
  * Created by dan on 26.08.16.
  */
 
-public class ProductListFragment extends Fragment implements ProductList {
+public class ProductListFragment extends Fragment implements ProductList, ProductListRVAdapter.OnProductListRvClickListener{
 
 
     private final int spanCount = 2;
@@ -32,6 +34,7 @@ public class ProductListFragment extends Fragment implements ProductList {
     private ProductListRVAdapter productListRVAdapter;
     private RecyclerView recyclerView;
     private GridLayoutManager grid;
+    private Navigator navigator;
 
     @Nullable
     @Override
@@ -50,7 +53,18 @@ public class ProductListFragment extends Fragment implements ProductList {
 
     @Override
     public void showProducts(List<Product> productsList) {
-        productListRVAdapter = new ProductListRVAdapter(productsList, getContext());
+        productListRVAdapter = new ProductListRVAdapter(productsList, getContext(), this);
         recyclerView.setAdapter(productListRVAdapter);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        navigator = (Navigator) getActivity();
+    }
+
+    @Override
+    public void onProductClick(int item) {
+        navigator.navigateToProductCard(item);
     }
 }

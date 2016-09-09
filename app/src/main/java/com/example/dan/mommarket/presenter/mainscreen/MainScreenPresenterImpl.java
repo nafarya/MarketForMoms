@@ -13,6 +13,7 @@ import com.example.dan.mommarket.views.MainScreen;
 public class MainScreenPresenterImpl implements MainScreenPresenter {
     private static MainScreenPresenterImpl instance;
     private final int numOfAdvices = 2;
+    private final int productCategoryId = 2201;
     private MainScreen mainScreen;
 
     public static synchronized MainScreenPresenterImpl getInstance() {
@@ -23,9 +24,9 @@ public class MainScreenPresenterImpl implements MainScreenPresenter {
     }
 
     @Override
-    public void onCreateView(Bundle savedIntanceState) {
+    public void onCreateView(Bundle savedInstanceState) {
         mainScreen.showAdvices(AdviceDataSource.getAllAdvices(), numOfAdvices);
-        mainScreen.showProducts(ProductDataSource.getAllProducts());
+        mainScreen.showProducts(ProductDataSource.getListProductsByCategoryId(productCategoryId));
     }
 
     @Override
@@ -35,6 +36,6 @@ public class MainScreenPresenterImpl implements MainScreenPresenter {
 
     @Override
     public void removeView() {
-
+        this.mainScreen = null;
     }
 }

@@ -22,17 +22,23 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
 
     private List<Product> productList;
     private Context context;
+    private OnProductListRvClickListener listener;
 
-    public ProductListRVAdapter(List<Product> productList, Context context) {
+    public interface OnProductListRvClickListener{
+        void onProductClick(int item);
+    }
+
+    public ProductListRVAdapter(List<Product> productList, Context context, OnProductListRvClickListener listener) {
         this.productList = productList;
         this.context = context;
+        this.listener = listener;
     }
 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_offer_card, parent, false);
-        return new ViewHolder(v);
+        return new ViewHolder(v, listener);
     }
 
     @Override
@@ -49,18 +55,26 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
         return productList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView name;
         private ImageView icon;
         private TextView price;
         private TextView feature;
+        private OnProductListRvClickListener listener;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, OnProductListRvClickListener listener) {
             super(itemView);
+            this.listener = listener;
             name = (TextView) itemView.findViewById(R.id.product_card_name);
             price = (TextView) itemView.findViewById(R.id.product_card_min_price);
             icon = (ImageView) itemView.findViewById(R.id.product_card_image);
             feature = (TextView) itemView.findViewById(R.id.product_card_feature);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            listener.onProductClick(productList.get(getAdapterPosition()).getProductId());
         }
     }
 }

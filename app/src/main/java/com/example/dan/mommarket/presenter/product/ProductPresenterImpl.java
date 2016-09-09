@@ -14,6 +14,7 @@ import java.util.List;
  * Created by dan on 06.09.16.
  */
 
+
 public class ProductPresenterImpl implements ProductPresenter {
 
     private static ProductPresenterImpl instance;
