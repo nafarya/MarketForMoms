@@ -1,5 +1,6 @@
 package com.example.dan.mommarket.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -100,5 +101,14 @@ public class OfferDataSource {
         categoryCursor.close();
 
         return offer;
+    }
+
+    public static void addOfferToList(int offerId,int listId,float price){
+        database = dbHelper.getReadableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(Contract.ListOfferDB.OFFER_ID, offerId);
+        cv.put(Contract.ListOfferDB.LIST_ID, listId);
+        cv.put(Contract.ListOfferDB.PRICE, price);
+        database.insert(Contract.ListOfferDB.TABLE, null, cv);
     }
 }

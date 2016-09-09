@@ -54,7 +54,7 @@ public class SQLiteHelper extends SQLiteOpenHelper implements Contract {
         sqLiteDatabase.execSQL(ChildDB.CHILD_TABLE_CREATE);
         sqLiteDatabase.execSQL(FeatureDB.TABLE_CREATE);
         sqLiteDatabase.execSQL(ItemReferenceDB.TABLE_CREATE);
-        sqLiteDatabase.execSQL(OfferDB.OFFER_TABLE_CREATE);
+        sqLiteDatabase.execSQL(OfferDB.TABLE_CREATE);
         sqLiteDatabase.execSQL(ProductDB.TABLE_CREATE);
         sqLiteDatabase.execSQL(ProductCategoryDB.TABLE_CREATE);
         sqLiteDatabase.execSQL(ShopDB.TABLE_CREATE);
