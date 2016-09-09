@@ -8,9 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dan.mommarket.R;
+import com.example.dan.mommarket.model.Product;
 import com.example.dan.mommarket.presenter.advice.AdviceDetailPresenter;
 import com.example.dan.mommarket.presenter.advice.AdviceDetailPresenterImpl;
 import com.example.dan.mommarket.views.AdviceDetail;
+
+import java.util.List;
 
 /**
  * Created by dan on 30.08.16.
@@ -22,6 +25,11 @@ public class AdviceDetailFragment extends Fragment implements AdviceDetail {
 
     @Override
     public void showAdvices() {
+
+    }
+
+    @Override
+    public void showProducts(List<Product> productList) {
 
     }
 
