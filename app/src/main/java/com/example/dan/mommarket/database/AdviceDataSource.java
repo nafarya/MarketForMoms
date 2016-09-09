@@ -59,4 +59,33 @@ public class AdviceDataSource {
         adviceCursor.close();
         return adviceList;
     }
+
+    public static Advice getAdviceById(int adviceId) {
+        database = dbHelper.getReadableDatabase();
+        Advice advice = null;
+        Cursor adviceCursor = database.rawQuery("select " +
+                        " a." + Contract.AdviceDB.ID +
+                        " ,a." + Contract.AdviceDB.NAME +
+                        " ,a." + Contract.AdviceDB.SHORT_DESC +
+                        " ,a." + Contract.AdviceDB.DESCRIPTION +
+                        " ,i." + Contract.ImageDB.URL +
+                        " from " + Contract.AdviceDB.TABLE + " a" +
+                        " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ID + "= a." + Contract.AdviceDB.IMAGE_ID +
+                        " where a." + Contract.AdviceDB.ID + " = ? ;"
+                , new String[]{Integer.toString(adviceId)});
+
+        adviceCursor.moveToFirst();
+        if (!adviceCursor.isAfterLast()) {
+            advice = new Advice(
+                    adviceCursor.getInt(0),
+                    adviceCursor.getString(1),
+                    adviceCursor.getString(2),
+                    adviceCursor.getString(3),
+                    adviceCursor.getString(4)
+            );
+            adviceCursor.moveToNext();
+        }
+        adviceCursor.close();
+        return advice;
+    }
 }

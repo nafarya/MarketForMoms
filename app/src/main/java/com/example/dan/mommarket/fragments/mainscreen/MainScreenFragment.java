@@ -10,14 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.example.dan.mommarket.Navigator;
 import com.example.dan.mommarket.R;
 import com.example.dan.mommarket.adapter.CategoryChildListRVAdapter;
-import com.example.dan.mommarket.adapter.MainAdviceListRVAdapter;
 import com.example.dan.mommarket.adapter.ProductListRVAdapter;
+import com.example.dan.mommarket.adapter.AdviceListRVAdapter;
 import com.example.dan.mommarket.model.Advice;
 import com.example.dan.mommarket.model.Product;
 import com.example.dan.mommarket.presenter.mainscreen.MainScreenPresenter;
@@ -31,14 +29,14 @@ import java.util.List;
  * Created by dan on 02.09.16.
  */
 
-public class MainScreenFragment extends Fragment implements MainScreen, MainAdviceListRVAdapter.OnAdviceClickListener, ProductListRVAdapter.OnProductListRvClickListener{
+public class MainScreenFragment extends Fragment implements MainScreen, AdviceListRVAdapter.OnAdviceClickListener, ProductListRVAdapter.OnProductListRvClickListener{
     private RecyclerView adviceRecyclerView;
     private RecyclerView productRecyclerView;
     private MainScreenPresenter mainScreenPresenter;
-    private MainAdviceListRVAdapter adviceListRVAdapter;
     private ProductListRVAdapter productAdapter;
     private GridLayoutManager grid;
     private int spanCount = 2;
+    private AdviceListRVAdapter adviceListRVAdapter;
     private Navigator navigator;
 
     @Override
@@ -47,7 +45,7 @@ public class MainScreenFragment extends Fragment implements MainScreen, MainAdvi
         for (int i = 0; i < numOfAdvices; i++) {
             adviceListToShow.add(adviceList.get(i));
         }
-        adviceListRVAdapter = new MainAdviceListRVAdapter(adviceListToShow, getContext(), this);
+        adviceListRVAdapter = new AdviceListRVAdapter(adviceListToShow, getContext(), this);
         adviceRecyclerView.setAdapter(adviceListRVAdapter);
         adviceRecyclerView.setNestedScrollingEnabled(false);
     }
@@ -97,6 +95,6 @@ public class MainScreenFragment extends Fragment implements MainScreen, MainAdvi
 
     @Override
     public void onItemClick(int item) {
-        navigator.navigateToAdviceDetail();
+        navigator.navigateToAdviceDetail(item);
     }
 }

@@ -3,6 +3,8 @@ package com.example.dan.mommarket.presenter.advice;
 import android.os.Bundle;
 
 import com.example.dan.mommarket.database.ProductDataSource;
+import com.example.dan.mommarket.database.AdviceDataSource;
+import com.example.dan.mommarket.model.Advice;
 import com.example.dan.mommarket.views.AdviceDetail;
 import com.example.dan.mommarket.fragments.advice.AdviceDetailFragment;
 
@@ -16,6 +18,8 @@ public class AdviceDetailPresenterImpl implements AdviceDetailPresenter {
     private AdviceDetail adviceDetail;
     private int productCategoryId = 2201;
 
+    private Advice advice;
+
     public static synchronized AdviceDetailPresenterImpl getInstance() {
         if (instance == null) {
             instance = new AdviceDetailPresenterImpl();
@@ -25,9 +29,16 @@ public class AdviceDetailPresenterImpl implements AdviceDetailPresenter {
 
     @Override
     public void onCreateView(Bundle savedInstanceState) {
-        if (savedInstanceState == null) {
-            adviceDetail.showProducts(ProductDataSource.getListProductsByCategoryId(productCategoryId));
-        }
+        adviceDetail.showProducts(ProductDataSource.getListProductsByCategoryId(productCategoryId));
+        adviceDetail.showAdvice(AdviceDataSource.getAdviceById(1));
+
+       /* if (savedInstanceState == null) {
+            advice = AdviceDataSource.getAdviceById(1);
+            this.adviceDetail.showAdvice(advice);
+        } else {
+            advice = AdviceDataSource.getAdviceById(savedInstanceState.getInt("AdviceId"));
+            this.adviceDetail.showAdvice(advice);
+        }*/
     }
 
     @Override

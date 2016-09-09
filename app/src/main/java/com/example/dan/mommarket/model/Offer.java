@@ -1,5 +1,7 @@
 package com.example.dan.mommarket.model;
 
+import com.example.dan.mommarket.database.OfferDataSource;
+
 /**
  * Created by dan on 18.08.16.
  */
@@ -7,6 +9,8 @@ public class Offer {
     private int offerId;
     private float price;
     private boolean active;
+    private int productId;
+    private Shop shop;
 
     public int getProductId() {
         return productId;
@@ -48,9 +52,6 @@ public class Offer {
         this.shop = shop;
     }
 
-    private int productId;
-    private Shop shop;
-
     public Offer(int offerId
             , float price
             , int shopId
@@ -68,4 +69,13 @@ public class Offer {
                 , shopReferenceCount
                 , shopRate);
     }
+
+    public void addToList(int listId){
+        OfferDataSource.addOfferToList(offerId,listId,price);
+    }
+
+    public void addToCart(){
+        this.addToList(0);
+    }
+
 }

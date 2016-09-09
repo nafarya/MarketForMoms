@@ -90,7 +90,7 @@ public interface Contract {
         public static final String SHOP_ID = "SHOP_ID";
         public static final String ACTIVE_FLG = "ACTIVE_FLG";
 
-        public static final String OFFER_TABLE_CREATE = "create table " + TABLE + " (" +
+        public static final String TABLE_CREATE = "create table " + TABLE + " (" +
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 PRICE + " REAL, " +
                 PRODUCT_ID + " INTEGER NOT NULL, " +
