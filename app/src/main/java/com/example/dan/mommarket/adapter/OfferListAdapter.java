@@ -18,13 +18,13 @@ import java.util.List;
 public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.ViewHolder> {
 
     private List<Offer> offerList;
-    private OnOfferListClickListener listener;
+    private onAddToCartButtonClickListener listener;
 
-    public interface OnOfferListClickListener{
+    public interface onAddToCartButtonClickListener {
         void onItemClick(int item);
     }
 
-    public OfferListAdapter(List<Offer> offerList, OnOfferListClickListener listener) {
+    public OfferListAdapter(List<Offer> offerList, onAddToCartButtonClickListener listener) {
         this.offerList = offerList;
         this.listener = listener;
     }
@@ -52,19 +52,20 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
         private TextView name;
         private TextView date;
         private TextView fee;
-        private OnOfferListClickListener listener;
+        private onAddToCartButtonClickListener listener;
 
-        public ViewHolder(View itemView, OnOfferListClickListener listener) {
+        public ViewHolder(View itemView, onAddToCartButtonClickListener listener) {
             super(itemView);
             this.listener = listener;
             name = (TextView) itemView.findViewById(R.id.shop_list_shop_name);
             date = (TextView) itemView.findViewById(R.id.shop_list_date_id);
             fee = (TextView) itemView.findViewById(R.id.shop_list_fee_id);
-            itemView.setOnClickListener(this);
+            itemView.findViewById(R.id.shop_list_add_To_Cart_Button).setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
+
             listener.onItemClick(getAdapterPosition());
         }
     }
