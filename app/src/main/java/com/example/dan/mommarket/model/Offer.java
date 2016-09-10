@@ -11,6 +11,7 @@ public class Offer {
     private boolean active;
     private int productId;
     private Shop shop;
+    private int count;
 
     public int getProductId() {
         return productId;
@@ -52,6 +53,14 @@ public class Offer {
         this.shop = shop;
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     public Offer(int offerId
             , float price
             , int shopId
@@ -70,11 +79,15 @@ public class Offer {
                 , shopRate);
     }
 
-    public void addToList(int listId){
-        OfferDataSource.addOfferToList(offerId,listId,price);
+    public void addToList(int listId) {
+        if (count == 1) {
+            OfferDataSource.addOfferToList(offerId, listId, price);
+        } else {
+            OfferDataSource.updateOfferToList(offerId, listId, price, count);
+        }
     }
 
-    public void addToCart(){
+    public void addToCart() {
         this.addToList(0);
     }
 

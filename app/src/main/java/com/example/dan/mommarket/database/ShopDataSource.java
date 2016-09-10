@@ -37,16 +37,21 @@ public class ShopDataSource {
         database = dbHelper.getReadableDatabase();
         List<Shop> list = new ArrayList<>();
         Cursor cursor = database.rawQuery("select " +
-                        " cl." + Contract.CheckListDB.ID +
-                        " ,cl." + Contract.CheckListDB.NAME +
-                        " ,count( distinct o." + Contract.OfferDB.SHOP_ID + " )" +
+                        " s." + Contract.ShopDB.ID +
+                        " ,s." + Contract.ShopDB.NAME +
+                        " ,s." + Contract.ShopDB.DELIVERY_PRICE +
+                        " ,s." + Contract.ShopDB.DELIVERY_TIME +
+                        " ,s." + Contract.ShopDB.REFERENCE_COUNT +
+                        " ,s." + Contract.ShopDB.RATE +
+                        " ,lo." + Contract.ListOfferDB.ID +
+                        " ,count( lo." + Contract.ListOfferDB.ID + " )" +
                         " ,sum(  o." + Contract.OfferDB.PRICE + ")" +
-                        " from " + Contract.CheckListDB.TABLE + " cl" +
-                        " left join " + Contract.ListOfferDB.TABLE + " lo on lo." + Contract.ListOfferDB.LIST_ID + " = cl." + Contract.CheckListDB.ID +
-                        " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = lo." + Contract.ListOfferDB.OFFER_ID +
-                        //  " left join " + Contract.ShopDB.TABLE + " s on s." + Contract.ShopDB.ID + " = o." + Contract.OfferDB.SHOP_ID +
-                        " where cl." + Contract.CheckListDB.ID + " = ?" +
-                        " group by cl." + Contract.CheckListDB.ID + " ASC;"
+
+                        " from " + Contract.ShopDB.TABLE + " s" +
+                        " join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.SHOP_ID + " = s." + Contract.ShopDB.ID +
+                        " join " + Contract.ListOfferDB.TABLE + " lo on lo." + Contract.ListOfferDB.OFFER_ID + " = o." + Contract.OfferDB.ID +
+                        " where lo." + Contract.ListOfferDB.LIST_ID + " = ?" +
+                        " group by s." + Contract.ShopDB.ID + " ASC;"
                 , new String[]{"0"});
 
         cursor.moveToFirst();
