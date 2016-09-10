@@ -16,20 +16,21 @@
             android:paddingLeft="16dp"
             android:paddingTop="32dp"
             android:background="@color/background"
-            android:text="@string/best_offer" />
+            android:text="@string/other_offers" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/shop_list_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="32dp"
-                android:background="@color/cardview_light_background"
-                android:text="@string/other_offers" />
+                android:layout_marginTop="16dp"
+                android:text="249 Р"
+                android:textColor="#e5000000"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/delivery_icon"
