@@ -70,7 +70,7 @@ public class OfferDataSource {
     public static Offer getMinimalOfferByProductId(int productId) {
         database = dbHelper.getReadableDatabase();
         Offer offer = null;
-        Cursor categoryCursor = database.rawQuery("select " +
+        Cursor cursor = database.rawQuery("select " +
                         " o." + Contract.OfferDB.ID +
                         " ,o." + Contract.OfferDB.PRICE +
                         " ,s." + Contract.ShopDB.ID +
@@ -85,20 +85,20 @@ public class OfferDataSource {
                         " order by o." + Contract.OfferDB.PRICE + " ASC;"
                 , new String[]{Integer.toString(productId)});
 
-        categoryCursor.moveToFirst();
-        if (!categoryCursor.isAfterLast()) {
+        cursor.moveToFirst();
+        if (!cursor.isAfterLast()) {
             offer = new Offer(
-                    categoryCursor.getInt(0),
-                    categoryCursor.getInt(1),
-                    categoryCursor.getInt(2),
-                    categoryCursor.getString(3),
-                    categoryCursor.getInt(4),
-                    categoryCursor.getString(5),
-                    categoryCursor.getInt(6),
-                    categoryCursor.getInt(7));
-            categoryCursor.moveToNext();
+                    cursor.getInt(0),
+                    cursor.getInt(1),
+                    cursor.getInt(2),
+                    cursor.getString(3),
+                    cursor.getInt(4),
+                    cursor.getString(5),
+                    cursor.getInt(6),
+                    cursor.getInt(7));
+            cursor.moveToNext();
         }
-        categoryCursor.close();
+        cursor.close();
 
         return offer;
     }
