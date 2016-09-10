@@ -176,7 +176,7 @@ public interface Contract {
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 LIST_ID + " INTEGER NOT NULL, " +
                 OFFER_ID + " INTEGER NOT NULL, " +
-                COUNT + " INTEGER NOT NULL, " +
+                COUNT + " INTEGER, " +
                 PRICE + " REAL );";
     }
 
