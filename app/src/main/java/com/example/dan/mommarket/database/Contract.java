@@ -170,11 +170,13 @@ public interface Contract {
         public static final String LIST_ID = "LIST_ID";
         public static final String OFFER_ID = "OFFER_ID";
         public static final String PRICE = "PRICE";
+        public static final String COUNT = "COUNT";
 
         public static final String TABLE_CREATE = "create table " + TABLE + " (" +
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 LIST_ID + " INTEGER NOT NULL, " +
                 OFFER_ID + " INTEGER NOT NULL, " +
+                COUNT + " INTEGER, " +
                 PRICE + " REAL );";
     }
 

@@ -14,9 +14,29 @@ public class Shop {
     private String deliveryTime;
     private int referenceCount;
     private float rate;
+    private int productCartCount;
+    private int productCartSum;
+
+    private int productCartId;
     private List<ItemReference> itemReferenceList = new LinkedList<>();
 
-    public Shop() {}
+    public Shop(Shop shop) {
+    }
+
+    public Shop(int id
+
+            , String name
+            , int deliveryPrice
+            , String deliveryTime
+            , int referenceCount
+            , int rate) {
+        this.id = id;
+        this.name = name;
+        this.deliveryPrice = deliveryPrice;
+        this.deliveryTime = deliveryTime;
+        this.referenceCount = referenceCount;
+        this.rate = rate;
+    }
 
     public Shop(int id
             , String name
@@ -24,13 +44,18 @@ public class Shop {
             , String deliveryTime
             , int referenceCount
             , int rate
-    ) {
+            , int productCartId
+            , int productCartCount
+            , int productCartSum) {
         this.id = id;
         this.name = name;
         this.deliveryPrice = deliveryPrice;
         this.deliveryTime = deliveryTime;
         this.referenceCount = referenceCount;
         this.rate = rate;
+        this.productCartId = productCartId;
+        this.productCartCount = productCartCount;
+        this.productCartSum = productCartSum;
     }
 
     public int getReferenceCount() {
@@ -83,5 +108,29 @@ public class Shop {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getProductCartCount() {
+        return productCartCount;
+    }
+
+    public void setProductCartCount(int productCartCount) {
+        this.productCartCount = productCartCount;
+    }
+
+    public int getProductCartSum() {
+        return productCartSum;
+    }
+
+    public void setProductCartSum(int productCartSum) {
+        this.productCartSum = productCartSum;
+    }
+
+    public int getProductCartId() {
+        return productCartId;
+    }
+
+    public void setProductCartId(int productCartId) {
+        this.productCartId = productCartId;
     }
 }
