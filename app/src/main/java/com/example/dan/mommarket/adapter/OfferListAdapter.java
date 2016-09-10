@@ -28,10 +28,20 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
         this.offerList = offerList;
         this.listener = listener;
     }
-
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
     @Override
     public OfferListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shop_list_item, parent, false);
+        View view;
+        if (viewType==0){
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shop_list_item_first, parent, false);
+        }else if (viewType==1){
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shop_list_item_second, parent, false);
+        }else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shop_list_item, parent, false);
+        }
         return new ViewHolder(view, listener);
     }
 
@@ -39,6 +49,7 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         Offer offer = offerList.get(position);
         holder.name.setText(offer.getShop().getName());
+        holder.price.setText(String.valueOf(offer.getPrice()));
         holder.fee.setText(String.valueOf(offer.getShop().getDeliveryPrice()));
         holder.date.setText(offer.getShop().getDeliveryTime());
     }
@@ -52,20 +63,21 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
         private TextView name;
         private TextView date;
         private TextView fee;
+        private TextView price;
         private onAddToCartButtonClickListener listener;
 
         public ViewHolder(View itemView, onAddToCartButtonClickListener listener) {
             super(itemView);
             this.listener = listener;
             name = (TextView) itemView.findViewById(R.id.shop_list_shop_name);
-            date = (TextView) itemView.findViewById(R.id.shop_list_date_id);
-            fee = (TextView) itemView.findViewById(R.id.shop_list_fee_id);
+            date = (TextView) itemView.findViewById(R.id.shop_list_date);
+            fee = (TextView) itemView.findViewById(R.id.shop_list_fee);
+            price = (TextView) itemView.findViewById(R.id.shop_list_price);
             itemView.findViewById(R.id.shop_list_add_To_Cart_Button).setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-
             listener.onItemClick(getAdapterPosition());
         }
     }
