@@ -40,10 +40,32 @@ public class CartRootFragment extends Fragment implements CartRoot {
 
         cartPresenter = CartPresenterImpl.getInstance();
         cartPresenter.setView(this);
-        cartPresenter.onCreateView(savedInstanceState);
+        cartPresenter.onCreateView(savedInstanceState != null ? savedInstanceState : this.getArguments());
+
+        cartRootPagerAdapter = new CartRootPagerAdapter(getChildFragmentManager());
+        viewPager.setAdapter(cartRootPagerAdapter);
+        viewPager.setCurrentItem(1);
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                cartPresenter.refreshShopList(position);
+                cartPresenter.refreshCartPager(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         return view;
     }
-
+/*
     @Override
     public void showCartPager() {
         cartRootPagerAdapter = new CartRootPagerAdapter(getChildFragmentManager());
@@ -66,7 +88,7 @@ public class CartRootFragment extends Fragment implements CartRoot {
             }
         });
     }
-
+*/
     @Override
     public void showShopList(List<Shop> shopList) {
         CartShopListAdapter cartShopListAdapter = new CartShopListAdapter(shopList);

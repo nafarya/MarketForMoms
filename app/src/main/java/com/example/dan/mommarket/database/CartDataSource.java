@@ -32,6 +32,23 @@ public class CartDataSource {
         return;
     }
 
+    public static Cart getCart(int position) {
+        Cart cart = null;
+        switch (position) {
+            case 0:
+                cart = getBestCart();
+                break;
+            case 1:
+                cart = getCart();
+                break;
+            case 2:
+                cart = getQuickDeliveryCart();
+                break;
+        }
+
+        return cart;
+    }
+
     public static List<Cart> getCartList() {
         database = dbHelper.getReadableDatabase();
         List<Cart> list = new ArrayList<>();
@@ -75,14 +92,14 @@ public class CartDataSource {
 
                         //  " left join " + Contract.ShopDB.TABLE + " s on s." + Contract.ShopDB.ID + " = o." + Contract.OfferDB.SHOP_ID +
                         " where cl." + Contract.CheckListDB.ID + " = ?" +
-                        " group by cl." + Contract.CheckListDB.ID + " ASC;"
+                        " group by cl." + Contract.CheckListDB.ID + ";"
                 , new String[]{"0"});
 
         cursor.moveToFirst();
         if (!cursor.isAfterLast()) {
             cart = new Cart(
                     cursor.getInt(0),
-                    cursor.getString(1),
+                    "ВАШ ВЫБОР",
                     cursor.getInt(2),
                     cursor.getInt(3));
         }
@@ -102,14 +119,14 @@ public class CartDataSource {
                         " left join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.LIST_ID + " = cl." + Contract.CheckListDB.ID +
                         " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = lo." + Contract.OfferItemDB.OFFER_ID +
                         " where cl." + Contract.CheckListDB.ID + " = ?" +
-                        " group by cl." + Contract.CheckListDB.ID + " ASC;"
+                        " group by cl." + Contract.CheckListDB.ID + " ;"
                 , new String[]{"0"});
 
         cursor.moveToFirst();
         if (!cursor.isAfterLast()) {
             cart = new Cart(
                     cursor.getInt(0),
-                    cursor.getString(1),
+                    "ЛУЧШАЯ ЦЕНА",
                     cursor.getInt(2),
                     cursor.getInt(3));
         }
@@ -130,14 +147,14 @@ public class CartDataSource {
                         " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = lo." + Contract.OfferItemDB.OFFER_ID +
                         //  " left join " + Contract.ShopDB.TABLE + " s on s." + Contract.ShopDB.ID + " = o." + Contract.OfferDB.SHOP_ID +
                         " where cl." + Contract.CheckListDB.ID + " = ?" +
-                        " group by cl." + Contract.CheckListDB.ID + " ASC;"
+                        " group by cl." + Contract.CheckListDB.ID + ";"
                 , new String[]{"0"});
 
         cursor.moveToFirst();
         if (!cursor.isAfterLast()) {
             cart = new Cart(
                     cursor.getInt(0),
-                    cursor.getString(1),
+                    "БЫСТРАЯ ДОСТАВКА",
                     cursor.getInt(2),
                     cursor.getInt(3));
         }

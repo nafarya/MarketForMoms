@@ -33,17 +33,17 @@ public class CartRootPagerAdapter extends FragmentStatePagerAdapter {
         switch (position) {
             case 0:
                 curFragment = new CartPagerFragment();
-                bundle.putInt("main_tag", 0);
+                bundle.putInt("CartType", 0);
                 curFragment.setArguments(bundle);
                 break;
             case 1:
                 curFragment = new CartPagerFragment();
-                bundle.putInt("main_tag", 1);
+                bundle.putInt("CartType", 1);
                 curFragment.setArguments(bundle);
                 break;
             case 2:
                 curFragment = new CartPagerFragment();
-                bundle.putInt("main_tag", 2);
+                bundle.putInt("CartType", 2);
                 curFragment.setArguments(bundle);
         }
         return  curFragment;
