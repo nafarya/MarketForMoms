@@ -20,4 +20,6 @@ public interface Navigator {
 
     void navigateToOrder(int step);
 
+    void navigateToCart();
+
 }

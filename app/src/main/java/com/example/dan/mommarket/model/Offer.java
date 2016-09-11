@@ -11,6 +11,7 @@ public class Offer {
     private boolean active;
     private int productId;
     private Shop shop;
+    private int count;
 
     public Offer(int id, int shopId, float price) {
         this.offerId = id;
@@ -58,6 +59,14 @@ public class Offer {
         this.shop = shop;
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     public Offer(int offerId
             , float price
             , int shopId
@@ -77,6 +86,7 @@ public class Offer {
     }
 
     public void addToList(int listId) {
+
         OfferDataSource.addOfferToList(offerId, listId, price);
     }
 

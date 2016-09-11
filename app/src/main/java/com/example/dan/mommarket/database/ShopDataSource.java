@@ -50,13 +50,12 @@ public class ShopDataSource {
                         " join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.SHOP_ID + " = s." + Contract.ShopDB.ID +
                         " join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.OFFER_ID + " = o." + Contract.OfferDB.ID +
                         " where lo." + Contract.OfferItemDB.LIST_ID + " = ?" +
-                        " group by s." + Contract.ShopDB.ID + " ASC;"
+                        " group by s." + Contract.ShopDB.ID + ";"
                 , new String[]{"0"});
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(new Shop(
-                    new Shop(
                             cursor.getInt(0),
                             cursor.getString(1),
                             cursor.getInt(2),
@@ -65,7 +64,7 @@ public class ShopDataSource {
                             cursor.getInt(5),
                             cursor.getInt(6),
                             cursor.getInt(7),
-                            cursor.getInt(8))));
+                            cursor.getInt(8)));
             cursor.moveToNext();
         }
         cursor.close();

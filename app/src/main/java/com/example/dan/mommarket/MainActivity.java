@@ -3,9 +3,7 @@ package com.example.dan.mommarket;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -14,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.dan.mommarket.database.AdviceDataSource;
@@ -27,6 +24,7 @@ import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.database.ShopDataSource;
 import com.example.dan.mommarket.fragments.advice.AdviceDetailFragment;
 import com.example.dan.mommarket.fragments.advice.AdviceListFragment;
+import com.example.dan.mommarket.fragments.cart.CartRootFragment;
 import com.example.dan.mommarket.fragments.category.CategoryFragment;
 import com.example.dan.mommarket.fragments.category.CategoryRootFragment;
 import com.example.dan.mommarket.fragments.category.SubCategoryFragment;
@@ -161,8 +159,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .replace(R.id.fragment_container, adviceListFragment)
                     .commit();
 
-        } else if (id == R.id.nav_basket) {
-
+        } else if (id == R.id.nav_cart) {
+            navigateToCart();
         } else if (id == R.id.nav_checklist) {
 
         } else if (id == R.id.nav_my_orders) {
@@ -287,5 +285,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         commit();
                 break;
         }
+    }
+
+    @Override
+    public void navigateToCart() {
+        CartRootFragment cartRootFragment= new CartRootFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, cartRootFragment).commit();
     }
 }
