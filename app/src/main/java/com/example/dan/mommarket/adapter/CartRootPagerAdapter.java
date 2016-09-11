@@ -1,5 +1,6 @@
 package com.example.dan.mommarket.adapter;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -23,15 +24,22 @@ public class CartRootPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Fragment curFragment = null;
+        Bundle bundle = new Bundle();
         switch (position) {
             case 0:
                 curFragment = new CartShopListFragment();
+                bundle.putString("main_tag", "лучша цена");
+                curFragment.setArguments(bundle);
                 break;
             case 1:
                 curFragment = new CartShopListFragment();
+                bundle.putString("main_tag", "ваш выбор");
+                curFragment.setArguments(bundle);
                 break;
             case 2:
                 curFragment = new CartShopListFragment();
+                bundle.putString("main_tag", "быстрая доставка");
+                curFragment.setArguments(bundle);
         }
         return  curFragment;
 

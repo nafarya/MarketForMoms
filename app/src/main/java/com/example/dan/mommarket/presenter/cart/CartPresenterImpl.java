@@ -1,7 +1,9 @@
 package com.example.dan.mommarket.presenter.cart;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import com.example.dan.mommarket.database.CartDataSource;
 import com.example.dan.mommarket.presenter.category.CatalogPresenterImpl;
 import com.example.dan.mommarket.views.CartRoot;
 
@@ -18,7 +20,8 @@ public class CartPresenterImpl implements CartPresenter {
 
     @Override
     public void onCreateView(Bundle savedInstanceState) {
-        cartRoot.showShopList();
+        cartRoot.showShopList(CartDataSource.getCartList());
+        Log.i("asdasda", String.valueOf(CartDataSource.getCartList().size()));
     }
 
     @Override
