@@ -164,8 +164,8 @@ public interface Contract {
                 URL + " TEXT );";
     }
 
-    final class ListOfferDB {
-        public static final String TABLE = "LIST_OFFER";
+    final class OfferItemDB {
+        public static final String TABLE = "OFFER_ITEM";
         public static final String ID = "_ID";
         public static final String LIST_ID = "LIST_ID";
         public static final String OFFER_ID = "OFFER_ID";

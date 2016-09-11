@@ -41,8 +41,8 @@ public class CartDataSource {
                         " ,count( distinct o." + Contract.OfferDB.SHOP_ID + " )" +
                         " ,sum(  o." + Contract.OfferDB.PRICE + ")" +
                         " from " + Contract.CheckListDB.TABLE + " cl" +
-                        " left join " + Contract.ListOfferDB.TABLE + " lo on lo." + Contract.ListOfferDB.LIST_ID + " = cl." + Contract.CheckListDB.ID +
-                        " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = lo." + Contract.ListOfferDB.OFFER_ID +
+                        " left join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.LIST_ID + " = cl." + Contract.CheckListDB.ID +
+                        " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = lo." + Contract.OfferItemDB.OFFER_ID +
                         //  " left join " + Contract.ShopDB.TABLE + " s on s." + Contract.ShopDB.ID + " = o." + Contract.OfferDB.SHOP_ID +
                         " where cl." + Contract.CheckListDB.ID + " = ?" +
                         " group by cl." + Contract.CheckListDB.ID + " ASC;"
@@ -70,8 +70,8 @@ public class CartDataSource {
                         " ,count( distinct o." + Contract.OfferDB.SHOP_ID + " )" +
                         " ,sum(  o." + Contract.OfferDB.PRICE + ")" +
                         " from " + Contract.CheckListDB.TABLE + " cl" +
-                        " left join " + Contract.ListOfferDB.TABLE + " lo on lo." + Contract.ListOfferDB.LIST_ID + " = cl." + Contract.CheckListDB.ID +
-                        " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = lo." + Contract.ListOfferDB.OFFER_ID +
+                        " left join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.LIST_ID + " = cl." + Contract.CheckListDB.ID +
+                        " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = lo." + Contract.OfferItemDB.OFFER_ID +
                         //  " left join " + Contract.ShopDB.TABLE + " s on s." + Contract.ShopDB.ID + " = o." + Contract.OfferDB.SHOP_ID +
                         " where cl." + Contract.CheckListDB.ID + " = ?" +
                         " group by cl." + Contract.CheckListDB.ID + " ASC;"
@@ -98,8 +98,8 @@ public class CartDataSource {
                         " ,count( distinct o." + Contract.OfferDB.SHOP_ID + " )" +
                         " ,sum(  o." + Contract.OfferDB.PRICE + ")" +
                         " from " + Contract.CheckListDB.TABLE + " cl" +
-                        " left join " + Contract.ListOfferDB.TABLE + " lo on lo." + Contract.ListOfferDB.LIST_ID + " = cl." + Contract.CheckListDB.ID +
-                        " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = lo." + Contract.ListOfferDB.OFFER_ID +
+                        " left join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.LIST_ID + " = cl." + Contract.CheckListDB.ID +
+                        " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = lo." + Contract.OfferItemDB.OFFER_ID +
                         " where cl." + Contract.CheckListDB.ID + " = ?" +
                         " group by cl." + Contract.CheckListDB.ID + " ASC;"
                 , new String[]{"0"});
@@ -125,8 +125,8 @@ public class CartDataSource {
                         " ,count( distinct o." + Contract.OfferDB.SHOP_ID + " )" +
                         " ,sum(  o." + Contract.OfferDB.PRICE + ")" +
                         " from " + Contract.CheckListDB.TABLE + " cl" +
-                        " left join " + Contract.ListOfferDB.TABLE + " lo on lo." + Contract.ListOfferDB.LIST_ID + " = cl." + Contract.CheckListDB.ID +
-                        " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = lo." + Contract.ListOfferDB.OFFER_ID +
+                        " left join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.LIST_ID + " = cl." + Contract.CheckListDB.ID +
+                        " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = lo." + Contract.OfferItemDB.OFFER_ID +
                         //  " left join " + Contract.ShopDB.TABLE + " s on s." + Contract.ShopDB.ID + " = o." + Contract.OfferDB.SHOP_ID +
                         " where cl." + Contract.CheckListDB.ID + " = ?" +
                         " group by cl." + Contract.CheckListDB.ID + " ASC;"

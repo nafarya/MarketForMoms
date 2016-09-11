@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.dan.mommarket.model.Cart;
 import com.example.dan.mommarket.model.Shop;
 
 import java.util.ArrayList;
@@ -43,14 +42,14 @@ public class ShopDataSource {
                         " ,s." + Contract.ShopDB.DELIVERY_TIME +
                         " ,s." + Contract.ShopDB.REFERENCE_COUNT +
                         " ,s." + Contract.ShopDB.RATE +
-                        " ,lo." + Contract.ListOfferDB.ID +
-                        " ,count( lo." + Contract.ListOfferDB.ID + " )" +
+                        " ,lo." + Contract.OfferItemDB.ID +
+                        " ,count( lo." + Contract.OfferItemDB.ID + " )" +
                         " ,sum(  o." + Contract.OfferDB.PRICE + ")" +
 
                         " from " + Contract.ShopDB.TABLE + " s" +
                         " join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.SHOP_ID + " = s." + Contract.ShopDB.ID +
-                        " join " + Contract.ListOfferDB.TABLE + " lo on lo." + Contract.ListOfferDB.OFFER_ID + " = o." + Contract.OfferDB.ID +
-                        " where lo." + Contract.ListOfferDB.LIST_ID + " = ?" +
+                        " join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.OFFER_ID + " = o." + Contract.OfferDB.ID +
+                        " where lo." + Contract.OfferItemDB.LIST_ID + " = ?" +
                         " group by s." + Contract.ShopDB.ID + " ASC;"
                 , new String[]{"0"});
 
