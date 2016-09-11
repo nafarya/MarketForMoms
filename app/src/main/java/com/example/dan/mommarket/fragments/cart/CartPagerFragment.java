@@ -18,7 +18,7 @@ import com.example.dan.mommarket.presenter.cart.CartPresenterImpl;
  * Created by dan on 10.09.16.
  */
 
-public class CartShopListFragment extends Fragment {
+public class CartPagerFragment extends Fragment {
 
     View view;
     TextView textTag;

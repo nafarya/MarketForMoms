@@ -8,12 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.example.dan.mommarket.R;
 import com.example.dan.mommarket.adapter.CartRootPagerAdapter;
 import com.example.dan.mommarket.adapter.CartShopListAdapter;
-import com.example.dan.mommarket.model.Cart;
 import com.example.dan.mommarket.model.Shop;
 import com.example.dan.mommarket.presenter.cart.CartPresenter;
 import com.example.dan.mommarket.presenter.cart.CartPresenterImpl;
@@ -29,7 +27,7 @@ public class CartRootFragment extends Fragment implements CartRoot {
     private View view;
     private ViewPager viewPager;
     private CartRootPagerAdapter cartRootPagerAdapter;
-    RecyclerView recyclerView;
+    RecyclerView shopListRecyclerView;
 
     CartPresenter cartPresenter;
 
@@ -38,7 +36,7 @@ public class CartRootFragment extends Fragment implements CartRoot {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_cart_root, container, false);
         viewPager = (ViewPager) view.findViewById(R.id.cart_root_view_pager);
-        recyclerView = (RecyclerView) view.findViewById(R.id.cart_root_rv);
+        shopListRecyclerView = (RecyclerView) view.findViewById(R.id.cart_root_rv);
 
         cartPresenter = CartPresenterImpl.getInstance();
         cartPresenter.setView(this);
@@ -72,8 +70,8 @@ public class CartRootFragment extends Fragment implements CartRoot {
     @Override
     public void showShopList(List<Shop> shopList) {
         CartShopListAdapter cartShopListAdapter = new CartShopListAdapter(shopList);
-        recyclerView.setAdapter(cartShopListAdapter);
-        recyclerView.requestLayout();
+        shopListRecyclerView.setAdapter(cartShopListAdapter);
+        shopListRecyclerView.requestLayout();
     }
 
 }

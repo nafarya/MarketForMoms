@@ -4,12 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.dan.mommarket.fragments.cart.CartShopListFragment;
+import com.example.dan.mommarket.fragments.cart.CartPagerFragment;
 
 /**
  * Created by dan on 09.09.16.
@@ -34,17 +32,17 @@ public class CartRootPagerAdapter extends FragmentStatePagerAdapter {
         Bundle bundle = new Bundle();
         switch (position) {
             case 0:
-                curFragment = new CartShopListFragment();
+                curFragment = new CartPagerFragment();
                 bundle.putInt("main_tag", 0);
                 curFragment.setArguments(bundle);
                 break;
             case 1:
-                curFragment = new CartShopListFragment();
+                curFragment = new CartPagerFragment();
                 bundle.putInt("main_tag", 1);
                 curFragment.setArguments(bundle);
                 break;
             case 2:
-                curFragment = new CartShopListFragment();
+                curFragment = new CartPagerFragment();
                 bundle.putInt("main_tag", 2);
                 curFragment.setArguments(bundle);
         }
