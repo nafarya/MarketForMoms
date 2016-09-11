@@ -77,11 +77,11 @@ public class ProductCardFragment extends Fragment implements ProductCard, OfferL
                 setAction("Перейти", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        productPresenter.addOffer(item);
-                        navigator.navigateToCatalog();
+                        navigator.navigateToCart();
                     }
                 });
         snackbar.setActionTextColor(Color.rgb(255, 222, 99));
         snackbar.show();
+        productPresenter.addOffer(item);
     }
 }

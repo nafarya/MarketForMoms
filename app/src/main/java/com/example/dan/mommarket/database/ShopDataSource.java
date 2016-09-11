@@ -32,7 +32,7 @@ public class ShopDataSource {
         return;
     }
 
-    public static List<Shop> getShopCartList() {
+    public static List<Shop> getShopCartList(int cartType) {
         database = dbHelper.getReadableDatabase();
         List<Shop> list = new ArrayList<>();
         Cursor cursor = database.rawQuery("select " +
@@ -44,8 +44,7 @@ public class ShopDataSource {
                         " ,s." + Contract.ShopDB.RATE +
                         " ,lo." + Contract.OfferItemDB.ID +
                         " ,count( lo." + Contract.OfferItemDB.ID + " )" +
-                        " ,sum(  o." + Contract.OfferDB.PRICE + ")" +
-
+                        " ,sum( o." + Contract.OfferDB.PRICE + ")" +
                         " from " + Contract.ShopDB.TABLE + " s" +
                         " join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.SHOP_ID + " = s." + Contract.ShopDB.ID +
                         " join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.OFFER_ID + " = o." + Contract.OfferDB.ID +
