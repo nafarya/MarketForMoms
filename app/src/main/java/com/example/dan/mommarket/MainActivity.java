@@ -24,6 +24,8 @@ import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.fragments.advice.AdviceDetailFragment;
 import com.example.dan.mommarket.fragments.advice.AdviceListFragment;
+import com.example.dan.mommarket.fragments.cart.CartRootFragment;
+import com.example.dan.mommarket.fragments.cart.CartShopListFragment;
 import com.example.dan.mommarket.fragments.category.CategoryFragment;
 import com.example.dan.mommarket.fragments.category.CategoryRootFragment;
 import com.example.dan.mommarket.fragments.category.SubCategoryFragment;
@@ -156,8 +158,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .replace(R.id.fragment_container, adviceListFragment)
                     .commit();
 
-        } else if (id == R.id.nav_basket) {
-
+        } else if (id == R.id.nav_cart) {
+            navigateToCart();
         } else if (id == R.id.nav_checklist) {
 
         } else if (id == R.id.nav_my_orders) {
@@ -282,5 +284,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         commit();
                 break;
         }
+    }
+
+    @Override
+    public void navigateToCart() {
+        CartRootFragment cartRootFragment= new CartRootFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, cartRootFragment).commit();
     }
 }
