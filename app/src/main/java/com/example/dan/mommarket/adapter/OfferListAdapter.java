@@ -32,25 +32,26 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
     public int getItemViewType(int position) {
         return position;
     }
+
     @Override
     public OfferListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view;
-        if (viewType==0){
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shop_list_item_first, parent, false);
-        }else if (viewType==1){
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shop_list_item_second, parent, false);
-        }else {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shop_list_item, parent, false);
-        }
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shop_list_item, parent, false);
         return new ViewHolder(view, listener);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        if (position == 0) {
+            holder.header_text.setText(R.string.best_offer);
+        } else if (position == 1) {
+            holder.header_text.setText(R.string.other_offers);
+        } else {
+            holder.header_text.setVisibility(View.GONE);
+        }
         Offer offer = offerList.get(position);
         holder.name.setText(offer.getShop().getName());
         holder.price.setText(String.valueOf(offer.getPrice()));
-        holder.fee.setText(String.valueOf(offer.getShop().getDeliveryPrice()));
+        holder.fee.setText(String.valueOf(offer.getShop().getDeliveryPrice()) + " Р");
         holder.date.setText(offer.getShop().getDeliveryTime());
     }
 
@@ -60,6 +61,7 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        private TextView header_text;
         private TextView name;
         private TextView date;
         private TextView fee;
@@ -69,6 +71,7 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
         public ViewHolder(View itemView, onAddToCartButtonClickListener listener) {
             super(itemView);
             this.listener = listener;
+            header_text = (TextView) itemView.findViewById(R.id.shop_list_header_text);
             name = (TextView) itemView.findViewById(R.id.shop_list_shop_name);
             date = (TextView) itemView.findViewById(R.id.shop_list_date);
             fee = (TextView) itemView.findViewById(R.id.shop_list_fee);
