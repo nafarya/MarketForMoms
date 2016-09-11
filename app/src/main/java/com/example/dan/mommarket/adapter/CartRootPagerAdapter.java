@@ -5,7 +5,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.dan.mommarket.fragments.cart.CartShopListFragment;
 
@@ -22,27 +24,39 @@ public class CartRootPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
+    public int getItemPosition(Object object) {
+        return super.getItemPosition(object);
+    }
+
+    @Override
     public Fragment getItem(int position) {
         Fragment curFragment = null;
         Bundle bundle = new Bundle();
         switch (position) {
             case 0:
                 curFragment = new CartShopListFragment();
-                bundle.putString("main_tag", "лучша цена");
+                bundle.putInt("main_tag", 0);
                 curFragment.setArguments(bundle);
                 break;
             case 1:
                 curFragment = new CartShopListFragment();
-                bundle.putString("main_tag", "ваш выбор");
+                bundle.putInt("main_tag", 1);
                 curFragment.setArguments(bundle);
                 break;
             case 2:
                 curFragment = new CartShopListFragment();
-                bundle.putString("main_tag", "быстрая доставка");
+                bundle.putInt("main_tag", 2);
                 curFragment.setArguments(bundle);
         }
         return  curFragment;
 
+    }
+
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        Log.i("pagerAdapter ", String.valueOf(position));
+        return super.instantiateItem(container, position);
     }
 
     @Override

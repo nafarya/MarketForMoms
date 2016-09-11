@@ -60,7 +60,7 @@ public class SQLiteHelper extends SQLiteOpenHelper implements Contract {
         sqLiteDatabase.execSQL(ShopDB.TABLE_CREATE);
         sqLiteDatabase.execSQL(UserDB.USER_TABLE_CREATE);
         sqLiteDatabase.execSQL(ImageDB.TABLE_CREATE);
-        sqLiteDatabase.execSQL(ListOfferDB.TABLE_CREATE);
+        sqLiteDatabase.execSQL(OfferItemDB.TABLE_CREATE);
         sqLiteDatabase.execSQL(ProductFeatureDB.TABLE_CREATE);
         sqLiteDatabase.execSQL(AdviceDB.TABLE_CREATE);
     }
@@ -77,7 +77,7 @@ public class SQLiteHelper extends SQLiteOpenHelper implements Contract {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ShopDB.TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + UserDB.TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ImageDB.TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ListOfferDB.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + OfferItemDB.TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ProductFeatureDB.TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + AdviceDB.TABLE);
         onCreate(sqLiteDatabase);

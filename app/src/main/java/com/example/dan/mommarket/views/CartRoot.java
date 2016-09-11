@@ -1,6 +1,7 @@
 package com.example.dan.mommarket.views;
 
 import com.example.dan.mommarket.model.Cart;
+import com.example.dan.mommarket.model.Shop;
 
 import java.util.List;
 
@@ -9,5 +10,6 @@ import java.util.List;
  */
 
 public interface CartRoot {
-    void showShopList(List<Cart> cartList);
+    void showCartPager();
+    void showShopList(List<Shop> shopList);
 }

@@ -35,7 +35,7 @@ public class OfferDataSource {
     public static List<Offer> getOffersByProductId(int productId) {
         database = dbHelper.getReadableDatabase();
         List<Offer> offerList = new ArrayList<>();
-        Cursor offerCursor = database.rawQuery("select " +
+        Cursor cursor = database.rawQuery("select " +
                         " o." + Contract.OfferDB.ID +
                         " ,o." + Contract.OfferDB.PRICE +
                         " ,s." + Contract.ShopDB.ID +
@@ -50,20 +50,20 @@ public class OfferDataSource {
                         " order by o." + Contract.OfferDB.PRICE + " ASC;"
                 , new String[]{Integer.toString(productId)});
 
-        offerCursor.moveToFirst();
-        while (!offerCursor.isAfterLast()) {
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
             offerList.add(new Offer(
-                    offerCursor.getInt(0),
-                    offerCursor.getInt(1),
-                    offerCursor.getInt(2),
-                    offerCursor.getString(3),
-                    offerCursor.getInt(4),
-                    offerCursor.getString(5),
-                    offerCursor.getInt(6),
-                    offerCursor.getInt(7)));
-            offerCursor.moveToNext();
+                    cursor.getInt(0),
+                    cursor.getInt(1),
+                    cursor.getInt(2),
+                    cursor.getString(3),
+                    cursor.getInt(4),
+                    cursor.getString(5),
+                    cursor.getInt(6),
+                    cursor.getInt(7)));
+            cursor.moveToNext();
         }
-        offerCursor.close();
+        cursor.close();
         return offerList;
     }
 
@@ -106,7 +106,7 @@ public class OfferDataSource {
     public static List<Offer> getOffersByShopIdAndCart(int shopId) {
         database = dbHelper.getReadableDatabase();
         List<Offer> offerList = new ArrayList<>();
-        Cursor offerCursor = database.rawQuery("select " +
+        Cursor cursor = database.rawQuery("select " +
                         " o." + Contract.OfferDB.ID +
                         " ,o." + Contract.OfferDB.PRICE +
                         " ,s." + Contract.ShopDB.ID +
@@ -121,40 +121,83 @@ public class OfferDataSource {
                         " order by o." + Contract.OfferDB.PRICE + " ASC;"
                 , new String[]{Integer.toString(shopId)});
 
-        offerCursor.moveToFirst();
-        while (!offerCursor.isAfterLast()) {
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
             offerList.add(new Offer(
-                    offerCursor.getInt(0),
-                    offerCursor.getInt(1),
-                    offerCursor.getInt(2),
-                    offerCursor.getString(3),
-                    offerCursor.getInt(4),
-                    offerCursor.getString(5),
-                    offerCursor.getInt(6),
-                    offerCursor.getInt(7)));
-            offerCursor.moveToNext();
+                    cursor.getInt(0),
+                    cursor.getInt(1),
+                    cursor.getInt(2),
+                    cursor.getString(3),
+                    cursor.getInt(4),
+                    cursor.getString(5),
+                    cursor.getInt(6),
+                    cursor.getInt(7)));
+            cursor.moveToNext();
         }
-        offerCursor.close();
+        cursor.close();
         return offerList;
     }
 
-    public static void addOfferToList(int offerId,int listId,float price){
+    public static void addOfferToList(int offerId, int listId, float price) {
         database = dbHelper.getReadableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(Contract.ListOfferDB.OFFER_ID, offerId);
-        cv.put(Contract.ListOfferDB.LIST_ID, listId);
-        cv.put(Contract.ListOfferDB.PRICE, price);
-        cv.put(Contract.ListOfferDB.COUNT, "1");
-        database.insert(Contract.ListOfferDB.TABLE, null, cv);
+        Cursor cursor = database.query(Contract.OfferItemDB.TABLE,
+                new String[]{Contract.OfferItemDB.ID, Contract.OfferItemDB.COUNT},
+                Contract.OfferItemDB.LIST_ID + " = ? AND " + Contract.OfferItemDB.OFFER_ID + " = ?",
+                new String[]{String.valueOf(listId), String.valueOf(offerId)},
+                null,
+                null,
+                null);
+        cursor.moveToFirst();
+        if (cursor.isAfterLast()) {
+            //нет записей
+            cv.put(Contract.OfferItemDB.OFFER_ID, offerId);
+            cv.put(Contract.OfferItemDB.LIST_ID, listId);
+            cv.put(Contract.OfferItemDB.PRICE, price);
+            cv.put(Contract.OfferItemDB.COUNT, "1");
+            database.insert(Contract.OfferItemDB.TABLE, null, cv);
+        } else {
+            //есть записи
+            cv.put(Contract.OfferItemDB.PRICE, price);
+            cv.put(Contract.OfferItemDB.COUNT, String.valueOf(cursor.getInt(1)+1));
+            database.update(Contract.OfferItemDB.TABLE,
+                    cv,
+                    Contract.OfferItemDB.ID + " = ?" ,
+                    new String[]{String.valueOf(cursor.getInt(0))});
+        }
     }
 
-    public static void updateOfferToList(int offerId,int listId,float price,int count){
+    public static void deleteOfferFromList(int offerId, int listId,boolean all) {
         database = dbHelper.getReadableDatabase();
-        ContentValues cv = new ContentValues();
-     //   cv.put(Contract.ListOfferDB.OFFER_ID, offerId);
-     //   cv.put(Contract.ListOfferDB.LIST_ID, listId);
-        cv.put(Contract.ListOfferDB.PRICE, price);
-        cv.put(Contract.ListOfferDB.COUNT, count);
-        database.update(Contract.ListOfferDB.TABLE, cv, Contract.ListOfferDB.LIST_ID +" = ? AND "+Contract.ListOfferDB.OFFER_ID +" = ?",new String[]{String.valueOf(listId),String.valueOf(offerId)});
+        if (all){
+            database.delete(Contract.OfferItemDB.TABLE,
+                    Contract.OfferItemDB.LIST_ID + " = ? AND " + Contract.OfferItemDB.OFFER_ID + " = ?",
+                    new String[]{String.valueOf(listId), String.valueOf(offerId)});
+        }else{
+            ContentValues cv = new ContentValues();
+            Cursor cursor = database.query(Contract.OfferItemDB.TABLE,
+                    new String[]{Contract.OfferItemDB.ID, Contract.OfferItemDB.COUNT},
+                    Contract.OfferItemDB.LIST_ID + " = ? AND " + Contract.OfferItemDB.OFFER_ID + " = ?",
+                    new String[]{String.valueOf(listId), String.valueOf(offerId)},
+                    null,
+                    null,
+                    null);
+            cursor.moveToFirst();
+            if (!cursor.isAfterLast()) {
+                if (cursor.getInt(1)==1){
+                    database.delete(Contract.OfferItemDB.TABLE,
+                            Contract.OfferItemDB.LIST_ID + " = ? AND " + Contract.OfferItemDB.OFFER_ID + " = ?",
+                            new String[]{String.valueOf(listId), String.valueOf(offerId)});
+                }else {
+                    cv.put(Contract.OfferItemDB.COUNT, String.valueOf(cursor.getInt(1)-1));
+                    database.update(Contract.OfferItemDB.TABLE,
+                            cv,
+                            Contract.OfferItemDB.ID + " = ?" ,
+                            new String[]{String.valueOf(cursor.getInt(0))});
+                }
+            }
+        }
     }
+
+
 }
