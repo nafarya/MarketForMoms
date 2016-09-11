@@ -140,6 +140,7 @@ public interface Contract {
         public static final String NAME = "NAME";
         public static final String RATE = "RATE";
         public static final String DELIVERY_TIME = "DELIVERY_TIME";
+        public static final String DELIVERY_TIME_FLOAT = "DELIVERY_TIME_FLOAT";
         public static final String DELIVERY_PRICE = "DELIVERY_PRICE";
         public static final String REFERENCE_COUNT = "REFERENCE_COUNT";
 
@@ -147,6 +148,7 @@ public interface Contract {
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 NAME + " TEXT NOT NULL, " +
                 DELIVERY_TIME + " TEXT, " +
+                DELIVERY_TIME_FLOAT + " REAL, " +
                 DELIVERY_PRICE + " INTEGER, " +
                 REFERENCE_COUNT + " INTEGER, " +
                 RATE + " REAL );";

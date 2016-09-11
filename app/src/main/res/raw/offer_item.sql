@@ -1,4 +1,4 @@
-Insert into LIST_OFFER (_ID,LIST_ID,OFFER_ID,PRICE) Values
+Insert into OFFER_ITEM (_ID,LIST_ID,OFFER_ID,PRICE) Values
 (1,1,2,1111),
 (2,1,5,500),
 (3,1,10,411),

@@ -68,7 +68,7 @@ public class CartDataSource {
                         " cl." + Contract.CheckListDB.ID +
                         " ,cl." + Contract.CheckListDB.NAME +
                         " ,count( distinct o." + Contract.OfferDB.SHOP_ID + " )" +
-                        " ,sum(  o." + Contract.OfferDB.PRICE + ")" +
+                        " ,sum(  o." + Contract.OfferDB.PRICE + ") " +
                         " from " + Contract.CheckListDB.TABLE + " cl" +
                         " left join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.LIST_ID + " = cl." + Contract.CheckListDB.ID +
                         " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = lo." + Contract.OfferItemDB.OFFER_ID +

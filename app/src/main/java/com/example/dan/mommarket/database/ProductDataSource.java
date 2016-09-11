@@ -113,9 +113,9 @@ public class ProductDataSource {
                 " left join " + Contract.ProductFeatureDB.TABLE + " cpf on cpf." + Contract.ProductFeatureDB.FEATURE_ID + "= c." + Contract.ProductCategoryDB.CARD_FEATURE_ID + " " +
                         " AND cpf." + Contract.ProductFeatureDB.PRODUCT_ID + " = p." + Contract.ProductDB.ID +
                 " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.PRODUCT_ID + "=p." + Contract.ProductDB.ID +
-                " left join " + Contract.ListOfferDB.TABLE + " lo on lo." + Contract.ListOfferDB.OFFER_ID + "=o." + Contract.OfferDB.ID +
+                " left join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.OFFER_ID + "=o." + Contract.OfferDB.ID +
                 " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ITEM_ID + "=p." + Contract.ProductDB.ID +
-                " Where lo." + Contract.ListOfferDB.LIST_ID + "=?" +
+                " Where lo." + Contract.OfferItemDB.LIST_ID + "=?" +
                 " group by p." + Contract.ProductDB.ID + ";", new String[]{Integer.toString(listId)});
         productCursor.moveToFirst();
         while (!productCursor.isAfterLast()) {
@@ -181,7 +181,7 @@ public class ProductDataSource {
                 " left join " + Contract.ProductFeatureDB.TABLE + " cpf on cpf." + Contract.ProductFeatureDB.FEATURE_ID + "= c." + Contract.ProductCategoryDB.CARD_FEATURE_ID + " " +
                     " AND cpf." + Contract.ProductFeatureDB.PRODUCT_ID + " = p." + Contract.ProductDB.ID +
                 " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.PRODUCT_ID + "=p." + Contract.ProductDB.ID +
-                " left join " + Contract.ListOfferDB.TABLE + " lo on lo." + Contract.ListOfferDB.OFFER_ID + "=o." + Contract.OfferDB.ID +
+                " left join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.OFFER_ID + "=o." + Contract.OfferDB.ID +
                 " left join " + Contract.ProductFeatureDB.TABLE + " pf on pf." + Contract.ProductFeatureDB.PRODUCT_ID + "=p." + Contract.ProductDB.ID +
                 " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ITEM_ID + "=i." + Contract.ProductDB.ID +
                 " Where " + whereClause +
