@@ -48,8 +48,9 @@ public class OfferItemDataSource {
                         " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = oi." + Contract.OfferItemDB.OFFER_ID +
                         " left join " + Contract.ProductDB.TABLE + " p on p." + Contract.ProductDB.ID + " = o." + Contract.OfferDB.PRODUCT_ID +
                         " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ITEM_ID + " = p." + Contract.ProductDB.ID +
-                        " where o." + Contract.OfferItemDB.LIST_ID + " = ?" +
-                        " group by o." + Contract.OfferItemDB.ID + " ;"
+                        " where oi." + Contract.OfferItemDB.LIST_ID + " = ?" +
+                        " AND o." + Contract.OfferDB.SHOP_ID + " = ?" +
+                        " group by oi." + Contract.OfferItemDB.ID + " ;"
                 , new String[]{"0", String.valueOf(shopId)});
 
         cursor.moveToFirst();
