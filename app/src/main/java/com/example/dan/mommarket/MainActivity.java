@@ -21,6 +21,7 @@ import com.example.dan.mommarket.database.AdviceDataSource;
 import com.example.dan.mommarket.database.CartDataSource;
 import com.example.dan.mommarket.database.CategoryDataSource;
 import com.example.dan.mommarket.database.OfferDataSource;
+import com.example.dan.mommarket.database.OfferItemDataSource;
 import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.SQLiteHelper;
 import com.example.dan.mommarket.database.ShopDataSource;
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         OfferDataSource.getInstance().setDatabase(this);
         ShopDataSource.getInstance().setDatabase(this);
         CartDataSource.getInstance().setDatabase(this);
+        OfferItemDataSource.getInstance().setDatabase(this);
 
         MainScreenFragment mainScreenView = new MainScreenFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainScreenView).commit();
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     void insertDataToDB(SQLiteDatabase db) {
         dbHelper.insertFakeData(db, this, R.raw.check_list);
         dbHelper.insertFakeData(db, this, R.raw.feature);
-        dbHelper.insertFakeData(db, this, R.raw.list_offer);
+        dbHelper.insertFakeData(db, this, R.raw.offer_item);
         dbHelper.insertFakeData(db, this, R.raw.offer);
         dbHelper.insertFakeData(db, this, R.raw.product);
         dbHelper.insertFakeData(db, this, R.raw.product_category);

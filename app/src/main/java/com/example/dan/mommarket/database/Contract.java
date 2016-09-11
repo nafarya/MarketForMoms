@@ -140,6 +140,7 @@ public interface Contract {
         public static final String NAME = "NAME";
         public static final String RATE = "RATE";
         public static final String DELIVERY_TIME = "DELIVERY_TIME";
+        public static final String DELIVERY_TIME_FLOAT = "DELIVERY_TIME_FLOAT";
         public static final String DELIVERY_PRICE = "DELIVERY_PRICE";
         public static final String REFERENCE_COUNT = "REFERENCE_COUNT";
 
@@ -147,6 +148,7 @@ public interface Contract {
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 NAME + " TEXT NOT NULL, " +
                 DELIVERY_TIME + " TEXT, " +
+                DELIVERY_TIME_FLOAT + " REAL, " +
                 DELIVERY_PRICE + " INTEGER, " +
                 REFERENCE_COUNT + " INTEGER, " +
                 RATE + " REAL );";
@@ -164,8 +166,8 @@ public interface Contract {
                 URL + " TEXT );";
     }
 
-    final class ListOfferDB {
-        public static final String TABLE = "LIST_OFFER";
+    final class OfferItemDB {
+        public static final String TABLE = "OFFER_ITEM";
         public static final String ID = "_ID";
         public static final String LIST_ID = "LIST_ID";
         public static final String OFFER_ID = "OFFER_ID";

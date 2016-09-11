@@ -58,6 +58,10 @@ public class Shop {
         this.productCartSum = productCartSum;
     }
 
+    public Shop(int id) {
+        this.id=id;
+    }
+
     public int getReferenceCount() {
         return referenceCount;
     }

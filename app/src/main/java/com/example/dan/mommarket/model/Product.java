@@ -40,6 +40,11 @@ public class Product {
         this.cardFeatureValue = cardFeatureValue;
     }
 
+    public Product(int productId, String productName, String productImageUrl) {
+        this.name = name;
+        this.productId = productId;
+    }
+
     public List<String> getImages() {
         return images;
     }
