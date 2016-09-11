@@ -41,8 +41,10 @@ public class Product {
     }
 
     public Product(int productId, String productName, String productImageUrl) {
-        this.name = name;
+        this.name = productName;
         this.productId = productId;
+        images = new LinkedList<>();
+        images.add(productImageUrl);
     }
 
     public List<String> getImages() {

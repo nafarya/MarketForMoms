@@ -6,7 +6,6 @@ Insert into OFFER_ITEM (_ID,LIST_ID,OFFER_ID,PRICE) Values
 (5,2,5,661),
 (6,2,10,666),
 (7,2,4,777),
-
 (8,0,5,661),
 (9,0,10,666),
 (10,0,4,777),
