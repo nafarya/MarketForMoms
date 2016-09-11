@@ -9,6 +9,6 @@ import java.util.List;
  * Created by dan on 09.09.16.
  */
 
-public interface CartRoot {
-    void showShopList(List<Shop> shopList);
+public interface CartPager {
+    void showCart(Cart cart);
 }

@@ -1,8 +1,8 @@
 package com.example.dan.mommarket.presenter.cart;
 
 import android.os.Bundle;
-import android.view.View;
 
+import com.example.dan.mommarket.views.CartPager;
 import com.example.dan.mommarket.views.CartRoot;
 
 /**
@@ -12,9 +12,15 @@ import com.example.dan.mommarket.views.CartRoot;
 public interface CartPresenter {
     void onCreateView(Bundle savedInstanceState);
 
+    void onCreatePagerView(Bundle savedInstanceState);
+
     void setView(CartRoot cartRoot);
 
+    void setPagerView(CartPager cartPager);
+
     void refreshShopList(int tag);
+
+    void refreshCartPager(int tag);
 
     void removeView();
 }

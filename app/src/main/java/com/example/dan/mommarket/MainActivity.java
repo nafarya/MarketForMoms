@@ -290,6 +290,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void navigateToCart() {
         CartRootFragment cartRootFragment= new CartRootFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("CartType", 1);
+        cartRootFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, cartRootFragment).commit();
     }
 }
