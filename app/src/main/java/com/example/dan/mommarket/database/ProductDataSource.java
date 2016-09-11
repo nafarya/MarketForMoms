@@ -45,7 +45,7 @@ public class ProductDataSource {
         Cursor productCursor = database.rawQuery("select " +
                 " p." + Contract.ProductDB.ID +
                 " ,p." + Contract.ProductDB.NAME +
-                " ,avg(o." + Contract.OfferDB.PRICE + ")" +
+                " ,min(o." + Contract.OfferDB.PRICE + ")" +
                 " ,p." + Contract.ProductDB.DESCRIPTION +
                 " ,c." + Contract.ProductCategoryDB.ID + " CATEGORY_ID" +
                 " ,c." + Contract.ProductCategoryDB.NAME + " CATEGORY_NAME" +
@@ -73,11 +73,11 @@ public class ProductDataSource {
         Cursor productCursor = database.rawQuery("select " +
                 " p." + Contract.ProductDB.ID +
                 " ,p." + Contract.ProductDB.NAME +
-                " ,avg(o." + Contract.OfferDB.PRICE + ") " + Contract.OfferDB.PRICE +
+                " ,min(o." + Contract.OfferDB.PRICE + ") " + Contract.OfferDB.PRICE +
                 " ,p." + Contract.ProductDB.DESCRIPTION +
                 " ,c." + Contract.ProductCategoryDB.ID + " CATEGORY_ID" +
                 " ,c." + Contract.ProductCategoryDB.NAME + " CATEGORY_NAME" +
-                " ,max(i." + Contract.ImageDB.URL + ") URL" +
+                " ,min(i." + Contract.ImageDB.URL + ") URL" +
                 " ,max(cpf." + Contract.ProductFeatureDB.VALUE + ") " +
                 " from " + Contract.ProductDB.TABLE + " p" +
                 " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.ID + "= p." + Contract.ProductDB.CATEGORY_ID + " " +
@@ -106,7 +106,7 @@ public class ProductDataSource {
                 " ,p." + Contract.ProductDB.DESCRIPTION +
                 " ,c." + Contract.ProductCategoryDB.ID + " CATEGORY_ID" +
                 " ,c." + Contract.ProductCategoryDB.NAME + " CATEGORY_NAME" +
-                " ,max(i." + Contract.ImageDB.URL + ") URL" +
+                " ,min(i." + Contract.ImageDB.URL + ") URL" +
                 " ,max(cpf." + Contract.ProductFeatureDB.VALUE + ") " +
                 " from " + Contract.ProductDB.TABLE + " p" +
                 " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.ID + "= p." + Contract.ProductDB.CATEGORY_ID + " " +
@@ -132,11 +132,11 @@ public class ProductDataSource {
         Cursor productCursor = database.rawQuery("select " +
                 " p." + Contract.ProductDB.ID +
                 " ,p." + Contract.ProductDB.NAME +
-                " ,avg(o." + Contract.OfferDB.PRICE + ")" +
+                " ,min(o." + Contract.OfferDB.PRICE + ")" +
                 " ,p." + Contract.ProductDB.DESCRIPTION +
                 " ,c." + Contract.ProductCategoryDB.ID + " CATEGORY_ID" +
                 " ,c." + Contract.ProductCategoryDB.NAME + " CATEGORY_NAME" +
-                " ,max(i." + Contract.ImageDB.URL + ") URL" +
+                " ,min(i." + Contract.ImageDB.URL + ") URL" +
                 " ,max(cpf." + Contract.ProductFeatureDB.VALUE + ") " +
                 " from " + Contract.ProductDB.TABLE + " p" +
                 " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.ID + "= p." + Contract.ProductDB.CATEGORY_ID + " " +
@@ -174,7 +174,7 @@ public class ProductDataSource {
                 " ,p." + Contract.ProductDB.DESCRIPTION +
                 " ,c." + Contract.ProductCategoryDB.ID + " CATEGORY_ID" +
                 " ,c." + Contract.ProductCategoryDB.NAME + " CATEGORY_NAME" +
-                " ,max(i." + Contract.ImageDB.URL + ") URL" +
+                " ,min(i." + Contract.ImageDB.URL + ") URL" +
                 " ,max(cpf." + Contract.ProductFeatureDB.VALUE + ") " +
                 " from " + Contract.ProductDB.TABLE + " p" +
                 " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.ID + "= p." + Contract.ProductDB.CATEGORY_ID + " " +

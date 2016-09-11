@@ -12,7 +12,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/shop_list_price_id"
+            android:id="@+id/shop_list_price"
             android:textColor="#e5000000"
             android:text="249 Р"
             android:textSize="20sp"
@@ -22,7 +22,7 @@
         <ImageView
             android:layout_width="18dp"
             android:layout_height="18dp"
-            android:layout_below="@id/shop_list_price_id"
+            android:layout_below="@id/shop_list_price"
             android:id="@+id/delivery_icon"
             android:src="@drawable/ic_delivery_car_24dp"
             android:layout_marginLeft="16dp"
@@ -31,9 +31,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/shop_list_price_id"
+            android:layout_below="@id/shop_list_price"
             android:layout_toRightOf="@id/delivery_icon"
-            android:id="@+id/shop_list_date_id"
+            android:id="@+id/shop_list_date"
             android:text="26 августа"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="8dp"/>
@@ -42,9 +42,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/shop_list_price_id"
-            android:layout_toRightOf="@id/shop_list_date_id"
-            android:id="@+id/shop_list_fee_id"
+            android:layout_below="@id/shop_list_price"
+            android:layout_toRightOf="@id/shop_list_date"
+            android:id="@+id/shop_list_fee"
             android:text="бесплатно"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="8dp"/>
