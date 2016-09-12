@@ -196,19 +196,47 @@ public interface Contract {
                 VALUE + " TEXT );";
 
     }
+
     final class AdviceDB {
         public static final String TABLE = "ADVICE";
         public static final String ID = "_ID";
         public static final String NAME = "NAME";
         public static final String SHORT_DESC = "SHORT_DESC";
         public static final String DESCRIPTION = "DESCRIPTION";
-        public static final String IMAGE_ID = "IMAGE_ID";
+        public static final String IMAGE = "IMAGE";
+        public static final String IMAGE_0 = "IMAGE_0";
+        public static final String AUTHOR_NAME = "AUTHOR_NAME";
+        public static final String AUTHOR_TEXT = "AUTHOR_TEXT";
+        public static final String AUTHOR_IMAGE = "AUTHOR_IMAGE";
+        public static final String TEXT_0 = "TEXT_0";
+        public static final String HEADER_1 = "HEADER_1";
+        public static final String TEXT_1 = "TEXT_1";
+        public static final String IMAGE_1 = "IMAGE_1";
+        public static final String HEADER_2 = "HEADER_2";
+        public static final String TEXT_2 = "TEXT_2";
+        public static final String CATEGORY_1 = "CATEGORY_1";
+        public static final String CATEGORY_2 = "CATEGORY_2";
+        public static final String CATEGORY_3 = "CATEGORY_3";
+
 
         public static final String TABLE_CREATE = "create table " + TABLE + " (" +
                 ID + " INTEGER, " +
                 NAME + " TEXT NOT NULL, " +
                 SHORT_DESC + " TEXT, " +
                 DESCRIPTION + " TEXT, " +
-                IMAGE_ID + " INTEGER);";
+                IMAGE + " TEXT, " +
+                IMAGE_0 + " TEXT, " +
+                AUTHOR_NAME + " TEXT, " +
+                AUTHOR_TEXT + " TEXT, " +
+                AUTHOR_IMAGE + " TEXT, " +
+                TEXT_0 + " TEXT, " +
+                HEADER_1 + " TEXT, " +
+                TEXT_1 + " TEXT, " +
+                IMAGE_1 + " TEXT, " +
+                HEADER_2 + " TEXT, " +
+                TEXT_2 + " TEXT, " +
+                CATEGORY_1 + " INTEGER, " +
+                CATEGORY_2 + " INTEGER, " +
+                CATEGORY_3 + " INTEGER " + ");";
     }
 }
