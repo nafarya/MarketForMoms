@@ -29,8 +29,8 @@ public class OrderDeliveryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.order_delivery_main, container, false);
-        tabLayout = (TabLayout) view.findViewById(R.id.delivery_chose);
-        viewPager = (ViewPager) view.findViewById(R.id.delivery_viewpager);
+//        tabLayout = (TabLayout) view.findViewById(R.id.delivery_chose);
+//        viewPager = (ViewPager) view.findViewById(R.id.delivery_viewpager);
         nextButton = (TextView) view.findViewById(R.id.delivery_next);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,9 +38,9 @@ public class OrderDeliveryFragment extends Fragment {
                 navigator.navigateToOrder(2);
             }
         });
-        orderDeliveryPageAdapter = new OrderDeliveryPageAdapter(getChildFragmentManager());
-        viewPager.setAdapter(orderDeliveryPageAdapter);
-        tabLayout.setupWithViewPager(viewPager);
+ //       orderDeliveryPageAdapter = new OrderDeliveryPageAdapter(getChildFragmentManager());
+//        viewPager.setAdapter(orderDeliveryPageAdapter);
+//        tabLayout.setupWithViewPager(viewPager);
         return view;
     }
 
