@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/anothergray">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
@@ -12,17 +12,32 @@
         android:layout_alignParentTop="true"
         android:id="@+id/cart_root_rv"
         app:layoutManager="LinearLayoutManager"
-        android:layout_above="@+id/cart_root_view_pager">
+        android:layout_above="@+id/cart_root_view_pager"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="24dp">
     </android.support.v7.widget.RecyclerView>
 
 
-    <android.support.v4.view.ViewPager
-        android:layout_width="248dp"
-        android:layout_height="104dp"
-        android:id="@+id/cart_root_view_pager"
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/go_to_order"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:background="@color/colorPrimary"
+        android:id="@+id/go_to_order_button"/>
 
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        android:layout_marginBottom="8dp"
+        android:clipToPadding="false"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:id="@+id/cart_root_view_pager"
+        android:layout_above="@+id/go_to_order_button"
+        android:layout_centerHorizontal="true">
     </android.support.v4.view.ViewPager>
 
 </RelativeLayout>
