@@ -41,7 +41,7 @@ public class CartPagerFragment extends Fragment  implements CartPager {
     public void showCart(Cart cart) {
         this.cart = cart;
         ((TextView) view.findViewById(R.id.cart_shop_name)).setText(cart.getName());
-        ((TextView) view.findViewById(R.id.cart_shop_shop_count)).setText(String.valueOf(cart.getShopsCount()));
+        ((TextView) view.findViewById(R.id.cart_shop_shop_count)).setText("Из " + String.valueOf(cart.getShopsCount()) + " магазинов");
         ((TextView) view.findViewById(R.id.cart_shop_sum)).setText(String.valueOf(cart.getSum()));
     }
 }

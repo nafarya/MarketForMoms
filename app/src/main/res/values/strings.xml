@@ -53,6 +53,12 @@
     <string name="best_offer">лучшее предложение</string>
     <string name="addToCart">В корзину</string>
     <string name="other_offers">другие предложения</string>
+    <string name="go_to_order">перейти к оформлению</string>
+    <string name="final_cost">Итого</string>
+    <string name="final_cost_with_delivery">с учетом доставки</string>
+    <string name="delivery_cost_free">бесплатно</string>
+    <string name="delivery_date_tommorow">завтра</string>
+    <string name="two_products">2 продукта</string>
     <string-array name="delivery_pickup">
         <item>Главный магазин</item>
         <item>Магазин 2</item>

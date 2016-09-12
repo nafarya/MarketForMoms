@@ -59,13 +59,13 @@ public class ShopDataSource {
                         " ,s." + Contract.ShopDB.DELIVERY_TIME +
                         " ,s." + Contract.ShopDB.REFERENCE_COUNT +
                         " ,s." + Contract.ShopDB.RATE +
-                        " ,lo." + Contract.OfferItemDB.LIST_ID +
-                        " ,count( lo." + Contract.OfferItemDB.ID + " ) + s." + Contract.ShopDB.DELIVERY_PRICE +
-                        " ,sum( o." + Contract.OfferDB.PRICE + ")" +
+                        " ,oi." + Contract.OfferItemDB.LIST_ID +
+                        " ,count( oi." + Contract.OfferItemDB.ID + " )" +
+                        " ,sum( o." + Contract.OfferDB.PRICE + " * oi." + Contract.OfferItemDB.COUNT + ") + s." + Contract.ShopDB.DELIVERY_PRICE +
                         " from " + Contract.ShopDB.TABLE + " s" +
                         " join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.SHOP_ID + " = s." + Contract.ShopDB.ID +
-                        " join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.OFFER_ID + " = o." + Contract.OfferDB.ID +
-                        " where lo." + Contract.OfferItemDB.LIST_ID + " = ?" +
+                        " join " + Contract.OfferItemDB.TABLE + " oi on oi." + Contract.OfferItemDB.OFFER_ID + " = o." + Contract.OfferDB.ID +
+                        " where oi." + Contract.OfferItemDB.LIST_ID + " = ?" +
                         " group by s." + Contract.ShopDB.ID + ";"
                 , new String[]{String.valueOf(checkListId)});
 
@@ -97,15 +97,15 @@ public class ShopDataSource {
                         " ,sBest." + Contract.ShopDB.DELIVERY_TIME +
                         " ,sBest." + Contract.ShopDB.REFERENCE_COUNT +
                         " ,sBest." + Contract.ShopDB.RATE +
-                        " ,lo." + Contract.OfferItemDB.LIST_ID +
-                        " ,count( lo." + Contract.OfferItemDB.ID + " )" +
-                        " ,sum( oBest." + Contract.OfferDB.PRICE + ")+ sBest." + Contract.ShopDB.DELIVERY_PRICE +
+                        " ,oi." + Contract.OfferItemDB.LIST_ID +
+                        " ,count( oi." + Contract.OfferItemDB.ID + " )" +
+                        " ,sum( oBest." + Contract.OfferDB.PRICE + " * oi." + Contract.OfferItemDB.COUNT + ") + sBest." + Contract.ShopDB.DELIVERY_PRICE +
                         " from " + Contract.ShopDB.TABLE + " s" +
                         " join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.SHOP_ID + " = s." + Contract.ShopDB.ID +
-                        " join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.OFFER_ID + " = o." + Contract.OfferDB.ID +
+                        " join " + Contract.OfferItemDB.TABLE + " oi on oi." + Contract.OfferItemDB.OFFER_ID + " = o." + Contract.OfferDB.ID +
                         " join " + Contract.OfferDB.TABLE + " oBest on oBest." + Contract.OfferDB.PRODUCT_ID + " = o." + Contract.OfferDB.PRODUCT_ID +
                         " join " + Contract.ShopDB.TABLE + " sBest on sBest." + Contract.ShopDB.ID + " = oBest." + Contract.OfferDB.SHOP_ID +
-                        " where lo." + Contract.OfferItemDB.LIST_ID + " = ? AND" +
+                        " where oi." + Contract.OfferItemDB.LIST_ID + " = ? AND" +
                         " oBest." + Contract.OfferDB.ID + " IN (SELECT ob." + Contract.OfferDB.ID +
                         " FROM " + Contract.OfferDB.TABLE + " ob " +
                         " WHERE ob." + Contract.OfferDB.PRODUCT_ID + " = oBest." + Contract.OfferDB.PRODUCT_ID +
@@ -142,15 +142,15 @@ public class ShopDataSource {
                         " ,sBest." + Contract.ShopDB.DELIVERY_TIME +
                         " ,sBest." + Contract.ShopDB.REFERENCE_COUNT +
                         " ,sBest." + Contract.ShopDB.RATE +
-                        " ,lo." + Contract.OfferItemDB.LIST_ID +
-                        " ,count( lo." + Contract.OfferItemDB.ID + " )" +
-                        " ,sum( oBest." + Contract.OfferDB.PRICE + ")+ sBest." + Contract.ShopDB.DELIVERY_PRICE +
+                        " ,oi." + Contract.OfferItemDB.LIST_ID +
+                        " ,count( oi." + Contract.OfferItemDB.ID + " )" +
+                        " ,sum( oBest." + Contract.OfferDB.PRICE + " * oi." + Contract.OfferItemDB.COUNT + ") + sBest." + Contract.ShopDB.DELIVERY_PRICE +
                         " from " + Contract.ShopDB.TABLE + " s" +
                         " join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.SHOP_ID + " = s." + Contract.ShopDB.ID +
-                        " join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.OFFER_ID + " = o." + Contract.OfferDB.ID +
+                        " join " + Contract.OfferItemDB.TABLE + " oi on oi." + Contract.OfferItemDB.OFFER_ID + " = o." + Contract.OfferDB.ID +
                         " join " + Contract.OfferDB.TABLE + " oBest on oBest." + Contract.OfferDB.PRODUCT_ID + " = o." + Contract.OfferDB.PRODUCT_ID +
                         " join " + Contract.ShopDB.TABLE + " sBest on sBest." + Contract.ShopDB.ID + " = oBest." + Contract.OfferDB.SHOP_ID +
-                        " where lo." + Contract.OfferItemDB.LIST_ID + " = ? AND" +
+                        " where oi." + Contract.OfferItemDB.LIST_ID + " = ? AND" +
                         " oBest." + Contract.OfferDB.SHOP_ID + " IN (SELECT sb." + Contract.ShopDB.ID +
                         " FROM " + Contract.ShopDB.TABLE + " sb " +
                         " join " + Contract.OfferDB.TABLE + " ob on ob." + Contract.OfferDB.SHOP_ID + " = sb." + Contract.ShopDB.ID +

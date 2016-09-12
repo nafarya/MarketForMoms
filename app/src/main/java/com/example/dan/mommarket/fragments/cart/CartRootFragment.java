@@ -45,6 +45,7 @@ public class CartRootFragment extends Fragment implements CartRoot {
         cartRootPagerAdapter = new CartRootPagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(cartRootPagerAdapter);
         viewPager.setCurrentItem(1);
+        viewPager.setOffscreenPageLimit(2);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

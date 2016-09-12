@@ -85,7 +85,7 @@ public class CartDataSource {
                         " cart.ID" +
                         " ,cart.NAME" +
                         " ,count(cart.SHOP_ID)" +
-                        " ,sum(cart.SUM) + sum(" + Contract.ShopDB.DELIVERY_PRICE + ")" +
+                        " ,sum(cart.SUM) + sum( s." + Contract.ShopDB.DELIVERY_PRICE + ")" +
                         " from (select " +
                         " cl." + Contract.CheckListDB.ID + " id " +
                         " ,cl." + Contract.CheckListDB.NAME + " NAME" +
@@ -119,7 +119,7 @@ public class CartDataSource {
                         " cart.ID" +
                         " ,cart.NAME" +
                         " ,count(cart.SHOP_ID)" +
-                        " ,sum(cart.SUM) + sum(" + Contract.ShopDB.DELIVERY_PRICE + ")" +
+                        " ,sum(cart.SUM) + sum(s." + Contract.ShopDB.DELIVERY_PRICE + ")" +
                         " from (select " +
                         " cl." + Contract.CheckListDB.ID + " id " +
                         " ,cl." + Contract.CheckListDB.NAME + " NAME" +
@@ -159,7 +159,7 @@ public class CartDataSource {
                         " cart.ID" +
                         " ,cart.NAME" +
                         " ,count(cart.SHOP_ID)" +
-                        " ,sum(cart.SUM) + sum(" + Contract.ShopDB.DELIVERY_PRICE + ")" +
+                        " ,sum(cart.SUM) + sum(s." + Contract.ShopDB.DELIVERY_PRICE + ")" +
                         " from (select " +
                         " cl." + Contract.CheckListDB.ID + " id " +
                         " ,cl." + Contract.CheckListDB.NAME + " NAME" +
