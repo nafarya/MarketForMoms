@@ -29,10 +29,11 @@ public class CartPresenterImpl implements CartPresenter {
     public void onCreateView(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             cart = CartDataSource.getCart(1);
+            cartRoot.showShopList(ShopDataSource.getShopCartList(1),1);
         } else {
             cart = CartDataSource.getCart(savedInstanceState.getInt("CartType"));
+            cartRoot.showShopList(ShopDataSource.getShopCartList(savedInstanceState.getInt("CartType")),savedInstanceState.getInt("CartType"));
         }
-        cartRoot.showShopList(ShopDataSource.getShopCartList());
     }
 
     @Override
@@ -58,7 +59,7 @@ public class CartPresenterImpl implements CartPresenter {
     @Override
     public void refreshShopList(int tag) {
         cart = CartDataSource.getCart(tag);
-        cartRoot.showShopList(ShopDataSource.getShopCartList());
+        cartRoot.showShopList(ShopDataSource.getShopCartList(tag),tag);
     }
 
     @Override

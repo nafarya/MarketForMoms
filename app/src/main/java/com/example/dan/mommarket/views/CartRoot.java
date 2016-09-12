@@ -10,5 +10,5 @@ import java.util.List;
  */
 
 public interface CartRoot {
-    void showShopList(List<Shop> shopList);
+    void showShopList(List<Shop> shopList, int cartType);
 }
