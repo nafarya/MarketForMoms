@@ -5,9 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dan.mommarket.Navigator;
@@ -18,6 +20,7 @@ import com.example.dan.mommarket.model.Advice;
 import com.example.dan.mommarket.presenter.advice.AdviceDetailPresenter;
 import com.example.dan.mommarket.presenter.advice.AdviceDetailPresenterImpl;
 import com.example.dan.mommarket.views.AdviceDetail;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,18 +44,43 @@ public class AdviceDetailFragment extends Fragment implements AdviceDetail, Prod
 
     @Override
     public void showAdvice(Advice advice) {
+        Picasso.with(getContext()).load(advice.getImage0()).into((ImageView) view.findViewById(R.id.advice_image));
         ((TextView) view.findViewById(R.id.advice_detail_name)).setText(advice.getName());
+        Picasso.with(getContext()).load(advice.getAuthorImage()).into((ImageView) view.findViewById(R.id.author_photo));
+        ((TextView) view.findViewById(R.id.author_name)).setText(advice.getAuthorName());
+        ((TextView) view.findViewById(R.id.author_text)).setText(advice.getAuthorText());
+        ((TextView) view.findViewById(R.id.advice_text0)).setText(advice.getText0());
+        ((TextView) view.findViewById(R.id.advice_header1)).setText(advice.getHeader1());
+        ((TextView) view.findViewById(R.id.advice_text1)).setText(advice.getText1());
+        Picasso.with(getContext()).load(advice.getImage1()).into((ImageView) view.findViewById(R.id.advice_image1));
+        ((TextView) view.findViewById(R.id.advice_header2)).setText(advice.getHeader2());
+        ((TextView) view.findViewById(R.id.advice_text2)).setText(Html.fromHtml(advice.getText2()));
+        ((TextView) view.findViewById(R.id.product_category_button1).findViewById(R.id.polzunki_button_id)).setText(advice.getCategory1().getName());
+        ((TextView) view.findViewById(R.id.product_category_button2).findViewById(R.id.polzunki_button_id)).setText(advice.getCategory2().getName());
+        ((TextView) view.findViewById(R.id.product_category_button3).findViewById(R.id.polzunki_button_id)).setText(advice.getCategory3().getName());
     }
 
     @Override
-    public void showProducts(List<Product> productList) {
+    public void showProducts(List<Product> productList1,List<Product> productList2,List<Product> productList3) {
         List<Product> productListToShow = new ArrayList<>();
         for (int i = 0; i < productsToShow; i++) {
-            productListToShow.add(productList.get(i));
+            productListToShow.add(productList1.get(i));
         }
         adapter = new ProductListRVAdapter(productListToShow, getContext(), this);
         initProductsRV(productsRecyclerView1, adapter);
+
+        productListToShow = new ArrayList<>();
+        for (int i = 0; i < productsToShow; i++) {
+            productListToShow.add(productList2.get(i));
+        }
+        adapter = new ProductListRVAdapter(productListToShow, getContext(), this);
         initProductsRV(productsRecyclerView2, adapter);
+
+        productListToShow = new ArrayList<>();
+        for (int i = 0; i < productsToShow; i++) {
+            productListToShow.add(productList3.get(i));
+        }
+        adapter = new ProductListRVAdapter(productListToShow, getContext(), this);
         initProductsRV(productsRecyclerView3, adapter);
     }
 
