@@ -78,7 +78,7 @@ public class ProductCardFragment extends Fragment implements ProductCard, OfferL
                     @Override
                     public void onClick(View view) {
                         productPresenter.addOffer(item);
-                        navigator.navigateToCatalog();
+                        navigator.navigateToCart();
                     }
                 });
         snackbar.setActionTextColor(Color.rgb(255, 222, 99));
