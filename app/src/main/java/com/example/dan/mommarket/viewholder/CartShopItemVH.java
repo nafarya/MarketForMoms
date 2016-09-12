@@ -17,11 +17,11 @@ public class CartShopItemVH extends RecyclerView.ViewHolder {
     private TextView shopName;
     private RecyclerView recyclerView;
 
-    public CartShopItemVH (View itemView, int shopId) {
+    public CartShopItemVH (View itemView, int shopId, int cartType) {
         super(itemView);
         shopName = (TextView) itemView.findViewById(R.id.cart_shop_list_item_name);
         recyclerView = (RecyclerView) itemView.findViewById(R.id.cart_shop_list_item_rv);
-        CartShopOfferItemAdapter adapter = new CartShopOfferItemAdapter(OfferItemDataSource.getOfferItemsByShopIdAndCart(shopId));
+        CartShopOfferItemAdapter adapter = new CartShopOfferItemAdapter(OfferItemDataSource.getOfferItemsByShopIdAndCart(shopId,cartType));
         recyclerView.setAdapter(adapter);
     }
 

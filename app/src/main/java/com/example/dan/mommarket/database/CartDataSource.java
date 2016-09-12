@@ -135,7 +135,7 @@ public class CartDataSource {
                         " WHERE ob." + Contract.OfferDB.PRODUCT_ID + " = oBest." + Contract.OfferDB.PRODUCT_ID +
                         " ORDER BY " + Contract.OfferDB.PRICE + " ASC " +
                         " LIMIT 1)" +
-                        " group by o." + Contract.OfferDB.SHOP_ID + ") cart" +
+                        " group by oBest." + Contract.OfferDB.SHOP_ID + ") cart" +
                         " left join " + Contract.ShopDB.TABLE + " s on s." + Contract.ShopDB.ID + " = cart.SHOP_ID" +
                         " group by cart.ID" + ";"
                 , new String[]{"0"});

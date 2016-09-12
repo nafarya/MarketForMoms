@@ -53,8 +53,8 @@ public class CartRootFragment extends Fragment implements CartRoot {
 
             @Override
             public void onPageSelected(int position) {
-                cartPresenter.refreshShopList(position);
                 cartPresenter.refreshCartPager(position);
+                cartPresenter.refreshShopList(position);
             }
 
             @Override
@@ -65,33 +65,34 @@ public class CartRootFragment extends Fragment implements CartRoot {
 
         return view;
     }
-/*
+
+    /*
+        @Override
+        public void showCartPager() {
+            cartRootPagerAdapter = new CartRootPagerAdapter(getChildFragmentManager());
+            viewPager.setAdapter(cartRootPagerAdapter);
+            viewPager.setCurrentItem(1);
+            viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    cartPresenter.refreshShopList(position);
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
+        }
+    */
     @Override
-    public void showCartPager() {
-        cartRootPagerAdapter = new CartRootPagerAdapter(getChildFragmentManager());
-        viewPager.setAdapter(cartRootPagerAdapter);
-        viewPager.setCurrentItem(1);
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                cartPresenter.refreshShopList(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-    }
-*/
-    @Override
-    public void showShopList(List<Shop> shopList) {
-        CartShopListAdapter cartShopListAdapter = new CartShopListAdapter(shopList);
+    public void showShopList(List<Shop> shopList, int cartType) {
+        CartShopListAdapter cartShopListAdapter = new CartShopListAdapter(shopList, cartType);
         shopListRecyclerView.setAdapter(cartShopListAdapter);
         shopListRecyclerView.requestLayout();
     }
