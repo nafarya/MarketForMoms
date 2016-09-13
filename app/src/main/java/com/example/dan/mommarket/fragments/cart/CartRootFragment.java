@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.dan.mommarket.Navigator;
 import com.example.dan.mommarket.R;
 import com.example.dan.mommarket.adapter.CartRootPagerAdapter;
 import com.example.dan.mommarket.adapter.CartShopListAdapter;
@@ -27,7 +29,9 @@ public class CartRootFragment extends Fragment implements CartRoot {
     private View view;
     private ViewPager viewPager;
     private CartRootPagerAdapter cartRootPagerAdapter;
-    RecyclerView shopListRecyclerView;
+    private RecyclerView shopListRecyclerView;
+    private Navigator navigator;
+    private Button gotToOrderButton;
 
     CartPresenter cartPresenter;
 
@@ -64,6 +68,14 @@ public class CartRootFragment extends Fragment implements CartRoot {
             }
         });
 
+        gotToOrderButton = (Button) view.findViewById(R.id.go_to_order_button);
+        gotToOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigator.navigateToOrder(1);
+            }
+        });
+
         return view;
     }
 
@@ -96,6 +108,12 @@ public class CartRootFragment extends Fragment implements CartRoot {
         CartShopListAdapter cartShopListAdapter = new CartShopListAdapter(shopList, cartType);
         shopListRecyclerView.setAdapter(cartShopListAdapter);
         shopListRecyclerView.requestLayout();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        navigator = (Navigator) getActivity();
     }
 
 }
