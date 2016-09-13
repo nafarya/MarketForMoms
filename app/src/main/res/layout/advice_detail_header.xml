@@ -8,6 +8,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:id="@+id/advice_image"
         android:src="@drawable/ic_clothes_for_03_age" />
 
     <TextView
@@ -43,7 +44,7 @@
             android:src="@drawable/author_photo" />
 
         <TextView
-            android:id="@+id/author_text_name"
+            android:id="@+id/author_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -55,9 +56,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/author_text_name"
+            android:layout_below="@+id/author_name"
             android:layout_marginLeft="16dp"
             android:layout_toRightOf="@+id/author_photo"
+            android:id="@+id/author_text"
             android:text="@string/nataly_bortnikova_workplace"
             android:textColor="#80000000"
             android:textSize="14sp" />
@@ -74,6 +76,7 @@
 
     <TextView
         android:layout_width="match_parent"
+        android:id="@+id/advice_text0"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -88,6 +91,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="22dp"
+        android:id="@+id/advice_header1"
         android:text="@string/walk_with_child_header"
         android:textColor="#e5000000"
         android:textSize="20sp" />
@@ -98,6 +102,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
+        android:id="@+id/advice_text1"
         android:text="@string/walk_with_child"
         android:textColor="#e5000000"
         android:textSize="16sp" />
@@ -106,6 +111,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="43dp"
+        android:id="@+id/advice_image1"
         android:src="@drawable/ic_clothes_for_03_age1" />
 
     <TextView
@@ -114,6 +120,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="45dp"
+        android:id="@+id/advice_header2"
         android:text="@string/choose_clothes_header"
         android:textColor="#e5000000"
         android:textSize="20sp" />
@@ -125,6 +132,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="22dp"
         android:paddingBottom="35dp"
+        android:id="@+id/advice_text2"
+        android:maxLines="20"
         android:text="@string/choose_clothes"
         android:textColor="#e5000000"
         android:textSize="16dp" />

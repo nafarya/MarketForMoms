@@ -2,11 +2,11 @@ package com.example.dan.mommarket.presenter.advice;
 
 import android.os.Bundle;
 
-import com.example.dan.mommarket.database.ProductDataSource;
 import com.example.dan.mommarket.database.AdviceDataSource;
+import com.example.dan.mommarket.database.ProductDataSource;
+import com.example.dan.mommarket.fragments.advice.AdviceDetailFragment;
 import com.example.dan.mommarket.model.Advice;
 import com.example.dan.mommarket.views.AdviceDetail;
-import com.example.dan.mommarket.fragments.advice.AdviceDetailFragment;
 
 /**
  * Created by dan on 30.08.16.
@@ -29,16 +29,18 @@ public class AdviceDetailPresenterImpl implements AdviceDetailPresenter {
 
     @Override
     public void onCreateView(Bundle savedInstanceState) {
-        adviceDetail.showProducts(ProductDataSource.getListProductsByCategoryId(productCategoryId));
-        adviceDetail.showAdvice(AdviceDataSource.getAdviceById(1));
-
-       /* if (savedInstanceState == null) {
+        if (savedInstanceState == null) {
             advice = AdviceDataSource.getAdviceById(1);
-            this.adviceDetail.showAdvice(advice);
         } else {
             advice = AdviceDataSource.getAdviceById(savedInstanceState.getInt("AdviceId"));
-            this.adviceDetail.showAdvice(advice);
-        }*/
+        }
+
+        this.adviceDetail.showAdvice(advice);
+
+        adviceDetail.showProducts(ProductDataSource.getListProductsByCategoryId(advice.getCategory1().getId()),
+                ProductDataSource.getListProductsByCategoryId(advice.getCategory2().getId()),
+                ProductDataSource.getListProductsByCategoryId(advice.getCategory3().getId())
+        );
     }
 
     @Override
