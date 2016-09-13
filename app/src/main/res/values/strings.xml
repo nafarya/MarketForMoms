@@ -59,6 +59,7 @@
     <string name="delivery_cost_free">бесплатно</string>
     <string name="delivery_date_tommorow">завтра</string>
     <string name="two_products">2 продукта</string>
+    <string name="order_checkout">Оформить заказ</string>
     <string-array name="delivery_pickup">
         <item>Главный магазин</item>
         <item>Магазин 2</item>

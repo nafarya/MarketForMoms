@@ -9,6 +9,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,6 +40,7 @@ public class AdviceDetailFragment extends Fragment implements AdviceDetail, Prod
     private GridLayoutManager grid;
     private int spanCount = 2;
     private int productsToShow = 2;
+    private Button goToCatalog;
     Navigator navigator;
     View view;
 
@@ -102,6 +104,14 @@ public class AdviceDetailFragment extends Fragment implements AdviceDetail, Prod
         adviceDetailPresenter = AdviceDetailPresenterImpl.getInstance();
         adviceDetailPresenter.setView(this);
         adviceDetailPresenter.onCreateView(savedInstanceState != null ? savedInstanceState : this.getArguments());
+
+        goToCatalog = (Button) view.findViewById(R.id.advice_detail_go_to_category_button);
+        goToCatalog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigator.navigateToCatalog();
+            }
+        });
         return view;
     }
 
