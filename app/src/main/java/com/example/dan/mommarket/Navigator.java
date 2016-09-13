@@ -22,4 +22,8 @@ public interface Navigator {
 
     void navigateToCart();
 
+    void navigateToMainScreen();
+
+    void navigateToAdviceList();
+
 }

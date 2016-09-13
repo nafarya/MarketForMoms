@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.dan.mommarket.Navigator;
 import com.example.dan.mommarket.R;
 import com.example.dan.mommarket.adapter.CartRootPagerAdapter;
 import com.example.dan.mommarket.adapter.CartShopListAdapter;
@@ -27,7 +29,9 @@ public class CartRootFragment extends Fragment implements CartRoot {
     private View view;
     private ViewPager viewPager;
     private CartRootPagerAdapter cartRootPagerAdapter;
-    RecyclerView shopListRecyclerView;
+    private RecyclerView shopListRecyclerView;
+    private Navigator navigator;
+    private Button gotToOrderButton;
 
     CartPresenter cartPresenter;
 
@@ -54,47 +58,62 @@ public class CartRootFragment extends Fragment implements CartRoot {
 
             @Override
             public void onPageSelected(int position) {
-                cartPresenter.refreshShopList(position);
                 cartPresenter.refreshCartPager(position);
+                cartPresenter.refreshShopList(position);
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
 
+            }
+        });
+
+        gotToOrderButton = (Button) view.findViewById(R.id.go_to_order_button);
+        gotToOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigator.navigateToOrder(1);
             }
         });
 
         return view;
     }
-/*
+
+    /*
+        @Override
+        public void showCartPager() {
+            cartRootPagerAdapter = new CartRootPagerAdapter(getChildFragmentManager());
+            viewPager.setAdapter(cartRootPagerAdapter);
+            viewPager.setCurrentItem(1);
+            viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    cartPresenter.refreshShopList(position);
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
+        }
+    */
     @Override
-    public void showCartPager() {
-        cartRootPagerAdapter = new CartRootPagerAdapter(getChildFragmentManager());
-        viewPager.setAdapter(cartRootPagerAdapter);
-        viewPager.setCurrentItem(1);
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                cartPresenter.refreshShopList(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-    }
-*/
-    @Override
-    public void showShopList(List<Shop> shopList) {
-        CartShopListAdapter cartShopListAdapter = new CartShopListAdapter(shopList);
+    public void showShopList(List<Shop> shopList, int cartType) {
+        CartShopListAdapter cartShopListAdapter = new CartShopListAdapter(shopList, cartType);
         shopListRecyclerView.setAdapter(cartShopListAdapter);
         shopListRecyclerView.requestLayout();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        navigator = (Navigator) getActivity();
     }
 
 }

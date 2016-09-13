@@ -3,6 +3,7 @@ package com.example.dan.mommarket.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -63,6 +64,21 @@ public class SQLiteHelper extends SQLiteOpenHelper implements Contract {
         sqLiteDatabase.execSQL(OfferItemDB.TABLE_CREATE);
         sqLiteDatabase.execSQL(ProductFeatureDB.TABLE_CREATE);
         sqLiteDatabase.execSQL(AdviceDB.TABLE_CREATE);
+        if (false){
+            Log.i("DB_CREATE",CheckListDB.TABLE_CREATE);
+            Log.i("DB_CREATE",ChildDB.CHILD_TABLE_CREATE);
+            Log.i("DB_CREATE",FeatureDB.TABLE_CREATE);
+            Log.i("DB_CREATE",ItemReferenceDB.TABLE_CREATE);
+            Log.i("DB_CREATE",OfferDB.TABLE_CREATE);
+            Log.i("DB_CREATE",ProductDB.TABLE_CREATE);
+            Log.i("DB_CREATE",ProductCategoryDB.TABLE_CREATE);
+            Log.i("DB_CREATE",ShopDB.TABLE_CREATE);
+            Log.i("DB_CREATE",UserDB.USER_TABLE_CREATE);
+            Log.i("DB_CREATE",ImageDB.TABLE_CREATE);
+            Log.i("DB_CREATE",OfferItemDB.TABLE_CREATE);
+            Log.i("DB_CREATE",ProductFeatureDB.TABLE_CREATE);
+            Log.i("DB_CREATE",AdviceDB.TABLE_CREATE);
+        }
     }
 
     @Override

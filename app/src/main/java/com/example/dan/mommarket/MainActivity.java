@@ -4,6 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -71,9 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         CartDataSource.getInstance().setDatabase(this);
         OfferItemDataSource.getInstance().setDatabase(this);
 
-        MainScreenFragment mainScreenView = new MainScreenFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainScreenView).commit();
-
+        navigateToMainScreen();
     }
 
     @Override
@@ -122,7 +121,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if (id == android.R.id.home) {
-            Toast.makeText(this, "asdsad", Toast.LENGTH_LONG).show();
             getSupportFragmentManager().popBackStack();
             ActionBar actionbar = getSupportActionBar();
             actionbar.setDisplayHomeAsUpEnabled(false);
@@ -139,39 +137,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_main_screen) {
-            MainScreenFragment mainScreenFragment = new MainScreenFragment();
-            getSupportFragmentManager().
-                    beginTransaction().
-                    replace(R.id.fragment_container, mainScreenFragment)
-                    .commit();
-
+            navigateToMainScreen();
         } else if (id == R.id.nav_catalog) {
-            CategoryRootFragment categoryRootFragment = new CategoryRootFragment();
-            getSupportFragmentManager().
-                    beginTransaction().
-                    replace(R.id.fragment_container, categoryRootFragment).
-                    commit();
-
+            clearBackStack();
+            navigateToCatalog();
         } else if (id == R.id.nav_advices) {
-            AdviceListFragment adviceListFragment = new AdviceListFragment();
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, adviceListFragment)
-                    .commit();
-
+            clearBackStack();
+            navigateToAdviceList();
         } else if (id == R.id.nav_cart) {
+            clearBackStack();
             navigateToCart();
         } else if (id == R.id.nav_checklist) {
 
         } else if (id == R.id.nav_my_orders) {
+            clearBackStack();
             this.navigateToOrder(1);
         } else if (id == R.id.nav_view) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void clearBackStack() {
+        FragmentManager fm = getSupportFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
+        navigateToMainScreen();
     }
 
     @Override
@@ -197,6 +191,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, categoryChildListView)
+                    .addToBackStack(null)
                     .commit();
 
         } else {
@@ -236,6 +231,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToCatalog() {
+        getSupportActionBar().setTitle("Каталог");
         CategoryRootFragment categoryRootFragment = new CategoryRootFragment();
         getSupportFragmentManager().
                 beginTransaction().
@@ -246,6 +242,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToProductCard(int productId) {
+        getSupportActionBar().setTitle("");
         ProductCardFragment productCardFragment = new ProductCardFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("ProductId", productId);
@@ -259,6 +256,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToOrder(int step) {
+        getSupportActionBar().setTitle("Оформление заказа");
         switch (step) {
             case 1:
                 OrderDeliveryFragment orderDeliveryFragment = new OrderDeliveryFragment();
@@ -289,10 +287,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToCart() {
+        getSupportActionBar().setTitle("Корзина");
         CartRootFragment cartRootFragment= new CartRootFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("CartType", 1);
         cartRootFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, cartRootFragment).commit();
+    }
+
+    @Override
+    public void navigateToMainScreen() {
+        getSupportActionBar().setTitle("");
+        MainScreenFragment mainScreenFragment = new MainScreenFragment();
+        getSupportFragmentManager().
+                beginTransaction().
+                replace(R.id.fragment_container, mainScreenFragment)
+                .commit();
+    }
+
+    @Override
+    public void navigateToAdviceList() {
+        getSupportActionBar().setTitle("Советы");
+        AdviceListFragment adviceListFragment = new AdviceListFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, adviceListFragment)
+                .commit();
     }
 }
