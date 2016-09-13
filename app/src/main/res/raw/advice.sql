@@ -39,8 +39,8 @@ Insert into ADVICE (_ID,NAME,SHORT_DESC,IMAGE,
     ),
 (3,"Кроватки с маятниковым механизмом"
     ,"Кроватки с маятниковым механизмом"
-    ,"https://cs-ellpic.yandex.net/cms_resources/navigation/pages/42686/r0s48oku2ovdl6fgh1v54qvba3_1400x350@x1.jpeg"
-    ,"https://cs-ellpic.yandex.net/cms_resources/navigation/pages/42686/r0s48oku2ovdl6fgh1v54qvba3_1400x350@x1.jpeg"
+    ,"https://cs-ellpic.yandex.net/cms_resources/navigation/pages/42686/gg8jpnfdgc2e9s6473a7eccrua_200x200@x1.png"
+    ,"https://cs-ellpic.yandex.net/cms_resources/navigation/pages/42686/gg8jpnfdgc2e9s6473a7eccrua_200x200@x1.png"
     ,"Мария Назарова"
     ,"старший консультант в центре помощи кормящим мамам «Кормилица»"
     ,"https://cs-ellpic.yandex.net/cms_resources/navigation/pages/42621/hsg560tre8lbfb40mgj6q2c18t.png"
