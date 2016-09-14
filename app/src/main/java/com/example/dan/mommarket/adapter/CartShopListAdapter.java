@@ -1,5 +1,6 @@
 package com.example.dan.mommarket.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +19,12 @@ import java.util.List;
 public class CartShopListAdapter extends RecyclerView.Adapter<CartShopItemVH> {
     List<Shop> shopList;
     private int cartType;
+    private Context context;
 
-    public CartShopListAdapter(List<Shop> shopList, int cartType) {
+    public CartShopListAdapter(List<Shop> shopList, int cartType, Context context) {
         this.shopList = shopList;
         this.cartType = cartType;
+        this.context = context;
     }
 
     @Override
@@ -32,7 +35,7 @@ public class CartShopListAdapter extends RecyclerView.Adapter<CartShopItemVH> {
     @Override
     public CartShopItemVH onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_cart_shop_list_item, parent, false);
-        return new CartShopItemVH(view, shopList.get(viewType).getId(), cartType);
+        return new CartShopItemVH(view, shopList.get(viewType).getId(), cartType, context);
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.example.dan.mommarket.views.CartPager;
 import com.example.dan.mommarket.views.CartRoot;
+import com.example.dan.mommarket.views.OfferItemDialog;
 
 /**
  * Created by dan on 09.09.16.
@@ -14,7 +15,11 @@ public interface CartPresenter {
 
     void onCreatePagerView(Bundle savedInstanceState);
 
+    void onCreateOfferItemView(Bundle savedInstanceState);
+
     void setView(CartRoot cartRoot);
+
+    void setDialogView(OfferItemDialog offerItemDialog);
 
     void setPagerView(CartPager cartPager);
 
