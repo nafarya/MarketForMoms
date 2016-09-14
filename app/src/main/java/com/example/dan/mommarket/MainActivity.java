@@ -319,6 +319,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void showOfferItemDialog(int offerItemId) {
 
+
         OfferItemDialogFragment offerItemDialogFragment = new OfferItemDialogFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("OfferItemId", offerItemId);
