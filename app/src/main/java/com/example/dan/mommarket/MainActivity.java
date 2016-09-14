@@ -233,6 +233,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToCatalog() {
+        clearBackStack();
         getSupportActionBar().setTitle("Каталог");
         CategoryRootFragment categoryRootFragment = new CategoryRootFragment();
         getSupportFragmentManager().
