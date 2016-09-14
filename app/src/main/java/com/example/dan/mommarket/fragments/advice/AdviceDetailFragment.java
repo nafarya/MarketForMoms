@@ -51,9 +51,9 @@ public class AdviceDetailFragment extends Fragment implements AdviceDetail, Prod
         Picasso.with(getContext()).load(advice.getAuthorImage()).into((ImageView) view.findViewById(R.id.author_photo));
         ((TextView) view.findViewById(R.id.author_name)).setText(advice.getAuthorName());
         ((TextView) view.findViewById(R.id.author_text)).setText(advice.getAuthorText());
-        ((TextView) view.findViewById(R.id.advice_text0)).setText(advice.getText0());
+        ((TextView) view.findViewById(R.id.advice_text0)).setText(Html.fromHtml(advice.getText0()));
         ((TextView) view.findViewById(R.id.advice_header1)).setText(advice.getHeader1());
-        ((TextView) view.findViewById(R.id.advice_text1)).setText(advice.getText1());
+        ((TextView) view.findViewById(R.id.advice_text1)).setText(Html.fromHtml(advice.getText1()));
         Picasso.with(getContext()).load(advice.getImage1()).into((ImageView) view.findViewById(R.id.advice_image1));
         ((TextView) view.findViewById(R.id.advice_header2)).setText(advice.getHeader2());
         ((TextView) view.findViewById(R.id.advice_text2)).setText(Html.fromHtml(advice.getText2()));

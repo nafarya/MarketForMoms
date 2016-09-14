@@ -26,6 +26,7 @@ import com.example.dan.mommarket.database.ShopDataSource;
 import com.example.dan.mommarket.fragments.advice.AdviceDetailFragment;
 import com.example.dan.mommarket.fragments.advice.AdviceListFragment;
 import com.example.dan.mommarket.fragments.cart.CartRootFragment;
+import com.example.dan.mommarket.fragments.cart.OfferItemDialogFragment;
 import com.example.dan.mommarket.fragments.category.CategoryFragment;
 import com.example.dan.mommarket.fragments.category.CategoryRootFragment;
 import com.example.dan.mommarket.fragments.category.SubCategoryFragment;
@@ -162,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void clearBackStack() {
         FragmentManager fm = getSupportFragmentManager();
-        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+        for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
             fm.popBackStack();
         }
         navigateToMainScreen();
@@ -288,7 +289,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void navigateToCart() {
         getSupportActionBar().setTitle("Корзина");
-        CartRootFragment cartRootFragment= new CartRootFragment();
+        CartRootFragment cartRootFragment = new CartRootFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("CartType", 1);
         cartRootFragment.setArguments(bundle);
@@ -313,5 +314,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .beginTransaction()
                 .replace(R.id.fragment_container, adviceListFragment)
                 .commit();
+    }
+
+    @Override
+    public void showOfferItemDialog(int offerItemId) {
+
+        OfferItemDialogFragment offerItemDialogFragment = new OfferItemDialogFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("OfferItemId", offerItemId);
+        offerItemDialogFragment.setArguments(bundle);
+        offerItemDialogFragment.show(getSupportFragmentManager(), "dialog_fragment");
     }
 }
