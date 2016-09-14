@@ -96,6 +96,12 @@ public class ProductDataSource {
         return productList;
     }
 
+    /**
+     * if (listId == 0) return cartList
+     * if (listId == 1) return delayedList
+     * @param
+     * @return
+     */
     public static List<Product> getListProducts(int listId) {
         database = dbHelper.getReadableDatabase();
         List<Product> productList = new ArrayList<>();

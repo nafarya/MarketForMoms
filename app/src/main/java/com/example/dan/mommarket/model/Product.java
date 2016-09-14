@@ -19,6 +19,7 @@ public class Product {
     private List<ItemReference> referenceList;
     private List<String> images;
     private String cardFeatureValue;
+    private boolean bookmark = false;
 
     public Product(
             int productId,
@@ -142,5 +143,13 @@ public class Product {
         } else {
             return defaultPic;
         }
+    }
+
+    public boolean isBookmark() {
+        return bookmark;
+    }
+
+    public void setBookmark(boolean bookmark) {
+        this.bookmark = bookmark;
     }
 }

@@ -28,4 +28,6 @@ public interface Navigator {
 
     void showOfferItemDialog(int offerItemId);
 
+    void navigateToDelayed();
+
 }
