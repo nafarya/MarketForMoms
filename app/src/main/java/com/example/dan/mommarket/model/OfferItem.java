@@ -54,7 +54,7 @@ public class OfferItem {
         this.id = id;
         this.count = count;
         this.offer = new Offer(offerId, offerShopId, offerPrice);
-        this.product = new Product(productId,productName,ProductImageUrl);
+        this.product = new Product(productId, productName, ProductImageUrl);
     }
 
     public void deleteFromList() {
@@ -62,8 +62,14 @@ public class OfferItem {
     }
 
     public void updateFromList() {
-        OfferItemDataSource.updateOfferItem(id,offer.getPrice(), count);
+        OfferItemDataSource.updateOfferItem(id, offer.getPrice(), count);
     }
 
+    public void updateCount() {
+        OfferItemDataSource.updateOfferItem(id, offer.getPrice(), count);
+    }
 
+    public void deleteOfferItem() {
+        OfferItemDataSource.deleteOfferItem(id);
+    }
 }

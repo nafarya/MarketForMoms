@@ -44,7 +44,7 @@ public class OfferItemDataSource {
                         " ,o." + Contract.OfferDB.PRICE +
                         " ,p." + Contract.ProductDB.ID +
                         " ,p." + Contract.ProductDB.NAME +
-                        " ,min(i." + Contract.ImageDB.URL +")"+
+                        " ,min(i." + Contract.ImageDB.URL + ")" +
                         " from " + Contract.OfferItemDB.TABLE + " oi" +
                         " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = oi." + Contract.OfferItemDB.OFFER_ID +
                         " left join " + Contract.ProductDB.TABLE + " p on p." + Contract.ProductDB.ID + " = o." + Contract.OfferDB.PRODUCT_ID +
@@ -68,20 +68,21 @@ public class OfferItemDataSource {
         cursor.close();
         return item;
     }
-    public static List<OfferItem> getOfferItemsByShopIdAndCart(int shopId,int cartType) {
+
+    public static List<OfferItem> getOfferItemsByShopIdAndCart(int shopId, int cartType) {
         List<OfferItem> list = null;
         switch (cartType) {
             case 0:
                 list = getBestOfferItemsByShopIdAndCart(shopId);
                 break;
             case 1:
-                list = getOfferItemsByShopIdAndChecklistId(shopId,0);
+                list = getOfferItemsByShopIdAndChecklistId(shopId, 0);
                 break;
             case 2:
                 list = getQuickDeliveryOfferItemsByShopIdAndCart(shopId);
                 break;
         }
-        return  list;
+        return list;
     }
 
     public static List<OfferItem> getOfferItemsByShopIdAndChecklistId(int shopId, int checklistId) {
@@ -95,7 +96,7 @@ public class OfferItemDataSource {
                         " ,o." + Contract.OfferDB.PRICE +
                         " ,p." + Contract.ProductDB.ID +
                         " ,p." + Contract.ProductDB.NAME +
-                        " ,min(i." + Contract.ImageDB.URL +")"+
+                        " ,min(i." + Contract.ImageDB.URL + ")" +
                         " from " + Contract.OfferItemDB.TABLE + " oi" +
                         " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = oi." + Contract.OfferItemDB.OFFER_ID +
                         " left join " + Contract.ProductDB.TABLE + " p on p." + Contract.ProductDB.ID + " = o." + Contract.OfferDB.PRODUCT_ID +
@@ -133,7 +134,7 @@ public class OfferItemDataSource {
                         " ,oBest." + Contract.OfferDB.PRICE +
                         " ,p." + Contract.ProductDB.ID +
                         " ,p." + Contract.ProductDB.NAME +
-                        " ,min(i." + Contract.ImageDB.URL +")"+
+                        " ,min(i." + Contract.ImageDB.URL + ")" +
                         " from " + Contract.OfferItemDB.TABLE + " oi" +
                         " join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = oi." + Contract.OfferItemDB.OFFER_ID +
                         " join " + Contract.ProductDB.TABLE + " p on p." + Contract.ProductDB.ID + " = o." + Contract.OfferDB.PRODUCT_ID +
@@ -178,7 +179,7 @@ public class OfferItemDataSource {
                         " ,oBest." + Contract.OfferDB.PRICE +
                         " ,p." + Contract.ProductDB.ID +
                         " ,p." + Contract.ProductDB.NAME +
-                        " ,min(i." + Contract.ImageDB.URL +")"+
+                        " ,min(i." + Contract.ImageDB.URL + ")" +
                         " from " + Contract.OfferItemDB.TABLE + " oi" +
                         " join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = oi." + Contract.OfferItemDB.OFFER_ID +
                         " join " + Contract.ProductDB.TABLE + " p on p." + Contract.ProductDB.ID + " = o." + Contract.OfferDB.PRODUCT_ID +

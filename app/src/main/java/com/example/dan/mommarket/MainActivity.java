@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void clearBackStack() {
         FragmentManager fm = getSupportFragmentManager();
-        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+        for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
             fm.popBackStack();
         }
         navigateToMainScreen();
@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void navigateToCart() {
         getSupportActionBar().setTitle("Корзина");
-        CartRootFragment cartRootFragment= new CartRootFragment();
+        CartRootFragment cartRootFragment = new CartRootFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("CartType", 1);
         cartRootFragment.setArguments(bundle);
