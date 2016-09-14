@@ -6,33 +6,31 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 
 import com.example.dan.mommarket.Navigator;
 import com.example.dan.mommarket.R;
-import com.example.dan.mommarket.adapter.OrderDeliveryPageAdapter;
 
 /**
- * Created by GEORGY on 06.09.2016.
+ * Created by dan on 14.09.16.
  */
 
-public class OrderPaymentsFragment extends Fragment {
-    Navigator navigator;
-    private TextView nextButton;
-    private OrderDeliveryPageAdapter orderDeliveryPageAdapter;
+public class OrderThankForPurchase extends Fragment {
+    private Navigator navigator;
+    private Button backToCatalogButton;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.order_payments, container, false);
-        nextButton = (TextView) view.findViewById(R.id.delivery_next);
-        nextButton.setOnClickListener(new View.OnClickListener() {
+        View v = inflater.inflate(R.layout.order_thank_for_purchase, container, false);
+        backToCatalogButton = (Button) v.findViewById(R.id.order_thank_for_purchase_button_back_to_catalog);
+        backToCatalogButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                navigator.navigateToOrder(4);
+            public void onClick(View view) {
+                navigator.navigateToCatalog();
             }
         });
-        return view;
+        return v;
     }
 
     @Override
