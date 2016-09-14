@@ -26,6 +26,7 @@ import com.example.dan.mommarket.database.ShopDataSource;
 import com.example.dan.mommarket.fragments.advice.AdviceDetailFragment;
 import com.example.dan.mommarket.fragments.advice.AdviceListFragment;
 import com.example.dan.mommarket.fragments.cart.CartRootFragment;
+import com.example.dan.mommarket.fragments.cart.OfferItemDialogFragment;
 import com.example.dan.mommarket.fragments.category.CategoryFragment;
 import com.example.dan.mommarket.fragments.category.CategoryRootFragment;
 import com.example.dan.mommarket.fragments.category.SubCategoryFragment;
@@ -313,5 +314,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .beginTransaction()
                 .replace(R.id.fragment_container, adviceListFragment)
                 .commit();
+    }
+
+    @Override
+    public void showOfferItemDialog(int offerItemId) {
+
+        OfferItemDialogFragment offerItemDialogFragment = new OfferItemDialogFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("OfferItemId", offerItemId);
+        offerItemDialogFragment.setArguments(bundle);
+        offerItemDialogFragment.show(getSupportFragmentManager(), "dialog_fragment");
     }
 }

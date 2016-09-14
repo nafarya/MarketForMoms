@@ -105,7 +105,7 @@ public class CartRootFragment extends Fragment implements CartRoot {
     */
     @Override
     public void showShopList(List<Shop> shopList, int cartType) {
-        CartShopListAdapter cartShopListAdapter = new CartShopListAdapter(shopList, cartType);
+        CartShopListAdapter cartShopListAdapter = new CartShopListAdapter(shopList, cartType, getContext());
         shopListRecyclerView.setAdapter(cartShopListAdapter);
         shopListRecyclerView.requestLayout();
     }

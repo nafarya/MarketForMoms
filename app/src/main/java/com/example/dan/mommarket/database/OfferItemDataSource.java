@@ -31,6 +31,43 @@ public class OfferItemDataSource {
         dbHelper = new SQLiteHelper(context);
         return;
     }
+
+
+    public static OfferItem getOfferItemById(int offerItemId) {
+        database = dbHelper.getReadableDatabase();
+        OfferItem item = null;
+        Cursor cursor = database.rawQuery("select " +
+                        "  oi." + Contract.OfferItemDB.ID +
+                        " ,oi." + Contract.OfferItemDB.COUNT +
+                        " ,o." + Contract.OfferDB.ID +
+                        " ,o." + Contract.OfferDB.SHOP_ID +
+                        " ,o." + Contract.OfferDB.PRICE +
+                        " ,p." + Contract.ProductDB.ID +
+                        " ,p." + Contract.ProductDB.NAME +
+                        " ,min(i." + Contract.ImageDB.URL +")"+
+                        " from " + Contract.OfferItemDB.TABLE + " oi" +
+                        " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = oi." + Contract.OfferItemDB.OFFER_ID +
+                        " left join " + Contract.ProductDB.TABLE + " p on p." + Contract.ProductDB.ID + " = o." + Contract.OfferDB.PRODUCT_ID +
+                        " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ITEM_ID + " = p." + Contract.ProductDB.ID +
+                        " where oi." + Contract.OfferItemDB.ID + " = ?" +
+                        " group by oi." + Contract.OfferItemDB.ID + " ;"
+                , new String[]{String.valueOf(offerItemId)});
+
+        cursor.moveToFirst();
+        if (!cursor.isAfterLast()) {
+            item = new OfferItem(
+                    cursor.getInt(0),
+                    cursor.getInt(1),
+                    cursor.getInt(2),
+                    cursor.getInt(3),
+                    cursor.getFloat(4),
+                    cursor.getInt(5),
+                    cursor.getString(6),
+                    cursor.getString(7));
+        }
+        cursor.close();
+        return item;
+    }
     public static List<OfferItem> getOfferItemsByShopIdAndCart(int shopId,int cartType) {
         List<OfferItem> list = null;
         switch (cartType) {

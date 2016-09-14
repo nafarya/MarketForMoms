@@ -1,18 +1,15 @@
 package com.example.dan.mommarket.presenter.cart;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import com.example.dan.mommarket.database.CartDataSource;
+import com.example.dan.mommarket.database.OfferItemDataSource;
 import com.example.dan.mommarket.database.ShopDataSource;
-import com.example.dan.mommarket.fragments.cart.CartPagerFragment;
 import com.example.dan.mommarket.model.Cart;
-import com.example.dan.mommarket.presenter.category.CatalogPresenterImpl;
+import com.example.dan.mommarket.model.OfferItem;
 import com.example.dan.mommarket.views.CartPager;
 import com.example.dan.mommarket.views.CartRoot;
-
-import static okhttp3.internal.Internal.instance;
+import com.example.dan.mommarket.views.OfferItemDialog;
 
 /**
  * Created by dan on 09.09.16.
@@ -23,16 +20,18 @@ public class CartPresenterImpl implements CartPresenter {
     private static CartPresenterImpl instance;
     private CartRoot cartRoot;
     private CartPager cartPager;
+    private OfferItemDialog offerItemDialog;
     private Cart cart;
+    private OfferItem offerItem;
 
     @Override
     public void onCreateView(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             cart = CartDataSource.getCart(1);
-            cartRoot.showShopList(ShopDataSource.getShopCartList(1),1);
+            cartRoot.showShopList(ShopDataSource.getShopCartList(1), 1);
         } else {
             cart = CartDataSource.getCart(savedInstanceState.getInt("CartType"));
-            cartRoot.showShopList(ShopDataSource.getShopCartList(savedInstanceState.getInt("CartType")),savedInstanceState.getInt("CartType"));
+            cartRoot.showShopList(ShopDataSource.getShopCartList(savedInstanceState.getInt("CartType")), savedInstanceState.getInt("CartType"));
         }
     }
 
@@ -47,8 +46,23 @@ public class CartPresenterImpl implements CartPresenter {
     }
 
     @Override
+    public void onCreateOfferItemView(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            offerItem = OfferItemDataSource.getOfferItemById(1);
+        } else {
+            offerItem = OfferItemDataSource.getOfferItemById(savedInstanceState.getInt("OfferItemId"));
+        }
+        offerItemDialog.showOfferItem(offerItem);
+    }
+
+    @Override
     public void setView(CartRoot cartRoot) {
         this.cartRoot = cartRoot;
+    }
+
+    @Override
+    public void setDialogView(OfferItemDialog offerItemDialog) {
+        this.offerItemDialog = offerItemDialog;
     }
 
     @Override
@@ -59,7 +73,7 @@ public class CartPresenterImpl implements CartPresenter {
     @Override
     public void refreshShopList(int tag) {
         cart = CartDataSource.getCart(tag);
-        cartRoot.showShopList(ShopDataSource.getShopCartList(tag),tag);
+        cartRoot.showShopList(ShopDataSource.getShopCartList(tag), tag);
     }
 
     @Override

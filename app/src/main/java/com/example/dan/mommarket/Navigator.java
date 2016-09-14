@@ -26,4 +26,6 @@ public interface Navigator {
 
     void navigateToAdviceList();
 
+    void showOfferItemDialog(int offerItemId);
+
 }

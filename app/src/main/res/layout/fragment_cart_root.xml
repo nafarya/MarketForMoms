@@ -12,11 +12,7 @@
         android:layout_alignParentTop="true"
         android:id="@+id/cart_root_rv"
         app:layoutManager="LinearLayoutManager"
-        android:layout_above="@+id/cart_root_view_pager"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="4dp">
+        android:layout_above="@+id/cart_root_view_pager">
     </android.support.v7.widget.RecyclerView>
 
 
