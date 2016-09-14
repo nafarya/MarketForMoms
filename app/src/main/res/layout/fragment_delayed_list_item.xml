@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp"
+    android:background="@color/cardview_light_background">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/author_photo"
+        android:paddingTop="12dp"
+        android:paddingBottom="24dp"
+        android:paddingLeft="36dp"
+        android:id="@+id/delayed_list_item_image"/>
+
+    <TextView
+        android:layout_width="176dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        android:paddingLeft="24dp"
+        android:text="@string/body_with_long_sleeve"
+        android:textColor="#191919"
+        android:textSize="16sp"
+        android:lines="2"
+        android:layout_toRightOf="@id/delayed_list_item_image"
+        android:id="@+id/delayed_list_item_name"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingLeft="24dp"
+        android:text="@string/many_rubles"
+        android:textColor="#191919"
+        android:textSize="16sp"
+        android:layout_toRightOf="@id/delayed_list_item_image"
+        android:layout_below="@id/delayed_list_item_name"
+        android:id="@+id/delayed_list_item_price" />
+
+    <Button
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/delayed_list_item_button" />
+
+</RelativeLayout>
