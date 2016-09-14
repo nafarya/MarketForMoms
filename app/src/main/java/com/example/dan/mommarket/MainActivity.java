@@ -34,6 +34,7 @@ import com.example.dan.mommarket.fragments.mainscreen.MainScreenFragment;
 import com.example.dan.mommarket.fragments.order.OrderContactsFragment;
 import com.example.dan.mommarket.fragments.order.OrderDeliveryFragment;
 import com.example.dan.mommarket.fragments.order.OrderPaymentsFragment;
+import com.example.dan.mommarket.fragments.order.OrderThankForPurchase;
 import com.example.dan.mommarket.fragments.product.ProductCardFragment;
 import com.example.dan.mommarket.fragments.product.ProductListFragment;
 
@@ -232,6 +233,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToCatalog() {
+        clearBackStack();
         getSupportActionBar().setTitle("Каталог");
         CategoryRootFragment categoryRootFragment = new CategoryRootFragment();
         getSupportFragmentManager().
@@ -280,6 +282,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().
                         beginTransaction().
                         replace(R.id.fragment_container, orderPaymentsFragment).
+                        addToBackStack(null).
+                        commit();
+                break;
+            case 4:
+                OrderThankForPurchase orderThankForPurchase = new OrderThankForPurchase();
+                getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container, orderThankForPurchase).
                         addToBackStack(null).
                         commit();
                 break;
