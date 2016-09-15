@@ -61,6 +61,8 @@
     <string name="two_products">2 продукта</string>
     <string name="order_checkout">Оформить заказ</string>
     <string name="delete_offer">Удалить товар</string>
+    <string name="you_are_cool_mom">Ты классная мама!</string>
+    <string name="thank_for_purchase">Спасибо за покупку!</string>
     <string-array name="delivery_pickup">
         <item>Главный магазин</item>
         <item>Магазин 2</item>

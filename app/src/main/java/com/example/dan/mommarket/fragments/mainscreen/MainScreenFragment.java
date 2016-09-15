@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.dan.mommarket.Navigator;
 import com.example.dan.mommarket.R;
@@ -29,7 +30,7 @@ import java.util.List;
  * Created by dan on 02.09.16.
  */
 
-public class MainScreenFragment extends Fragment implements MainScreen, AdviceListRVAdapter.OnAdviceClickListener, ProductListRVAdapter.OnProductListRvClickListener{
+public class MainScreenFragment extends Fragment implements MainScreen, AdviceListRVAdapter.OnAdviceClickListener, ProductListRVAdapter.OnProductListRvClickListener, ProductListRVAdapter.OnBookmarkClickListener{
     private RecyclerView adviceRecyclerView;
     private RecyclerView productRecyclerView;
     private MainScreenPresenter mainScreenPresenter;
@@ -78,7 +79,7 @@ public class MainScreenFragment extends Fragment implements MainScreen, AdviceLi
         grid = new GridLayoutManager(getContext(), spanCount);
         productRecyclerView.setLayoutManager(grid);
         productRecyclerView.setNestedScrollingEnabled(false);
-        productAdapter = new ProductListRVAdapter(productList, getContext(), this);
+        productAdapter = new ProductListRVAdapter(productList, getContext(), this, this);
         productRecyclerView.setAdapter(productAdapter);
     }
 
@@ -96,5 +97,10 @@ public class MainScreenFragment extends Fragment implements MainScreen, AdviceLi
     @Override
     public void onItemClick(int item) {
         navigator.navigateToAdviceDetail(item);
+    }
+
+    @Override
+    public void onBookMarkClick(int item) {
+        Toast.makeText(getContext(), "BOOKMARK", Toast.LENGTH_SHORT).show();
     }
 }

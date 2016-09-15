@@ -30,10 +30,12 @@ import com.example.dan.mommarket.fragments.cart.OfferItemDialogFragment;
 import com.example.dan.mommarket.fragments.category.CategoryFragment;
 import com.example.dan.mommarket.fragments.category.CategoryRootFragment;
 import com.example.dan.mommarket.fragments.category.SubCategoryFragment;
+import com.example.dan.mommarket.fragments.delayed.DelayedListFragment;
 import com.example.dan.mommarket.fragments.mainscreen.MainScreenFragment;
 import com.example.dan.mommarket.fragments.order.OrderContactsFragment;
 import com.example.dan.mommarket.fragments.order.OrderDeliveryFragment;
 import com.example.dan.mommarket.fragments.order.OrderPaymentsFragment;
+import com.example.dan.mommarket.fragments.order.OrderThankForPurchase;
 import com.example.dan.mommarket.fragments.product.ProductCardFragment;
 import com.example.dan.mommarket.fragments.product.ProductListFragment;
 
@@ -149,10 +151,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             clearBackStack();
             navigateToCart();
         } else if (id == R.id.nav_checklist) {
-
+            clearBackStack();
+            navigateToDelayed();
         } else if (id == R.id.nav_my_orders) {
             clearBackStack();
-            this.navigateToOrder(1);
+            navigateToOrder(1);
         } else if (id == R.id.nav_view) {
         }
 
@@ -232,6 +235,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToCatalog() {
+        clearBackStack();
         getSupportActionBar().setTitle("Каталог");
         CategoryRootFragment categoryRootFragment = new CategoryRootFragment();
         getSupportFragmentManager().
@@ -283,17 +287,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         addToBackStack(null).
                         commit();
                 break;
+            case 4:
+                OrderThankForPurchase orderThankForPurchase = new OrderThankForPurchase();
+                getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container, orderThankForPurchase).
+                        addToBackStack(null).
+                        commit();
+                break;
         }
     }
 
     @Override
     public void navigateToCart() {
+        clearBackStack();
         getSupportActionBar().setTitle("Корзина");
         CartRootFragment cartRootFragment = new CartRootFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("CartType", 1);
         cartRootFragment.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, cartRootFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, cartRootFragment).addToBackStack(null).commit();
     }
 
     @Override
@@ -318,12 +331,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void showOfferItemDialog(int offerItemId) {
-
-
         OfferItemDialogFragment offerItemDialogFragment = new OfferItemDialogFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("OfferItemId", offerItemId);
         offerItemDialogFragment.setArguments(bundle);
         offerItemDialogFragment.show(getSupportFragmentManager(), "dialog_fragment");
+    }
+
+    @Override
+    public void navigateToDelayed() {
+        getSupportActionBar().setTitle("Отложенное");
+        DelayedListFragment delayedListFragment = new DelayedListFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, delayedListFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

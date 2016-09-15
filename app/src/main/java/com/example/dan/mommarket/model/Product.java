@@ -1,5 +1,8 @@
 package com.example.dan.mommarket.model;
 
+import com.example.dan.mommarket.database.OfferDataSource;
+import com.example.dan.mommarket.database.ProductDataSource;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,6 +22,7 @@ public class Product {
     private List<ItemReference> referenceList;
     private List<String> images;
     private String cardFeatureValue;
+    private boolean bookmark = false;
 
     public Product(
             int productId,
@@ -28,7 +32,8 @@ public class Product {
             int categoryId,
             String categoryName,
             List<String> imageUrl,
-            String cardFeatureValue
+            String cardFeatureValue,
+            int bookmark
     ) {
         this.name = name;
         this.productId = productId;
@@ -38,6 +43,7 @@ public class Product {
         this.categoryName = categoryName;
         this.images = imageUrl;
         this.cardFeatureValue = cardFeatureValue;
+        this.bookmark = bookmark == 1 ? true : false;
     }
 
     public Product(int productId, String productName, String productImageUrl) {
@@ -141,6 +147,19 @@ public class Product {
             return images.get(0);
         } else {
             return defaultPic;
+        }
+    }
+
+    public boolean isBookmark() {
+        return bookmark;
+    }
+
+    public void setBookmark(boolean bookmark) {
+        this.bookmark = bookmark;
+        if (bookmark) {
+            ProductDataSource.addProductToList(productId, 1);
+        } else {
+            ProductDataSource.deleteProductFromList(productId, 1);
         }
     }
 }
