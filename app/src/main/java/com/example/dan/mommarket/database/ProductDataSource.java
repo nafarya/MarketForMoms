@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.dan.mommarket.model.Feature;
 import com.example.dan.mommarket.model.Product;
@@ -257,7 +258,7 @@ public class ProductDataSource {
                     productCursor.getString(5),
                     productCursor.getString(6) == null ? null : Arrays.asList((productCursor.getString(6)).split(",")),
                     productCursor.getString(7),
-                    productCursor.getInt(8)
+                    0
             );
         }
         return product;
