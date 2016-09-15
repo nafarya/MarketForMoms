@@ -1,5 +1,6 @@
 package com.example.dan.mommarket.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -54,7 +55,7 @@ public class ProductDataSource {
                 " from " + Contract.ProductDB.TABLE + " p" +
                 " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.ID + "= p." + Contract.ProductDB.CATEGORY_ID + " " +
                 " left join " + Contract.ProductFeatureDB.TABLE + " cpf on cpf." + Contract.ProductFeatureDB.FEATURE_ID + "= c." + Contract.ProductCategoryDB.CARD_FEATURE_ID + " " +
-                        " AND cpf." + Contract.ProductFeatureDB.PRODUCT_ID + " = p." + Contract.ProductDB.ID +
+                " AND cpf." + Contract.ProductFeatureDB.PRODUCT_ID + " = p." + Contract.ProductDB.ID +
                 " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.PRODUCT_ID + "=p." + Contract.ProductDB.ID +
                 " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ITEM_ID + "=p." + Contract.ProductDB.ID +
                 " Where p." + Contract.ProductDB.ID + "=?" +
@@ -82,7 +83,7 @@ public class ProductDataSource {
                 " from " + Contract.ProductDB.TABLE + " p" +
                 " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.ID + "= p." + Contract.ProductDB.CATEGORY_ID + " " +
                 " left join " + Contract.ProductFeatureDB.TABLE + " cpf on cpf." + Contract.ProductFeatureDB.FEATURE_ID + "= c." + Contract.ProductCategoryDB.CARD_FEATURE_ID + " " +
-                        " AND cpf." + Contract.ProductFeatureDB.PRODUCT_ID + " = p." + Contract.ProductDB.ID +
+                " AND cpf." + Contract.ProductFeatureDB.PRODUCT_ID + " = p." + Contract.ProductDB.ID +
                 " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.PRODUCT_ID + "=p." + Contract.ProductDB.ID +
                 " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ITEM_ID + "=p." + Contract.ProductDB.ID +
                 " group by p." + Contract.ProductDB.ID + ";", null);
@@ -99,6 +100,7 @@ public class ProductDataSource {
     /**
      * if (listId == 0) return cartList
      * if (listId == 1) return delayedList
+     *
      * @param
      * @return
      */
@@ -117,9 +119,40 @@ public class ProductDataSource {
                 " from " + Contract.ProductDB.TABLE + " p" +
                 " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.ID + "= p." + Contract.ProductDB.CATEGORY_ID + " " +
                 " left join " + Contract.ProductFeatureDB.TABLE + " cpf on cpf." + Contract.ProductFeatureDB.FEATURE_ID + "= c." + Contract.ProductCategoryDB.CARD_FEATURE_ID + " " +
-                        " AND cpf." + Contract.ProductFeatureDB.PRODUCT_ID + " = p." + Contract.ProductDB.ID +
+                " AND cpf." + Contract.ProductFeatureDB.PRODUCT_ID + " = p." + Contract.ProductDB.ID +
                 " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.PRODUCT_ID + "=p." + Contract.ProductDB.ID +
                 " left join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.OFFER_ID + "=o." + Contract.OfferDB.ID +
+                " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ITEM_ID + "=p." + Contract.ProductDB.ID +
+                " Where lo." + Contract.OfferItemDB.LIST_ID + "=?" +
+                " group by p." + Contract.ProductDB.ID + ";", new String[]{Integer.toString(listId)});
+        productCursor.moveToFirst();
+        while (!productCursor.isAfterLast()) {
+            productList.add(productCursorToProduct(productCursor));
+            productCursor.moveToNext();
+        }
+        productCursor.close();
+        return productList;
+    }
+
+    public static List<Product> getListDelayedProducts(int listId) {
+        database = dbHelper.getReadableDatabase();
+        List<Product> productList = new ArrayList<>();
+        Cursor productCursor = database.rawQuery("select " +
+                " p." + Contract.ProductDB.ID +
+                " ,p." + Contract.ProductDB.NAME +
+                " ,o." + Contract.OfferDB.PRICE +
+                " ,p." + Contract.ProductDB.DESCRIPTION +
+                " ,c." + Contract.ProductCategoryDB.ID + " CATEGORY_ID" +
+                " ,c." + Contract.ProductCategoryDB.NAME + " CATEGORY_NAME" +
+                " ,min(i." + Contract.ImageDB.URL + ") URL" +
+                " ,max(cpf." + Contract.ProductFeatureDB.VALUE + ") " +
+                " ,max(lo." + Contract.OfferItemDB.COUNT + ") " +
+                " from " + Contract.ProductDB.TABLE + " p" +
+                " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.ID + "= p." + Contract.ProductDB.CATEGORY_ID + " " +
+                " left join " + Contract.ProductFeatureDB.TABLE + " cpf on cpf." + Contract.ProductFeatureDB.FEATURE_ID + "= c." + Contract.ProductCategoryDB.CARD_FEATURE_ID + " " +
+                " AND cpf." + Contract.ProductFeatureDB.PRODUCT_ID + " = p." + Contract.ProductDB.ID +
+                " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.PRODUCT_ID + "=p." + Contract.ProductDB.ID +
+                " left join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.PRODUCT_ID + "=p." + Contract.ProductDB.ID +
                 " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ITEM_ID + "=p." + Contract.ProductDB.ID +
                 " Where lo." + Contract.OfferItemDB.LIST_ID + "=?" +
                 " group by p." + Contract.ProductDB.ID + ";", new String[]{Integer.toString(listId)});
@@ -144,12 +177,14 @@ public class ProductDataSource {
                 " ,c." + Contract.ProductCategoryDB.NAME + " CATEGORY_NAME" +
                 " ,min(i." + Contract.ImageDB.URL + ") URL" +
                 " ,max(cpf." + Contract.ProductFeatureDB.VALUE + ") " +
+                " ,max(lo." + Contract.OfferItemDB.COUNT + ") " +
                 " from " + Contract.ProductDB.TABLE + " p" +
                 " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.ID + "= p." + Contract.ProductDB.CATEGORY_ID + " " +
                 " left join " + Contract.ProductFeatureDB.TABLE + " cpf on cpf." + Contract.ProductFeatureDB.FEATURE_ID + "= c." + Contract.ProductCategoryDB.CARD_FEATURE_ID + " " +
-                        " AND cpf." + Contract.ProductFeatureDB.PRODUCT_ID + " = p." + Contract.ProductDB.ID +
+                " AND cpf." + Contract.ProductFeatureDB.PRODUCT_ID + " = p." + Contract.ProductDB.ID +
                 " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.PRODUCT_ID + "=p." + Contract.ProductDB.ID +
                 " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ITEM_ID + "=p." + Contract.ProductDB.ID +
+                " left join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.PRODUCT_ID + "=p." + Contract.ProductDB.ID +
                 " Where p." + Contract.ProductDB.CATEGORY_ID + "=?" +
                 " group by p." + Contract.ProductDB.ID + ";", new String[]{Integer.toString(categoryId)});
         productCursor.moveToFirst();
@@ -185,7 +220,7 @@ public class ProductDataSource {
                 " from " + Contract.ProductDB.TABLE + " p" +
                 " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.ID + "= p." + Contract.ProductDB.CATEGORY_ID + " " +
                 " left join " + Contract.ProductFeatureDB.TABLE + " cpf on cpf." + Contract.ProductFeatureDB.FEATURE_ID + "= c." + Contract.ProductCategoryDB.CARD_FEATURE_ID + " " +
-                    " AND cpf." + Contract.ProductFeatureDB.PRODUCT_ID + " = p." + Contract.ProductDB.ID +
+                " AND cpf." + Contract.ProductFeatureDB.PRODUCT_ID + " = p." + Contract.ProductDB.ID +
                 " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.PRODUCT_ID + "=p." + Contract.ProductDB.ID +
                 " left join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.OFFER_ID + "=o." + Contract.OfferDB.ID +
                 " left join " + Contract.ProductFeatureDB.TABLE + " pf on pf." + Contract.ProductFeatureDB.PRODUCT_ID + "=p." + Contract.ProductDB.ID +
@@ -202,15 +237,56 @@ public class ProductDataSource {
     }
 
     private static Product productCursorToProduct(Cursor productCursor) {
-        Product product = new Product(productCursor.getInt(0),
-                productCursor.getString(1),
-                productCursor.getFloat(2),
-                productCursor.getString(3),
-                productCursor.getInt(4),
-                productCursor.getString(5),
-                productCursor.getString(6) == null ? null : Arrays.asList((productCursor.getString(6)).split(",")),
-                productCursor.getColumnCount()>=7 ? productCursor.getString(7):null
-        );
+        Product product = null;
+        if (productCursor.getColumnCount() < 7) {
+            product = new Product(productCursor.getInt(0),
+                    productCursor.getString(1),
+                    productCursor.getFloat(2),
+                    productCursor.getString(3),
+                    productCursor.getInt(4),
+                    productCursor.getString(5),
+                    productCursor.getString(6) == null ? null : Arrays.asList((productCursor.getString(6)).split(",")),
+                    productCursor.getColumnCount() >= 7 ? productCursor.getString(7) : null,
+                    0);
+        } else {
+            product = new Product(productCursor.getInt(0),
+                    productCursor.getString(1),
+                    productCursor.getFloat(2),
+                    productCursor.getString(3),
+                    productCursor.getInt(4),
+                    productCursor.getString(5),
+                    productCursor.getString(6) == null ? null : Arrays.asList((productCursor.getString(6)).split(",")),
+                    productCursor.getString(7),
+                    productCursor.getInt(8)
+            );
+        }
         return product;
+    }
+
+    public static void deleteProductFromList(int productId, int listId) {
+        database = dbHelper.getReadableDatabase();
+        database.delete(Contract.OfferItemDB.TABLE,
+                Contract.OfferItemDB.LIST_ID + " = ? AND " + Contract.OfferItemDB.PRODUCT_ID + " = ?",
+                new String[]{String.valueOf(listId), String.valueOf(productId)});
+    }
+
+    public static void addProductToList(int productId, int listId) {
+        database = dbHelper.getReadableDatabase();
+        ContentValues cv = new ContentValues();
+        Cursor cursor = database.query(Contract.OfferItemDB.TABLE,
+                new String[]{Contract.OfferItemDB.ID, Contract.OfferItemDB.COUNT},
+                Contract.OfferItemDB.LIST_ID + " = ? AND " + Contract.OfferItemDB.PRODUCT_ID + " = ?",
+                new String[]{String.valueOf(listId), String.valueOf(productId)},
+                null,
+                null,
+                null);
+        cursor.moveToFirst();
+        if (cursor.isAfterLast()) {
+            //нет записей
+            cv.put(Contract.OfferItemDB.PRODUCT_ID, productId);
+            cv.put(Contract.OfferItemDB.LIST_ID, listId);
+            cv.put(Contract.OfferItemDB.COUNT, "1");
+            database.insert(Contract.OfferItemDB.TABLE, null, cv);
+        }
     }
 }

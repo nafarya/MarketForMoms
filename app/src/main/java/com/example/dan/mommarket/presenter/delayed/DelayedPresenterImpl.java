@@ -32,7 +32,7 @@ public class DelayedPresenterImpl implements DelayedPresenter {
     @Override
     public void onCreateView(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            productList = ProductDataSource.getListProducts(1);
+            productList = ProductDataSource.getListDelayedProducts(1);
             delayedView.showDelayedProducts(productList);
         }
     }

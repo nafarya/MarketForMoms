@@ -19,17 +19,21 @@ public class CartPresenterImpl implements CartPresenter {
 
     private static CartPresenterImpl instance;
     private CartRoot cartRoot;
-    private CartPager cartPager;
+    //   private CartPager cartPager;
+    private CartPager[] cartPagerArray = new CartPager[3];
     private OfferItemDialog offerItemDialog;
     private Cart cart;
     private OfferItem offerItem;
+    private int tag;
 
     @Override
     public void onCreateView(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
+            tag = 1;
             cart = CartDataSource.getCart(1);
             cartRoot.showShopList(ShopDataSource.getShopCartList(1), 1);
         } else {
+            tag = savedInstanceState.getInt("CartType");
             cart = CartDataSource.getCart(savedInstanceState.getInt("CartType"));
             cartRoot.showShopList(ShopDataSource.getShopCartList(savedInstanceState.getInt("CartType")), savedInstanceState.getInt("CartType"));
         }
@@ -42,7 +46,7 @@ public class CartPresenterImpl implements CartPresenter {
         } else {
             cart = CartDataSource.getCart(savedInstanceState.getInt("CartType"));
         }
-        cartPager.showCart(cart);
+        cartPagerArray[savedInstanceState.getInt("CartType")].showCart(cart);
     }
 
     @Override
@@ -66,12 +70,14 @@ public class CartPresenterImpl implements CartPresenter {
     }
 
     @Override
-    public void setPagerView(CartPager cartPager) {
-        this.cartPager = cartPager;
+    public void setPagerView(CartPager cartPager, int pagerPosition) {
+        this.cartPagerArray[pagerPosition] = cartPager;
+        //this.cartPager = cartPager;
     }
 
     @Override
     public void refreshShopList(int tag) {
+        this.tag = tag;
         cart = CartDataSource.getCart(tag);
         cartRoot.showShopList(ShopDataSource.getShopCartList(tag), tag);
     }
@@ -79,6 +85,20 @@ public class CartPresenterImpl implements CartPresenter {
     @Override
     public void refreshCartPager(int tag) {
         cart = CartDataSource.getCart(tag);
+    }
+
+    @Override
+    public void refreshFragment() {
+        int i = 0;
+        for (CartPager x : cartPagerArray) {
+            x.showCart(CartDataSource.getCart(i++));
+        }
+        cartRoot.showShopList(ShopDataSource.getShopCartList(tag), tag);
+    }
+
+    @Override
+    public void setTag(int tag) {
+        this.tag = tag;
     }
 
     @Override

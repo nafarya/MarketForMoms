@@ -159,21 +159,21 @@ public class OfferDataSource {
         } else {
             //есть записи
             cv.put(Contract.OfferItemDB.PRICE, price);
-            cv.put(Contract.OfferItemDB.COUNT, String.valueOf(cursor.getInt(1)+1));
+            cv.put(Contract.OfferItemDB.COUNT, String.valueOf(cursor.getInt(1) + 1));
             database.update(Contract.OfferItemDB.TABLE,
                     cv,
-                    Contract.OfferItemDB.ID + " = ?" ,
+                    Contract.OfferItemDB.ID + " = ?",
                     new String[]{String.valueOf(cursor.getInt(0))});
         }
     }
 
-    public static void deleteOfferFromList(int offerId, int listId,boolean all) {
+    public static void deleteOfferFromList(int offerId, int listId, boolean all) {
         database = dbHelper.getReadableDatabase();
-        if (all){
+        if (all) {
             database.delete(Contract.OfferItemDB.TABLE,
                     Contract.OfferItemDB.LIST_ID + " = ? AND " + Contract.OfferItemDB.OFFER_ID + " = ?",
                     new String[]{String.valueOf(listId), String.valueOf(offerId)});
-        }else{
+        } else {
             ContentValues cv = new ContentValues();
             Cursor cursor = database.query(Contract.OfferItemDB.TABLE,
                     new String[]{Contract.OfferItemDB.ID, Contract.OfferItemDB.COUNT},
@@ -184,15 +184,15 @@ public class OfferDataSource {
                     null);
             cursor.moveToFirst();
             if (!cursor.isAfterLast()) {
-                if (cursor.getInt(1)==1){
+                if (cursor.getInt(1) == 1) {
                     database.delete(Contract.OfferItemDB.TABLE,
                             Contract.OfferItemDB.LIST_ID + " = ? AND " + Contract.OfferItemDB.OFFER_ID + " = ?",
                             new String[]{String.valueOf(listId), String.valueOf(offerId)});
-                }else {
-                    cv.put(Contract.OfferItemDB.COUNT, String.valueOf(cursor.getInt(1)-1));
+                } else {
+                    cv.put(Contract.OfferItemDB.COUNT, String.valueOf(cursor.getInt(1) - 1));
                     database.update(Contract.OfferItemDB.TABLE,
                             cv,
-                            Contract.OfferItemDB.ID + " = ?" ,
+                            Contract.OfferItemDB.ID + " = ?",
                             new String[]{String.valueOf(cursor.getInt(0))});
                 }
             }

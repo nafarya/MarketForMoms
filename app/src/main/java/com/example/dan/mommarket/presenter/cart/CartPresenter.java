@@ -21,9 +21,13 @@ public interface CartPresenter {
 
     void setDialogView(OfferItemDialog offerItemDialog);
 
-    void setPagerView(CartPager cartPager);
+    void setPagerView(CartPager cartPager, int pagerPosition);
 
     void refreshShopList(int tag);
+
+    void refreshFragment();
+
+    void setTag(int tag);
 
     void refreshCartPager(int tag);
 

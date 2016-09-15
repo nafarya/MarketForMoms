@@ -19,7 +19,7 @@ import com.example.dan.mommarket.views.CartPager;
  * Created by dan on 10.09.16.
  */
 
-public class CartPagerFragment extends Fragment  implements CartPager {
+public class CartPagerFragment extends Fragment implements CartPager {
 
     View view;
     TextView textTag;
@@ -32,7 +32,7 @@ public class CartPagerFragment extends Fragment  implements CartPager {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_cart_pager, container, false);
         cartPresenter = CartPresenterImpl.getInstance();
-        cartPresenter.setPagerView(this);
+        cartPresenter.setPagerView(this, this.getArguments().getInt("CartType"));
         cartPresenter.onCreatePagerView(this.getArguments());
         return view;
     }
@@ -40,8 +40,10 @@ public class CartPagerFragment extends Fragment  implements CartPager {
     @Override
     public void showCart(Cart cart) {
         this.cart = cart;
-        ((TextView) view.findViewById(R.id.cart_shop_name)).setText(cart.getName());
-        ((TextView) view.findViewById(R.id.cart_shop_shop_count)).setText("Из " + String.valueOf(cart.getShopsCount()) + " магазинов");
-        ((TextView) view.findViewById(R.id.cart_shop_sum)).setText(String.valueOf(cart.getSum()));
+        if (cart != null) {
+            ((TextView) view.findViewById(R.id.cart_shop_name)).setText(cart.getName());
+            ((TextView) view.findViewById(R.id.cart_shop_shop_count)).setText("Из " + String.valueOf(cart.getShopsCount()) + " магазинов");
+            ((TextView) view.findViewById(R.id.cart_shop_sum)).setText(String.valueOf(cart.getSum()));
+        }
     }
 }
