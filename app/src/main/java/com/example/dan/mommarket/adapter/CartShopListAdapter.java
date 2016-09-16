@@ -45,7 +45,7 @@ public class CartShopListAdapter extends RecyclerView.Adapter<CartShopItemVH> {
         Resources resources = context.getResources();
         holder.getShopName().setText(shop.getName());
         holder.getSum().setText(String.valueOf((int) shop.getProductCartSum()) + " " + context.getResources().getString(R.string.currency));
-        holder.getDeliveryPrice().setText(String.valueOf(shop.getDeliveryPrice()) + " " + resources.getString(R.string.currency) + ",");
+        holder.getDeliveryPrice().setText(shop.getDeliveryPrice() != 0 ? String.valueOf(shop.getDeliveryPrice()) + " " + resources.getString(R.string.currency) + "," : resources.getString(R.string.delivery_cost_free));
         holder.getDeliveryTime().setText(shop.getDeliveryTime());
         holder.getNumOfProduct().setText(shop.getProductCartCount() == 1 ?
                 "" : resources.getQuantityString(R.plurals.shop_product, shop.getProductCartCount(), shop.getProductCartCount()));

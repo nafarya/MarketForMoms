@@ -64,6 +64,7 @@
     <string name="you_are_cool_mom">Ты классная мама!</string>
     <string name="thank_for_purchase">Спасибо за покупку!</string>
     <string name="currency">руб.</string>
+    <string name="from">от</string>
     <string-array name="delivery_pickup">
         <item>Главный магазин</item>
         <item>Магазин 2</item>
