@@ -4,8 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -38,6 +42,8 @@ public class DelayedListFragment extends Fragment implements Delayed, DelayedLis
         delayedPresenter = DelayedPresenterImpl.getInstance();
         delayedPresenter.setView(this);
         delayedPresenter.onCreateView(savedInstanceState);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -51,5 +57,15 @@ public class DelayedListFragment extends Fragment implements Delayed, DelayedLis
     @Override
     public void onItemClick(int item) {
 
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            getActivity().onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

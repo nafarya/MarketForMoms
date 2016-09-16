@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.dan.mommarket.database.AdviceDataSource;
@@ -58,11 +59,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(false);
         drawer.addDrawerListener(toggle);
+
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+                                     @Override
+                                     public void onDrawerSlide(View drawerView, float slideOffset) {
+                                             int x = 0;
+                                     }
+
+                                     @Override
+                                     public void onDrawerOpened(View drawerView) {
+                                         int x = 0;
+                                     }
+
+                                     @Override
+                                     public void onDrawerClosed(View drawerView) {
+                                         int x = 0;
+                                     }
+
+                                     @Override
+                                     public void onDrawerStateChanged(int newState) {
+                                         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+                                         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                                     }
+                                 });
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -76,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         OfferItemDataSource.getInstance().setDatabase(this);
 
         navigateToMainScreen();
+
+        
     }
 
     @Override
@@ -115,6 +143,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+
+    /*@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -235,7 +269,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToCatalog() {
-        clearBackStack();
         getSupportActionBar().setTitle("Каталог");
         CategoryRootFragment categoryRootFragment = new CategoryRootFragment();
         getSupportFragmentManager().
@@ -300,13 +333,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToCart() {
-        clearBackStack();
+//        clearBackStack();
         getSupportActionBar().setTitle("Корзина");
         CartRootFragment cartRootFragment = new CartRootFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("CartType", 1);
         cartRootFragment.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, cartRootFragment).addToBackStack(null).commit();
+        getSupportFragmentManager().
+                beginTransaction().
+                replace(R.id.fragment_container, cartRootFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override
@@ -326,6 +363,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, adviceListFragment)
+                .addToBackStack(null)
                 .commit();
     }
 
@@ -341,6 +379,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void navigateToDelayed() {
         getSupportActionBar().setTitle("Отложенное");
+//        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         DelayedListFragment delayedListFragment = new DelayedListFragment();
         getSupportFragmentManager()
                 .beginTransaction()
