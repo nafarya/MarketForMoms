@@ -34,13 +34,12 @@ public class OfferItemDialogFragment extends DialogFragment implements OfferItem
     private TextView viewName;
     private TextView viewCount;
     private TextView viewPrice;
+    private TextView viewFeature;
     private ImageView viewImage;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //    setStyle(DialogFragment.STYLE_NORMAL, R.style.Mom_Dialog);
-        //    getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
     @Override
@@ -63,6 +62,7 @@ public class OfferItemDialogFragment extends DialogFragment implements OfferItem
         viewCount = (TextView) view.findViewById(R.id.offer_item_count);
         viewImage = (ImageView) view.findViewById(R.id.offer_item_image);
         viewPrice = (TextView) view.findViewById(R.id.offer_item_price);
+        viewFeature = (TextView) view.findViewById(R.id.offer_item_feature);
 
         cartPresenter = CartPresenterImpl.getInstance();
         cartPresenter.setDialogView(this);
@@ -123,7 +123,7 @@ public class OfferItemDialogFragment extends DialogFragment implements OfferItem
             public void onClick(View view) {
                 offerItem.setCount(offerItem.getCount() + 1);
                 viewCount.setText(String.valueOf(offerItem.getCount()));
-                viewPrice.setText(String.valueOf(offerItem.getOffer().getPrice() * offerItem.getCount()));
+                viewPrice.setText(String.valueOf((int) (offerItem.getOffer().getPrice() * offerItem.getCount())) + " " + getActivity().getResources().getString(R.string.currency));
                 offerItem.updateCount();
             }
         });
@@ -134,7 +134,7 @@ public class OfferItemDialogFragment extends DialogFragment implements OfferItem
                 if (offerItem.getCount() > 0) {
                     offerItem.setCount(offerItem.getCount() - 1);
                     viewCount.setText(String.valueOf(offerItem.getCount()));
-                    viewPrice.setText(String.valueOf(offerItem.getOffer().getPrice() * offerItem.getCount()));
+                    viewPrice.setText(String.valueOf((int) (offerItem.getOffer().getPrice() * offerItem.getCount())) + " " + getActivity().getResources().getString(R.string.currency));
                     offerItem.updateCount();
                 }
             }
@@ -155,7 +155,8 @@ public class OfferItemDialogFragment extends DialogFragment implements OfferItem
         viewName.setText(offerItem.getProduct().getName());
         viewCount.setText(String.valueOf(offerItem.getCount()));
         Picasso.with(getContext()).load(offerItem.getProduct().getFirstImage()).into(viewImage);
-        viewPrice.setText(String.valueOf(offerItem.getOffer().getPrice() * offerItem.getCount()));
+        viewPrice.setText(String.valueOf((int) (offerItem.getOffer().getPrice() * offerItem.getCount())) + " " + getActivity().getResources().getString(R.string.currency));
+        viewFeature.setText(offerItem.getProduct().getFeaturesString());
     }
 
     @Override

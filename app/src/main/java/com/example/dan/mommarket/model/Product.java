@@ -1,6 +1,5 @@
 package com.example.dan.mommarket.model;
 
-import com.example.dan.mommarket.database.OfferDataSource;
 import com.example.dan.mommarket.database.ProductDataSource;
 
 import java.util.LinkedList;
@@ -161,5 +160,17 @@ public class Product {
         } else {
             ProductDataSource.deleteProductFromList(productId, 1);
         }
+    }
+
+    public String getFeaturesString() {
+        String featuresString = "";
+        if (featuresList == null) featuresList = ProductDataSource.getProductFeachers(productId);
+        if (featuresList != null) {
+            for (Feature x : featuresList) {
+                if (featuresString != "") featuresString += ", ";
+                featuresString += x.getName() + ": " + x.getValue();
+            }
+        }
+        return featuresString;
     }
 }

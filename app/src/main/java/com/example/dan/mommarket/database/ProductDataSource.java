@@ -276,4 +276,30 @@ public class ProductDataSource {
             database.insert(Contract.OfferItemDB.TABLE, null, cv);
         }
     }
+
+
+    public static List<Feature> getProductFeachers(int productId) {
+        database = dbHelper.getReadableDatabase();
+        List<Feature> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("select " +
+                        " min(pf." + Contract.ProductFeatureDB.ID + ")" +
+                        " ,f." + Contract.FeatureDB.NAME +
+                        " ,min(pf." + Contract.ProductFeatureDB.VALUE + ")" +
+                        " from " + Contract.ProductFeatureDB.TABLE + " pf " +
+                        " join " + Contract.FeatureDB.TABLE + " f on f." + Contract.FeatureDB.ID + "= pf." + Contract.ProductFeatureDB.FEATURE_ID + " " +
+                        " Where pf." + Contract.ProductFeatureDB.PRODUCT_ID + "=?" +
+                        " group by f." + Contract.FeatureDB.ID + "; "
+                , new String[]{Integer.toString(productId)});
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(new Feature(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2)));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
 }

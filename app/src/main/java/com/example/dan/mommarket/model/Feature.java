@@ -19,6 +19,7 @@ public class Feature {
         this.name = name;
         this.value = value;
     }
+
     public Feature(int id, String name, String value, int categoryId) {
         this.id = id;
         this.name = name;
