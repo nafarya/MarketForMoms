@@ -10,25 +10,44 @@ public class ProductCategory {
     private String imageURL;
     private String description;
     private int childCount;
+    private int productCount;
+
+    public int getProductCount() {
+        return productCount;
+    }
+
+    public void setProductCount(int productCount) {
+        this.productCount = productCount;
+    }
 
     public ProductCategory(int id) {
         this.id = id;
     }
-    public ProductCategory(int id,String name) {
+
+    public ProductCategory(int id, String name) {
         this.id = id;
-        this.name=name;
+        this.name = name;
     }
+
+    public ProductCategory(int id, String name, int productCount) {
+        this.id = id;
+        this.name = name;
+        this.productCount = productCount;
+
+    }
+
     public ProductCategory(int id,
                            String name,
                            String description,
                            int parentCategoryId,
                            String imageURL) {
         this.id = id;
-        this.name=name;
-        this.description=description;
-        this.parentCategoryId=parentCategoryId;
-        this.imageURL=imageURL;
+        this.name = name;
+        this.description = description;
+        this.parentCategoryId = parentCategoryId;
+        this.imageURL = imageURL;
     }
+
     public ProductCategory(int id,
                            String name,
                            String description,
@@ -36,11 +55,11 @@ public class ProductCategory {
                            String imageURL,
                            int childCount) {
         this.id = id;
-        this.name=name;
-        this.description=description;
-        this.parentCategoryId=parentCategoryId;
-        this.imageURL=imageURL;
-        this.childCount=childCount;
+        this.name = name;
+        this.description = description;
+        this.parentCategoryId = parentCategoryId;
+        this.imageURL = imageURL;
+        this.childCount = childCount;
     }
 
     public String getName() {

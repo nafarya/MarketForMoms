@@ -1,5 +1,7 @@
 package com.example.dan.mommarket.adapter;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,15 +22,18 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
 
     private List<Offer> offerList;
     private onAddToCartButtonClickListener listener;
+    private Context context;
 
     public interface onAddToCartButtonClickListener {
         void onItemClick(int item);
     }
 
-    public OfferListAdapter(List<Offer> offerList, onAddToCartButtonClickListener listener) {
+    public OfferListAdapter(List<Offer> offerList, onAddToCartButtonClickListener listener, Context context) {
         this.offerList = offerList;
         this.listener = listener;
+        this.context = context;
     }
+
     @Override
     public int getItemViewType(int position) {
         return position;
@@ -42,6 +47,7 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        Resources resources = context.getResources();
         if (position == 0) {
             holder.header_text.setText(R.string.best_offer);
         } else if (position == 1) {
@@ -51,9 +57,9 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
         }
         Offer offer = offerList.get(position);
         holder.name.setText(offer.getShop().getName());
-        holder.price.setText(String.valueOf(offer.getPrice()));
-        holder.fee.setText(String.valueOf(offer.getShop().getDeliveryPrice()) + " Р");
-        holder.date.setText(offer.getShop().getDeliveryTime());
+        holder.price.setText(String.valueOf((int) offer.getPrice()) + " " + resources.getString(R.string.currency));
+        holder.fee.setText(offer.getShop().getDeliveryPrice() != 0 ? String.valueOf(offer.getShop().getDeliveryPrice()) + " " + resources.getString(R.string.currency) : resources.getString(R.string.delivery_cost_free));
+        holder.date.setText(offer.getShop().getDeliveryTime() + ",");
         holder.rate.setRating(offer.getShop().getRate());
     }
 
@@ -62,7 +68,7 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
         return offerList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView header_text;
         private TextView name;
         private TextView date;

@@ -17,8 +17,8 @@ import android.widget.Toast;
 import com.example.dan.mommarket.Navigator;
 import com.example.dan.mommarket.R;
 import com.example.dan.mommarket.adapter.ProductListRVAdapter;
-import com.example.dan.mommarket.model.Product;
 import com.example.dan.mommarket.model.Advice;
+import com.example.dan.mommarket.model.Product;
 import com.example.dan.mommarket.presenter.advice.AdviceDetailPresenter;
 import com.example.dan.mommarket.presenter.advice.AdviceDetailPresenterImpl;
 import com.example.dan.mommarket.views.AdviceDetail;
@@ -43,10 +43,12 @@ public class AdviceDetailFragment extends Fragment implements AdviceDetail, Prod
     private int productsToShow = 2;
     private Button goToCatalog;
     Navigator navigator;
+    Advice advice;
     View view;
 
     @Override
     public void showAdvice(Advice advice) {
+        this.advice = advice;
         Picasso.with(getContext()).load(advice.getImage0()).into((ImageView) view.findViewById(R.id.advice_image));
         ((TextView) view.findViewById(R.id.advice_detail_name)).setText(advice.getName());
         Picasso.with(getContext()).load(advice.getAuthorImage()).into((ImageView) view.findViewById(R.id.author_photo));
@@ -59,12 +61,17 @@ public class AdviceDetailFragment extends Fragment implements AdviceDetail, Prod
         ((TextView) view.findViewById(R.id.advice_header2)).setText(advice.getHeader2());
         ((TextView) view.findViewById(R.id.advice_text2)).setText(Html.fromHtml(advice.getText2()));
         ((TextView) view.findViewById(R.id.product_category_button1).findViewById(R.id.polzunki_button_id)).setText(advice.getCategory1().getName());
+     //   ((TextView) view.findViewById(R.id.product_category_button1).findViewById(R.id.polzunki_product_count)).setText(String.valueOf(advice.getCategory1().getProductCount()));
+
         ((TextView) view.findViewById(R.id.product_category_button2).findViewById(R.id.polzunki_button_id)).setText(advice.getCategory2().getName());
+     //   ((TextView) view.findViewById(R.id.product_category_button2).findViewById(R.id.polzunki_product_count)).setText(String.valueOf(advice.getCategory2().getProductCount()));
+
         ((TextView) view.findViewById(R.id.product_category_button3).findViewById(R.id.polzunki_button_id)).setText(advice.getCategory3().getName());
+     //   ((TextView) view.findViewById(R.id.product_category_button3).findViewById(R.id.polzunki_product_count)).setText(String.valueOf(advice.getCategory3().getProductCount()));
     }
 
     @Override
-    public void showProducts(List<Product> productList1,List<Product> productList2,List<Product> productList3) {
+    public void showProducts(List<Product> productList1, List<Product> productList2, List<Product> productList3) {
         List<Product> productListToShow = new ArrayList<>();
         for (int i = 0; i < productsToShow; i++) {
             productListToShow.add(productList1.get(i));
@@ -113,6 +120,29 @@ public class AdviceDetailFragment extends Fragment implements AdviceDetail, Prod
                 navigator.navigateToCatalog();
             }
         });
+
+        view.findViewById(R.id.product_category_button1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigator.navigateToProductList(advice.getCategory1().getId());
+            }
+        });
+
+        view.findViewById(R.id.product_category_button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigator.navigateToProductList(advice.getCategory2().getId());
+            }
+        });
+
+        view.findViewById(R.id.product_category_button3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigator.navigateToProductList(advice.getCategory3().getId());
+            }
+        });
+
+
         return view;
     }
 

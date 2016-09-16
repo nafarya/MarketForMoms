@@ -5,19 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.dan.mommarket.R;
 import com.example.dan.mommarket.model.Product;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import static java.security.AccessController.getContext;
 
 /**
  * Created by dan on 27.08.16.
@@ -62,7 +58,7 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
             holder.bookmark.setBackgroundResource(R.drawable.ic_bookmark_border_black_24dp);
         }
         holder.name.setText(product.getName());
-        holder.price.setText(String.valueOf(product.getPrice()));
+        holder.price.setText(context.getResources().getString(R.string.from)+" "+String.valueOf((int) product.getPrice()) + " " + context.getResources().getString(R.string.currency));
         holder.feature.setText(product.getCardFeatureValue());
         Picasso.with(context).load(product.getFirstImage()).into(holder.icon);
     }
@@ -72,7 +68,7 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
         return productList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView name;
         private ImageView icon;
         private TextView price;
