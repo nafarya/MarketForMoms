@@ -42,6 +42,7 @@ public class CartShopListAdapter extends RecyclerView.Adapter<CartShopItemVH> {
     @Override
     public void onBindViewHolder(CartShopItemVH holder, int position) {
         Shop shop = shopList.get(position);
+
         Resources resources = context.getResources();
         holder.getShopName().setText(shop.getName());
         holder.getSum().setText(String.valueOf((int) shop.getProductCartSum()) + " " + context.getResources().getString(R.string.currency));
@@ -49,6 +50,7 @@ public class CartShopListAdapter extends RecyclerView.Adapter<CartShopItemVH> {
         holder.getDeliveryTime().setText(shop.getDeliveryTime());
         holder.getNumOfProduct().setText(shop.getProductCartCount() == 1 ?
                 "" : resources.getQuantityString(R.plurals.shop_product, shop.getProductCartCount(), shop.getProductCartCount()));
+
         holder.getRate().setRating(shop.getRate());
     }
 

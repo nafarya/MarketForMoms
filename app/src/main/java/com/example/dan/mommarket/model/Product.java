@@ -42,7 +42,7 @@ public class Product {
         this.categoryName = categoryName;
         this.images = imageUrl;
         this.cardFeatureValue = cardFeatureValue;
-        this.bookmark = bookmark == 1 ? true : false;
+        this.bookmark = bookmark == 1;
     }
 
     public Product(int productId, String productName, String productImageUrl) {
