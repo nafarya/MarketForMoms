@@ -238,28 +238,15 @@ public class ProductDataSource {
 
     private static Product productCursorToProduct(Cursor productCursor) {
         Product product = null;
-        if (productCursor.getColumnCount() < 7) {
-            product = new Product(productCursor.getInt(0),
-                    productCursor.getString(1),
-                    productCursor.getFloat(2),
-                    productCursor.getString(3),
-                    productCursor.getInt(4),
-                    productCursor.getString(5),
-                    productCursor.getString(6) == null ? null : Arrays.asList((productCursor.getString(6)).split(",")),
-                    productCursor.getColumnCount() >= 7 ? productCursor.getString(7) : null,
-                    0);
-        } else {
-            product = new Product(productCursor.getInt(0),
-                    productCursor.getString(1),
-                    productCursor.getFloat(2),
-                    productCursor.getString(3),
-                    productCursor.getInt(4),
-                    productCursor.getString(5),
-                    productCursor.getString(6) == null ? null : Arrays.asList((productCursor.getString(6)).split(",")),
-                    productCursor.getString(7),
-                    productCursor.getInt(8)
-            );
-        }
+        product = new Product(productCursor.getInt(0),
+                productCursor.getString(1),
+                productCursor.getFloat(2),
+                productCursor.getString(3),
+                productCursor.getInt(4),
+                productCursor.getString(5),
+                productCursor.getString(6) == null ? null : Arrays.asList((productCursor.getString(6)).split(",")),
+                productCursor.getColumnCount() < 8 ? null : productCursor.getString(7),
+                productCursor.getColumnCount() < 9 ? 0 : productCursor.getInt(8));
         return product;
     }
 

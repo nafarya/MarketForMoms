@@ -1,6 +1,7 @@
 package com.example.dan.mommarket.fragments.cart;
 
 import android.app.Dialog;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -38,26 +39,24 @@ public class OfferItemDialogFragment extends DialogFragment implements OfferItem
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NORMAL, R.style.Mom_Dialog);
+        //    setStyle(DialogFragment.STYLE_NORMAL, R.style.Mom_Dialog);
+        //    getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-//        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));;
-//        Dialog dialog = getDialog();
-//        getDialog().getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-//        if (dialog != null) {
-//            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-//        }
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        }
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));;
-//        Dialog dialog = new Dialog(getActivity(),android.R.style.Theme_Translucent_NoTitleBar);
+
         view = inflater.inflate(R.layout.offer_item_dialog, container, false);
 
         viewName = (TextView) view.findViewById(R.id.offer_item_name);
@@ -69,18 +68,25 @@ public class OfferItemDialogFragment extends DialogFragment implements OfferItem
         cartPresenter.setDialogView(this);
         cartPresenter.onCreateOfferItemView(savedInstanceState != null ? savedInstanceState : this.getArguments());
 
-//        final Drawable d = new ColorDrawable(Color.BLACK);
-//        d.setAlpha(130);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (offerItem.getCount() == 0) {
+                    offerItem.deleteOfferItem();
+                } else {
+                    offerItem.updateCount();
+                }
+                cartPresenter.refreshFragment();
+                getDialog().dismiss();
+            }
+        });
 
-//        dialog.getWindow().setBackgroundDrawable(d);
-//        dialog.getWindow().setContentView(view);
-//
-//        final WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
-//        params.width = WindowManager.LayoutParams.WRAP_CONTENT;
-//        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
-//        params.gravity = Gravity.CENTER;
-//
-//        dialog.setCanceledOnTouchOutside(true);
+        view.findViewById(R.id.offer_item_main).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //to disable clik on cart
+            }
+        });
 
         view.findViewById(R.id.offer_item_to_card).setOnClickListener(new View.OnClickListener() {
             @Override

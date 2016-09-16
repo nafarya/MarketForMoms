@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/cardview_light_background"
+    android:background="@drawable/border"
 
     android:layout_marginTop="4dp"
     android:layout_marginLeft="8dp"
@@ -32,6 +32,7 @@
 
         <RatingBar
             style="?android:attr/ratingBarStyleSmall"
+            android:id="@+id/cart_shop_list_item_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
@@ -67,20 +68,11 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <TextView
-        android:id="@+id/grey_line"
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/order_gray_hyphen"
-        android:gravity="center_vertical|center_horizontal|center"
-        android:text="" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@drawable/border">
 
         <LinearLayout
             android:layout_width="wrap_content"
