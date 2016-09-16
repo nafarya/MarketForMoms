@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.dan.mommarket.R;
@@ -53,6 +54,7 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
         holder.price.setText(String.valueOf(offer.getPrice()));
         holder.fee.setText(String.valueOf(offer.getShop().getDeliveryPrice()) + " Р");
         holder.date.setText(offer.getShop().getDeliveryTime());
+        holder.rate.setRating(offer.getShop().getRate());
     }
 
     @Override
@@ -66,6 +68,7 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
         private TextView date;
         private TextView fee;
         private TextView price;
+        private RatingBar rate;
         private onAddToCartButtonClickListener listener;
 
         public ViewHolder(View itemView, onAddToCartButtonClickListener listener) {
@@ -76,6 +79,7 @@ public class OfferListAdapter extends RecyclerView.Adapter<OfferListAdapter.View
             date = (TextView) itemView.findViewById(R.id.shop_list_date);
             fee = (TextView) itemView.findViewById(R.id.shop_list_fee);
             price = (TextView) itemView.findViewById(R.id.shop_list_price);
+            rate = (RatingBar) itemView.findViewById(R.id.shop_list_shop_rate);
             itemView.findViewById(R.id.shop_list_add_To_Cart_Button).setOnClickListener(this);
         }
 

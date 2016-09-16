@@ -103,7 +103,8 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@id/shop_list_shop_name"
-                android:progress="1" />
+                android:progress="1"
+                android:id="@+id/shop_list_shop_rate" />
         </RelativeLayout>
 
     </LinearLayout>
