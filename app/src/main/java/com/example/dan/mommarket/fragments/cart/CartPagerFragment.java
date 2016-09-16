@@ -21,18 +21,20 @@ import com.example.dan.mommarket.views.CartPager;
 
 public class CartPagerFragment extends Fragment implements CartPager {
 
-    View view;
-    TextView textTag;
-    RecyclerView recyclerView;
-    CartPresenter cartPresenter;
-    Cart cart;
+    private View view;
+    private TextView textTag;
+    private RecyclerView recyclerView;
+    private CartPresenter cartPresenter;
+    private Cart cart;
+    private int cartType;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_cart_pager, container, false);
+        cartType = this.getArguments().getInt("CartType");
         cartPresenter = CartPresenterImpl.getInstance();
-        cartPresenter.setPagerView(this, this.getArguments().getInt("CartType"));
+        cartPresenter.setPagerView(this, cartType);
         cartPresenter.onCreatePagerView(this.getArguments());
         return view;
     }
@@ -44,6 +46,17 @@ public class CartPagerFragment extends Fragment implements CartPager {
             ((TextView) view.findViewById(R.id.cart_shop_name)).setText(cart.getName());
             ((TextView) view.findViewById(R.id.cart_shop_shop_count)).setText("Из " + String.valueOf(cart.getShopsCount()) + " магазинов");
             ((TextView) view.findViewById(R.id.cart_shop_sum)).setText(String.valueOf(cart.getSum()));
+            switch (cartType) {
+                case 0:
+                    ((TextView) view.findViewById(R.id.cart_shop_name)).setTextColor(getResources().getColor(R.color.cart_pager_best_price));
+                    break;
+                case 1:
+                    ((TextView) view.findViewById(R.id.cart_shop_name)).setTextColor(getResources().getColor(R.color.black_color));
+                    break;
+                case 2:
+                    ((TextView) view.findViewById(R.id.cart_shop_name)).setTextColor(getResources().getColor(R.color.green_color));
+                    break;
+            }
         }
     }
 }

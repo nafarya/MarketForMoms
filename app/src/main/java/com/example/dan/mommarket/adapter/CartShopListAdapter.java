@@ -41,11 +41,29 @@ public class CartShopListAdapter extends RecyclerView.Adapter<CartShopItemVH> {
     @Override
     public void onBindViewHolder(CartShopItemVH holder, int position) {
         Shop shop = shopList.get(position);
+        String productCartCount = String.valueOf(shop.getProductCartCount());
+        switch (shop.getProductCartCount()) {
+            case 1:
+                productCartCount += " товар";
+                break;
+            case 2:
+                productCartCount += " товара";
+                break;
+            case 3:
+                productCartCount += " товара";
+                break;
+            case 4:
+                productCartCount += " товара";
+                break;
+            default:
+                productCartCount += " товаров";
+                break;
+        }
         holder.getShopName().setText(shop.getName());
         holder.getSum().setText(String.valueOf(shop.getProductCartSum()));
         holder.getDeliveryPrice().setText(String.valueOf(shop.getDeliveryPrice()));
         holder.getDeliveryTime().setText(shop.getDeliveryTime());
-        holder.getNumOfProduct().setText(String.valueOf(shop.getProductCartCount()));
+        holder.getNumOfProduct().setText(productCartCount);
         holder.getRate().setRating(shop.getRate());
     }
 

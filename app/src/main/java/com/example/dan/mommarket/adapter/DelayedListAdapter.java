@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 ;import com.example.dan.mommarket.R;
@@ -57,7 +58,7 @@ public class DelayedListAdapter extends RecyclerView.Adapter<DelayedListAdapter.
 
         private TextView name;
         private TextView price;
-        private Button deleteButton;
+        private ImageButton deleteButton;
         private ImageView image;
         private OnDeleteButtonClickListener listener;
 
@@ -66,7 +67,7 @@ public class DelayedListAdapter extends RecyclerView.Adapter<DelayedListAdapter.
             this.listener = listener;
             name = (TextView) itemView.findViewById(R.id.delayed_list_item_name);
             price = (TextView) itemView.findViewById(R.id.delayed_list_item_price);
-            deleteButton = (Button) itemView.findViewById(R.id.delayed_list_item_button);
+            deleteButton = (ImageButton) itemView.findViewById(R.id.delayed_list_item_button);
             image = (ImageView) itemView.findViewById(R.id.delayed_list_item_image);
             itemView.setOnClickListener(this);
         }
