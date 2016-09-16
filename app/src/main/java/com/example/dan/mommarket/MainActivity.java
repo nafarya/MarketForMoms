@@ -85,8 +85,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                                      @Override
                                      public void onDrawerStateChanged(int newState) {
-                                         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-                                         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                                         if (getSupportFragmentManager().getBackStackEntryCount() > 2) {
+//                                             onBackPressed();
+//                                             getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+//                                             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//                                             return;
+                                         }
                                      }
                                  });
 
