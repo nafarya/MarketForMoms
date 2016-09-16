@@ -55,7 +55,7 @@ public class ProductCardFragment extends Fragment implements ProductCard, OfferL
     @Override
     public void showOffers(List<Offer> offers) {
         this.offers = offers;
-        offerListAdapter = new OfferListAdapter(this.offers, this);
+        offerListAdapter = new OfferListAdapter(this.offers, this,getContext());
         recyclerView.setAdapter(offerListAdapter);
         recyclerView.setNestedScrollingEnabled(false);
     }

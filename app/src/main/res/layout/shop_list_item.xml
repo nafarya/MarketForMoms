@@ -97,14 +97,14 @@
 
             <RatingBar
                 style="?android:attr/ratingBarStyleSmall"
+                android:progressDrawable="@drawable/shop_rating_bar"
+                android:id="@+id/shop_list_shop_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/grey_line"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@id/shop_list_shop_name"
-                android:progress="1"
-                android:id="@+id/shop_list_shop_rate" />
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_toRightOf="@id/shop_list_shop_name"/>
         </RelativeLayout>
 
     </LinearLayout>
