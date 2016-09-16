@@ -55,10 +55,13 @@ public class Advice {
                   String text2,
                   int category1Id,
                   String category1Name,
+                  int category1ProductCount,
                   int category2Id,
                   String category2Name,
+                  int category2ProductCount,
                   int category3Id,
-                  String category3Name) {
+                  String category3Name,
+                  int category3ProductCount) {
         this.id = id;
         this.name = name;
         this.shortDescription = shortDescription;
@@ -74,9 +77,9 @@ public class Advice {
         this.image1 = image1;
         this.header2 = header2;
         this.text2 = text2;
-        Category1 = new ProductCategory(category1Id,category1Name);
-        Category2 = new ProductCategory(category2Id,category2Name);
-        Category3 = new ProductCategory(category3Id,category3Name);
+        Category1 = new ProductCategory(category1Id, category1Name, category1ProductCount);
+        Category2 = new ProductCategory(category2Id, category2Name, category2ProductCount);
+        Category3 = new ProductCategory(category3Id, category3Name, category3ProductCount);
     }
 
     public int getId() {
