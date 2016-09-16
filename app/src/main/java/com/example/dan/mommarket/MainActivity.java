@@ -384,7 +384,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void navigateToDelayed() {
         getSupportActionBar().setTitle("Отложенное");
 //        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         DelayedListFragment delayedListFragment = new DelayedListFragment();
         getSupportFragmentManager()
                 .beginTransaction()
