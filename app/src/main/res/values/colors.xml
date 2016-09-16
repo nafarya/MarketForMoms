@@ -7,5 +7,11 @@
     <color name="background">#e5e5e5</color>
     <color name="anothergray">#f6f5f3</color>
     <color name="dark_blue">#3577b3</color>
+    <color name="border">#1a000000</color>
+    <color name="white_background">#FFFFFF</color>
+    <color name="offer_item_count">#fef2c1</color>
+    <color name="cart_pager_best_price">#ff5a57</color>
+    <color name="black_color">#e5000000</color>
+    <color name="green_color">#359e00</color>
 
 </resources>

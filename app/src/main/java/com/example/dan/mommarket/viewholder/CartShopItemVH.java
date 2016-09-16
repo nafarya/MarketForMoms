@@ -3,6 +3,7 @@ package com.example.dan.mommarket.viewholder;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.dan.mommarket.Navigator;
@@ -21,6 +22,7 @@ public class CartShopItemVH extends RecyclerView.ViewHolder implements CartShopO
     private TextView deliveryPrice;
     private TextView deliveryTime;
     private TextView sum;
+    private RatingBar rate;
     private Context context;
     private Navigator navigator;
 
@@ -56,6 +58,14 @@ public class CartShopItemVH extends RecyclerView.ViewHolder implements CartShopO
         this.deliveryTime = deliveryTime;
     }
 
+    public RatingBar getRate() {
+        return rate;
+    }
+
+    public void setRate(RatingBar rate) {
+        this.rate = rate;
+    }
+
     private RecyclerView recyclerView;
 
     public CartShopItemVH(View itemView, int shopId, int cartType, Context context) {
@@ -66,6 +76,7 @@ public class CartShopItemVH extends RecyclerView.ViewHolder implements CartShopO
         deliveryTime = (TextView) itemView.findViewById(R.id.cart_shop_list_item_delivety_time);
         sum = (TextView) itemView.findViewById(R.id.cart_shop_list_item_sum);
         recyclerView = (RecyclerView) itemView.findViewById(R.id.cart_shop_list_item_rv);
+        rate = (RatingBar) itemView.findViewById(R.id.cart_shop_list_item_rate);
         CartShopOfferItemAdapter adapter = new CartShopOfferItemAdapter(OfferItemDataSource.getOfferItemsByShopIdAndCart(shopId, cartType), context, this);
         recyclerView.setAdapter(adapter);
         this.navigator = (Navigator) context;
