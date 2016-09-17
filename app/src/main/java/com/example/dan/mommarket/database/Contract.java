@@ -44,12 +44,30 @@ public interface Contract {
         public static final String ID = "_ID";
         public static final String NAME = "NAME";
         public static final String TYPE = "TYPE";
+        public static final String CITY = "CITY";
+        public static final String STREET = "STREET";
+        public static final String APPARTMERNT = "APPARTMERNT";
+        public static final String COMMENT = "COMMENT";
+        public static final String FIRST_NAME = "FIRST_NAME";
+        public static final String LAST_NAME = "LAST_NAME";
+        public static final String PHONE = "PHONE";
+        public static final String EMAIL = "EMAIL";
+        public static final String CASH = "CASH";
         public static final String START_DATE = "START_DATE";
 
         public static final String TABLE_CREATE = "create table " + TABLE + " (" +
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 NAME + " TEXT NOT NULL, " +
                 TYPE + " TEXT, " +
+                CITY + " TEXT, " +
+                STREET + " TEXT, " +
+                APPARTMERNT + " TEXT, " +
+                COMMENT + " TEXT, " +
+                FIRST_NAME + " TEXT, " +
+                LAST_NAME + " TEXT, " +
+                EMAIL + " TEXT, " +
+                PHONE + " TEXT, " +
+                CASH + " INTEGER, " +
                 START_DATE + " TEXT );";
     }
 

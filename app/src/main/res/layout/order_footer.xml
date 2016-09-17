@@ -20,7 +20,7 @@
             android:text="@string/order_delivery_sum_text" />
 
         <TextView
-            android:id="@+id/sumValue"
+            android:id="@+id/order_sum_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/order_delivery_sum"
@@ -30,7 +30,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/delivery_next"
+        android:id="@+id/order_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"

@@ -13,7 +13,7 @@
 
     <ImageView
 
-        android:id="@+id/one"
+        android:id="@+id/order_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
