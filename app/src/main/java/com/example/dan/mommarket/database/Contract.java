@@ -237,6 +237,9 @@ public interface Contract {
         public static final String CATEGORY_1 = "CATEGORY_1";
         public static final String CATEGORY_2 = "CATEGORY_2";
         public static final String CATEGORY_3 = "CATEGORY_3";
+        public static final String CATEGORY_1_DESC = "CATEGORY_1_DESC";
+        public static final String CATEGORY_2_DESC = "CATEGORY_2_DESC";
+        public static final String CATEGORY_3_DESC = "CATEGORY_3_DESC";
 
 
         public static final String TABLE_CREATE = "create table " + TABLE + " (" +
@@ -257,6 +260,9 @@ public interface Contract {
                 TEXT_2 + " TEXT, " +
                 CATEGORY_1 + " INTEGER, " +
                 CATEGORY_2 + " INTEGER, " +
-                CATEGORY_3 + " INTEGER " + ");";
+                CATEGORY_3 + " INTEGER, " +
+                CATEGORY_1_DESC + " TEXT, " +
+                CATEGORY_2_DESC + " TEXT, " +
+                CATEGORY_3_DESC + " TEXT " + ");";
     }
 }

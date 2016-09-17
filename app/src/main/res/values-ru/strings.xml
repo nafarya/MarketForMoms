@@ -15,9 +15,4 @@
         <item quantity="many">Из %1$d магазинов</item>
         <item quantity="other">Из %1$d магазинов</item>
     </plurals>
-    <string-array name="delivery_pickup">
-        <item>Главный магазин</item>
-        <item>Магазин 2</item>
-        <item>AМагазин 3</item>
-    </string-array>
 </resources>

@@ -17,7 +17,7 @@
     <string name="one_hundred_percent_cotton">100% хлопок</string>
     <string name="many_rubles">от 549 Р</string>
     <string name="not_many_rubles">от 449 Р</string>
-    <string name="go_to_shopping">Перейти к покупкам</string>
+    <string name="go_to_shopping">Продолжить выбор</string>
     <string name="for_moms">Для мамочек</string>
     <string name="for_childs">Для детей</string>
     <string name="imageToTransit">image_to_transit</string>
@@ -53,7 +53,7 @@
     <string name="best_offer">лучшее предложение</string>
     <string name="addToCart">В корзину</string>
     <string name="other_offers">другие предложения</string>
-    <string name="go_to_order">перейти к оформлению</string>
+    <string name="go_to_order">Перейти к оформлению</string>
     <string name="final_cost">Итого</string>
     <string name="final_cost_with_delivery">с учетом доставки</string>
     <string name="delivery_cost_free">бесплатно</string>

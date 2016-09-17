@@ -21,8 +21,11 @@ public class Advice {
     private String header2;
     private String text2;
     private ProductCategory Category1;
+    private String categoryDescription1;
     private ProductCategory Category2;
+    private String categoryDescription2;
     private ProductCategory Category3;
+    private String categoryDescription3;
 
     public Advice(
             int id,
@@ -37,6 +40,8 @@ public class Advice {
         this.shortDescription = shortDescription;
         this.imageURL = imageUrl;
     }
+
+
 
     public Advice(int id,
                   String name,
@@ -55,12 +60,15 @@ public class Advice {
                   String text2,
                   int category1Id,
                   String category1Name,
+                  String categoryDescription1,
                   int category1ProductCount,
                   int category2Id,
                   String category2Name,
+                  String categoryDescription2,
                   int category2ProductCount,
                   int category3Id,
                   String category3Name,
+                  String categoryDescription3,
                   int category3ProductCount) {
         this.id = id;
         this.name = name;
@@ -78,8 +86,11 @@ public class Advice {
         this.header2 = header2;
         this.text2 = text2;
         Category1 = new ProductCategory(category1Id, category1Name, category1ProductCount);
+        this.categoryDescription1 = categoryDescription1;
         Category2 = new ProductCategory(category2Id, category2Name, category2ProductCount);
+        this.categoryDescription2 = categoryDescription2;
         Category3 = new ProductCategory(category3Id, category3Name, category3ProductCount);
+        this.categoryDescription3 = categoryDescription3;
     }
 
     public int getId() {
@@ -224,5 +235,29 @@ public class Advice {
 
     public void setCategory3(ProductCategory category3) {
         Category3 = category3;
+    }
+
+    public String getCategoryDescription1() {
+        return categoryDescription1;
+    }
+
+    public void setCategoryDescription1(String categoryDescription1) {
+        this.categoryDescription1 = categoryDescription1;
+    }
+
+    public String getCategoryDescription2() {
+        return categoryDescription2;
+    }
+
+    public void setCategoryDescription2(String categoryDescription2) {
+        this.categoryDescription2 = categoryDescription2;
+    }
+
+    public String getCategoryDescription3() {
+        return categoryDescription3;
+    }
+
+    public void setCategoryDescription3(String categoryDescription3) {
+        this.categoryDescription3 = categoryDescription3;
     }
 }

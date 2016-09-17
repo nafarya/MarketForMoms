@@ -80,12 +80,15 @@ public class AdviceDataSource {
                         " ,a." + Contract.AdviceDB.TEXT_2 +
                         " ,c1." + Contract.ProductCategoryDB.ID +
                         " ,c1." + Contract.ProductCategoryDB.NAME +
+                        " ,a." + Contract.AdviceDB.CATEGORY_1_DESC +
                         " ,count(distinct p1." + Contract.ProductDB.ID + ")" +
                         " ,c2." + Contract.ProductCategoryDB.ID +
                         " ,c2." + Contract.ProductCategoryDB.NAME +
+                        " ,a." + Contract.AdviceDB.CATEGORY_2_DESC +
                         " ,count(distinct p2." + Contract.ProductDB.ID + ")" +
                         " ,c3." + Contract.ProductCategoryDB.ID +
                         " ,c3." + Contract.ProductCategoryDB.NAME +
+                        " ,a." + Contract.AdviceDB.CATEGORY_3_DESC +
                         " ,count(distinct p3." + Contract.ProductDB.ID + ")" +
                         " from " + Contract.AdviceDB.TABLE + " a" +
                         " left join " + Contract.ProductCategoryDB.TABLE + " c1 on c1." + Contract.ProductCategoryDB.ID + "= a." + Contract.AdviceDB.CATEGORY_1 +
@@ -116,13 +119,16 @@ public class AdviceDataSource {
                     adviceCursor.getString(14),
                     adviceCursor.getInt(15),
                     adviceCursor.getString(16),
-                    adviceCursor.getInt(17),
+                    adviceCursor.getString(17),
                     adviceCursor.getInt(18),
-                    adviceCursor.getString(19),
-                    adviceCursor.getInt(20),
-                    adviceCursor.getInt(21),
-                    adviceCursor.getString(22),
-                    adviceCursor.getInt(23)
+                    adviceCursor.getInt(19),
+                    adviceCursor.getString(20),
+                    adviceCursor.getString(21),
+                    adviceCursor.getInt(22),
+                    adviceCursor.getInt(23),
+                    adviceCursor.getString(24),
+                    adviceCursor.getString(25),
+                    adviceCursor.getInt(26)
             );
             adviceCursor.moveToNext();
         }
