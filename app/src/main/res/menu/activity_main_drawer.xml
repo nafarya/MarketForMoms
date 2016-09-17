@@ -17,9 +17,9 @@
         <item
             android:id="@+id/nav_advices"
             android:title="Советы" />
-        <item
+      <!--  <item
             android:id="@+id/nav_my_orders"
-            android:title="Мои заказы" />
+            android:title="Мои заказы" />-->
     </group>
 
 </menu>
