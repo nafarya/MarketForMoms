@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/cardview_light_background"
     android:orientation="vertical">
 
     <LinearLayout
@@ -122,57 +123,56 @@
         </RelativeLayout>
 
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <RelativeLayout
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/order_footer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:orientation="vertical">
 
-
-                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+id/order_footer"
-                    android:layout_alignParentBottom="true">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:orientation="horizontal"
-                        android:padding="16dp">
-
-                        <TextView
-                            android:id="@+id/sumText"
-                            android:textSize="14sp"
-                            android:textAllCaps="false"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/order_delivery_sum_text" />
-
-                        <TextView
-                            android:id="@+id/order_sum_value"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/order_delivery_sum"
-                            android:textAlignment="textEnd"
-                            android:textSize="20sp"
-                            android:textStyle="normal|bold" />
-                    </LinearLayout>
+                    android:layout_weight="0"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
                     <TextView
-                        android:id="@+id/order_next"
+                        android:id="@+id/sumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/order_delivery_sum_text"
+                        android:textAllCaps="false"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/order_sum_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimary"
-                        android:padding="16dp"
-                        android:text="@string/next"
-                        android:textAlignment="center"
-                        android:textSize="16sp"
+                        android:text="@string/order_delivery_sum"
+                        android:textAlignment="textEnd"
+                        android:textSize="20sp"
                         android:textStyle="normal|bold" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/order_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:padding="16dp"
+                    android:text="@string/next"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
 
             <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
@@ -180,12 +180,11 @@
                 android:layout_above="@id/order_footer"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:orientation="vertical"
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_above="@id/order_footer">
+                    android:layout_above="@id/order_footer"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/editTextCityText"
@@ -265,11 +264,16 @@
                         android:textSize="16sp" />
 
                     <android.support.v7.widget.RecyclerView
+                        android:id="@+id/order_shop_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/order_shop_list"
-                        app:layoutManager="LinearLayoutManager">
-                    </android.support.v7.widget.RecyclerView>
+                        app:layoutManager="LinearLayoutManager" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:background="@color/anothergray"
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
