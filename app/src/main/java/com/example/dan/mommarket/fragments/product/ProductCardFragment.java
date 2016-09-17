@@ -38,6 +38,8 @@ public class ProductCardFragment extends Fragment implements ProductCard, OfferL
     private View view;
     private Navigator navigator;
 
+
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -73,7 +75,7 @@ public class ProductCardFragment extends Fragment implements ProductCard, OfferL
 
     @Override
     public void onItemClick(final int item) {
-        Snackbar snackbar = Snackbar.make(view, "Товар добавлен в корзину", Snackbar.LENGTH_SHORT).
+        Snackbar snackbar = Snackbar.make(view, "Товар добавлен в корзину", Snackbar.LENGTH_LONG).
                 setAction("Перейти", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

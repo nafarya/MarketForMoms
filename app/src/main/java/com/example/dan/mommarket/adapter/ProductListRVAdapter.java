@@ -1,6 +1,8 @@
 package com.example.dan.mommarket.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.dan.mommarket.Navigator;
 import com.example.dan.mommarket.R;
 import com.example.dan.mommarket.model.Product;
 import com.squareup.picasso.Picasso;
@@ -26,6 +29,9 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
     private OnProductListRvClickListener listener;
     private OnBookmarkClickListener bookMarklistener;
     private boolean bookmarkFlag = false;
+    public Navigator navigator;
+
+
 
     public interface OnProductListRvClickListener {
         void onProductClick(int item);
@@ -40,6 +46,7 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
         this.context = context;
         this.listener = listener;
         this.bookMarklistener = bookMarklistener;
+        navigator = (Navigator) context;
     }
 
 
@@ -103,6 +110,15 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
                 } else {
                     productList.get(getAdapterPosition()).setBookmark(true);
                     bookmark.setImageResource(R.drawable.ic_bookmark_black_24dp);
+                    Snackbar snackbar = Snackbar.make(view, "Товар добавлен в отложенное", Snackbar.LENGTH_LONG).
+                            setAction("Перейти", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    navigator.navigateToDelayed();
+                                }
+                            });
+                    snackbar.setActionTextColor(Color.rgb(255, 222, 99));
+                    snackbar.show();
                 }
             } else {
                 listener.onProductClick(productList.get(getAdapterPosition()).getProductId());
