@@ -63,8 +63,22 @@
     <string name="delete_offer">Удалить товар</string>
     <string name="you_are_cool_mom">Ты классная мама!</string>
     <string name="thank_for_purchase">Спасибо за покупку!</string>
-    <string name="currency">руб.</string>
-    <string name="from">от</string>
+    <plurals name="shop_product">
+        <item quantity="zero">%1$d товаров</item>
+        <item quantity="one">%1$d товар</item>
+        <item quantity="two">%1$d товара</item>
+        <item quantity="few">%1$d товара</item>
+        <item quantity="many">%1$d товаров</item>
+        <item quantity="other">%1$d товаров</item>
+    </plurals>
+    <plurals name="from_shops">
+        <item quantity="zero">Из %1$d магазинов</item>
+        <item quantity="one">Из %1$d магазина</item>
+        <item quantity="two">Из %1$d магазинов</item>
+        <item quantity="few">Из %1$d магазинов</item>
+        <item quantity="many">Из %1$d магазинов</item>
+        <item quantity="other">Из %1$d магазинов</item>
+    </plurals>
     <string-array name="delivery_pickup">
         <item>Главный магазин</item>
         <item>Магазин 2</item>

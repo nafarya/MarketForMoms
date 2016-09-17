@@ -80,14 +80,20 @@ public class AdviceDataSource {
                         " ,a." + Contract.AdviceDB.TEXT_2 +
                         " ,c1." + Contract.ProductCategoryDB.ID +
                         " ,c1." + Contract.ProductCategoryDB.NAME +
+                        " ,count(distinct p1." + Contract.ProductDB.ID + ")" +
                         " ,c2." + Contract.ProductCategoryDB.ID +
                         " ,c2." + Contract.ProductCategoryDB.NAME +
+                        " ,count(distinct p2." + Contract.ProductDB.ID + ")" +
                         " ,c3." + Contract.ProductCategoryDB.ID +
                         " ,c3." + Contract.ProductCategoryDB.NAME +
+                        " ,count(distinct p3." + Contract.ProductDB.ID + ")" +
                         " from " + Contract.AdviceDB.TABLE + " a" +
                         " left join " + Contract.ProductCategoryDB.TABLE + " c1 on c1." + Contract.ProductCategoryDB.ID + "= a." + Contract.AdviceDB.CATEGORY_1 +
+                        " left join " + Contract.ProductDB.TABLE + " p1 on p1." + Contract.ProductDB.CATEGORY_ID + "= c1." + Contract.ProductCategoryDB.ID +
                         " left join " + Contract.ProductCategoryDB.TABLE + " c2 on c2." + Contract.ProductCategoryDB.ID + "= a." + Contract.AdviceDB.CATEGORY_2 +
+                        " left join " + Contract.ProductDB.TABLE + " p2 on p2." + Contract.ProductDB.CATEGORY_ID + "= c2." + Contract.ProductCategoryDB.ID +
                         " left join " + Contract.ProductCategoryDB.TABLE + " c3 on c3." + Contract.ProductCategoryDB.ID + "= a." + Contract.AdviceDB.CATEGORY_3 +
+                        " left join " + Contract.ProductDB.TABLE + " p3 on p3." + Contract.ProductDB.CATEGORY_ID + "= c3." + Contract.ProductCategoryDB.ID +
                         " where a." + Contract.AdviceDB.ID + " = ? ;"
                 , new String[]{Integer.toString(adviceId)});
         adviceCursor.moveToFirst();
@@ -111,9 +117,12 @@ public class AdviceDataSource {
                     adviceCursor.getInt(15),
                     adviceCursor.getString(16),
                     adviceCursor.getInt(17),
-                    adviceCursor.getString(18),
-                    adviceCursor.getInt(19),
-                    adviceCursor.getString(20)
+                    adviceCursor.getInt(18),
+                    adviceCursor.getString(19),
+                    adviceCursor.getInt(20),
+                    adviceCursor.getInt(21),
+                    adviceCursor.getString(22),
+                    adviceCursor.getInt(23)
             );
             adviceCursor.moveToNext();
         }
