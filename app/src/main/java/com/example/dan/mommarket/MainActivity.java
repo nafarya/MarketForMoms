@@ -106,6 +106,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         CartDataSource.getInstance().setDatabase(this);
         OfferItemDataSource.getInstance().setDatabase(this);
 
+        navigateToMainScreen(); ///this is bullshit, but if change all 4 rows for 1 "navigateToMainScreen() and pick
+        navigateToDelayed();    ///Каталог from navigation drawer, home button will dissapear
+        clearBackStack();       ///it's too late now, so I will fix it later
         navigateToMainScreen();
     }
 
