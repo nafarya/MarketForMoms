@@ -53,7 +53,7 @@ public class CartRootPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        Log.i("pagerAdapter ", String.valueOf(position));
+//        Log.i("pagerAdapter ", String.valueOf(position));
         return super.instantiateItem(container, position);
     }
 
