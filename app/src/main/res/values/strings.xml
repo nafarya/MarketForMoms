@@ -37,7 +37,7 @@
     <string name="delivery_street">АДРЕС: УЛИЦА, ДОМ</string>
     <string name="delivery_house">НОМЕР КВАРТИРЫ ИЛИ ОФИСА</string>
     <string name="delivery_comment">КОММЕНТАРИЙ К ЗАКАЗУ</string>
-    <string name="delivery_shop_1">ДОСТАВКА ИЗ МАГАЗИНА КОРАБЛИК</string>
+    <string name="delivery_shop">ДОСТАВКА ИЗ МАГАЗИНА</string>
     <string name="delivery_shop1_text">Курьером в пределах МКАД</string>
     <string name="delivery_shop1_price">390 H, 30 августа</string>
     <string name="delivery_shop_2">ДОСТАВКА ИЗ МАГАЗИНА ДЕТСКИЙ МИР</string>
@@ -65,6 +65,7 @@
     <string name="thank_for_purchase">Спасибо за покупку!</string>
     <string name="currency">руб.</string>
     <string name="from">от</string>
+    <string name="delivery_date_today">сегодня</string>
     <string-array name="delivery_pickup">
         <item>Главный магазин</item>
         <item>Магазин 2</item>

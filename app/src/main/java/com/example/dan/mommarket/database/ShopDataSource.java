@@ -57,8 +57,10 @@ public class ShopDataSource {
                         " ,s." + Contract.ShopDB.NAME +
                         " ,s." + Contract.ShopDB.DELIVERY_PRICE +
                         " ,s." + Contract.ShopDB.DELIVERY_TIME +
+                        " ,s." + Contract.ShopDB.DELIVERY_TIME_FLOAT +
                         " ,s." + Contract.ShopDB.REFERENCE_COUNT +
                         " ,s." + Contract.ShopDB.RATE +
+                        " ,s." + Contract.ShopDB.DELIVERY_PLACE +
                         " ,oi." + Contract.OfferItemDB.LIST_ID +
                         " ,count( oi." + Contract.OfferItemDB.ID + " )" +
                         " ,sum( o." + Contract.OfferDB.PRICE + " * oi." + Contract.OfferItemDB.COUNT + ") + s." + Contract.ShopDB.DELIVERY_PRICE +
@@ -76,11 +78,13 @@ public class ShopDataSource {
                     cursor.getString(1),
                     cursor.getInt(2),
                     cursor.getString(3),
-                    cursor.getInt(4),
+                    cursor.getFloat(4),
                     cursor.getInt(5),
                     cursor.getInt(6),
-                    cursor.getInt(7),
-                    cursor.getInt(8)));
+                    cursor.getString(7),
+                    cursor.getInt(8),
+                    cursor.getInt(9),
+                    cursor.getInt(10)));
             cursor.moveToNext();
         }
         cursor.close();

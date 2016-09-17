@@ -160,6 +160,7 @@ public interface Contract {
         public static final String DELIVERY_TIME = "DELIVERY_TIME";
         public static final String DELIVERY_TIME_FLOAT = "DELIVERY_TIME_FLOAT";
         public static final String DELIVERY_PRICE = "DELIVERY_PRICE";
+        public static final String DELIVERY_PLACE = "DELIVERY_PLACE";
         public static final String REFERENCE_COUNT = "REFERENCE_COUNT";
 
         public static final String TABLE_CREATE = "create table " + TABLE + " (" +
@@ -169,6 +170,7 @@ public interface Contract {
                 DELIVERY_TIME_FLOAT + " REAL, " +
                 DELIVERY_PRICE + " INTEGER, " +
                 REFERENCE_COUNT + " INTEGER, " +
+                DELIVERY_PLACE + " TEXT, " +
                 RATE + " REAL );";
     }
 
