@@ -14,7 +14,7 @@
         android:textSize="10sp" />
 
     <EditText
-        android:id="@+id/editTextCity"
+        android:id="@+id/order_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -33,7 +33,7 @@
         android:textSize="10sp" />
 
     <EditText
-        android:id="@+id/editTextStreet"
+        android:id="@+id/order_street"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -52,7 +52,7 @@
         android:textSize="10sp" />
 
     <EditText
-        android:id="@+id/editTextHouse"
+        android:id="@+id/order_appartment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -71,7 +71,7 @@
         android:textSize="10sp" />
 
     <EditText
-        android:id="@+id/editTextComment"
+        android:id="@+id/order_comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"

@@ -44,10 +44,10 @@
     <string name="delivery_shop2_text">Курьером до двери</string>
     <string name="delivery_shop2_price">бесплатно, завтра</string>
     <string name="delivery_pickup_text">Выберите пункт самовывоза</string>
-    <string name="first_name">Имя</string>
-    <string name="last_name">Фамилия</string>
-    <string name="phone">Телефон</string>
-    <string name="email">Электронная почта</string>
+    <string name="first_name">ИМЯ</string>
+    <string name="last_name">ФАМИЛИЯ</string>
+    <string name="phone">ТЕЛЕФОН</string>
+    <string name="email">ЭЛЕКТРОННАЯ ПОЧТА</string>
     <string name="payments_cash">Наличными</string>
     <string name="payments_card">Картой</string>
     <string name="best_offer">лучшее предложение</string>

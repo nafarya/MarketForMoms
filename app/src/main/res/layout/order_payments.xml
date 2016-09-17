@@ -15,13 +15,13 @@
             android:id="@+id/base"
             android:layout_width="304dp"
             android:layout_height="16dp"
-            android:layout_alignLeft="@+id/textView"
+            android:layout_alignLeft="@+id/order_delivery"
             android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/textView"
+            android:layout_alignStart="@+id/order_delivery"
             android:gravity="center_vertical|center_horizontal|center" />
 
         <TextView
-            android:id="@+id/one"
+            android:id="@+id/order_one"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_below="@+id/base"
@@ -37,14 +37,14 @@
             android:layout_below="@+id/base"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_toEndOf="@+id/one"
-            android:layout_toRightOf="@+id/one"
+            android:layout_toEndOf="@+id/order_one"
+            android:layout_toRightOf="@+id/order_one"
             android:background="@drawable/order_gray_hyphen"
             android:gravity="center_vertical|center_horizontal|center"
             android:text="" />
 
         <TextView
-            android:id="@+id/two"
+            android:id="@+id/order_two"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_below="@+id/base"
@@ -61,14 +61,14 @@
             android:layout_below="@+id/base"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_toEndOf="@+id/two"
-            android:layout_toRightOf="@+id/two"
+            android:layout_toEndOf="@+id/order_two"
+            android:layout_toRightOf="@+id/order_two"
             android:background="@drawable/order_gray_hyphen"
             android:gravity="center_vertical|center_horizontal|center"
             android:text="" />
 
         <TextView
-            android:id="@+id/tree"
+            android:id="@+id/order_tree"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_below="@+id/base"
@@ -78,38 +78,38 @@
             android:text="3" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/order_delivery"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/one"
+            android:layout_below="@+id/order_one"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/oreder_delivery"
             android:textAlignment="center" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/order_contacts"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/two"
+            android:layout_below="@+id/order_two"
             android:layout_centerHorizontal="false"
             android:layout_centerInParent="false"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginTop="8dp"
-            android:layout_toRightOf="@id/textView"
+            android:layout_toRightOf="@id/order_delivery"
             android:text="@string/oreder_contects"
             android:textAlignment="center" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/order_payments"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tree"
+            android:layout_below="@+id/order_tree"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="8dp"
-            android:layout_toRightOf="@id/textView2"
+            android:layout_toRightOf="@id/order_contacts"
             android:text="@string/order_payments"
             android:textAlignment="center" />
     </RelativeLayout>
@@ -136,7 +136,7 @@
                 android:text="@string/order_delivery_sum_text" />
 
             <TextView
-                android:id="@+id/sumValue"
+                android:id="@+id/order_sum_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/order_delivery_sum"
@@ -146,7 +146,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/delivery_next"
+            android:id="@+id/order_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -168,14 +168,14 @@
         android:orientation="vertical">
 
         <RadioGroup
-            android:id="@+id/radioGroup"
+            android:id="@+id/ordar_payment_radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingTop="16dp">
 
             <RadioButton
-                android:id="@+id/radioButton"
+                android:id="@+id/order_cash"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -183,7 +183,7 @@
                 android:text="@string/payments_cash" />
 
             <RadioButton
-                android:id="@+id/radioButton1"
+                android:id="@+id/order_cart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
