@@ -232,4 +232,93 @@ public class OfferItemDataSource {
                 Contract.OfferItemDB.ID + " = ? ",
                 new String[]{String.valueOf(offerItemId)});
     }
+
+
+    public static void updateOrder(int listId, int cartType) {
+
+        database.delete(Contract.OfferItemDB.TABLE,
+                Contract.OfferItemDB.LIST_ID + " = ? ",
+                new String[]{String.valueOf(2)});
+        switch (cartType) {
+            case 0:
+                updateOfferFromBestOffer(listId);
+                break;
+            case 1:
+                updateOfferFromCart(listId);
+                break;
+            case 2:
+                updateOfferFromQuickDelivery(listId);
+                break;
+        }
+    }
+
+    public static void updateOfferFromBestOffer(int listId) {
+        database = dbHelper.getReadableDatabase();
+        database.execSQL("insert into " + Contract.OfferItemDB.TABLE +
+                        " (" + Contract.OfferItemDB.LIST_ID + "," +
+                        Contract.OfferItemDB.OFFER_ID + "," +
+                        Contract.OfferItemDB.COUNT + ")" +
+                        " select " +
+                        " ? LIST_ID" +
+                        " ,oBest." + Contract.OfferDB.ID +
+                        " ,oi." + Contract.OfferItemDB.COUNT +
+                        " from " + Contract.OfferItemDB.TABLE + " oi" +
+                        " join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = oi." + Contract.OfferItemDB.OFFER_ID +
+                        " join " + Contract.ProductDB.TABLE + " p on p." + Contract.ProductDB.ID + " = o." + Contract.OfferDB.PRODUCT_ID +
+                        " join " + Contract.OfferDB.TABLE + " oBest on oBest." + Contract.OfferDB.PRODUCT_ID + " = o." + Contract.OfferDB.PRODUCT_ID +
+                        " join " + Contract.ShopDB.TABLE + " sBest on sBest." + Contract.ShopDB.ID + " = oBest." + Contract.OfferDB.SHOP_ID +
+                        " where oi." + Contract.OfferItemDB.LIST_ID + " = ?" +
+                        " AND oBest." + Contract.OfferDB.ID + " IN (SELECT ob." + Contract.OfferDB.ID +
+                        " FROM " + Contract.OfferDB.TABLE + " ob " +
+                        " WHERE ob." + Contract.OfferDB.PRODUCT_ID + " = oBest." + Contract.OfferDB.PRODUCT_ID +
+                        " ORDER BY " + Contract.OfferDB.PRICE + " ASC " +
+                        " LIMIT 1)" +
+                        " group by oi." + Contract.OfferItemDB.ID + " ;"
+                , new String[]{String.valueOf(listId),"0"});
+    }
+
+    public static void updateOfferFromCart(int listId) {
+        database = dbHelper.getReadableDatabase();
+
+        database.execSQL("insert into " + Contract.OfferItemDB.TABLE +
+                        " (" + Contract.OfferItemDB.LIST_ID + "," +
+                        Contract.OfferItemDB.OFFER_ID + "," +
+                        Contract.OfferItemDB.COUNT + ")" +
+                        " select " +
+                        " ? LIST_ID" +
+                        " ,oi." + Contract.OfferItemDB.OFFER_ID +
+                        " ,oi." + Contract.OfferItemDB.COUNT +
+                        " from " + Contract.OfferItemDB.TABLE + " oi" +
+                        " where oi." + Contract.OfferItemDB.LIST_ID + " = ?" + " ;"
+                , new String[]{String.valueOf(listId), "0"});
+    }
+
+
+    public static void updateOfferFromQuickDelivery(int listId) {
+        database = dbHelper.getReadableDatabase();
+        database.execSQL("insert into " + Contract.OfferItemDB.TABLE +
+                        " (" + Contract.OfferItemDB.LIST_ID + "," +
+                        Contract.OfferItemDB.OFFER_ID + "," +
+                        Contract.OfferItemDB.COUNT + ")" +
+                        " select " +
+                        " ? LIST_ID" +
+                        " ,oBest." + Contract.OfferDB.ID +
+                        " ,oi." + Contract.OfferItemDB.COUNT +
+                        " from " + Contract.OfferItemDB.TABLE + " oi" +
+                        " join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.ID + " = oi." + Contract.OfferItemDB.OFFER_ID +
+                        " join " + Contract.ProductDB.TABLE + " p on p." + Contract.ProductDB.ID + " = o." + Contract.OfferDB.PRODUCT_ID +
+                        " join " + Contract.OfferDB.TABLE + " oBest on oBest." + Contract.OfferDB.PRODUCT_ID + " = o." + Contract.OfferDB.PRODUCT_ID +
+                        " join " + Contract.ShopDB.TABLE + " sBest on sBest." + Contract.ShopDB.ID + " = oBest." + Contract.OfferDB.SHOP_ID +
+                        " where oi." + Contract.OfferItemDB.LIST_ID + " = ?" +
+                        " AND oBest." + Contract.OfferDB.SHOP_ID + " IN (SELECT sb." + Contract.ShopDB.ID +
+                        " FROM " + Contract.ShopDB.TABLE + " sb " +
+                        " join " + Contract.OfferDB.TABLE + " ob on ob." + Contract.OfferDB.SHOP_ID + " = sb." + Contract.ShopDB.ID +
+                        " WHERE ob." + Contract.OfferDB.PRODUCT_ID + " = oBest." + Contract.OfferDB.PRODUCT_ID +
+                        " ORDER BY sb." + Contract.ShopDB.DELIVERY_TIME_FLOAT + " ASC " +
+                        " LIMIT 1)" +
+                        " group by oi." + Contract.OfferItemDB.ID + " ;"а
+                , new String[]{String.valueOf(listId),"0"});
+    }
+
+
 }

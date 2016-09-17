@@ -194,7 +194,7 @@ public class CartDataSource {
         return cart;
     }
 
-    public static Cart getOrderCart() {
+    public static Cart getOrder(int orderId) {
         database = dbHelper.getReadableDatabase();
         Cart cart = null;
         Cursor cursor = database.rawQuery("Select " +
@@ -202,7 +202,6 @@ public class CartDataSource {
                         " ,cart.NAME" +
                         " ,count(cart.SHOP_ID)" +
                         " ,sum(cart.SUM) + sum( s." + Contract.ShopDB.DELIVERY_PRICE + ")" +
-
                         " ,cart.CITY" +
                         " ,cart.STREET" +
                         " ,cart.APPARTMERNT" +
@@ -233,13 +232,13 @@ public class CartDataSource {
                         " group by o." + Contract.OfferDB.SHOP_ID + ") cart" +
                         " left join " + Contract.ShopDB.TABLE + " s on s." + Contract.ShopDB.ID + " = cart.SHOP_ID" +
                         " group by cart.ID" + ";"
-                , new String[]{"0"});
+                , new String[]{String.valueOf(orderId)});
 
         cursor.moveToFirst();
         if (!cursor.isAfterLast()) {
             cart = new Cart(
                     cursor.getInt(0),
-                    "ВАШ ВЫБОР",
+                    "ЗАКАЗ",
                     cursor.getInt(2),
                     cursor.getInt(3),
                     cursor.getString(4) != null ? cursor.getString(4) : "",

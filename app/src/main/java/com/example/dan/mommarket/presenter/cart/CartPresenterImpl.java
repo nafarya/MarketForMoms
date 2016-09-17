@@ -106,6 +106,11 @@ public class CartPresenterImpl implements CartPresenter {
 
     }
 
+    @Override
+    public void updateOrder() {
+        cart.updateOrder(tag);
+    }
+
     public static synchronized CartPresenterImpl getInstance() {
         if (instance == null) {
             instance = new CartPresenterImpl();

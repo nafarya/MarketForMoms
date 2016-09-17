@@ -17,6 +17,7 @@ public class CartOrderPresenterImpl implements CartOrderPresenter {
     private CartOrder deliveryView;
     private CartOrder contectsView;
     private CartOrder paymentsView;
+    private int orderId = 2;
 
     public static synchronized CartOrderPresenterImpl getInstance() {
         if (instance == null) {
@@ -27,19 +28,19 @@ public class CartOrderPresenterImpl implements CartOrderPresenter {
 
     @Override
     public void onCreateDeliveryView(Bundle savedInstanceState) {
-        cart = CartDataSource.getOrderCart();
+        cart = CartDataSource.getOrder(orderId);
         this.deliveryView.showOrder(cart);
     }
 
     @Override
     public void onCreateContactsView(Bundle savedInstanceState) {
-        cart = CartDataSource.getOrderCart();
+        cart = CartDataSource.getOrder(orderId);
         this.contectsView.showOrder(cart);
     }
 
     @Override
     public void onCreatePaymentsView(Bundle savedInstanceState) {
-        cart = CartDataSource.getOrderCart();
+        cart = CartDataSource.getOrder(orderId);
         this.paymentsView.showOrder(cart);
     }
 
