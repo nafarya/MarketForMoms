@@ -1,6 +1,7 @@
 package com.example.dan.mommarket.model;
 
 import com.example.dan.mommarket.database.CartDataSource;
+import com.example.dan.mommarket.database.OfferItemDataSource;
 
 /**
  * Created by GEORGY on 28.08.2016.
@@ -143,6 +144,10 @@ public class Cart {
 
     public void update() {
         CartDataSource.updateCart(this);
+    }
+
+    public  void updateOrder(int cartType){
+        OfferItemDataSource.updateOrder(2,cartType);
     }
 
     public int getId() {
