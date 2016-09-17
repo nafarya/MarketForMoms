@@ -186,7 +186,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private void clearBackStack() {
+    @Override
+    public void clearBackStack() {
         FragmentManager fm = getSupportFragmentManager();
         for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
             fm.popBackStack();

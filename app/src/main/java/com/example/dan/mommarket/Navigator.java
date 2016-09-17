@@ -30,4 +30,6 @@ public interface Navigator {
 
     void navigateToDelayed();
 
+    void clearBackStack();
+
 }

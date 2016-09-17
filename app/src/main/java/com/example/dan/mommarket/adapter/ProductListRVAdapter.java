@@ -99,12 +99,9 @@ public class ProductListRVAdapter extends RecyclerView.Adapter<ProductListRVAdap
             if (view.getId() == R.id.bookmark_button) {
                 if (productList.get(getAdapterPosition()).isBookmark()) {
                     productList.get(getAdapterPosition()).setBookmark(false);
-//                    bookmark.setBackgroundResource(R.drawable.ic_bookmark_border_black_24dp);
-//                    bookmark.setBackgroundResource(R.color.cardview_light_background);
                     bookmark.setImageResource(R.drawable.ic_bookmark_border_black_24dp);
                 } else {
                     productList.get(getAdapterPosition()).setBookmark(true);
-//                    bookmark.setBackgroundResource(R.drawable.ic_bookmark_black_24dp);
                     bookmark.setImageResource(R.drawable.ic_bookmark_black_24dp);
                 }
             } else {

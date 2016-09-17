@@ -29,6 +29,7 @@ public class OrderThankForPurchase extends Fragment {
         backToCatalogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                navigator.clearBackStack();
                 navigator.navigateToCatalog();
             }
         });
