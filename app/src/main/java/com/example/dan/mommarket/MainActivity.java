@@ -3,6 +3,8 @@ package com.example.dan.mommarket;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -11,9 +13,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.dan.mommarket.database.AdviceDataSource;
@@ -44,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     SQLiteHelper dbHelper;
     private ActionBarDrawerToggle toggle;
+    private String previousTitle = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,40 +66,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setTitle(previousTitle);
+
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
 
-        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
-                                     @Override
-                                     public void onDrawerSlide(View drawerView, float slideOffset) {
-                                             int x = 0;
-                                     }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("asdsa", String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));
+                if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                    if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
 
-                                     @Override
-                                     public void onDrawerOpened(View drawerView) {
-                                         int x = 0;
-                                     }
+                        Log.i("asdsa", "WE ARE HERE");
+                        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+                        getSupportActionBar().setTitle("");
+                    } else {
+                        getSupportActionBar().setTitle(previousTitle);
+                    }
+                    getSupportFragmentManager().popBackStack();
 
-                                     @Override
-                                     public void onDrawerClosed(View drawerView) {
-                                         int x = 0;
-                                     }
 
-                                     @Override
-                                     public void onDrawerStateChanged(int newState) {
-                                         if (getSupportFragmentManager().getBackStackEntryCount() > 2) {
-//                                             onBackPressed();
-//                                             getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-//                                             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//                                             return;
-                                         }
-                                     }
-                                 });
+                } else {
+                    drawer.openDrawer(Gravity.LEFT, true);
+                }
+            }
+        });
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -106,9 +107,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         OfferItemDataSource.getInstance().setDatabase(this);
 
         navigateToMainScreen();
-
-        
     }
+
+
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
@@ -131,14 +132,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (getSupportFragmentManager().getBackStackEntryCount() > 1)
-            getSupportFragmentManager().popBackStack();
-        else {
-            Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
-            getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(false);
-            super.onBackPressed();
-        }
+        super.onBackPressed();
+        toggle.setDrawerIndicatorEnabled(true);
     }
 
     @Override
@@ -148,12 +143,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }*/
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -161,13 +150,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return true;
         }
 
-        if (id == android.R.id.home) {
-            getSupportFragmentManager().popBackStack();
-            ActionBar actionbar = getSupportActionBar();
-            actionbar.setDisplayHomeAsUpEnabled(false);
-            actionbar.setHomeButtonEnabled(false);
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -213,6 +195,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void navigateToAdviceDetail(int adviceId) {
         AdviceDetailFragment adviceDetailFragment = new AdviceDetailFragment();
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        previousTitle = (String) getSupportActionBar().getTitle();
+        getSupportActionBar().setTitle("Советы");
         Bundle bundle = new Bundle();
         bundle.putInt("AdviceId", adviceId);
         adviceDetailFragment.setArguments(bundle);
@@ -225,6 +210,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToCategory(int categoryId, int childCount) {
+        previousTitle = (String) getSupportActionBar().getTitle();
+        getSupportActionBar().setTitle("Каталог");
         if (childCount != 0) {
             CategoryFragment categoryChildListView = new CategoryFragment();
             Bundle bundle = new Bundle();
@@ -243,6 +230,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToSubCategory(int categoryId, int childCount) {
+        previousTitle = (String) getSupportActionBar().getTitle();
+        getSupportActionBar().setTitle("Каталог");
         if (childCount != 0) {
             SubCategoryFragment categorySecondChildListView = new SubCategoryFragment();
             Bundle bundle = new Bundle();
@@ -273,6 +262,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToCatalog() {
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        previousTitle = (String) getSupportActionBar().getTitle();
         getSupportActionBar().setTitle("Каталог");
         CategoryRootFragment categoryRootFragment = new CategoryRootFragment();
         getSupportFragmentManager().
@@ -284,6 +275,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToProductCard(int productId) {
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        previousTitle = (String) getSupportActionBar().getTitle();
         getSupportActionBar().setTitle("");
         ProductCardFragment productCardFragment = new ProductCardFragment();
         Bundle bundle = new Bundle();
@@ -299,8 +292,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void navigateToOrder(int step) {
         getSupportActionBar().setTitle("Оформление заказа");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         switch (step) {
             case 1:
+                previousTitle = (String) getSupportActionBar().getTitle();
                 OrderDeliveryFragment orderDeliveryFragment = new OrderDeliveryFragment();
                 getSupportFragmentManager().
                         beginTransaction().
@@ -338,6 +333,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void navigateToCart() {
 //        clearBackStack();
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        previousTitle = (String) getSupportActionBar().getTitle();
         getSupportActionBar().setTitle("Корзина");
         CartRootFragment cartRootFragment = new CartRootFragment();
         Bundle bundle = new Bundle();
@@ -352,6 +349,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToMainScreen() {
+        previousTitle = (String) getSupportActionBar().getTitle();
         getSupportActionBar().setTitle("");
         MainScreenFragment mainScreenFragment = new MainScreenFragment();
         getSupportFragmentManager().
@@ -362,7 +360,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToAdviceList() {
+        previousTitle = (String) getSupportActionBar().getTitle();
         getSupportActionBar().setTitle("Советы");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         AdviceListFragment adviceListFragment = new AdviceListFragment();
         getSupportFragmentManager()
                 .beginTransaction()
@@ -382,7 +382,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void navigateToDelayed() {
+        clearBackStack();
+        previousTitle = (String) getSupportActionBar().getTitle();
         getSupportActionBar().setTitle("Отложенное");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
 //        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         DelayedListFragment delayedListFragment = new DelayedListFragment();

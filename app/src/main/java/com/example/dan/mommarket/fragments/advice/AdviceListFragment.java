@@ -3,6 +3,7 @@ package com.example.dan.mommarket.fragments.advice;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -41,6 +42,10 @@ public class AdviceListFragment extends Fragment implements AdviceList, AdviceLi
         adviceListPresenter = AdviceListPresenterImpl.getInstance();
         adviceListPresenter.setView(this);
         adviceListPresenter.onCreateView(savedInstanceState);
+
+        setHasOptionsMenu(true);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return v;
     }
 
@@ -48,11 +53,11 @@ public class AdviceListFragment extends Fragment implements AdviceList, AdviceLi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                getActivity().onBackPressed();//called when the up affordance/carat in actionbar is pressed
                 return true;
-            default:
-                break;
         }
-        return super.onOptionsItemSelected(item);
+        return true;
+//        return super.onOptionsItemSelected(item);
     }
 
     @Override
