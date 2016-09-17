@@ -28,7 +28,7 @@ import java.util.List;
  * Created by dan on 02.09.16.
  */
 
-public class MainScreenFragment extends Fragment implements MainScreen, AdviceListRVAdapter.OnAdviceClickListener, ProductListRVAdapter.OnProductListRvClickListener, ProductListRVAdapter.OnBookmarkClickListener{
+public class MainScreenFragment extends Fragment implements MainScreen, AdviceListRVAdapter.OnAdviceClickListener, ProductListRVAdapter.OnProductListRvClickListener {
     private RecyclerView adviceRecyclerView;
     private RecyclerView productRecyclerView;
     private MainScreenPresenter mainScreenPresenter;
@@ -77,8 +77,7 @@ public class MainScreenFragment extends Fragment implements MainScreen, AdviceLi
         grid = new GridLayoutManager(getContext(), spanCount);
         productRecyclerView.setLayoutManager(grid);
         productRecyclerView.setNestedScrollingEnabled(false);
-        productListRVAdapter = new ProductListRVAdapter(productList, getContext(), this, this);
-//        productListRVAdapter.setNavigator(navigator);
+        productListRVAdapter = new ProductListRVAdapter(productList, getContext(), this);
         productRecyclerView.setAdapter(productListRVAdapter);
     }
 
@@ -98,8 +97,4 @@ public class MainScreenFragment extends Fragment implements MainScreen, AdviceLi
         navigator.navigateToAdviceDetail(item);
     }
 
-    @Override
-    public void onBookMarkClick(int item) {
-        Toast.makeText(getContext(), "BOOKMARK", Toast.LENGTH_SHORT).show();
-    }
 }

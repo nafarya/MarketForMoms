@@ -26,7 +26,7 @@ import java.util.List;
  * Created by dan on 26.08.16.
  */
 
-public class ProductListFragment extends Fragment implements ProductList, ProductListRVAdapter.OnProductListRvClickListener, ProductListRVAdapter.OnBookmarkClickListener{
+public class ProductListFragment extends Fragment implements ProductList, ProductListRVAdapter.OnProductListRvClickListener {
 
 
     private final int spanCount = 2;
@@ -42,7 +42,6 @@ public class ProductListFragment extends Fragment implements ProductList, Produc
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_product_list, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.rv_product_list);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         grid = new GridLayoutManager(getContext(), spanCount);
         recyclerView.setLayoutManager(grid);
@@ -54,7 +53,7 @@ public class ProductListFragment extends Fragment implements ProductList, Produc
 
     @Override
     public void showProducts(List<Product> productsList) {
-        productListRVAdapter = new ProductListRVAdapter(productsList, getContext(), this, this);
+        productListRVAdapter = new ProductListRVAdapter(productsList, getContext(), this);
         recyclerView.setAdapter(productListRVAdapter);
     }
 
@@ -69,8 +68,5 @@ public class ProductListFragment extends Fragment implements ProductList, Produc
         navigator.navigateToProductCard(item);
     }
 
-    @Override
-    public void onBookMarkClick(int item) {
-        Toast.makeText(getContext(), "BOOKMARK", Toast.LENGTH_SHORT).show();
-    }
+
 }

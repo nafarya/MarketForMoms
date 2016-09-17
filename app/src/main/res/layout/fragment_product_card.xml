@@ -194,6 +194,7 @@
                     <TextView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:id="@+id/size62"
                         android:layout_marginLeft="16dp"
                         android:background="@drawable/order_gray_circle"
                         android:paddingLeft="11dp"
