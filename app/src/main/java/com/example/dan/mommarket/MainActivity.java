@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Log.i("asdsa", String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));
                 if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
                     if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
-
                         Log.i("asdsa", "WE ARE HERE");
                         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
                         getSupportActionBar().setTitle("");
