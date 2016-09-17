@@ -175,10 +175,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_checklist) {
             clearBackStack();
             navigateToDelayed();
-        } else if (id == R.id.nav_my_orders) {
+        }/* else if (id == R.id.nav_my_orders) {
             clearBackStack();
             navigateToOrder(1);
-        } else if (id == R.id.nav_view) {
+        }*/ else if (id == R.id.nav_view) {
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

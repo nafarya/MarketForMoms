@@ -61,14 +61,13 @@ public class AdviceDetailFragment extends Fragment implements AdviceDetail, Prod
         ((TextView) view.findViewById(R.id.advice_header2)).setText(advice.getHeader2());
         ((TextView) view.findViewById(R.id.advice_text2)).setText(Html.fromHtml(advice.getText2()));
         ((TextView) view.findViewById(R.id.product_category_button1).findViewById(R.id.polzunki_button_id)).setText(advice.getCategory1().getName());
-     //   ((TextView) view.findViewById(R.id.product_category_button1).findViewById(R.id.polzunki_product_count)).setText(String.valueOf(advice.getCategory1().getProductCount()));
+        ((TextView) view.findViewById(R.id.product_category_button1).findViewById(R.id.polzunki_product_count)).setText(advice.getCategoryDescription1());
 
         ((TextView) view.findViewById(R.id.product_category_button2).findViewById(R.id.polzunki_button_id)).setText(advice.getCategory2().getName());
-     //   ((TextView) view.findViewById(R.id.product_category_button2).findViewById(R.id.polzunki_product_count)).setText(String.valueOf(advice.getCategory2().getProductCount()));
+        ((TextView) view.findViewById(R.id.product_category_button2).findViewById(R.id.polzunki_product_count)).setText(advice.getCategoryDescription2());
 
         ((TextView) view.findViewById(R.id.product_category_button3).findViewById(R.id.polzunki_button_id)).setText(advice.getCategory3().getName());
-     //   ((TextView) view.findViewById(R.id.product_category_button3).findViewById(R.id.polzunki_product_count)).setText(String.valueOf(advice.getCategory3().getProductCount()));
-    }
+        ((TextView) view.findViewById(R.id.product_category_button3).findViewById(R.id.polzunki_product_count)).setText(advice.getCategoryDescription3());    }
 
     @Override
     public void showProducts(List<Product> productList1, List<Product> productList2, List<Product> productList3) {

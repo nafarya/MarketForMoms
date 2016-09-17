@@ -13,7 +13,7 @@ import com.example.dan.mommarket.views.MainScreen;
 public class MainScreenPresenterImpl implements MainScreenPresenter {
     private static MainScreenPresenterImpl instance;
     private final int numOfAdvices = 2;
-    private final int productCategoryId = 2201;
+    private final int productCategoryId = 220001;
     private MainScreen mainScreen;
 
     public static synchronized MainScreenPresenterImpl getInstance() {
