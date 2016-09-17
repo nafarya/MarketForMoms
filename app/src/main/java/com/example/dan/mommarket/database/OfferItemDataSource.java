@@ -316,7 +316,7 @@ public class OfferItemDataSource {
                         " WHERE ob." + Contract.OfferDB.PRODUCT_ID + " = oBest." + Contract.OfferDB.PRODUCT_ID +
                         " ORDER BY sb." + Contract.ShopDB.DELIVERY_TIME_FLOAT + " ASC " +
                         " LIMIT 1)" +
-                        " group by oi." + Contract.OfferItemDB.ID + " ;"а
+                        " group by oi." + Contract.OfferItemDB.ID + " ;"
                 , new String[]{String.valueOf(listId),"0"});
     }
 
