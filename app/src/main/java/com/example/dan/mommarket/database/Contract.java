@@ -180,7 +180,7 @@ public interface Contract {
 
         public static final String TABLE_CREATE = "create table " + TABLE + " (" +
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                ITEM_ID + " INTEGER NOT NULL, " +
+                ITEM_ID + " INTEGER, " +
                 URL + " TEXT );";
     }
 

@@ -10,11 +10,12 @@ Insert into PRODUCT_CATEGORY (_ID,NAME,DESCRIPTION,PARENT_CATEGORY_ID,IMAGE_ID,F
 (25,"Детская мебель","Безопасная и удобная",2,125,null,null,null),
 (26,"Автокресла","Для безопасностивашего ребёнка",2,126,null,null,null),
 
+
+(2010,"Молочные смеси","",20,null,null,null,null),
+(2011,"Пюре","",20,null,null,null,null),
 (2000,"Каши","",20,null,null,null,null),
 (2001,"Напитки","",20,null,null,null,null),
 (2002,"Детское печенье","",20,null,null,null,null),
-(2010,"Молочные смеси","",20,null,null,null,null),
-(2011,"Пюре","",20,null,null,null,null),
 
 (2100,"Ванночки","",21,null,null,null,null),
 (2101,"Сиденья, подставки, горки","",21,null,null,null,null),
