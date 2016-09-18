@@ -10,7 +10,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-;import com.example.dan.mommarket.R;
+;import com.example.dan.mommarket.Navigator;
+import com.example.dan.mommarket.R;
 import com.example.dan.mommarket.model.Product;
 import com.squareup.picasso.Picasso;
 
@@ -45,7 +46,7 @@ public class DelayedListAdapter extends RecyclerView.Adapter<DelayedListAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         Product product = productList.get(position);
         holder.name.setText(product.getName());
-        holder.price.setText(String.valueOf(product.getPrice()));
+        holder.price.setText(context.getResources().getString(R.string.from)+" "+String.valueOf((int) product.getPrice()) + " " + context.getResources().getString(R.string.currency));
         Picasso.with(context).load(product.getFirstImage()).into(holder.image);
     }
 
@@ -70,14 +71,17 @@ public class DelayedListAdapter extends RecyclerView.Adapter<DelayedListAdapter.
             deleteButton = (ImageView) itemView.findViewById(R.id.delayed_list_item_button);
             image = (ImageView) itemView.findViewById(R.id.delayed_list_item_image);
             itemView.setOnClickListener(this);
+            deleteButton.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-//            if (view.getId() == R.id.delayed_list_item_button) {
+            if (view.getId() == R.id.delayed_list_item_button) {
                 Log.i("6 upside down is a", "9 though");
                 listener.onItemClick(getAdapterPosition());
-//            }
+            } else {
+                ((Navigator) context).navigateToProductCard(productList.get(getAdapterPosition()).getProductId());
+            }
         }
     }
 }
