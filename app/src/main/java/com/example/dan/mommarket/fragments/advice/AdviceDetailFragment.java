@@ -67,27 +67,31 @@ public class AdviceDetailFragment extends Fragment implements AdviceDetail, Prod
         ((TextView) view.findViewById(R.id.product_category_button2).findViewById(R.id.polzunki_product_count)).setText(advice.getCategoryDescription2());
 
         ((TextView) view.findViewById(R.id.product_category_button3).findViewById(R.id.polzunki_button_id)).setText(advice.getCategory3().getName());
-        ((TextView) view.findViewById(R.id.product_category_button3).findViewById(R.id.polzunki_product_count)).setText(advice.getCategoryDescription3());    }
+        ((TextView) view.findViewById(R.id.product_category_button3).findViewById(R.id.polzunki_product_count)).setText(advice.getCategoryDescription3());
+    }
 
     @Override
     public void showProducts(List<Product> productList1, List<Product> productList2, List<Product> productList3) {
         List<Product> productListToShow = new ArrayList<>();
         for (int i = 0; i < productsToShow; i++) {
-            productListToShow.add(productList1.get(i));
+            if (productList1.size() > i)
+                productListToShow.add(productList1.get(i));
         }
         adapter = new ProductListRVAdapter(productListToShow, getContext(), this, this);
         initProductsRV(productsRecyclerView1, adapter);
 
         productListToShow = new ArrayList<>();
         for (int i = 0; i < productsToShow; i++) {
-            productListToShow.add(productList2.get(i));
+            if (productList2.size() > i)
+                productListToShow.add(productList2.get(i));
         }
         adapter = new ProductListRVAdapter(productListToShow, getContext(), this, this);
         initProductsRV(productsRecyclerView2, adapter);
 
         productListToShow = new ArrayList<>();
         for (int i = 0; i < productsToShow; i++) {
-            productListToShow.add(productList3.get(i));
+            if (productList3.size() > i)
+                productListToShow.add(productList3.get(i));
         }
         adapter = new ProductListRVAdapter(productListToShow, getContext(), this, this);
         initProductsRV(productsRecyclerView3, adapter);
