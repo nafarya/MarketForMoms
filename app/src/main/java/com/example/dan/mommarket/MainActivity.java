@@ -40,6 +40,7 @@ import com.example.dan.mommarket.fragments.order.OrderPaymentsFragment;
 import com.example.dan.mommarket.fragments.order.OrderThankForPurchase;
 import com.example.dan.mommarket.fragments.product.ProductCardFragment;
 import com.example.dan.mommarket.fragments.product.ProductListFragment;
+import com.yandex.metrica.YandexMetrica;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -48,11 +49,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     SQLiteHelper dbHelper;
     private ActionBarDrawerToggle toggle;
     private String previousTitle = "";
+    private String API_key = "eb72e6c8-15f6-4300-aa69-041d9db6557d";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Fabric.with(this, new Crashlytics());
+        // Инициализация AppMetrica SDK
+        YandexMetrica.activate(getApplicationContext(), API_key);
+        // Отслеживание активности пользователей
+        YandexMetrica.enableActivityAutoTracking(this.getApplication());
 
         this.deleteDatabase("mommarket.db");
 
