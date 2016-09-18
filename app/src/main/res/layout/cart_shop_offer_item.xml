@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:maxLines="2"
+            android:fontFamily="sans-serif"
             android:text="@string/first_name"
             android:textColor="#e5000000"
             android:textSize="16sp" />
@@ -39,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:text="990 P"
+            android:fontFamily="sans-serif"
             android:textColor="#e5000000"
             android:textSize="14sp" />
     </LinearLayout>
@@ -51,6 +53,7 @@
         android:layout_marginTop="68dp"
         android:layout_marginRight="8dp"
         android:textSize="12sp"
+        android:fontFamily="sans-serif"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:background="@drawable/count_rectangle"

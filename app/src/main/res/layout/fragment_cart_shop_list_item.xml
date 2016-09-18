@@ -25,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cart_shop_list_item_name"
+            android:fontFamily="sans-serif"
             android:text="Кораблик"
             android:textColor="#e5000000"
             android:layout_marginTop="8dp"
@@ -53,6 +54,7 @@
                 android:layout_marginTop="8dp"
                 android:id="@+id/cart_shop_list_item_num_of_products"
                 android:text="@string/two_products"
+                android:fontFamily="sans-serif"
                 android:textSize="14sp"
                 android:textColor="#80000000"/>
 
@@ -98,7 +100,8 @@
                 android:id="@+id/cart_shop_list_item_delivery_price"
                 android:text="@string/delivery_cost_free"
                 android:textSize="14sp"
-                android:textColor="#80000000"/>
+                android:textColor="#80000000"
+                android:fontFamily="sans-serif"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -108,7 +111,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:textSize="14sp"
-                android:textColor="#80000000"/>
+                android:textColor="#80000000"
+                android:fontFamily="sans-serif"/>
         </LinearLayout>
 
         <RelativeLayout
@@ -122,6 +126,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
                 android:id="@+id/cart_shop_list_item_sum"
+                android:fontFamily="sans-serif"
                 android:textAllCaps="true"
                 android:textColor="#000000"
                 android:text="@string/many_rubles"
