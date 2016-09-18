@@ -39,6 +39,7 @@ public class CatalogFragment extends Fragment implements Catalog, CategoryListRV
         catalogPresenter = CatalogPresenterImpl.getInstance();
         catalogPresenter.setView(this);
         catalogPresenter.onCreateView(savedInstanceState != null ? savedInstanceState : this.getArguments());
+
         return v;
     }
 

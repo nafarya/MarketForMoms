@@ -3,7 +3,6 @@ package com.example.dan.mommarket.fragments.mainscreen;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 
 import com.example.dan.mommarket.Navigator;
 import com.example.dan.mommarket.R;
-import com.example.dan.mommarket.adapter.CategoryChildListRVAdapter;
 import com.example.dan.mommarket.adapter.ProductListRVAdapter;
 import com.example.dan.mommarket.adapter.AdviceListRVAdapter;
 import com.example.dan.mommarket.model.Advice;
@@ -30,11 +28,11 @@ import java.util.List;
  * Created by dan on 02.09.16.
  */
 
-public class MainScreenFragment extends Fragment implements MainScreen, AdviceListRVAdapter.OnAdviceClickListener, ProductListRVAdapter.OnProductListRvClickListener, ProductListRVAdapter.OnBookmarkClickListener{
+public class MainScreenFragment extends Fragment implements MainScreen, AdviceListRVAdapter.OnAdviceClickListener, ProductListRVAdapter.OnProductListRvClickListener {
     private RecyclerView adviceRecyclerView;
     private RecyclerView productRecyclerView;
     private MainScreenPresenter mainScreenPresenter;
-    private ProductListRVAdapter productAdapter;
+    private ProductListRVAdapter productListRVAdapter;
     private GridLayoutManager grid;
     private int spanCount = 2;
     private AdviceListRVAdapter adviceListRVAdapter;
@@ -79,8 +77,8 @@ public class MainScreenFragment extends Fragment implements MainScreen, AdviceLi
         grid = new GridLayoutManager(getContext(), spanCount);
         productRecyclerView.setLayoutManager(grid);
         productRecyclerView.setNestedScrollingEnabled(false);
-        productAdapter = new ProductListRVAdapter(productList, getContext(), this, this);
-        productRecyclerView.setAdapter(productAdapter);
+        productListRVAdapter = new ProductListRVAdapter(productList, getContext(), this);
+        productRecyclerView.setAdapter(productListRVAdapter);
     }
 
     @Override
@@ -99,8 +97,4 @@ public class MainScreenFragment extends Fragment implements MainScreen, AdviceLi
         navigator.navigateToAdviceDetail(item);
     }
 
-    @Override
-    public void onBookMarkClick(int item) {
-        Toast.makeText(getContext(), "BOOKMARK", Toast.LENGTH_SHORT).show();
-    }
 }

@@ -39,6 +39,7 @@ public class CategoryFragment extends Fragment implements Category, CategoryList
         categoryPresenter = CategoryPresenterImpl.getInstance();
         categoryPresenter.setView(this);
         categoryPresenter.onCreateView(savedInstanceState != null ? savedInstanceState : this.getArguments());
+
         return v;
     }
 

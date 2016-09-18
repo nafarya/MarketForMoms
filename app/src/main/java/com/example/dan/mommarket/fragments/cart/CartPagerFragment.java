@@ -48,7 +48,6 @@ public class CartPagerFragment extends Fragment implements CartPager {
             ((TextView) view.findViewById(R.id.cart_shop_name)).setText(cart.getName());
             ((TextView) view.findViewById(R.id.cart_shop_shop_count)).setText(resources.getQuantityString(R.plurals.from_shops, cart.getShopsCount(), cart.getShopsCount()));
             ((TextView) view.findViewById(R.id.cart_shop_sum)).setText(String.valueOf((int) (cart.getSum())) + " " + getActivity().getResources().getString(R.string.currency));
-
             switch (cartType) {
                 case 0:
                     ((TextView) view.findViewById(R.id.cart_shop_name)).setTextColor(getResources().getColor(R.color.cart_pager_best_price));

@@ -30,6 +30,7 @@ public class CategoryRootFragment extends Fragment {
         catalogPagerAdapter = new CatalogPagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(catalogPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+        setHasOptionsMenu(true);
         return view;
     }
 }

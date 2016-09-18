@@ -2,6 +2,7 @@ package com.example.dan.mommarket.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,6 @@ public class DelayedListAdapter extends RecyclerView.Adapter<DelayedListAdapter.
         Product product = productList.get(position);
         holder.name.setText(product.getName());
         holder.price.setText(String.valueOf(product.getPrice()));
-        holder.deleteButton.setBackgroundResource(R.mipmap.ic_delete);
         Picasso.with(context).load(product.getFirstImage()).into(holder.image);
     }
 
@@ -58,7 +58,7 @@ public class DelayedListAdapter extends RecyclerView.Adapter<DelayedListAdapter.
 
         private TextView name;
         private TextView price;
-        private ImageButton deleteButton;
+        private ImageView deleteButton;
         private ImageView image;
         private OnDeleteButtonClickListener listener;
 
@@ -67,16 +67,17 @@ public class DelayedListAdapter extends RecyclerView.Adapter<DelayedListAdapter.
             this.listener = listener;
             name = (TextView) itemView.findViewById(R.id.delayed_list_item_name);
             price = (TextView) itemView.findViewById(R.id.delayed_list_item_price);
-            deleteButton = (ImageButton) itemView.findViewById(R.id.delayed_list_item_button);
+            deleteButton = (ImageView) itemView.findViewById(R.id.delayed_list_item_button);
             image = (ImageView) itemView.findViewById(R.id.delayed_list_item_image);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (view.getId() == R.id.delayed_list_item_button) {
-                listener.onItemClick(productList.get(getAdapterPosition()).getProductId());
-            }
+//            if (view.getId() == R.id.delayed_list_item_button) {
+                Log.i("6 upside down is a", "9 though");
+                listener.onItemClick(getAdapterPosition());
+//            }
         }
     }
 }

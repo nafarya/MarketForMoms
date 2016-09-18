@@ -31,7 +31,7 @@ import java.util.List;
  * Created by dan on 30.08.16.
  */
 
-public class AdviceDetailFragment extends Fragment implements AdviceDetail, ProductListRVAdapter.OnProductListRvClickListener, ProductListRVAdapter.OnBookmarkClickListener {
+public class AdviceDetailFragment extends Fragment implements AdviceDetail, ProductListRVAdapter.OnProductListRvClickListener{
 
     AdviceDetailPresenter adviceDetailPresenter;
     private RecyclerView productsRecyclerView1;
@@ -77,7 +77,7 @@ public class AdviceDetailFragment extends Fragment implements AdviceDetail, Prod
             if (productList1.size() > i)
                 productListToShow.add(productList1.get(i));
         }
-        adapter = new ProductListRVAdapter(productListToShow, getContext(), this, this);
+        adapter = new ProductListRVAdapter(productListToShow, getContext(), this);
         initProductsRV(productsRecyclerView1, adapter);
 
         productListToShow = new ArrayList<>();
@@ -85,7 +85,7 @@ public class AdviceDetailFragment extends Fragment implements AdviceDetail, Prod
             if (productList2.size() > i)
                 productListToShow.add(productList2.get(i));
         }
-        adapter = new ProductListRVAdapter(productListToShow, getContext(), this, this);
+        adapter = new ProductListRVAdapter(productListToShow, getContext(), this);
         initProductsRV(productsRecyclerView2, adapter);
 
         productListToShow = new ArrayList<>();
@@ -93,7 +93,7 @@ public class AdviceDetailFragment extends Fragment implements AdviceDetail, Prod
             if (productList3.size() > i)
                 productListToShow.add(productList3.get(i));
         }
-        adapter = new ProductListRVAdapter(productListToShow, getContext(), this, this);
+        adapter = new ProductListRVAdapter(productListToShow, getContext(), this);
         initProductsRV(productsRecyclerView3, adapter);
     }
 
@@ -160,8 +160,4 @@ public class AdviceDetailFragment extends Fragment implements AdviceDetail, Prod
         navigator.navigateToProductCard(item);
     }
 
-    @Override
-    public void onBookMarkClick(int item) {
-        Toast.makeText(getContext(), "BOOKMARK", Toast.LENGTH_SHORT).show();
-    }
 }

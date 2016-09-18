@@ -39,6 +39,7 @@ public class SubCategoryFragment extends Fragment implements SubCategory, Catego
         subCategoryListPresenter = SubCategoryListPresenterImpl.getInstance();
         subCategoryListPresenter.setView(this);
         subCategoryListPresenter.onCreateView(savedInstanceState != null ? savedInstanceState : this.getArguments());
+
         return v;
     }
 
