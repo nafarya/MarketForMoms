@@ -106,10 +106,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         OfferItemDataSource.getInstance().setDatabase(this);
 
         navigateToMainScreen(); ///this is bullshit, but if change all 4 rows for 1 "navigateToMainScreen() and pick
-
         navigateToDelayed();    ///Каталог from navigation drawer, home button will dissapear
         clearBackStack();       ///it's too late now, so I will fix it later
-        navigateToMainScreen();
     }
 
 
@@ -141,8 +139,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        toggle.setDrawerIndicatorEnabled(true);
+        int backStackSize = getSupportFragmentManager().getBackStackEntryCount();
+        if (backStackSize == 1) {
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+            getSupportActionBar().setTitle("");
+        } else {
+            if (backStackSize != 0) {
+                getSupportActionBar().setTitle(previousTitle);
+            }
+        }
+        if (backStackSize == 0) {
+            super.onBackPressed();
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
     }
 
     @Override
