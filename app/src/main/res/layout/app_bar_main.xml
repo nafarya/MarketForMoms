@@ -20,7 +20,8 @@
             android:background="@color/cardview_light_background"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:titleTextColor="@color/colorPrimaryDark"
-            app:subtitleTextColor="@color/colorPrimaryDark"/>
+            app:subtitleTextColor="@color/colorPrimaryDark"
+            android:fontFamily="sans-serif"/>
 
     </android.support.design.widget.AppBarLayout>
 

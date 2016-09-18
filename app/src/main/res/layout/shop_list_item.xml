@@ -17,7 +17,8 @@
             android:paddingLeft="16dp"
             android:paddingTop="32dp"
             android:background="@color/background"
-            android:text="@string/best_offer" />
+            android:text="@string/best_offer"
+            android:fontFamily="sans-serif" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -31,7 +32,8 @@
                 android:layout_marginTop="16dp"
                 android:text="249 Р"
                 android:textColor="#e5000000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:fontFamily="sans-serif" />
 
             <ImageView
                 android:id="@+id/delivery_icon"
@@ -50,7 +52,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_toRightOf="@id/delivery_icon"
-                android:text="26 августа" />
+                android:text="26 августа"
+                android:fontFamily="sans-serif" />
 
             <TextView
                 android:id="@+id/shop_list_fee"
@@ -60,7 +63,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_toRightOf="@id/shop_list_date"
-                android:text="бесплатно" />
+                android:text="бесплатно"
+                android:fontFamily="sans-serif" />
 
             <Button
                 android:id="@+id/shop_list_add_To_Cart_Button"
@@ -70,7 +74,8 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="24dp"
                 android:background="@color/colorPrimary"
-                android:text="@string/addToCart" />
+                android:text="@string/addToCart"
+                android:fontFamily="sans-serif" />
 
             <TextView
                 android:id="@+id/grey_line"
@@ -81,7 +86,8 @@
                 android:layout_marginRight="16dp"
                 android:background="@drawable/order_gray_hyphen"
                 android:gravity="center_vertical|center_horizontal|center"
-                android:text="" />
+                android:text=""
+                android:fontFamily="sans-serif" />
 
             <TextView
                 android:id="@+id/shop_list_shop_name"
@@ -93,7 +99,8 @@
                 android:layout_marginTop="8dp"
                 android:text="Детский мир"
                 android:textColor="#e5000000"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:fontFamily="sans-serif" />
 
             <RatingBar
                 style="?android:attr/ratingBarStyleSmall"

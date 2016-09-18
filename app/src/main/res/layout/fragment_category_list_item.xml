@@ -22,7 +22,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="29dp"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/black_color"
+            android:fontFamily="sans-serif"/>
 
         <TextView
             android:id="@+id/rv_category_list_item_description"
@@ -34,7 +36,9 @@
             android:layout_marginLeft="16dp"
             android:layout_toLeftOf="@+id/rv_category_list_item_image"
             android:layout_toStartOf="@+id/rv_category_list_item_image"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textColor="@color/black_color"
+            android:fontFamily="sans-serif"  />
 
         <ImageView
             android:id="@+id/rv_category_list_item_image"

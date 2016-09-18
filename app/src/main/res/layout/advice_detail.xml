@@ -54,8 +54,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/advice_detail_go_to_category_button"
             android:background="@color/colorPrimary"
+            android:fontFamily="sans-serif"
             android:text="@string/go_to_shopping"
-            android:textColor="#e5000000"
+            android:textColor="@color/black_color"
             android:textSize="16sp"
             android:textAllCaps="false"/>
 

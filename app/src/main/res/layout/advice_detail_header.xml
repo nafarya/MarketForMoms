@@ -19,6 +19,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif"
         android:text="@string/clothesfor03child"
         android:textColor="#e5000000"
         android:textSize="24sp" />
@@ -50,6 +51,7 @@
             android:layout_marginLeft="16dp"
             android:layout_toRightOf="@+id/author_photo"
             android:text="@string/author_name"
+            android:fontFamily="sans-serif"
             android:textColor="#000000"
             android:textSize="20sp" />
 
@@ -60,6 +62,7 @@
             android:layout_marginLeft="16dp"
             android:layout_toRightOf="@+id/author_photo"
             android:id="@+id/author_text"
+            android:fontFamily="sans-serif"
             android:text="@string/nataly_bortnikova_workplace"
             android:textColor="#80000000"
             android:textSize="14sp" />
@@ -81,6 +84,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif"
         android:text="@string/nataly_bortnikova_speech"
         android:textColor="#e5000000"
         android:textSize="16sp" />
@@ -92,6 +96,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="22dp"
         android:id="@+id/advice_header1"
+        android:fontFamily="sans-serif"
         android:text="@string/walk_with_child_header"
         android:textColor="#e5000000"
         android:textSize="20sp" />
@@ -103,6 +108,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         android:id="@+id/advice_text1"
+        android:fontFamily="sans-serif"
         android:text="@string/walk_with_child"
         android:textColor="#e5000000"
         android:textSize="16sp" />
@@ -121,6 +127,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="45dp"
         android:id="@+id/advice_header2"
+        android:fontFamily="sans-serif"
         android:text="@string/choose_clothes_header"
         android:textColor="#e5000000"
         android:textSize="20sp" />
@@ -133,7 +140,7 @@
         android:layout_marginTop="22dp"
         android:paddingBottom="35dp"
         android:id="@+id/advice_text2"
-        android:maxLines="20"
+        android:fontFamily="sans-serif"
         android:text="@string/choose_clothes"
         android:textColor="#e5000000"
         android:textSize="16dp" />
@@ -145,6 +152,7 @@
         android:paddingBottom="19dp"
         android:paddingLeft="16dp"
         android:paddingTop="19dp"
+        android:fontFamily="sans-serif"
         android:text="@string/what_you_should_buy"
         android:textColor="#e5000000"
         android:textSize="20sp" />

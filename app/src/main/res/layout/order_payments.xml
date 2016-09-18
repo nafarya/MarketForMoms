@@ -29,7 +29,8 @@
             android:layout_marginLeft="28dp"
             android:background="@drawable/order_gray_circle"
             android:gravity="center_vertical|center_horizontal|center"
-            android:text="1" />
+            android:text="1"
+            android:fontFamily="sans-serif"/>
 
         <TextView
             android:id="@+id/one_two"
@@ -53,7 +54,8 @@
             android:layout_toRightOf="@+id/one_two"
             android:background="@drawable/order_gray_circle"
             android:gravity="center_vertical|center_horizontal|center"
-            android:text="2" />
+            android:text="2"
+            android:fontFamily="sans-serif"/>
 
         <TextView
             android:id="@+id/two_tree"
@@ -76,7 +78,8 @@
             android:layout_toRightOf="@+id/two_tree"
             android:background="@drawable/order_selected_circle"
             android:gravity="center_vertical|center_horizontal|center"
-            android:text="3" />
+            android:text="3"
+            android:fontFamily="sans-serif"/>
 
         <TextView
             android:id="@+id/order_delivery"
@@ -86,7 +89,8 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/oreder_delivery"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:fontFamily="sans-serif"/>
 
         <TextView
             android:id="@+id/order_contacts"
@@ -101,7 +105,8 @@
             android:layout_marginTop="8dp"
             android:layout_toRightOf="@id/order_delivery"
             android:text="@string/oreder_contects"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:fontFamily="sans-serif"/>
 
         <TextView
             android:id="@+id/order_payments"
@@ -112,7 +117,8 @@
             android:layout_marginTop="8dp"
             android:layout_toRightOf="@id/order_contacts"
             android:text="@string/order_payments"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:fontFamily="sans-serif"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -134,7 +140,8 @@
                 android:id="@+id/sumText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/order_delivery_sum_text" />
+                android:text="@string/order_delivery_sum_text"
+                android:fontFamily="sans-serif"/>
 
             <TextView
                 android:id="@+id/order_sum_value"
@@ -143,7 +150,8 @@
                 android:text="@string/order_delivery_sum"
                 android:textAlignment="textEnd"
                 android:textSize="20sp"
-                android:textStyle="normal|bold" />
+                android:textStyle="normal|bold"
+                android:fontFamily="sans-serif"/>
         </LinearLayout>
 
         <TextView
@@ -156,7 +164,8 @@
             android:text="@string/order_checkout"
             android:textAlignment="center"
             android:textSize="15sp"
-            android:textStyle="normal|bold" />
+            android:textStyle="normal|bold"
+            android:fontFamily="sans-serif"/>
     </LinearLayout>
 
     <LinearLayout
@@ -181,7 +190,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/payments_cash" />
+                android:text="@string/payments_cash"
+                android:fontFamily="sans-serif"/>
 
             <RadioButton
                 android:id="@+id/order_cart"
@@ -191,7 +201,8 @@
                 android:layout_marginRight="16dp"
                 android:paddingBottom="16dp"
                 android:paddingTop="16dp"
-                android:text="@string/payments_card" />
+                android:text="@string/payments_card"
+                android:fontFamily="sans-serif"/>
         </RadioGroup>
     </LinearLayout>
 </RelativeLayout>

@@ -21,7 +21,8 @@
             android:text="main_tag"
             android:textAllCaps="true"
             android:textColor="#e5000000"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:fontFamily="sans-serif"/>
 
         <TextView
             android:id="@+id/cart_shop_shop_count"
@@ -34,7 +35,8 @@
             android:text="main_tag"
             android:textSize="12sp"
             android:textAllCaps="false"
-            android:textColor="#e5000000"/>
+            android:textColor="#e5000000"
+            android:fontFamily="sans-serif" />
 
         <TextView
             android:id="@+id/cart_shop_sum"
@@ -47,7 +49,8 @@
             android:text="sum"
             android:textAllCaps="true"
             android:textColor="#e5000000"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:fontFamily="sans-serif" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -59,12 +62,14 @@
             android:textSize="12sp"
             android:textColor="#80000000"
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/final_cost"
+            android:fontFamily="sans-serif"
             android:textSize="14sp"
             android:textColor="#e5000000"
             android:layout_marginLeft="16dp"

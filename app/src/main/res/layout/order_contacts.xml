@@ -29,7 +29,8 @@
             android:layout_marginLeft="28dp"
             android:background="@drawable/order_gray_circle"
             android:gravity="center_vertical|center_horizontal|center"
-            android:text="1" />
+            android:text="1"
+            android:fontFamily="sans-serif"/>
 
         <TextView
             android:id="@+id/one_two"
@@ -53,7 +54,8 @@
             android:layout_toRightOf="@+id/one_two"
             android:background="@drawable/order_selected_circle"
             android:gravity="center_vertical|center_horizontal|center"
-            android:text="2" />
+            android:text="2"
+            android:fontFamily="sans-serif"/>
 
         <TextView
             android:id="@+id/two_tree"
@@ -76,7 +78,8 @@
             android:layout_toRightOf="@+id/two_tree"
             android:background="@drawable/order_gray_circle"
             android:gravity="center_vertical|center_horizontal|center"
-            android:text="3" />
+            android:text="3"
+            android:fontFamily="sans-serif"/>
 
         <TextView
             android:id="@+id/order_delivery"
@@ -86,6 +89,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/oreder_delivery"
+            android:fontFamily="sans-serif"
             android:textAlignment="center" />
 
         <TextView
@@ -101,6 +105,7 @@
             android:layout_marginTop="8dp"
             android:layout_toRightOf="@id/order_delivery"
             android:text="@string/oreder_contects"
+            android:fontFamily="sans-serif"
             android:textAlignment="center" />
 
         <TextView
@@ -112,6 +117,7 @@
             android:layout_marginTop="8dp"
             android:layout_toRightOf="@id/order_contacts"
             android:text="@string/order_payments"
+            android:fontFamily="sans-serif"
             android:textAlignment="center" />
     </RelativeLayout>
 
@@ -141,6 +147,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/first_name"
+                android:fontFamily="sans-serif"
                 android:textSize="10sp" />
 
             <EditText
@@ -150,6 +157,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:ems="10"
+                android:fontFamily="sans-serif"
                 android:inputType="textPersonName"
                 android:textSize="16sp" />
 
@@ -159,6 +167,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/last_name"
+                android:fontFamily="sans-serif"
                 android:textSize="10sp" />
 
             <EditText
@@ -169,6 +178,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:fontFamily="sans-serif"
                 android:inputType="textPersonName"
                 android:textSize="16sp" />
 
@@ -178,6 +188,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/phone"
+                android:fontFamily="sans-serif"
                 android:textSize="10sp" />
 
             <EditText
@@ -188,6 +199,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:fontFamily="sans-serif"
                 android:inputType="phone"
                 android:textSize="16sp" />
 
@@ -197,6 +209,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/email"
+                android:fontFamily="sans-serif"
                 android:textSize="10sp" />
 
             <EditText
@@ -207,6 +220,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="2dp"
                 android:ems="10"
+                android:fontFamily="sans-serif"
                 android:inputType="textEmailAddress"
                 android:textSize="16sp" />
         </LinearLayout>

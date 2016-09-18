@@ -9,7 +9,8 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/root_catalog_tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif" >
 
     </android.support.design.widget.TabLayout>
 

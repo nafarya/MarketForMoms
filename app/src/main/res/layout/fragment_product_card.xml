@@ -36,7 +36,8 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/body_with_long_sleeve"
-                    android:textColor="#000000"
+                    android:textColor="@color/black_color"
+                    android:fontFamily="sans-serif"
                     android:textSize="20sp" />..
 
                 <TextView
@@ -47,6 +48,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/one_hundred_percent_cotton"
+                    android:fontFamily="sans-serif"
                     android:textColor="#80000000"
                     android:textSize="14sp" />
 
@@ -85,8 +87,9 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
                         android:background="@null"
+                        android:fontFamily="sans-serif"
                         android:text="@string/twelve_comments"
-                        android:textColor="#e5000000"
+                        android:textColor="@color/black_color"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -102,7 +105,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
-                    android:text="@string/about" />
+                    android:text="@string/about"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/black_color"/>
 
             </android.support.v7.widget.CardView>
 
@@ -128,6 +133,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="22dp"
+                        android:fontFamily="sans-serif"
                         android:text="@string/choose_size"
                         android:textColor="#80000000"
                         android:textSize="14sp" />
@@ -137,6 +143,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="22dp"
+                        android:fontFamily="sans-serif"
                         android:text="@string/size_table"
                         android:textColor="#3577b3"
                         android:textSize="14sp" />
@@ -158,7 +165,8 @@
                         android:background="@drawable/order_selected_circle"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="30" />
+                        android:text="30"
+                        android:fontFamily="sans-serif"/>
 
                     <TextView
                         android:layout_width="40dp"
@@ -168,7 +176,8 @@
                         android:background="@drawable/order_gray_circle"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="44" />
+                        android:text="44"
+                        android:fontFamily="sans-serif"/>
 
                     <TextView
                         android:layout_width="40dp"
@@ -178,7 +187,8 @@
                         android:background="@drawable/order_gray_circle"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="50" />
+                        android:text="50"
+                        android:fontFamily="sans-serif"/>
 
                     <TextView
                         android:layout_width="40dp"
@@ -188,7 +198,8 @@
                         android:gravity="center"
                         android:layout_marginLeft="16dp"
                         android:background="@drawable/order_gray_circle"
-                        android:text="56" />
+                        android:text="56"
+                        android:fontFamily="sans-serif"/>
 
                     <TextView
                         android:layout_width="40dp"
@@ -198,7 +209,8 @@
                         android:background="@drawable/order_gray_circle"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="62" />
+                        android:text="62"
+                        android:fontFamily="sans-serif"/>
 
                     <TextView
                         android:layout_width="40dp"
@@ -208,7 +220,8 @@
                         android:background="@drawable/order_gray_circle"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="68" />
+                        android:text="68"
+                        android:fontFamily="sans-serif"/>
                 </LinearLayout>
 
             </LinearLayout>
