@@ -148,6 +148,12 @@ public class CartDataSource {
                     "ЛУЧШАЯ ЦЕНА",
                     cursor.getInt(2),
                     cursor.getInt(3));
+        } else {
+            cart = new Cart(
+                    0,
+                    "ЛУЧШАЯ ЦЕНА",
+                    0,
+                    0);
         }
         cursor.close();
         return cart;
@@ -189,6 +195,12 @@ public class CartDataSource {
                     "БЫСТРАЯ ДОСТАВКА",
                     cursor.getInt(2),
                     cursor.getInt(3));
+        } else {
+            cart = new Cart(
+                    0,
+                    "БЫСТРАЯ ДОСТАВКА",
+                    0,
+                    0);
         }
         cursor.close();
         return cart;
