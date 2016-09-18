@@ -235,7 +235,7 @@ public class OfferItemDataSource {
 
 
     public static void updateOrder(int listId, int cartType) {
-
+        database = dbHelper.getReadableDatabase();
         database.delete(Contract.OfferItemDB.TABLE,
                 Contract.OfferItemDB.LIST_ID + " = ? ",
                 new String[]{String.valueOf(2)});

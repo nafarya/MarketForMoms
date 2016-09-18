@@ -81,6 +81,11 @@ public class CartRootFragment extends Fragment implements CartRoot {
 
     @Override
     public void showShopList(List<Shop> shopList, int cartType) {
+        if (shopList.size()==0) {
+            ((Button) view.findViewById(R.id.go_to_order_button)).setEnabled(false);
+        }else{
+            ((Button) view.findViewById(R.id.go_to_order_button)).setEnabled(true);
+        }
         CartShopListAdapter cartShopListAdapter = new CartShopListAdapter(shopList, cartType, getContext());
         shopListRecyclerView.setAdapter(cartShopListAdapter);
         shopListRecyclerView.requestLayout();
