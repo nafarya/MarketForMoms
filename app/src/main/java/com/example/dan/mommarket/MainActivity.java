@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     void insertDataToDB(SQLiteDatabase db) {
         dbHelper.insertFakeData(db, this, R.raw.check_list);
         dbHelper.insertFakeData(db, this, R.raw.feature);
-        dbHelper.insertFakeData(db, this, R.raw.offer_item);
+      //  dbHelper.insertFakeData(db, this, R.raw.offer_item);
         dbHelper.insertFakeData(db, this, R.raw.offer);
         dbHelper.insertFakeData(db, this, R.raw.product);
         dbHelper.insertFakeData(db, this, R.raw.product_category);
