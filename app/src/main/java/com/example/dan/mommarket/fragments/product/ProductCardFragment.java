@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,8 @@ public class ProductCardFragment extends Fragment implements ProductCard, OfferL
     private ProductPresenter productPresenter;
     private View view;
     private Navigator navigator;
+    private TextView prevSizeButton;
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -65,6 +68,8 @@ public class ProductCardFragment extends Fragment implements ProductCard, OfferL
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_product_card, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_product_card_shops);
+        prevSizeButton = (TextView) view.findViewById(R.id.size30);
+        initSizeButtons(view);
         productPresenter = ProductPresenterImpl.getInstance();
         productPresenter.setView(this);
         productPresenter.onCreateView(savedInstanceState != null ? savedInstanceState : this.getArguments());
@@ -73,7 +78,7 @@ public class ProductCardFragment extends Fragment implements ProductCard, OfferL
 
     @Override
     public void onItemClick(final int item) {
-        Snackbar snackbar = Snackbar.make(view, "Товар добавлен в корзину", Snackbar.LENGTH_SHORT).
+        Snackbar snackbar = Snackbar.make(view, "Товар добавлен в корзину", Snackbar.LENGTH_LONG).
                 setAction("Перейти", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -84,4 +89,38 @@ public class ProductCardFragment extends Fragment implements ProductCard, OfferL
         snackbar.show();
         productPresenter.addOffer(item);
     }
+
+    public class SizeButtonClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(final View v)
+        {
+            prevSizeButton.setBackgroundResource(R.drawable.order_gray_circle);
+            v.setBackgroundResource(R.drawable.order_selected_circle);
+            prevSizeButton = (TextView) v;
+        }
+    }
+
+    private void initSizeButtons(View v) {
+        TextView size30 = (TextView) view.findViewById(R.id.size30);
+        size30.setOnClickListener(new SizeButtonClickListener());
+
+        TextView size44 = (TextView) view.findViewById(R.id.size44);
+        size44.setOnClickListener(new SizeButtonClickListener());
+
+        TextView size50 = (TextView) view.findViewById(R.id.size50);
+        size50.setOnClickListener(new SizeButtonClickListener());
+
+        TextView size56 = (TextView) view.findViewById(R.id.size56);
+        size56.setOnClickListener(new SizeButtonClickListener());
+
+        TextView size62 = (TextView) view.findViewById(R.id.size62);
+        size62.setOnClickListener(new SizeButtonClickListener());
+
+        TextView size68 = (TextView) view.findViewById(R.id.size68);
+        size68.setOnClickListener(new SizeButtonClickListener());
+
+    }
+
+
+
 }

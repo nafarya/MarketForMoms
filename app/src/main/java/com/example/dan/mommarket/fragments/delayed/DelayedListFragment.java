@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.dan.mommarket.R;
 import com.example.dan.mommarket.adapter.DelayedListAdapter;
+import com.example.dan.mommarket.database.OfferItemDataSource;
 import com.example.dan.mommarket.model.Product;
 import com.example.dan.mommarket.presenter.delayed.DelayedPresenter;
 import com.example.dan.mommarket.presenter.delayed.DelayedPresenterImpl;
@@ -56,7 +57,8 @@ public class DelayedListFragment extends Fragment implements Delayed, DelayedLis
 
     @Override
     public void onItemClick(int item) {
-
+        productList.get(item).setBookmark(false);
+        delayedPresenter.updateList();
     }
 
 

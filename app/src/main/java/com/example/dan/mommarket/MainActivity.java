@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Log.i("asdsa", String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));
                 if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
                     if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
-
                         Log.i("asdsa", "WE ARE HERE");
                         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
                         getSupportActionBar().setTitle("");
@@ -107,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         OfferItemDataSource.getInstance().setDatabase(this);
 
         navigateToMainScreen(); ///this is bullshit, but if change all 4 rows for 1 "navigateToMainScreen() and pick
+
         navigateToDelayed();    ///Каталог from navigation drawer, home button will dissapear
         clearBackStack();       ///it's too late now, so I will fix it later
         navigateToMainScreen();
@@ -125,12 +125,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dbHelper.insertFakeData(db, this, R.raw.feature);
       //  dbHelper.insertFakeData(db, this, R.raw.offer_item);
         dbHelper.insertFakeData(db, this, R.raw.offer);
+        dbHelper.insertFakeData(db, this, R.raw.offer1);
+        dbHelper.insertFakeData(db, this, R.raw.offer2);
+        dbHelper.insertFakeData(db, this, R.raw.offer3);
+        dbHelper.insertFakeData(db, this, R.raw.offer4);
         dbHelper.insertFakeData(db, this, R.raw.product);
+        dbHelper.insertFakeData(db, this, R.raw.product1);
         dbHelper.insertFakeData(db, this, R.raw.product_category);
         dbHelper.insertFakeData(db, this, R.raw.product_feature);
         dbHelper.insertFakeData(db, this, R.raw.shop);
         dbHelper.insertFakeData(db, this, R.raw.advice);
         dbHelper.insertFakeData(db, this, R.raw.image);
+        dbHelper.insertFakeData(db, this, R.raw.image1);
     }
 
     @Override
@@ -187,7 +193,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private void clearBackStack() {
+    @Override
+    public void clearBackStack() {
         FragmentManager fm = getSupportFragmentManager();
         for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
             fm.popBackStack();
