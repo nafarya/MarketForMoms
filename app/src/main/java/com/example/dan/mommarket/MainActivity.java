@@ -3,13 +3,10 @@ package com.example.dan.mommarket;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,10 +15,8 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.dan.mommarket.database.AdviceDataSource;
 import com.example.dan.mommarket.database.CartDataSource;
 import com.example.dan.mommarket.database.CategoryDataSource;
@@ -46,6 +41,8 @@ import com.example.dan.mommarket.fragments.order.OrderThankForPurchase;
 import com.example.dan.mommarket.fragments.product.ProductCardFragment;
 import com.example.dan.mommarket.fragments.product.ProductListFragment;
 
+import io.fabric.sdk.android.Fabric;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Navigator {
 
     SQLiteHelper dbHelper;
@@ -55,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
 
         this.deleteDatabase("mommarket.db");
 
@@ -113,7 +111,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -123,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     void insertDataToDB(SQLiteDatabase db) {
         dbHelper.insertFakeData(db, this, R.raw.check_list);
         dbHelper.insertFakeData(db, this, R.raw.feature);
-      //  dbHelper.insertFakeData(db, this, R.raw.offer_item);
+        //  dbHelper.insertFakeData(db, this, R.raw.offer_item);
         dbHelper.insertFakeData(db, this, R.raw.offer);
         dbHelper.insertFakeData(db, this, R.raw.offer1);
         dbHelper.insertFakeData(db, this, R.raw.offer2);
