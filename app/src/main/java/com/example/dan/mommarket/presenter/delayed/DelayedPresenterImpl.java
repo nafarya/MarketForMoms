@@ -39,7 +39,8 @@ public class DelayedPresenterImpl implements DelayedPresenter {
 
     @Override
     public void updateList() {
-
+        productList = ProductDataSource.getListDelayedProducts(1);
+        delayedView.showDelayedProducts(productList);
     }
 
     @Override

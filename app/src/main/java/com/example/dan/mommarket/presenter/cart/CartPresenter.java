@@ -32,4 +32,6 @@ public interface CartPresenter {
     void refreshCartPager(int tag);
 
     void removeView();
+
+    void updateOrder();
 }

@@ -3,6 +3,7 @@ package com.example.dan.mommarket.fragments.order;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,31 +14,38 @@ import android.widget.TextView;
 
 import com.example.dan.mommarket.Navigator;
 import com.example.dan.mommarket.R;
+import com.example.dan.mommarket.adapter.OrderShopListRVAdapter;
 import com.example.dan.mommarket.model.Cart;
+import com.example.dan.mommarket.model.Shop;
 import com.example.dan.mommarket.presenter.cart.CartOrderPresenter;
 import com.example.dan.mommarket.presenter.cart.CartOrderPresenterImpl;
-import com.example.dan.mommarket.views.CartOrder;
+import com.example.dan.mommarket.views.CartOrderDelivery;
+
+import java.util.List;
 
 /**
  * Created by GEORGY on 06.09.2016.
  */
 
-public class OrderDeliveryFragment extends Fragment implements CartOrder {
-    Navigator navigator;
-    View view;
-    EditText cityView;
-    EditText streetView;
-    EditText appartmentView;
-    EditText commentView;
+public class OrderDeliveryFragment extends Fragment implements CartOrderDelivery {
+    private Navigator navigator;
+    private View view;
+    private EditText cityView;
+    private EditText streetView;
+    private EditText appartmentView;
+    private EditText commentView;
 
+    private OrderShopListRVAdapter orderShopListRVAdapter;
     private CartOrderPresenter cartOrderPresenter;
     private TextView nextButton;
+    private RecyclerView recyclerView;
     private Cart cart;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.order_delivery_main, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.order_shop_list);
 
         cityView = (EditText) view.findViewById(R.id.order_city);
         streetView = (EditText) view.findViewById(R.id.order_street);
@@ -117,8 +125,6 @@ public class OrderDeliveryFragment extends Fragment implements CartOrder {
             }
         });
 
-
-
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,5 +192,11 @@ public class OrderDeliveryFragment extends Fragment implements CartOrder {
         streetView.setText(String.valueOf(cart.getStreet()));
         appartmentView.setText(String.valueOf(cart.getAppartment()));
         commentView.setText(String.valueOf(cart.getComment()));
+    }
+
+    @Override
+    public void showShopList(List<Shop> shopList) {
+        orderShopListRVAdapter = new OrderShopListRVAdapter(shopList, getContext());
+        recyclerView.setAdapter(orderShopListRVAdapter);
     }
 }

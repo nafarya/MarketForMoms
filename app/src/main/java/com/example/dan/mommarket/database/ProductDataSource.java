@@ -196,6 +196,36 @@ public class ProductDataSource {
         productCursor.close();
         return productList;
     }
+    public static List<Product> getListProductsByName(String name) {
+        database = dbHelper.getReadableDatabase();
+        List<Product> productList = new ArrayList<>();
+        Cursor productCursor = database.rawQuery("select " +
+                " p." + Contract.ProductDB.ID +
+                " ,p." + Contract.ProductDB.NAME +
+                " ,min(o." + Contract.OfferDB.PRICE + ")" +
+                " ,p." + Contract.ProductDB.DESCRIPTION +
+                " ,c." + Contract.ProductCategoryDB.ID + " CATEGORY_ID" +
+                " ,c." + Contract.ProductCategoryDB.NAME + " CATEGORY_NAME" +
+                " ,min(i." + Contract.ImageDB.URL + ") URL" +
+                " ,max(cpf." + Contract.ProductFeatureDB.VALUE + ") " +
+                " ,max(lo." + Contract.OfferItemDB.COUNT + ") " +
+                " from " + Contract.ProductDB.TABLE + " p" +
+                " left join " + Contract.ProductCategoryDB.TABLE + " c on c." + Contract.ProductCategoryDB.ID + "= p." + Contract.ProductDB.CATEGORY_ID + " " +
+                " left join " + Contract.ProductFeatureDB.TABLE + " cpf on cpf." + Contract.ProductFeatureDB.FEATURE_ID + "= c." + Contract.ProductCategoryDB.CARD_FEATURE_ID + " " +
+                " AND cpf." + Contract.ProductFeatureDB.PRODUCT_ID + " = p." + Contract.ProductDB.ID +
+                " left join " + Contract.OfferDB.TABLE + " o on o." + Contract.OfferDB.PRODUCT_ID + "=p." + Contract.ProductDB.ID +
+                " left join " + Contract.ImageDB.TABLE + " i on i." + Contract.ImageDB.ITEM_ID + "=p." + Contract.ProductDB.ID +
+                " left join " + Contract.OfferItemDB.TABLE + " lo on lo." + Contract.OfferItemDB.PRODUCT_ID + "=p." + Contract.ProductDB.ID +
+                " Where p." + Contract.ProductDB.NAME + " LIKE ?" +
+                " group by p." + Contract.ProductDB.ID + ";", new String[]{name});
+        productCursor.moveToFirst();
+        while (!productCursor.isAfterLast()) {
+            productList.add(productCursorToProduct(productCursor));
+            productCursor.moveToNext();
+        }
+        productCursor.close();
+        return productList;
+    }
 
     public static List<Product> getProductsByFeatures(List<Feature> features) {
         database = dbHelper.getReadableDatabase();

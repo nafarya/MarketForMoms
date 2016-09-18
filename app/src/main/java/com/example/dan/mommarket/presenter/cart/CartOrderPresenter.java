@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.example.dan.mommarket.model.Cart;
 import com.example.dan.mommarket.views.CartOrder;
+import com.example.dan.mommarket.views.CartOrderDelivery;
 import com.example.dan.mommarket.views.CartPager;
 import com.example.dan.mommarket.views.CartRoot;
 import com.example.dan.mommarket.views.OfferItemDialog;
@@ -19,7 +20,7 @@ public interface CartOrderPresenter {
 
     void onCreatePaymentsView(Bundle savedInstanceState);
 
-    void setDeliveryView(CartOrder cartOrder);
+    void setDeliveryView(CartOrderDelivery cartOrder);
 
     void setContactsView(CartOrder cartOrder);
 

@@ -72,6 +72,7 @@ public class CartRootFragment extends Fragment implements CartRoot {
         gotToOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                cartPresenter.updateOrder();
                 navigator.navigateToOrder(1);
             }
         });

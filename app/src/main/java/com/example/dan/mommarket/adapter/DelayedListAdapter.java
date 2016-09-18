@@ -74,10 +74,10 @@ public class DelayedListAdapter extends RecyclerView.Adapter<DelayedListAdapter.
 
         @Override
         public void onClick(View view) {
-            if (view.getId() == R.id.delayed_list_item_button) {
+//            if (view.getId() == R.id.delayed_list_item_button) {
                 Log.i("6 upside down is a", "9 though");
-                listener.onItemClick(productList.get(getAdapterPosition()).getProductId());
-            }
+                listener.onItemClick(getAdapterPosition());
+//            }
         }
     }
 }

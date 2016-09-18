@@ -46,6 +46,11 @@ public class CategoryFragment extends Fragment implements Category, CategoryList
     public void showProducts(List<ProductCategory> categoryList) {
         categoryChildRVAdapter = new CategoryListRVAdapter(categoryList, getContext(), this);
         recyclerView.setAdapter(categoryChildRVAdapter);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         navigator = (Navigator) getActivity();
     }
 

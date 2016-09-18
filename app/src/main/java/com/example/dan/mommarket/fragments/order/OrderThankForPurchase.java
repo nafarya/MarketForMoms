@@ -19,7 +19,6 @@ import com.example.dan.mommarket.R;
 public class OrderThankForPurchase extends Fragment {
     private Navigator navigator;
     private Button backToCatalogButton;
-    private ImageView img;
 
     @Nullable
     @Override
@@ -33,8 +32,6 @@ public class OrderThankForPurchase extends Fragment {
                 navigator.navigateToCatalog();
             }
         });
-        img = (ImageView) v.findViewById(R.id.order_thank_for_purchase_image);
-        img.setImageResource(R.mipmap.ic_launcher);
         return v;
     }
 

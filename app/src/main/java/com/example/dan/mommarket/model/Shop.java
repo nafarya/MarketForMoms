@@ -12,10 +12,20 @@ public class Shop {
     private String name;
     private int deliveryPrice;
     private String deliveryTime;
+    private Float deliveryTimeFloat;
+    private String deliveryPlace;
     private int referenceCount;
     private float rate;
     private int productCartCount;
     private int productCartSum;
+
+    public String getDeliveryPlace() {
+        return deliveryPlace;
+    }
+
+    public void setDeliveryPlace(String deliveryPlace) {
+        this.deliveryPlace = deliveryPlace;
+    }
 
     private int productCartId;
     private List<ItemReference> itemReferenceList = new LinkedList<>();
@@ -42,6 +52,31 @@ public class Shop {
             , String name
             , int deliveryPrice
             , String deliveryTime
+            , Float deliveryTimeFloat
+            , int referenceCount
+            , int rate
+            , String deliveryPlace
+            , int productCartId
+            , int productCartCount
+            , int productCartSum) {
+        this.id = id;
+        this.name = name;
+        this.deliveryPrice = deliveryPrice;
+        this.deliveryTime = deliveryTime;
+        this.referenceCount = referenceCount;
+        this.deliveryTimeFloat = deliveryTimeFloat;
+        this.rate = rate;
+        this.productCartId = productCartId;
+        this.productCartCount = productCartCount;
+        this.productCartSum = productCartSum;
+        this.deliveryPlace = deliveryPlace;
+
+    }
+
+    public Shop(int id
+            , String name
+            , int deliveryPrice
+            , String deliveryTime
             , int referenceCount
             , int rate
             , int productCartId
@@ -56,7 +91,6 @@ public class Shop {
         this.productCartId = productCartId;
         this.productCartCount = productCartCount;
         this.productCartSum = productCartSum;
-
     }
 
     public Shop(int id) {
@@ -138,4 +172,13 @@ public class Shop {
     public void setProductCartId(int productCartId) {
         this.productCartId = productCartId;
     }
+
+    public Float getDeliveryTimeFloat() {
+        return deliveryTimeFloat;
+    }
+
+    public void setDeliveryTimeFloat(Float deliveryTimeFloat) {
+        this.deliveryTimeFloat = deliveryTimeFloat;
+    }
+
 }

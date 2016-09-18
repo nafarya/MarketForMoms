@@ -37,7 +37,7 @@
     <string name="delivery_street">АДРЕС: УЛИЦА, ДОМ</string>
     <string name="delivery_house">НОМЕР КВАРТИРЫ ИЛИ ОФИСА</string>
     <string name="delivery_comment">КОММЕНТАРИЙ К ЗАКАЗУ</string>
-    <string name="delivery_shop_1">ДОСТАВКА ИЗ МАГАЗИНА КОРАБЛИК</string>
+    <string name="delivery_shop">ДОСТАВКА ИЗ МАГАЗИНА</string>
     <string name="delivery_shop1_text">Курьером в пределах МКАД</string>
     <string name="delivery_shop1_price">390 H, 30 августа</string>
     <string name="delivery_shop_2">ДОСТАВКА ИЗ МАГАЗИНА ДЕТСКИЙ МИР</string>
@@ -81,5 +81,5 @@
         <item quantity="many">Из %1$d магазинов</item>
         <item quantity="other">Из %1$d магазинов</item>
     </plurals>
-
+    <string name="delivery_date_today">сегодня</string>
 </resources>
