@@ -6,8 +6,8 @@ Insert into PRODUCT_CATEGORY (_ID,NAME,DESCRIPTION,PARENT_CATEGORY_ID,IMAGE_ID,F
 (21,"Гигиена","Товары для купания и ухода за ребёнком",2,121,null,null,null),
 (22,"Одежда и обувь","Для всех возрастов",2,122,null,null,null),
 (23,"Игрушки","Известные герои и хиты рекламы ",2,123,null,null,null),
-(24,"Коляски","с шасси, люлькой и прогулочным сиденьем",2,124,null,null,null),
-(25,"Детская мебель","Безопасная и удобная",2,125,null,null,null),
+(24,"Детская мебель","Безопасная и удобная",2,125,null,null,null),
+(25,"Коляски","с шасси, люлькой и прогулочным сиденьем",2,124,null,null,null),
 (26,"Автокресла","Для безопасностивашего ребёнка",2,126,null,null,null),
 
 
@@ -34,7 +34,6 @@ Insert into PRODUCT_CATEGORY (_ID,NAME,DESCRIPTION,PARENT_CATEGORY_ID,IMAGE_ID,F
 (2200,"Одежда для малышей","",22,null,null,null,null),
 (2201,"Для детей от 3 лет","",22,null,null,null,null),
 (2202,"Для детей от 7 лет ","",22,null,null,null,null),
-/*(2203,"Детская обувь","",22,null,null,null,null),*/
 
 (220000,"Футболки","",2200,null,null,null,null),
 (220001,"Боди с длинными рукавами","",2200,null,25,24,null),
@@ -67,10 +66,11 @@ Insert into PRODUCT_CATEGORY (_ID,NAME,DESCRIPTION,PARENT_CATEGORY_ID,IMAGE_ID,F
 (220108,"Верхняя одежда","",2201,null,null,null,null),
 (220109,"Одежда для спорта","",2201,null,null,null,null),
 (220110,"Балетки","",2201,null,null,null,null),
-(220111,"Кеды и кроссовки","",2201,null,null,null,null),
-(220112,"Ботинки и туфли","",2201,null,null,null,null),
-(220113,"Сапоги","",2201,null,null,null,null),
-(220114,"Шлепанцы","",2201,null,null,null,null),
+(220111,"Босоножки","",2201,null,null,null,null),
+(220112,"Кеды и кроссовки","",2201,null,null,null,null),
+(220113,"Ботинки и туфли","",2201,null,null,null,null),
+(220114,"Сапоги","",2201,null,null,null,null),
+(220115,"Шлепанцы","",2201,null,null,null,null),
 
 (220200,"Футболки","",2202,null,null,null,null),
 (220201,"Платья","",2202,null,null,null,null),
@@ -83,14 +83,23 @@ Insert into PRODUCT_CATEGORY (_ID,NAME,DESCRIPTION,PARENT_CATEGORY_ID,IMAGE_ID,F
 (220208,"Верхняя одежда","",2202,null,null,null,null),
 (220209,"Одежда для спорта","",2202,null,null,null,null),
 (220210,"Балетки","",2202,null,null,null,null),
-(220211,"Кеды и кроссовки","",2202,null,null,null,null),
-(220212,"Ботинки и туфли","",2202,null,null,null,null),
-(220213,"Сапоги","",2202,null,null,null,null),
-(220214,"Шлепанцы","",2202,null,null,null,null),
+(220211,"Босоножки","",2202,null,null,null,null),
+(220212,"Кеды и кроссовки","",2202,null,null,null,null),
+(220213,"Ботинки и туфли","",2202,null,null,null,null),
+(220214,"Сапоги","",2202,null,null,null,null),
+(220215,"Шлепанцы","",2202,null,null,null,null),
 
 (2300,"Развивающие коврики","",23,null,null,null,null),
 (2301,"Развивающие игрушки","",23,null,null,null,null),
 (2302,"Мобили","",23,null,null,null,null),
+(2303,"Игрушки для ванны","",23,null,null,null,null),
+(2304,"Каталки и качалки","",23,null,null,null,null),
+(2305,"Погремушки и прорезыватели","",23,null,null,null,null),
+
+(2400,"Кроватки с колесиками","",null,null,null,null,null),
+(2401,"Rроватки-трансформеры","",null,null,null,null,null),
+(2401,"Rроватки с плеером","",null,null,null,null,null),
+
 (2303,"Игрушки для ванны","",23,null,null,null,null),
 (2304,"Каталки и качалки","",23,null,null,null,null),
 (2305,"Погремушки и прорезыватели","",23,null,null,null,null),
@@ -105,25 +114,23 @@ Insert into PRODUCT_CATEGORY (_ID,NAME,DESCRIPTION,PARENT_CATEGORY_ID,IMAGE_ID,F
 (37,"Книги по уходу за ребенком","",3,null,null,null,null),
 (38,"Кормление","",3,null,null,null,null),
 
-
 (3000,"Уход за телом","",30,null,null,null,null),
-
 
 (3200,"Нижнее белье","",32,null,null,null,null),
 (3201,"Бандажи","",32,null,null,null,null),
 (3202,"Прокладки для груди","",32,null,null,null,null),
 (3203,"Накладки для груди","",32,null,null,null,null),
 
-(3300,"Радио-и видеоняни","",33,null,null,null,null),
-(3301,"Хранение грудного молока","",33,null,null,null,null),
-(3302,"Молокоотсосы","",33,null,null,null,null),
+(3600,"Радио-и видеоняни","",33,null,null,null,null),
+(3601,"Хранение грудного молока","",33,null,null,null,null),
+(3602,"Молокоотсосы","",33,null,null,null,null),
 
-(3400,"Соски","",34,null,null,null,null),
-(3401,"Бандажи","",34,null,null,null,null),
-(3402,"Стерилизаторы","",34,null,null,null,null),
-(3403,"Бутылоски и ниблеры","",34,null,null,null,null),
-(3404,"Поильники","",34,null,null,null,null),
-(3405,"Соковыжималки","",34,null,null,null,null),
-(3406,"Нагрудник и слюнявчик","",34,null,null,null,null),
+(3800,"Соски","",34,null,null,null,null),
+(3801,"Бандажи","",34,null,null,null,null),
+(3802,"Стерилизаторы","",34,null,null,null,null),
+(3803,"Бутылоски и ниблеры","",34,null,null,null,null),
+(3804,"Поильники","",34,null,null,null,null),
+(3805,"Соковыжималки","",34,null,null,null,null),
+(3806,"Нагрудник и слюнявчик","",34,null,null,null,null),
 
 (10,"3 и более","",11,null,null,null,null);
