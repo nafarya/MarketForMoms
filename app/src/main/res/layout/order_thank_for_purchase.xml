@@ -62,6 +62,7 @@
             android:layout_alignParentBottom="true"
             android:id="@+id/order_thank_for_purchase_button_back_to_catalog"
             android:text="Вернуться в каталог"
+            android:textAllCaps="false"
             android:fontFamily="sans-serif"
             android:textSize="16sp"
             android:textColor="@color/black_color"/>
