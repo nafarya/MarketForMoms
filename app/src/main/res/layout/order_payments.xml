@@ -160,6 +160,7 @@
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:padding="13dp"
+            android:textColor="@color/black_color"
             android:text="@string/order_checkout"
             android:textAlignment="center"
             android:textSize="16sp"
