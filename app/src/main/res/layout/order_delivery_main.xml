@@ -165,8 +165,7 @@
                         android:text="@string/order_delivery_sum"
                         android:fontFamily="sans-serif"
                         android:textAlignment="textEnd"
-                        android:textSize="20sp"
-                        android:textStyle="normal|bold" />
+                        android:textSize="20sp"/>
                 </LinearLayout>
 
                 <TextView
@@ -177,10 +176,10 @@
                     android:background="@color/colorPrimary"
                     android:padding="13dp"
                     android:text="@string/next"
+                    android:textColor="#cc000000"
                     android:fontFamily="sans-serif"
                     android:textAlignment="center"
-                    android:textSize="15sp"
-                    android:textStyle="normal|bold" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
